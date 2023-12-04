@@ -7,8 +7,8 @@ from ..api.routes.AWS_helpers import ALLOWED_EXTENSIONS
 
 
 class PostForm(FlaskForm):
-    description = StringField("Description", validators=[DataRequired()])
+    description = StringField("description", validators=[DataRequired()])
     # image = StringField("Image URL", validators=[DataRequired(), URL()])
-    image = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    categories = SelectField("Categories", choices=[])
-    submit = SubmitField("Create Post")
+    # image = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # categories = SelectField("Categories", choices=[])
+    # submit = SubmitField("Create Post")

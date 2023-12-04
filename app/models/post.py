@@ -10,8 +10,8 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(2500), nullable=False)
-    userId = db.Column(db.String(40), nullable=False)
-    categoriesId = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.String(40), nullable=False)
+    categories_id = db.Column(db.String(255), nullable=False)
 
 
 
@@ -21,6 +21,6 @@ class Post(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'userId': self.userId,
-            'categoriesId': self.categoriesId,
+            'userId': self.user_id,
+            'categoriesId': self.categories_id,
         }
