@@ -18,7 +18,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route path="/">
+            <h1>Hello</h1>
+          </Route>
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
