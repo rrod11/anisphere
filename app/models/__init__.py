@@ -1,3 +1,5 @@
-from .db import db
+""" DB/Env/Schema Import """
+from .db import db, environment, SCHEMA
+
+""" Import Models """
 from .user import User
-from .db import environment, SCHEMA
