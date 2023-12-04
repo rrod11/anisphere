@@ -28,6 +28,10 @@ def upgrade():
     sa.Column('categoryId', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE postCategories SET SCHEMA {SCHEMA};")
+
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=200), nullable=False),
@@ -38,6 +42,10 @@ def upgrade():
     sa.UniqueConstraint('categoriesId'),
     sa.UniqueConstraint('userId')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('firstName', sa.String(length=50), nullable=False),
