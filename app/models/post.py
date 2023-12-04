@@ -10,7 +10,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(2500), nullable=False)
-    userId = db.Column(db.String(40), nullable=False, unique=True)
+    userId = db.Column(db.String(40), nullable=False)
     categoriesId = db.Column(db.String(255), nullable=False)
 
 
