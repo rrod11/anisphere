@@ -2,8 +2,8 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import  FileField, FileAllowed, FileRequired
 from wtforms import SubmitField, StringField, SelectField
 from wtforms.validators import DataRequired, Length, URL
-from app.api.routes.aws_helpers import ALLOWED_EXTENSIONS
-from ..api.routes.AWS_helpers import ALLOWED_EXTENSIONS
+# from app.api.aws_helpers import ALLOWED_EXTENSIONS
+# from ..api.AWS_helpers import ALLOWED_EXTENSIONS
 
 
 class PostForm(FlaskForm):

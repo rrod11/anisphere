@@ -17,7 +17,8 @@ postcategories = db.Table(
     # post_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("posts.id")))
     # category_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")))
 
-
+if environment == "production":
+    postcategories.schema = SCHEMA
 
 
     # def to_dict(self):

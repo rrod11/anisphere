@@ -1,17 +1,17 @@
 from flask import Blueprint, render_template, redirect
-from ..posts import posts as seed_posts
-from ..forms.post import PostForm
+# from ..posts import posts as seed_posts
+# from app.forms import PostForm
 from datetime import date
 from random import randint
-from ..models import db, Post, User
+from app.models import db, Post, User
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
-posts = Blueprint("posts", __name__)
+post_routes = Blueprint("posts", __name__)
 # print("in posts bp", __name__)
 
 
-@posts.route("/all")
+@post_routes.route("/all")
 def get_all_posts():
     """get all the posts and return them """
     all_posts = Post.query.all()
@@ -19,11 +19,11 @@ def get_all_posts():
     print(see_posts)
     print(all_posts)
     # sorted_posts = sorted(seed_posts, key=lambda post: post["date"], reverse=True)
-    return render_template("feed.html", posts=all_posts)
-    return see_posts
+    # return render_template("feed.html", posts=all_posts)
+    return {"posts": see_posts}
 
 
-@posts.route("/<int:id>")
+@post_routes.route("/<int:id>")
 def get_post_by_id(id):
     """return a single post by the id passed to the route"""
     one_post = Post.query.get(id)
@@ -33,7 +33,7 @@ def get_post_by_id(id):
     # return one_post
 
 
-@posts.route("/new", methods=["GET", "POST"])
+@post_routes.route("/new", methods=["GET", "POST"])
 def create_new_user():
     """ route that handles displaying a form on get requests and
     handles post submission on post requests"""
@@ -73,7 +73,7 @@ def create_new_user():
 
 
 
-@posts.route("/update/<int:id>", methods=['GET', 'POST'])
+@post_routes.route("/update/<int:id>", methods=['GET', 'POST'])
 def update_post(id):
     form = PostForm()
 
@@ -102,7 +102,7 @@ def update_post(id):
 
 
 
-@posts.route("/delete/<int:id>")
+@post_routes.route("/delete/<int:id>")
 def delete_post(id):
     post_to_delete = Post.query.get(id)
 
