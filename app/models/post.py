@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .postCategory import PostCategory
+from .postCategory import postcategories
+# from .postCategory import PostCategory
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -18,7 +19,8 @@ class Post(db.Model):
 
     user = db.relationship("User", back_populates="posts")
 
-    categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
+    categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
+    # categories = db.relationship("Category", secondary=add_prefix_for_prod("postCategories"), back_populates="posts")
 
 
 
@@ -28,7 +30,7 @@ class Post(db.Model):
             'title': self.title,
             'description': self.description,
             'userId': self.user_id,
-            'categoriesId': self.categories_id,
-            # "reviews": [review.to_dict() for review in self.reviews],
-            # "user": self.user.to_dict(),
+            # 'categoriesId': self.categories_id,
+            "reviews": [review.to_dict() for review in self.reviews],
+            "user": self.user.to_dict(),
         }

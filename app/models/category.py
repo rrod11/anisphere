@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .postCategory import PostCategory
+from .postCategory import postcategories
 
 
 class Category(db.Model):
@@ -11,7 +11,8 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
 
-    posts = db.relationship("Post", secondary=add_prefix_for_prod("postcategories"), back_populates="categories")
+    posts = db.relationship("Post", secondary=postcategories, back_populates="categories")
+    # posts = db.relationship("Post", secondary=add_prefix_for_prod("postcategories"), back_populates="categories")
 
 
 

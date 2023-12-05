@@ -25,6 +25,6 @@ class Review(db.Model):
             'postId': self.post_id,
             'userId': self.user_id,
             'rating': self.rating,
-            # "user": self.user.to_dict(),
-            # "posts": self.posts.to_dict(),
+            "user": self.user.to_dict(),
+            "posts": self.posts.to_dict(),
         }
