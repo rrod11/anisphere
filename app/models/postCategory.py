@@ -11,8 +11,8 @@ postcategories = db.Table(
     # id = db.Column(db.Integer, primary_key=True)
     "postcategories",
     db.Model.metadata,
-    db.Column("post_id",db.INTEGER, db.ForeignKey("posts.id")),
-    db.Column("category_id",db.INTEGER, db.ForeignKey("categories.id")),
+    db.Column("post_id",db.INTEGER, db.ForeignKey(add_prefix_for_prod("posts.id"))),
+    db.Column("category_id",db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id"))),
 )
     # post_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("posts.id")))
     # category_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")))
