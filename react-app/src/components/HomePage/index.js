@@ -38,7 +38,7 @@ const ProductPage = () => {
   return isLoaded ? (
     <div id="posts-page">
       <h1>All Anime</h1>
-      <div className="posts-main-contianer">
+      {/* <div className="posts-main-contianer">
         {prodArr.map((product) => (
           <div key={product.id} className="products-card">
             <a key={product.id} href={`/products/${product.id}`}>
@@ -64,7 +64,7 @@ const ProductPage = () => {
               {user && user.id != product.seller_id && (
                 <div id="prod-page-btn-container">
                   {/* {(userWish.products && userWish.products[product.id] == undefined) && ( */}
-                  <div
+      {/* <div
                     className="add-wish-btn"
                     onClick={(e) => addToWish(e, product)}
                   >
@@ -75,10 +75,9 @@ const ProductPage = () => {
                     ) : (
                       <i className="fa-regular fa-heart"></i>
                     )}
-                  </div>
-                  {/* // )} */}
-
-                  <button
+                  </div> */}
+      {/* // )} */}
+      {/* <button
                     value={product.id}
                     disabled={!product.units_available}
                     onClick={(e) => handleClick(e, product)}
@@ -86,12 +85,12 @@ const ProductPage = () => {
                   >
                     Add to cart
                   </button>
-                </div>
-              )}
+                </div> */}
+      {/* )}
             </div>
           </div>
-        ))}
-      </div>
+        ))} */}
+      {/* </div> */} */}
     </div>
   ) : (
     <h3>Loading...</h3>
