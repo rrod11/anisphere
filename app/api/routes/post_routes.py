@@ -11,7 +11,7 @@ posts = Blueprint("posts", __name__)
 # print("in posts bp", __name__)
 
 
-@posts.route("/")
+@posts.route("/all")
 def get_all_posts():
     """get all the posts and return them """
     all_posts = Post.query.all()
