@@ -6,7 +6,7 @@
       <div class="post-container">
         <div class="post-box">
           <div class="post-author">
-            <img class="profile-pic" src="{{ post.user.profile_pic }}" />
+            {% comment %} <img class="profile-pic" src="{{ post.user.profile_pic }}" /> {% endcomment %}
             {% if post.user.username == 'Patchenator' %}
               <h2 style="color: red;">{{ post.user.username }}</h2>
             {% elif post.user.username == 'Blueberry44' %}
