@@ -27,9 +27,20 @@ const HomePage = () => {
     });
   }, [dispatch]);
 
+  // return isLoaded ? (
+  //   <div id="posts-page">
+  //     <h1>All Anime</h1>
+  //   </div>
+  // ) : null;
+
   return isLoaded ? (
-    <div id="posts-page">
-      <h1>All Anime</h1>
+    <div id="post-page">
+      <h1>
+        ProGress
+        <progress id="completion" max="100" volume="5">
+          5%
+        </progress>
+      </h1>
     </div>
   ) : null;
 };

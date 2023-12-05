@@ -9,9 +9,11 @@ import Navigation from "./components/Navigation";
 import PostForm from "./components/PostForm";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {location.pathname === "/" ? null : <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
           <Route exact path="/">
