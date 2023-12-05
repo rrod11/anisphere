@@ -9,12 +9,14 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     review = db.Column(db.String(2000), nullable=False)
-    post_id = db.Column(db.INTEGER, nullable=False)
+    post_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("posts.id"), ondelete='CASCADE') ,nullable=False)
     user_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='CASCADE') , nullable=False)
     rating = db.Column(db.INTEGER, nullable=False)
 
 
     user = db.relationship("User", back_populates="reviews")
+
+    posts = db.relationship("Post", back_populates="reviews")
 
     def to_dict(self):
         return {

@@ -14,7 +14,7 @@ class Post(db.Model):
     categories_id = db.Column(db.INTEGER, nullable=False)
 
 
-    # reviews = db.relationship("Review", back_populates="post_id", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
 
     user = db.relationship("User", back_populates="posts")
 
