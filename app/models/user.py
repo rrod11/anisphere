@@ -60,7 +60,7 @@ class User(db.Model, UserMixin):
     # updated_at = db.Column(db.Date, nullable=False, default=date.today())
 
     # posts = db.relationship("Post", back_populates="user")
-    # posts = db.relationship("Post")
+    posts = db.relationship("Post")
 
     reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
 
