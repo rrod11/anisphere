@@ -4,14 +4,14 @@ const GET_POSTS = "posts/GET_POSTS";
 const ADD_POST = "posts/ADD_POST";
 
 // ACTIONS
-export const getPosts = (posts) => {
+const getPosts = (posts) => {
   return {
     type: GET_POSTS,
     posts,
   };
 };
 
-export const addPost = (post) => {
+const addPost = (post) => {
   return {
     type: ADD_POST,
     post,
@@ -20,7 +20,7 @@ export const addPost = (post) => {
 
 // THUNKS
 export const getAllPosts = (currentUser) => async (dispatch) => {
-  const response = await fetch("/posts/all");
+  const response = await fetch("/api/posts/all");
   if (response.ok) {
     const { posts } = await response.json();
     dispatch(getPosts(posts));
