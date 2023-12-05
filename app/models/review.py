@@ -25,4 +25,6 @@ class Review(db.Model):
             'postId': self.post_id,
             'userId': self.user_id,
             'rating': self.rating,
+            "user": self.user.to_dict() if self.user else "deleted",
+            "posts": self.posts.to_dict() if self.posts else "deleted",
         }

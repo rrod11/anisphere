@@ -21,4 +21,5 @@ class Category(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            "posts": [post.to_dict() for post in self.posts],
         }
