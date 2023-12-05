@@ -9,8 +9,10 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     review = db.Column(db.String(2000), nullable=False)
-    post_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("posts.id"), ondelete='CASCADE') ,nullable=False)
-    user_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='CASCADE') , nullable=False)
+    post_id = db.Column(db.INTEGER,db.ForeignKey(("posts.id"), ondelete='CASCADE') ,nullable=False)
+    user_id = db.Column(db.INTEGER,db.ForeignKey(("users.id"), ondelete='CASCADE') , nullable=False)
+    # post_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("posts.id"), ondelete='CASCADE') ,nullable=False)
+    # user_id = db.Column(db.INTEGER,db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='CASCADE') , nullable=False)
     rating = db.Column(db.INTEGER, nullable=False)
 
 
