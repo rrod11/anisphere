@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 
     posts = db.relationship("Post", back_populates="user")
 
-    # reviews = db.relationship("Review", back_populates="user_id", cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
