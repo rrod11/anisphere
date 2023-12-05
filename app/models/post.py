@@ -29,6 +29,6 @@ class Post(db.Model):
             'description': self.description,
             'userId': self.user_id,
             'categoriesId': self.categories_id,
-            "reviews": [review.to_dict() for review in self.reviews],
-            "user": self.user.to_dict() if self.user else "deleted",
+            # "reviews": [review.to_dict() for review in self.reviews],
+            # "user": self.user.to_dict(),
         }

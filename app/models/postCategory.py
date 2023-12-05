@@ -18,5 +18,5 @@ class PostCategory(db.Model):
         return {
             'id': self.id,
             'postId': self.post_id,
-            'categoryId': self.category_id,
+            # 'categoryId': self.category_id,
         }

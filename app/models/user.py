@@ -42,6 +42,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'adminKey': self.admin_key,
             'email': self.email,
-            "posts": [post.to_dict() for post in self.posts],
-            "reviews": [review.to_dict() for review in self.reviews],
+            # "posts": [post.to_dict() for post in self.posts],
+            # "reviews": [review.to_dict() for review in self.reviews],
         }
