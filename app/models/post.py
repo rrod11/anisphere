@@ -18,7 +18,7 @@ class Post(db.Model):
 
     reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
 
-    user = db.relationship("User", back_populates="posts")
+    # user = db.relationship("User", back_populates="posts")
 
     categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
     # categories = db.relationship("Category", secondary=add_prefix_for_prod("postCategories"), back_populates="posts")
@@ -33,5 +33,5 @@ class Post(db.Model):
             'userId': self.user_id,
             # 'categoriesId': self.categories_id,
             "reviews": [review.to_dict() for review in self.reviews],
-            "user": self.user.to_dict(),
+            # "user": self.user.to_dict(),
         }
