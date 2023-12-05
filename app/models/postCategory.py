@@ -8,8 +8,8 @@ class PostCategory(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column(db.INTEGER)
-    category_id = db.Column(db.INTEGER, nullable=False)
+    post_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("posts.id")))
+    category_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")))
 
 
 

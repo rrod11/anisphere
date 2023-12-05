@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from .postCategory import PostCategory
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -17,6 +17,8 @@ class Post(db.Model):
     reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
 
     user = db.relationship("User", back_populates="posts")
+
+    categories = db.relationship("Category", secondary=add_prefix_for_prod("postCategories"), back_populates="posts")
 
 
 
