@@ -2,7 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 class PostCategory(db.Model):
-    __tablename__ = 'postCategories'
+    __tablename__ = 'postcategories'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}

@@ -11,7 +11,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
 
-    posts = db.relationship("Post", secondary=add_prefix_for_prod("postCategories"), back_populates="categories")
+    posts = db.relationship("Post", secondary=add_prefix_for_prod("postcategories"), back_populates="categories")
 
 
 

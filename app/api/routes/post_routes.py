@@ -11,16 +11,16 @@ posts = Blueprint("posts", __name__)
 # print("in posts bp", __name__)
 
 
-@posts.route("/all")
+@posts.route("/")
 def get_all_posts():
     """get all the posts and return them """
-    all_posts = Post.query.order_by(Post.post_date.desc()).all()
+    all_posts = Post.query.all()
     see_posts = [post.to_dict() for post in all_posts]
     print(see_posts)
     print(all_posts)
     # sorted_posts = sorted(seed_posts, key=lambda post: post["date"], reverse=True)
     return render_template("feed.html", posts=all_posts)
-    # return see_posts
+    return see_posts
 
 
 @posts.route("/<int:id>")
@@ -29,7 +29,8 @@ def get_post_by_id(id):
     one_post = Post.query.get(id)
     # one_post = [post for post in seed_posts if post["id"] == id ]
     print(one_post)
-    return render_template("feed.html", posts=[one_post] )
+    # return render_template("feed.html", posts=[one_post] )
+    # return one_post
 
 
 @posts.route("/new", methods=["GET", "POST"])
