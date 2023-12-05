@@ -10,9 +10,13 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(2500), nullable=False)
-    user_id = db.Column(db.INTEGER, nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') , nullable=False)
     categories_id = db.Column(db.INTEGER, nullable=False)
 
+
+    # reviews = db.relationship("Review", back_populates="post_id", cascade="all, delete-orphan")
+
+    user = db.relationship("User", back_populates="posts")
 
 
 
