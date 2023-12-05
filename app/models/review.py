@@ -1,17 +1,17 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-class Post(db.Model):
-    __tablename__ = 'posts'
+class Review(db.Model):
+    __tablename__ = 'reviews'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    description = db.Column(db.String(2500), nullable=False)
+    review = db.Column(db.String(2000), nullable=False)
+    post_id = db.Column(db.INTEGER, nullable=False)
     user_id = db.Column(db.INTEGER, nullable=False)
-    categories_id = db.Column(db.INTEGER, nullable=False)
+    rating = db.Column(db.INTEGER, nullable=False)
 
 
 
@@ -19,8 +19,8 @@ class Post(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'title': self.title,
-            'description': self.description,
+            'review': self.review,
+            'postId': self.post_id,
             'userId': self.user_id,
-            'categoriesId': self.categories_id,
+            'rating': self.rating,
         }

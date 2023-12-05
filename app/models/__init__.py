@@ -4,4 +4,6 @@ from .db import db, environment, SCHEMA
 """ Import Models """
 from .user import User
 from .post import Post
-# from .postCategory import PostCategory
+from .review import Review
+from .category import Category
+from .postCategory import PostCategory
