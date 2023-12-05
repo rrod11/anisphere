@@ -15,7 +15,7 @@ class Post(db.Model):
     # user_id = db.Column(db.INTEGER)
     # user_id = db.Column(db.INTEGER, db.ForeignKey("users.id"))
     user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') , nullable=False)
-    categories_id = db.Column(db.INTEGER, db.ForeignKey("categories.id"),nullable=False)
+    categories_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")),nullable=False)
 
 
     reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
