@@ -11,7 +11,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(2500), nullable=False)
-    user_id = db.Column(db.INTEGER, db.ForeignKey(("users.id"), ondelete='SET NULL'), nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey(("users.id"), ondelete='SET NULL'))
     # user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') , nullable=False)
     categories_id = db.Column(db.INTEGER, db.ForeignKey("categories.id"),nullable=False)
 
