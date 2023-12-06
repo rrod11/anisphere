@@ -115,7 +115,7 @@ def update_post(id):
 
 
 
-@post_routes.route("/<int:id>/delete")
+@post_routes.route("/<int:id>/delete", methods=["GET", "DELETE"])
 def delete_post(id):
     post_to_delete = Post.query.get(id)
 

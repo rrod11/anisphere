@@ -7,6 +7,7 @@ import ReviewFormModal from "../CreateReviewModal";
 import "./animePage.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Reviews from "../Reviews";
+import DeletePost from "../DeleteModal/deleteModalPost";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -112,6 +113,16 @@ const AnimePage = ({ posts }) => {
       (sessionUser && sessionUser.adminKey == "roderick0318") ? (
         <button onClick={editPost}>Edit Post</button>
       ) : null}
+      {(sessionUser && target.userId == sessionUser.id) ||
+      (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+        <OpenModalButton
+          buttonText="Delete Post"
+          modalClasses={["add-delete-button-container"]}
+          onButtonClick={closeMenu}
+          modalComponent={<DeletePost postId={postId} />}
+        />
+      ) : null}
+
       <div className="overallReviews">
         {target && target.reviews.length < 1 ? (
           <span>

@@ -9,25 +9,10 @@ const HomePage = ({ posts }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const recieved = posts;
-  // console.log("🚀 ~ file: index.js:12 ~ HomePage ~ recieved:", recieved);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("🚀 ~ file: index.js:15 ~ HomePage ~ sessionUser:", sessionUser);
   const allPosts = useSelector((state) => state.post.posts);
-  console.log("🚀 ~ file: index.js:13 ~ HomePage ~ allPosts:", allPosts);
-  // let postArr;
-  // if (Object.keys(allPosts).length >= 1) {
-  //   postArr = Object.values(allPosts);
-  // }
-  // const postArrLength = Object.values(allPosts).length;
   const postArr = Object.values(allPosts);
-  console.log("🚀 ~ file: index.js:15 ~ HomePage ~ postArr:", postArr.length);
 
-  // console.log("user", user);
-  // console.log("products state", products);
-  // console.log("favorite", favorite)
-  // console.log("local storage fav", storedFavorite)
-  // console.log("user wish", userWish);
   useEffect(() => {
     dispatch(getAllPosts())
       .then(() => {

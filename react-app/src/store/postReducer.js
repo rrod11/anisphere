@@ -2,6 +2,7 @@ import { normalizeObj } from "./helpers";
 
 const GET_POSTS = "posts/GET_POSTS";
 const ADD_POST = "posts/ADD_POST";
+const DELETE_POST = "posts/DELETE_POST";
 
 // ACTIONS
 const getPosts = (posts) => {
@@ -17,6 +18,12 @@ const addPost = (post) => {
     post,
   };
 };
+const deletePost = (postId) => {
+  return {
+    type: DELETE_POST,
+    payload: postId,
+  };
+};
 
 // THUNKS
 export const getAllPosts = () => async (dispatch) => {
@@ -25,7 +32,7 @@ export const getAllPosts = () => async (dispatch) => {
     const { posts } = await response.json();
     dispatch(getPosts(posts));
   } else {
-    console.log("There was an error getting all posts!");
+    console.log("There was an error GETTING all posts!");
   }
 };
 
@@ -38,7 +45,6 @@ export const createPost = (post) => async (dispatch) => {
     //   },
     body: post,
   });
-  console.log("RESPONSE FROM SERVER", response);
 
   if (response.ok) {
     const resPost = await response.json();
@@ -46,7 +52,7 @@ export const createPost = (post) => async (dispatch) => {
     console.log("NEW POST DATA", resPost);
     dispatch(addPost(resPost));
   } else {
-    console.log("There was an error making your post!");
+    console.log("There was an error CREATING your post!");
   }
 };
 export const editPost = (post, postId) => async (dispatch) => {
@@ -58,7 +64,6 @@ export const editPost = (post, postId) => async (dispatch) => {
     //   },
     body: post,
   });
-  console.log("RESPONSE FROM SERVER", response);
 
   if (response.ok) {
     const resPost = await response.json();
@@ -66,7 +71,20 @@ export const editPost = (post, postId) => async (dispatch) => {
     console.log("NEW POST DATA", resPost);
     dispatch(addPost(resPost));
   } else {
-    console.log("There was an error making your post!");
+    console.log("There was an error EDITING your post!");
+  }
+};
+
+export const deleteAPost = (postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/delete`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deletePost(postId));
+    return response;
+  } else {
+    console.log("There was an error trying to DELETE post");
   }
 };
 
@@ -81,12 +99,13 @@ const postReducer = (state = initialState, action) => {
       return newState;
     case ADD_POST:
       newState = { ...state };
-      console.log(
-        "🚀 ~ file: postReducer.js:63 ~ postReducer ~ newState:",
-        newState
-      );
       newState.posts[action.post.id] = action.post;
       return newState;
+    case DELETE_POST:
+      let deleteState;
+      deleteState = { ...state };
+      delete deleteState[action.postId];
+      return deleteState;
     default:
       return state;
   }
