@@ -14,11 +14,11 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  const reviewLength = target.reviews.length;
+  // console.log("🚀 ~ file: index.js:17 ~ AnimePage ~ target:", target.reviews);
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
-  if (target.reviews.length >= 1) {
+  if (target && target.reviews.length >= 1) {
     sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
   }
   let avg;
@@ -107,7 +107,7 @@ const AnimePage = ({ posts }) => {
       </div>
       <h3>{target.description}</h3>
       <div className="overallReviews">
-        {target.reviews.length < 1 ? (
+        {target && target.reviews.length < 1 ? (
           <span>
             <h1>
               {target.reviews.length} Reviews {avg?.toFixed(2)}

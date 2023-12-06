@@ -79,7 +79,7 @@ def update_review(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        review.product_id=form.data["product_id"]
+        review.post_id=form.data["post_id"]
         review.user_id=form.data["user_id"]
         review.review=form.data["review"]
         review.rating=form.data["rating"]

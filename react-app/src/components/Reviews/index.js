@@ -9,6 +9,7 @@ import {
 import OpenModalButton from "../OpenModalButton";
 import DeleteReview from "../DeleteModal/deleteModalReview";
 import { allTheReviews } from "../../store/reviewReducer";
+import EditReview from "../EditReviewModal/editModalReview";
 // import ReviewFormModal from "../CreateReviewModal";
 // import DeleteReview from "../DeleteModal/deleteModalReview";
 // import EditReview from "../EditReviewModal/editModalReview";
