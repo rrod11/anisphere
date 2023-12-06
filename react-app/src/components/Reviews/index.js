@@ -2,42 +2,58 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../store/userReducer";
 import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
+import DeleteReview from "../DeleteModal/deleteModalReview";
+import { allTheReviews } from "../../store/reviewReducer";
 // import ReviewFormModal from "../CreateReviewModal";
 // import DeleteReview from "../DeleteModal/deleteModalReview";
 // import EditReview from "../EditReviewModal/editModalReview";
 
 function Reviews({ list }) {
-  console.log("🚀 ~ file: index.js:13 ~ Reviews ~ list:", list);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { postId } = useParams();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers())
+      .then(() => {
+        setIsLoaded(true);
+      })
+      .then(() => dispatch(allTheReviews()))
+      .then(() => {
+        history.push(`/posts/${postId}`);
+      });
+  }, [dispatch, isLoaded]);
+  const history = useHistory();
   const usersObj = useSelector((state) => state.user.users);
   const sessionUser = useSelector((state) => state.session.user);
+
+  if (!usersObj) {
+    return (
+      <>
+        <h1>Reviews Aren't Ready</h1>
+      </>
+    );
+  }
   const usersArr = Object.values(usersObj);
-  console.log("🚀 ~ file: index.js:14 ~ Reviews ~ users:", usersArr);
-  const [showMenu, setShowMenu] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   function addUsers(list, users) {
     let newbie = [];
     for (let i = 0; i < list.length; i++) {
       list[i].user = users?.find((ele) => ele.id == list[i].userId);
       newbie.push(list[i]);
     }
-    console.log("This is newbie", newbie);
     return newbie;
   }
   const reviewsFinal = addUsers(list, usersArr);
 
-  useEffect(() => {
-    dispatch(getAllUsers()).then(() => {
-      setIsLoaded(true);
-    });
-  }, [dispatch, isLoaded]);
   return (
     <>
       <h1>In Reviews</h1>
-      {isLoaded && list?.length >= 1 ? (
-        list?.map(({ userId, review, rating, user }) => (
+      {isLoaded && reviewsFinal?.length >= 1 ? (
+        reviewsFinal?.map(({ id, userId, review, rating, user }) => (
           <div style={{ borderBottom: "1px solid grey", padding: "5px" }}>
             <div
               style={{
@@ -112,21 +128,21 @@ function Reviews({ list }) {
             </div>
             {userId == sessionUser?.id ||
             sessionUser?.adminKey == "roderick0318" ? (
-              // <OpenModalButton
-              //   modalClasses={["delete-button-container"]}
-              //   buttonText="Delete Review"
-              //   modalComponent={
-              //     <DeleteReview reviewId={id} productId={productId} />
-              //   }
-              // />
-              <h1>READY TO DELETE</h1>
-            ) : null}
+              <OpenModalButton
+                modalClasses={["delete-button-container"]}
+                buttonText="Delete Review"
+                modalComponent={
+                  <DeleteReview reviewId={{ id }} postId={postId} />
+                }
+              />
+            ) : // <h1>READY TO DELETE</h1>
+            null}
             {userId == sessionUser?.id ? (
               // <OpenModalButton
               //   modalClasses={["edit-button-container"]}
               //   buttonText="Edit Review"
               //   modalComponent={
-              //     <EditReview reviewId={id} productId={productId} />
+              //     <EditReview reviewId={id} postId={postId} />
               //   }
               // />
               <h1>READY TO EDIT??</h1>

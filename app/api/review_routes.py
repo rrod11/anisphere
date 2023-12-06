@@ -90,8 +90,10 @@ def update_review(id):
 @review_routes.route("/<int:id>/delete", methods=["DELETE"])
 @login_required
 def delete_review(id):
-    user = User.query.filter(User.id == current_user.get_id()).first()
+    print("++++++++++++++++++++++++++++++++++++++++++++++++DO I ENTER THE DELETE ROUTE??")
+    user = User.query.get(current_user.id)
     review = Review.query.get(id)
+    print("🐍 File: api/review_routes.py | Line: 95 | delete_review ~ review",review)
 
     if review:
         db.session.delete(review)

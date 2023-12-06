@@ -1,5 +1,7 @@
+import { normalizeObj } from "./helpers";
+
 const CREATE_REVIEW = "review/CREATE_REVIEW";
-const ALL_REVIEWS = "reviews/ALL_REVIEWS";
+const GET_REVIEWS = "reviews/GET_REVIEWS";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 const EDIT_REVIEW = "reviews/EDIT_REVIEW";
 const initialState = {};
@@ -11,10 +13,10 @@ const createReview = (payload) => {
   };
 };
 
-const allReviews = (payload) => {
+const getReviews = (reviews) => {
   return {
-    type: ALL_REVIEWS,
-    payload,
+    type: GET_REVIEWS,
+    reviews,
   };
 };
 const deleteReview = (payload, reviewId) => {
@@ -30,20 +32,30 @@ const editReview = (reviewId, payload) => {
   };
 };
 
-export const allTheReviews = (productId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${productId}`);
-  const reviews = await response.json();
-  dispatch(allReviews(reviews));
-  return reviews;
+export const allTheReviews = () => async (dispatch) => {
+  const response = await fetch(`/api/reviews/all`);
+
+  console.log(
+    "🚀 ~ file: reviewReducer.js:38 ~ allTheReviews ~ response: DO I COMEE IN THE REVIEW REDUCER",
+    response
+  );
+  if (response.ok) {
+    const { reviews } = await response.json();
+    dispatch(getReviews(reviews));
+    // return reviews;
+  } else {
+    console.log("there was an error getting all reviews");
+  }
 };
-export const allYourReviews = (userId) => async (dispatch) => {
-  // console.log("🚀 ~ file: review.js:36 ~ allYourReviews ~ userId:", userId);
-  const response = await fetch(`/api/reviews/${userId}/reviews`);
-  const reviews = await response.json();
-  console.log(reviews);
-  dispatch(allReviews(reviews));
-  // return reviews;
-};
+// export const allYourReviews = (userId) => async (dispatch) => {
+//   // console.log("🚀 ~ file: review.js:36 ~ allYourReviews ~ userId:", userId);
+//   // const response = await fetch(`/api/reviews/${userId}/reviews`);
+//   const response = await fetch(`/api/reviews/all`);
+//   const reviews = await response.json();
+//   console.log(reviews);
+//   dispatch(allReviews(reviews));
+//   return reviews;
+// };
 export const createAReview = (productId, payload) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${productId}/new`, {
     method: "POST",
@@ -55,11 +67,18 @@ export const createAReview = (productId, payload) => async (dispatch) => {
   return review;
 };
 export const deleteAReview = (reviewId) => async (dispatch) => {
+  console.log("FRESH IN THE DELTE THUNJK");
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
     method: "DELETE",
   });
-  dispatch(deleteReview(reviewId));
-  return response;
+  console.log("FRESH BEFORE THE DELETE RESPONSE OK");
+  if (response.ok) {
+    console.log("INSIDE THE DELETE THNK RESPONSE OK");
+    dispatch(deleteReview(reviewId));
+    return response;
+  } else {
+    console.log("There was an error trying to delete review");
+  }
 };
 export const editAReview =
   (reviewId, payload, productId) => async (dispatch) => {
@@ -72,15 +91,23 @@ export const editAReview =
     dispatch(allTheReviews(productId));
     return review;
   };
-const review = (state = initialState, action) => {
+const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case ALL_REVIEWS:
-      newState = {};
-      action.payload.reviews.forEach((review) => {
-        newState[review.id] = review;
-      });
+    case GET_REVIEWS:
+      newState = { ...state };
+      // action.payload.reviews.forEach((review) => {
+      //   newState[review.id] = review;
+      // });
+      newState.reviews = normalizeObj(action.reviews);
       return newState;
+    // case ALL_REVIEWS:
+    //   newState = { ...state };
+    //   // action.payload.reviews.forEach((review) => {
+    //   //   newState[review.id] = review;
+    //   // });
+    //   newState.reviews = normalizeObj(action.reviews);
+    //   return newState;
     case CREATE_REVIEW:
       newState = { ...state };
       newState[action.payload.id] = action.payload;
@@ -88,6 +115,10 @@ const review = (state = initialState, action) => {
 
     case DELETE_REVIEW:
       let deleteState;
+      console.log(
+        "🚀 ~ file: reviewReducer.js:115 ~ reviewReducer ~ deleteState: DO I GET DOWN TO THE REDUCER",
+        deleteState
+      );
       deleteState = { ...state };
       delete deleteState[action.reviewId];
       return deleteState;
@@ -96,4 +127,4 @@ const review = (state = initialState, action) => {
   }
 };
 
-export default review;
+export default reviewReducer;
