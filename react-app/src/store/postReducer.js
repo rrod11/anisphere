@@ -19,7 +19,7 @@ const addPost = (post) => {
 };
 
 // THUNKS
-export const getAllPosts = (currentUser) => async (dispatch) => {
+export const getAllPosts = () => async (dispatch) => {
   const response = await fetch("/api/posts/all");
   if (response.ok) {
     const { posts } = await response.json();

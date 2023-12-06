@@ -8,9 +8,11 @@ import "./HomePage.css";
 const HomePage = ({ posts }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const recieved = posts;
-  console.log("🚀 ~ file: index.js:12 ~ HomePage ~ recieved:", recieved);
+  const [isLoaded, setIsLoaded] = useState(false);
+  // const recieved = posts;
+  // console.log("🚀 ~ file: index.js:12 ~ HomePage ~ recieved:", recieved);
   const sessionUser = useSelector((state) => state.session.user);
+  console.log("🚀 ~ file: index.js:15 ~ HomePage ~ sessionUser:", sessionUser);
   const allPosts = useSelector((state) => state.post.posts);
   console.log("🚀 ~ file: index.js:13 ~ HomePage ~ allPosts:", allPosts);
   // let postArr;
@@ -20,16 +22,14 @@ const HomePage = ({ posts }) => {
   // const postArrLength = Object.values(allPosts).length;
   const postArr = Object.values(allPosts);
   console.log("🚀 ~ file: index.js:15 ~ HomePage ~ postArr:", postArr.length);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // console.log("user", user);
   // console.log("products state", products);
   // console.log("favorite", favorite)
   // console.log("local storage fav", storedFavorite)
   // console.log("user wish", userWish);
-
   useEffect(() => {
-    dispatch(getAllPosts(sessionUser))
+    dispatch(getAllPosts())
       .then(() => {
         setIsLoaded(true);
       })

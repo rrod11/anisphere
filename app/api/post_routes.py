@@ -98,23 +98,18 @@ def update_post(id):
         postread = post_to_update.__dict__.items()
         print("🐍 File: api/post_routes.py | Line: 97 | update_post ~ postread",postread)
 
-        # get a ref to the new user, if there is one
-        if product and int(current_user.get_id()) == int(product.seller_id):
+        if post_to_update:
             post_to_update.description = form.data["description"]
             post_to_update.user_id = form.data["user_id"]
             post_to_update.title = form.data["title"]
             if(form.data["image"]):
                 post_to_update.image = form.data["image"]
-            else:
-                post_to_update.image = post_to_update.image
 
             db.session.commit()
-        elif current_user.get_id() != product.seller_id:
-            return {"errors": ["unauthorized : You do not own this product."]}, 401
         else:
             return {"errors": ["not_found : Product not found."]}, 401
         db.session.commit()
-        return product.to_dict()
+        return post_to_update.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

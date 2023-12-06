@@ -34,7 +34,7 @@ class Post(db.Model):
             'description': self.description,
             "image": self.image,
             'userId': self.user_id,
-            'categories': [category.to_dict() for category in self.categories],
+            # 'categories': [category.to_dict() for category in self.categories],
             "reviews": [review.to_dict() for review in self.reviews],
             # "user": self.user.to_dict(),
         }

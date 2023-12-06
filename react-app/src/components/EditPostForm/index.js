@@ -47,9 +47,11 @@ const EditPostForm = () => {
     setImage("");
     setValidationErrors([]);
     setHasSubmitted(false);
-    history.push(`/posts/${postId}/edit`);
+    history.push(`/posts/${postId}`);
   };
-
+  const cancelButton = () => {
+    history.push(`/posts/${postId}`);
+  };
   useEffect(() => {
     const errors = [];
     if (!description.length) errors.push("Please enter a post description!");
@@ -110,6 +112,9 @@ const EditPostForm = () => {
             ></input>
           </div>
           <button className="button">Update Post</button>
+          <button className="button" onClick={cancelButton}>
+            Cancel
+          </button>
         </form>
       </div>
     </div>
