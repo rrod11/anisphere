@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -20,6 +20,11 @@ function LoginFormPage() {
       setErrors(data);
     }
   };
+
+  function DemoUser() {
+    setEmail("demo@aa.io");
+    setPassword("password");
+  }
 
   return (
     <>
@@ -49,6 +54,9 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="submit" onClick={DemoUser} className="demoButton">
+          Demo User
+        </button>
       </form>
     </>
   );

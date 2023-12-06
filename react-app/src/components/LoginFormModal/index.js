@@ -20,6 +20,10 @@ function LoginFormModal() {
       closeModal();
     }
   };
+  function DemoUser() {
+    setEmail("demo@aa.io");
+    setPassword("password");
+  }
 
   return (
     <>
@@ -49,6 +53,13 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button
+          type="submit"
+          onClick={DemoUser}
+          className="demoButton"
+        >
+          Demo User
+        </button>
       </form>
     </>
   );
