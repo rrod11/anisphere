@@ -3,7 +3,7 @@ from .users import seed_users, undo_users
 from .posts import seed_posts, undo_posts
 from .categories import seed_categories, undo_categories
 from .reviews import seed_reviews, undo_reviews
-# from .postCategories import seed_postcategories, undo_postcategories
+from .postCategories import seed_postcategories, undo_postcategories
 
 from app.models.db import db, environment, SCHEMA
 
