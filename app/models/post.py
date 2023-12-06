@@ -22,8 +22,8 @@ class Post(db.Model):
 
     # user = db.relationship("User", back_populates="posts")
 
-    categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
-    # categories = db.relationship("Category", secondary=add_prefix_for_prod("postCategories"), back_populates="posts")
+    # categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
+    categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
 
 
 
