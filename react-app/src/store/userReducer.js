@@ -20,7 +20,11 @@ export const setCurrentUser = (currentUser) => {
 
 // THUNKS
 export const getAllUsers = () => async (dispatch) => {
-  const response = await fetch("/users/all");
+  const response = await fetch("/api/users/all");
+  console.log(
+    "🚀 ~ file: userReducer.js:24 ~ getAllUsers ~ response:",
+    response
+  );
   if (response.ok) {
     const { users } = await response.json();
     dispatch(getUsers(users));

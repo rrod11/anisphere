@@ -5,17 +5,14 @@ import { getAllPosts } from "../../store/postReducer";
 
 import "./animePage.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import Reviews from "../Reviews";
 
 const AnimePage = ({ posts }) => {
-  console.log("🚀 ~ file: index.js:10 ~ AnimePage ~ posts:", posts);
   const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
-  console.log("🚀 ~ file: index.js:13 ~ AnimePage ~ postId:", postId);
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  console.log("🚀 ~ file: index.js:15 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("🚀 ~ file: index.js:18 ~ AnimePage ~ sessionUser:", sessionUser);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
   if (target.reviews.length >= 1) {
@@ -159,6 +156,7 @@ const AnimePage = ({ posts }) => {
           </label>
         </div>
       </div>
+      <Reviews list={target.reviews} />
     </div>
     // </div>
   );

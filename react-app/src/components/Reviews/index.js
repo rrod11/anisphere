@@ -1,75 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../store/userReducer";
 import { NavLink } from "react-router-dom";
-import { allTheReviews } from "../../store/review";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalButton from "../OpenModalButton";
-import ReviewFormModal from "../CreateReviewModal";
-import DeleteReview from "../DeleteModal/deleteModalReview";
-import EditReview from "../EditReviewModal/editModalReview";
-import { getAllUsers } from "../../store/otherUsers";
+// import ReviewFormModal from "../CreateReviewModal";
+// import DeleteReview from "../DeleteModal/deleteModalReview";
+// import EditReview from "../EditReviewModal/editModalReview";
 
-function Reviews({ product }) {
+function Reviews({ list }) {
+  console.log("🚀 ~ file: index.js:13 ~ Reviews ~ list:", list);
   const dispatch = useDispatch();
+  const usersObj = useSelector((state) => state.user.users);
+  const sessionUser = useSelector((state) => state.session.user);
+  const usersArr = Object.values(usersObj);
+  console.log("🚀 ~ file: index.js:14 ~ Reviews ~ users:", usersArr);
   const [showMenu, setShowMenu] = useState(false);
-  const { productId } = useParams();
-  const products = useSelector((state) => state.products);
-  const target = Object.values(products).find((ele) => ele.id == productId);
-  const user = useSelector((state) => state.session.user);
-  const users = Object.values(useSelector((state) => state.allUsers));
-  const unorderedReviews = useSelector((state) => state.review);
-  const review = orderReviews(Object.values(unorderedReviews));
-  const reviews = addUsers(review, users);
   const [isLoaded, setIsLoaded] = useState(false);
-  const reviewsLength = reviews?.length;
-  function orderReviews(list) {
-    let newbie = [];
-    for (let i = list.length - 1; i >= 0; i--) {
-      newbie.push(list[i]);
-    }
-    return newbie;
-  }
   function addUsers(list, users) {
     let newbie = [];
     for (let i = 0; i < list.length; i++) {
-      list[i].User = users?.find((ele) => ele.id == list[i].user_id);
-      list[i].commented = false;
+      list[i].user = users?.find((ele) => ele.id == list[i].userId);
       newbie.push(list[i]);
     }
     console.log("This is newbie", newbie);
     return newbie;
   }
-  let sum = 0;
-  if (reviewsLength >= 1) {
-    // reviews?.forEach((ele) => {
-    //   sum = sum + ele.rating;
-    // });
-    sum = reviews?.reduce((acc, review) => review?.rating + acc, 0);
-  }
-  let avg;
-  if (sum > 0) {
-    avg = sum / reviewsLength;
-  }
+  const reviewsFinal = addUsers(list, usersArr);
 
-  let commented = false;
-  const exists = (element) => element?.user_id == user.id;
-  if (user && reviewsLength >= 1) {
-    commented = reviews?.some(exists);
-  }
-
-  const owns = (ele) => ele.seller_id == user.id;
-
-  const closeMenu = () => setShowMenu(false);
   useEffect(() => {
-    dispatch(allTheReviews(productId))
-      .then(() => dispatch(getAllUsers()))
-      .then(() => setIsLoaded(true));
-  }, [dispatch, reviewsLength]);
-  const commentedat = "commented at";
+    dispatch(getAllUsers()).then(() => {
+      setIsLoaded(true);
+    });
+  }, [dispatch, isLoaded]);
   return (
     <>
-      {isLoaded && reviewsLength >= 1 ? (
-        reviews?.map(({ id, user_id, review, rating, created_at, User }) => (
+      <h1>In Reviews</h1>
+      {isLoaded && list?.length >= 1 ? (
+        list?.map(({ userId, review, rating, user }) => (
           <div style={{ borderBottom: "1px solid grey", padding: "5px" }}>
             <div
               style={{
@@ -94,12 +62,7 @@ function Reviews({ product }) {
                     color: "darkgray",
                   }}
                 >
-                  {`${User.firstName}, ${User.username}`}
-                  <span style={{ fontWeight: "bolder", fontSize: "12px" }}>
-                    {" "}
-                    commented at{" "}
-                  </span>
-                  {`${created_at}`}
+                  {`${user.firstname} ${user.lastname}`}
                 </p>
               </div>
               <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -147,23 +110,26 @@ function Reviews({ product }) {
                 </label>
               </div>
             </div>
-            {user?.id == user_id ? (
-              <OpenModalButton
-                modalClasses={["delete-button-container"]}
-                buttonText="Delete Review"
-                modalComponent={
-                  <DeleteReview reviewId={id} productId={productId} />
-                }
-              />
+            {userId == sessionUser?.id ||
+            sessionUser?.adminKey == "roderick0318" ? (
+              // <OpenModalButton
+              //   modalClasses={["delete-button-container"]}
+              //   buttonText="Delete Review"
+              //   modalComponent={
+              //     <DeleteReview reviewId={id} productId={productId} />
+              //   }
+              // />
+              <h1>READY TO DELETE</h1>
             ) : null}
-            {user?.id == user_id ? (
-              <OpenModalButton
-                modalClasses={["edit-button-container"]}
-                buttonText="Edit Review"
-                modalComponent={
-                  <EditReview reviewId={id} productId={productId} />
-                }
-              />
+            {userId == sessionUser?.id ? (
+              // <OpenModalButton
+              //   modalClasses={["edit-button-container"]}
+              //   buttonText="Edit Review"
+              //   modalComponent={
+              //     <EditReview reviewId={id} productId={productId} />
+              //   }
+              // />
+              <h1>READY TO EDIT??</h1>
             ) : null}
           </div>
         ))
