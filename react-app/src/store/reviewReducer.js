@@ -50,28 +50,31 @@ export const allTheReviews = () => async (dispatch) => {
 //   dispatch(allReviews(reviews));
 //   return reviews;
 // };
-export const createAReview = (productId, payload) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${productId}/new`, {
+export const createAReview = (postId, payload) => async (dispatch) => {
+  console.log("DO I HIT THE CREATE A REVIEW");
+  const response = await fetch(`/api/reviews/${postId}/new`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  const review = await response.json();
-  dispatch(createReview(review));
-  return review;
+  console.log(
+    "🚀 ~ file: reviewReducer.js:57 ~ createAReview ~ response:",
+    response
+  );
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(createReview(review));
+    return review;
+  } else {
+    console.log("THERES AN ERROR WITH CREATING YOUR REvIEW");
+  }
 };
 export const deleteAReview = (reviewId) => async (dispatch) => {
-  console.log("FRESH IN THE DELTE THUNJK");
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
     method: "DELETE",
   });
-  console.log(
-    "🚀 ~ file: reviewReducer.js:67 ~ deleteAReview ~ response:",
-    response
-  );
-  console.log("FRESH BEFORE THE DELETE RESPONSE OK");
+
   if (response.ok) {
-    console.log("INSIDE THE DELETE THNK RESPONSE OK");
     dispatch(deleteReview(reviewId));
     return response;
   } else {

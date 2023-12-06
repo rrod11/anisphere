@@ -5,8 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-
-import PostForm from "./components/PostForm";
+// import PostForm from "./components/PostForm";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";

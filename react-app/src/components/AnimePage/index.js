@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getAllPosts } from "../../store/postReducer";
-
+import OpenModalButton from "../OpenModalButton";
+import ReviewFormModal from "../CreateReviewModal";
 import "./animePage.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Reviews from "../Reviews";
 
 const AnimePage = ({ posts }) => {
-  const history = useHistory();
+  const [showMenu, setShowMenu] = useState(false);
+  // const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
@@ -22,6 +24,7 @@ const AnimePage = ({ posts }) => {
   if (sum > 0) {
     avg = sum / target.reviews.length;
   }
+  const closeMenu = () => setShowMenu(false);
   useEffect(() => {
     dispatch(getAllPosts(sessionUser)).then(() => {
       setIsLoaded(true);
@@ -92,7 +95,11 @@ const AnimePage = ({ posts }) => {
           <span className="dot"></span>
         </h3> */}
       <div className="individual-post">
-        <img src={target.image} style={{ width: "50%", height: "auto" }} />
+        <img
+          src={target.image}
+          alt="anime art"
+          style={{ width: "50%", height: "auto" }}
+        />
       </div>
       <h3>{target.description}</h3>
       <div className="overallReviews">
@@ -156,6 +163,14 @@ const AnimePage = ({ posts }) => {
           </label>
         </div>
       </div>
+      {/* {user && user.id != product.seller_id ? ( */}
+      <OpenModalButton
+        buttonText="Add Review"
+        modalClasses={["add-edit-button-container"]}
+        onButtonClick={closeMenu}
+        modalComponent={<ReviewFormModal postId={postId} />}
+      />
+      {/* // ) : null} */}
       <Reviews list={target.reviews} />
     </div>
     // </div>
