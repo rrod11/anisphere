@@ -17,6 +17,18 @@ function Reviews({ list }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { postId } = useParams();
   const dispatch = useDispatch();
+  const orderedReviews = orderReviews(list);
+  console.log(
+    "🚀 ~ file: index.js:21 ~ Reviews ~ orderReviews:",
+    orderedReviews
+  );
+  function orderReviews(list) {
+    let newbie = [];
+    for (let i = list.length - 1; i >= 0; i--) {
+      newbie.push(list[i]);
+    }
+    return newbie;
+  }
   useEffect(() => {
     dispatch(getAllUsers())
       .then(() => {
@@ -47,7 +59,7 @@ function Reviews({ list }) {
     }
     return newbie;
   }
-  const reviewsFinal = addUsers(list, usersArr);
+  const reviewsFinal = addUsers(orderedReviews, usersArr);
 
   return (
     <>

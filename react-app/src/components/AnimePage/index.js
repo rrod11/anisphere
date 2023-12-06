@@ -10,10 +10,11 @@ import Reviews from "../Reviews";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
+  const reviewLength = target.reviews.length;
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
@@ -26,9 +27,12 @@ const AnimePage = ({ posts }) => {
   }
   const closeMenu = () => setShowMenu(false);
   useEffect(() => {
-    dispatch(getAllPosts(sessionUser)).then(() => {
-      setIsLoaded(true);
-    });
+    dispatch(getAllPosts(sessionUser))
+      .then(() => {
+        setIsLoaded(true);
+      })
+      // .then(() => history.push("/home"))
+      .then(() => history.push(`/posts/${postId}`));
   }, [dispatch, isLoaded]);
 
   return (

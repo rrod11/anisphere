@@ -52,7 +52,6 @@ function ReviewFormModal({ postId }) {
     // if (!Object.values(errors).length) {
     await dispatch(createAReview(postId, newReview))
       .then(() => closeModal())
-      .then(() => history.push(`/posts/${postId}`))
       .then(() => history.push(`/posts/${postId}`));
     // return Redirect(`/posts/${postId}`);
     // } else {
