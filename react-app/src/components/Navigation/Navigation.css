@@ -22,6 +22,7 @@ li {
   color: #322e3f;
   padding: 25px;
   list-style: none;
+  z-index: 2;
 }
 .logo-left {
   width: 100px;

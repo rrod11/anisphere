@@ -30,7 +30,7 @@ export const getAllPosts = (currentUser) => async (dispatch) => {
 };
 
 export const createPost = (post) => async (dispatch) => {
-  const response = await fetch(`/posts/new`, {
+  const response = await fetch(`/api/posts/new`, {
     method: "POST",
     //   headers: {
     //     'Accept': 'application/json',

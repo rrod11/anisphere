@@ -35,12 +35,16 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout()).then(() => history.push("/home"));
   };
+  const createAPost = (e) => {
+    e.preventDefault();
+    history.push("/newpost");
+  };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className="prof-module">
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -51,6 +55,9 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
+            </li>
+            <li>
+              <button onClick={createAPost}>Create A Post</button>
             </li>
           </>
         ) : (
@@ -69,7 +76,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

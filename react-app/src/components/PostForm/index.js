@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { createPost, getAllPosts } from "../../store/postReducer";
+import { createPost } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
 import "./postForm.css";
 
@@ -8,58 +8,56 @@ const PostForm = () => {
   // form state
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  // current user state
-  const currentUser = useSelector((state) => state.session);
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const posts = useSelector((state) => state);
-  console.log("🚀 ~ file: index.js:18 ~ PostForm ~ posts:", posts);
 
-  //   const submitForm = async (e) => {
-  //     e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //     setHasSubmitted(true);
-  //     if (validationErrors.length)
-  //       return alert("Your Post has errors, cannot submit!");
+    setHasSubmitted(true);
+    if (validationErrors.length)
+      return alert("Your Post has errors, cannot submit!");
 
-  //     const formData = new FormData();
-  //     formData.append("description", description);
-  //     formData.append("categories", currentUser.id);
-  //     formData.append("image", image);
-  //     // const newPost = {
-  //     //     description,
-  //     //     categories: currentUser.id,
-  //     //     image,
-  //     // };
-  //     // await dispatch(createPost(formData));
-  //     await dispatch(getAllPosts(formData));
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("title", title);
+    formData.append("image", image);
+    formData.append("user_id", sessionUser.id);
+    // const newPost = {
+    //     description,
+    //     categories: currentUser.id,
+    //     image,
+    // };
+    // await dispatch(createPost(formData));
+    await dispatch(createPost(formData));
 
-  //     setDescription("");
-  //     setImage("");
-  //     setValidationErrors([]);
-  //     setHasSubmitted(false);
-  //     history.push("/feed");
-  //   };
-
-  //   useEffect(() => {
-  //     const errors = [];
-  //     if (!description.length) errors.push("Please enter a post description!");
-  //     if (!image) errors.push("Please provide an image!");
-  //     setValidationErrors(errors);
-  //   }, [description, image]);
+    setDescription("");
+    setImage("");
+    setValidationErrors([]);
+    setHasSubmitted(false);
+    history.push("/newpost");
+  };
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch]);
+    const errors = [];
+    if (!description.length) errors.push("Please enter a post description!");
+    if (!image) errors.push("Please provide an image!");
+    if (!title) errors.push("Please provide a title");
+    setValidationErrors(errors);
+  }, [description, image, title]);
+
+  // useEffect(() => {
+  //   dispatch(getAllPosts());
+  // }, [dispatch]);
 
   return (
     <div className="form-page">
-      {" "}
-      HOW YA DOING
-      {/* <div className="form-container">
-        <h1 className="form-header"> Create New Post</h1>
+      <div className="form-container">
+        <h1 className="form-header"> Create A New Post</h1>
         {hasSubmitted && validationErrors.length > 0 && (
           <div className="errors-info">
             <h2>The following errors were found:</h2>
@@ -70,11 +68,24 @@ const PostForm = () => {
             </ul>
           </div>
         )}
-        <form onSubmit={(e) => submitForm(e)} encType="multipart/form-data">
-          <h3 className="form-label">User: {currentUser.username}</h3>
+        <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+          <h3 className="form-label">
+            User: {sessionUser.firstname} {sessionUser.lastname}
+          </h3>
+          <div className="form-input-box">
+            <label className="form-label" htmlFor="title">
+              Post Title:
+            </label>
+            <input
+              id="title"
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+            ></input>
+          </div>
           <div className="form-input-box">
             <label className="form-label" htmlFor="description">
-              Post description:
+              Post Description:
             </label>
             <input
               id="description"
@@ -96,7 +107,7 @@ const PostForm = () => {
           </div>
           <button className="button">Submit</button>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 };

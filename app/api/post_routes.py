@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
 # from ..posts import posts as seed_posts
-# from app.forms import PostForm
+from app.forms import PostForm
 from datetime import date
 from random import randint
 from app.models import db, Post, User
@@ -44,8 +44,9 @@ def get_post_by_id(id):
     return one_post
 
 
-@post_routes.route("/new", methods=["POST"])
-def create_new_user():
+@post_routes.route("/new", methods=["GET", "POST"])
+@login_required
+def create_new_post():
     """ route that handles displaying a form on get requests and
     handles post submission on post requests"""
     form = PostForm()
@@ -63,6 +64,7 @@ def create_new_user():
 
 
         new_post = Post(
+
             title=form.data["title"],
             image=upload["url"],
             description=form.data["description"],
@@ -74,7 +76,7 @@ def create_new_user():
         return new_post.to_dict()
 
 
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 
