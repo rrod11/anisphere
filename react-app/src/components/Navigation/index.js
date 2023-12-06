@@ -9,7 +9,14 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="navbar">
-      <div className="logo-left">Anisphere</div>
+      <div
+        className="logo-left"
+        style={{
+          backgroundImage: `url("https://res.cloudinary.com/dpdvw1sam/image/upload/v1701821110/Pngtree_cute_three-dimensional_3d_red_golden_13341839_nboysu.png")`,
+        }}
+      >
+        Anisphere
+      </div>
       <div className="nav-right">
         <li>
           <NavLink exact to="/">

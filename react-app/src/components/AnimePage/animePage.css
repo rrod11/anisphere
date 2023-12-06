@@ -1,0 +1,11 @@
+.individual-post {
+  background-image: url(https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797258/slime_hgxhzv.webp);
+  width: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+}
+.overallReviews {
+  display: flex;
+  justify-content: center;
+}

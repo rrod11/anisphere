@@ -21,6 +21,7 @@ def get_all_posts():
     # sorted_posts = sorted(seed_posts, key=lambda post: post["date"], reverse=True)
     # return render_template("feed.html", posts=all_posts)
     return {"posts": see_posts}
+    # return { "post": see_posts}
 
 
 @post_routes.route("/<int:id>")
