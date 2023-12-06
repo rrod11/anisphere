@@ -117,10 +117,6 @@ const reviewReducer = (state = initialState, action) => {
 
     case DELETE_REVIEW:
       let deleteState;
-      console.log(
-        "🚀 ~ file: reviewReducer.js:115 ~ reviewReducer ~ deleteState: DO I GET DOWN TO THE REDUCER",
-        deleteState
-      );
       deleteState = { ...state };
       delete deleteState[action.reviewId];
       return deleteState;

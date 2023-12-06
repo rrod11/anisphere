@@ -149,16 +149,14 @@ function Reviews({ list }) {
                 buttonText="Delete Review"
                 modalComponent={<DeleteReview reviewId={id} postId={postId} />}
               />
-            ) : // <h1>READY TO DELETE</h1>
-            null}
+            ) : null}
             {userId == sessionUser?.id ? (
               <OpenModalButton
                 modalClasses={["edit-button-container"]}
                 buttonText="Edit Review"
                 modalComponent={<EditReview reviewId={id} postId={postId} />}
               />
-            ) : // <h1>READY TO EDIT??</h1>
-            null}
+            ) : null}
           </div>
         ))
       ) : (

@@ -34,9 +34,7 @@ function EditReview({ reviewId, postId }) {
     e.preventDefault();
     await dispatch(editAReview(reviewId, newStock, postId))
       .then(() => closeModal())
-      .then(() => history.push(`/posts/${postId + 1}`))
       .then(() => history.push(`/posts/${postId}`));
-    console.log("DO I GET PAST THE DISPATCH??");
   };
 
   return (
