@@ -37,7 +37,7 @@ body {
 
   /* overflow: hidden; */
 }
-.wrapper h3 {
+.wrapper .h3 {
   height: 60px;
   width: 60px;
   border: 2px solid rgba(255, 255, 255, 0.7);
@@ -56,102 +56,102 @@ h3 .dot {
   top: 20%;
   right: 20%;
 }
-.wrapper h3:nth-child(1) {
+.wrapper .h3:nth-child(1) {
   top: 20%;
   left: 20%;
   animation: bubbling 8s linear infinite;
 }
-.wrapper h3:nth-child(2) {
+.wrapper .h3:nth-child(2) {
   top: 60%;
   left: 80%;
   animation: bubbling 9s linear infinite;
 }
-.wrapper h3:nth-child(3) {
+.wrapper .h3:nth-child(3) {
   top: 40%;
   left: 40%;
   animation: bubbling 10s linear infinite;
 }
-.wrapper h3:nth-child(4) {
+.wrapper .h3:nth-child(4) {
   top: 66%;
   left: 30%;
   animation: bubbling 4s linear infinite;
 }
-.wrapper h3:nth-child(5) {
+.wrapper .h3:nth-child(5) {
   top: 90%;
   left: 10%;
   animation: bubbling 7s linear infinite;
 }
-.wrapper h3:nth-child(6) {
+.wrapper .h3:nth-child(6) {
   top: 45%;
   left: 50%;
   animation: bubbling 11s linear infinite;
 }
-.wrapper h3:nth-child(7) {
+.wrapper .h3:nth-child(7) {
   top: 10%;
   left: 90%;
   animation: bubbling 6s linear infinite;
 }
-.wrapper h3:nth-child(8) {
+.wrapper .h3:nth-child(8) {
   top: 20%;
   left: 70%;
   animation: bubbling 8s linear infinite;
 }
-.wrapper h3:nth-child(9) {
+.wrapper .h3:nth-child(9) {
   top: 30%;
   left: 20%;
   animation: bubbling 3s linear infinite;
 }
-.wrapper h3:nth-child(10) {
+.wrapper .h3:nth-child(10) {
   top: 48%;
   left: 70%;
   animation: bubbling 9s linear infinite;
 }
-.wrapper h3:nth-child(11) {
+.wrapper .h3:nth-child(11) {
   top: 35%;
   left: 60%;
   animation: bubbling 7s linear infinite;
 }
-.wrapper h3:nth-child(12) {
+.wrapper .h3:nth-child(12) {
   top: 60%;
   left: 5%;
   animation: bubbling 8s linear infinite;
 }
-.wrapper h3:nth-child(13) {
+.wrapper .h3:nth-child(13) {
   top: 85%;
   left: 15%;
   animation: bubbling 5s linear infinite;
 }
-.wrapper h3:nth-child(14) {
+.wrapper .h3:nth-child(14) {
   top: 90%;
   left: 80%;
   animation: bubbling 13s linear infinite;
 }
-.wrapper h3:nth-child(15) {
+.wrapper .h3:nth-child(15) {
   top: 31%;
   left: 37%;
   animation: bubbling 4.5s linear infinite;
 }
-.wrapper h3:nth-child(16) {
+.wrapper .h3:nth-child(16) {
   top: 5%;
   left: 69%;
   animation: bubbling 8s linear infinite;
 }
-.wrapper h3:nth-child(17) {
+.wrapper .h3:nth-child(17) {
   top: 15%;
   left: 55%;
   animation: bubbling 3.8s linear infinite;
 }
-.wrapper h3:nth-child(18) {
+.wrapper .h3:nth-child(18) {
   top: 43%;
   left: 80%;
   animation: bubbling 8.9s linear infinite;
 }
-.wrapper h3:nth-child(19) {
+.wrapper .h3:nth-child(19) {
   top: 83%;
   left: 16%;
   animation: bubbling 7.6s linear infinite;
 }
-.wrapper h3:nth-child(20) {
+.wrapper .h3:nth-child(20) {
   top: 24%;
   left: 64%;
   animation: bubbling 3.7s linear infinite;

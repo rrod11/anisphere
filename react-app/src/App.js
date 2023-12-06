@@ -8,12 +8,16 @@ import Navigation from "./components/Navigation";
 import PostForm from "./components/PostForm";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { getAllPosts } from "./store/postReducer";
 import AnimePage from "./components/AnimePage";
 import EditPostForm from "./components/EditPostForm";
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,7 +28,9 @@ function App() {
       .then(() => dispatch(getAllPosts(sessionUser)))
       .then(() => setIsLoaded(true));
   }, [dispatch]);
-
+  const goBack = () => {
+    history.go(-1);
+  };
   return (
     <>
       {location.pathname === "/" ? null : <Navigation isLoaded={isLoaded} />}
@@ -48,8 +54,12 @@ function App() {
           <Route path="/posts/:postId/edit">
             <EditPostForm />
           </Route>
-          <Route path="/posts/:postId">
+          <Route exact path="/posts/:postId">
             <AnimePage posts={posts} />
+          </Route>
+          <Route>
+            <h1>Page Not Found</h1>
+            <button onClick={goBack}>Go Back</button>
           </Route>
         </Switch>
       )}

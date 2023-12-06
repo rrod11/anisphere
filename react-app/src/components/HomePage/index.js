@@ -31,64 +31,64 @@ const HomePage = ({ posts }) => {
           </progress>
         </h1>
         <div className="wrapper">
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
-          <h3>
+          <h3 className="h3">
             <span className="dot"></span>
           </h3>
           <div className="scroll-bg">
@@ -142,64 +142,64 @@ const HomePage = ({ posts }) => {
         </progress>
       </h1>
       <div className="wrapper">
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
-        <h3>
+        <h3 className="h3">
           <span className="dot"></span>
         </h3>
         <div className="scroll-bg">

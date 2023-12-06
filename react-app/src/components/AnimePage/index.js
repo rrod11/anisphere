@@ -15,9 +15,10 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  console.log("🚀 ~ file: index.js:17 ~ AnimePage ~ target:", target);
+  // if (!target) {
+  //   return null;
+  // }
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("🚀 ~ file: index.js:19 ~ AnimePage ~ sessionUser:", sessionUser);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
   if (target && target.reviews.length >= 1) {
@@ -38,164 +39,170 @@ const AnimePage = ({ posts }) => {
       .then(() => history.push(`/posts/${postId}`));
   }, [dispatch, isLoaded]);
 
-  return (
-    <div id="post-page">
-      {/* <div className="wrapper">
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3>
-        <h3>
-          <span className="dot"></span>
-        </h3> */}
-      <div className="individual-post">
-        <img
-          src={target.image}
-          alt="anime art"
-          style={{ width: "50%", height: "auto" }}
-        />
-      </div>
-      <h3>{target.description}</h3>
-      {(sessionUser && target.userId == sessionUser.id) ||
-      (sessionUser && sessionUser.adminKey == "roderick0318") ? (
-        <button onClick={editPost}>Edit Post</button>
-      ) : null}
-      {(sessionUser && target.userId == sessionUser.id) ||
-      (sessionUser && sessionUser.adminKey == "roderick0318") ? (
-        <OpenModalButton
-          buttonText="Delete Post"
-          modalClasses={["add-delete-button-container"]}
-          onButtonClick={closeMenu}
-          modalComponent={<DeletePost postId={postId} />}
-        />
-      ) : null}
-
-      <div className="overallReviews">
-        {target && target.reviews.length < 1 ? (
-          <span>
-            <h1>
-              {target.reviews.length} Reviews {avg?.toFixed(2)}
-            </h1>
-          </span>
-        ) : (
-          <span>
-            <h1>{target.reviews.length} Reviews</h1>
-          </span>
-        )}
-        <div
-          className="insideman"
-          style={{ display: "flex", justifyContent: "space-around" }}
-        >
-          <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
-          <label style={{ display: "flex", alignItems: "center" }}>
-            <div
-              className="rating"
-              style={{ display: "flex", flexDirection: "row" }}
-            >
-              <i
-                className={
-                  avg >= 1 || avg > 0.5
-                    ? "fa-solid fa-star"
-                    : "fa-regular fa-star"
-                }
-              ></i>
-              <i
-                className={
-                  avg >= 2 || avg >= 1.5
-                    ? "fa-solid fa-star"
-                    : "fa-regular fa-star"
-                }
-              ></i>
-              <i
-                className={
-                  avg >= 3 || avg >= 2.5
-                    ? "fa-solid fa-star"
-                    : "fa-regular fa-star"
-                }
-              ></i>
-              <i
-                className={
-                  avg >= 4 || avg >= 3.5
-                    ? "fa-solid fa-star"
-                    : "fa-regular fa-star"
-                }
-              ></i>
-              <i
-                className={
-                  avg >= 5 || avg >= 4.5
-                    ? "fa-solid fa-star"
-                    : "fa-regular fa-star"
-                }
-              ></i>
+  if (target) {
+    return (
+      <>
+        <div id="post-page">
+          <div className="wrapper">
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <h3 className="h3">
+              <span className="dot"></span>
+            </h3>
+            <div className="individual-post">
+              <img
+                src={target.image}
+                alt="anime art"
+                style={{ width: "50%", height: "auto" }}
+              />
             </div>
-          </label>
+            <h3>{target.description}</h3>
+            {(sessionUser && target.userId == sessionUser.id) ||
+            (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+              <button onClick={editPost}>Edit Post</button>
+            ) : null}
+            {(sessionUser && target.userId == sessionUser.id) ||
+            (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+              <OpenModalButton
+                buttonText="Delete Post"
+                modalClasses={["add-delete-button-container"]}
+                onButtonClick={closeMenu}
+                modalComponent={<DeletePost postId={postId} />}
+              />
+            ) : null}
+
+            <div className="overallReviews">
+              {target && target.reviews.length < 1 ? (
+                <span>
+                  <h1>
+                    {target.reviews.length} Reviews {avg?.toFixed(2)}
+                  </h1>
+                </span>
+              ) : (
+                <span>
+                  <h1>{target.reviews.length} Reviews</h1>
+                </span>
+              )}
+              <div
+                className="insideman"
+                style={{ display: "flex", justifyContent: "space-around" }}
+              >
+                <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
+                <label style={{ display: "flex", alignItems: "center" }}>
+                  <div
+                    className="rating"
+                    style={{ display: "flex", flexDirection: "row" }}
+                  >
+                    <i
+                      className={
+                        avg >= 1 || avg > 0.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 2 || avg >= 1.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 3 || avg >= 2.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 4 || avg >= 3.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 5 || avg >= 4.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                  </div>
+                </label>
+              </div>
+            </div>
+            {/* {user && user.id != product.seller_id ? ( */}
+            <OpenModalButton
+              buttonText="Add Review"
+              modalClasses={["add-edit-button-container"]}
+              onButtonClick={closeMenu}
+              modalComponent={<ReviewFormModal postId={postId} />}
+            />
+            {/* // ) : null} */}
+            <Reviews list={target.reviews} />
+          </div>
+          //{" "}
         </div>
-      </div>
-      {/* {user && user.id != product.seller_id ? ( */}
-      <OpenModalButton
-        buttonText="Add Review"
-        modalClasses={["add-edit-button-container"]}
-        onButtonClick={closeMenu}
-        modalComponent={<ReviewFormModal postId={postId} />}
-      />
-      {/* // ) : null} */}
-      <Reviews list={target.reviews} />
-    </div>
-    // </div>
-  );
+      </>
+    );
+  }
+  return null;
 };
 
 export default AnimePage;
