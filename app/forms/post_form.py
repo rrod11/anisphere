@@ -9,8 +9,7 @@ from app.api.AWS_helpers import ALLOWED_EXTENSIONS
 class PostForm(FlaskForm):
     description = StringField("description", validators=[DataRequired()])
     # image = StringField("Image URL", validators=[DataRequired(), URL()])
-    image = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    categories = SelectField("Categories", choices=[])
+    image = FileField("Image File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     user_id = IntegerField("UserId", validators=[DataRequired()])
     title = StringField("Title", validators=[DataRequired()])
     submit = SubmitField("Create Post")

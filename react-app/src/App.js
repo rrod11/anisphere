@@ -11,6 +11,7 @@ import HomePage from "./components/HomePage";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { getAllPosts } from "./store/postReducer";
 import AnimePage from "./components/AnimePage";
+import EditPostForm from "./components/EditPostForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/newpost">
             <PostForm />
+          </Route>
+          <Route path="/posts/:postId/edit">
+            <EditPostForm />
           </Route>
           <Route path="/posts/:postId">
             <AnimePage posts={posts} />

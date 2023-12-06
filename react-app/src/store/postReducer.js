@@ -41,7 +41,28 @@ export const createPost = (post) => async (dispatch) => {
   console.log("RESPONSE FROM SERVER", response);
 
   if (response.ok) {
-    const { resPost } = await response.json();
+    const resPost = await response.json();
+    // const { resPost } = await response.json();
+    console.log("NEW POST DATA", resPost);
+    dispatch(addPost(resPost));
+  } else {
+    console.log("There was an error making your post!");
+  }
+};
+export const editPost = (post, postId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/${postId}/edit`, {
+    method: "PUT",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     "Content-Type": "application/json",
+    //   },
+    body: post,
+  });
+  console.log("RESPONSE FROM SERVER", response);
+
+  if (response.ok) {
+    const resPost = await response.json();
+    // const { resPost } = await response.json();
     console.log("NEW POST DATA", resPost);
     dispatch(addPost(resPost));
   } else {
@@ -60,6 +81,10 @@ const postReducer = (state = initialState, action) => {
       return newState;
     case ADD_POST:
       newState = { ...state };
+      console.log(
+        "🚀 ~ file: postReducer.js:63 ~ postReducer ~ newState:",
+        newState
+      );
       newState.posts[action.post.id] = action.post;
       return newState;
     default:

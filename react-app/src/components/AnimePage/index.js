@@ -14,8 +14,9 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  // console.log("🚀 ~ file: index.js:17 ~ AnimePage ~ target:", target.reviews);
+  console.log("🚀 ~ file: index.js:17 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
+  console.log("🚀 ~ file: index.js:19 ~ AnimePage ~ sessionUser:", sessionUser);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
   if (target && target.reviews.length >= 1) {
@@ -26,6 +27,7 @@ const AnimePage = ({ posts }) => {
     avg = sum / target.reviews.length;
   }
   const closeMenu = () => setShowMenu(false);
+  const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(() => {
     dispatch(getAllPosts(sessionUser))
       .then(() => {
@@ -106,6 +108,10 @@ const AnimePage = ({ posts }) => {
         />
       </div>
       <h3>{target.description}</h3>
+      {(sessionUser && target.userId == sessionUser.id) ||
+      (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+        <button onClick={editPost}>Edit Post</button>
+      ) : null}
       <div className="overallReviews">
         {target && target.reviews.length < 1 ? (
           <span>

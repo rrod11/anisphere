@@ -51,6 +51,8 @@ def create_new_post():
     handles post submission on post requests"""
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    formread = form.__dict__.items()
+    print("🐍 File: api/post_routes.py | Line: 55 | create_new_post ~ formread",formread)
 
     if form.validate_on_submit():
         image = form.data['image']
@@ -76,27 +78,36 @@ def create_new_post():
         return new_post.to_dict()
 
 
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 
-@post_routes.route("/<int:id>/edit", methods=['PUT'])
+@post_routes.route("/<int:id>/edit", methods=["GET",'PUT'])
 @login_required
 def update_post(id):
     """Update a Post"""
     post = Post.query.get(id)
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # formread = form.__dict__.items()
+    # print("🐍 File: api/post_routes.py | Line: 92 | update_post ~ form",formread)
 
     if form.validate_on_submit():
         # gets a ref to the resource we want to update
         post_to_update = Post.query.get(id)
+        postread = post_to_update.__dict__.items()
+        print("🐍 File: api/post_routes.py | Line: 97 | update_post ~ postread",postread)
+
         # get a ref to the new user, if there is one
         if product and int(current_user.get_id()) == int(product.seller_id):
             post_to_update.description = form.data["description"]
             post_to_update.user_id = form.data["user_id"]
             post_to_update.title = form.data["title"]
-            post_to_update.image = form.data["image"]
+            if(form.data["image"]):
+                post_to_update.image = form.data["image"]
+            else:
+                post_to_update.image = post_to_update.image
+
             db.session.commit()
         elif current_user.get_id() != product.seller_id:
             return {"errors": ["unauthorized : You do not own this product."]}, 401

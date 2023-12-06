@@ -1,45 +1,53 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { createPost } from "../../store/postReducer";
+import { createPost, editPost } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
-import "./postForm.css";
+import "./editPost.css";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-const PostForm = () => {
+const EditPostForm = () => {
   // form state
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
+  const { postId } = useParams();
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+  const posts = Object.values(useSelector((state) => state.post.posts));
+  const target = posts.find((ele) => ele.id == postId);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const stock = {
+    id: postId,
+    description: target.description,
+    user_id: sessionUser.id,
+    title: target.title,
+    image: target.image,
+  };
+  console.log("🚀 ~ file: index.js:26 ~ EditPostForm ~ stock:", stock);
+
+  const [description, setDescription] = useState(stock.description);
+  const [image, setImage] = useState(stock.image);
+  const [title, setTitle] = useState(stock.title);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setHasSubmitted(true);
-    if (validationErrors.length)
-      return alert("Your Post has errors, cannot submit!");
-
     const formData = new FormData();
+    formData.append("id", stock.id);
     formData.append("description", description);
     formData.append("title", title);
-    formData.append("image", image);
+    formData.append("image", image || stock.image);
     formData.append("user_id", sessionUser.id);
-    // const newPost = {
-    //     description,
-    //     categories: currentUser.id,
-    //     image,
-    // };
-    // await dispatch(createPost(formData));
-    await dispatch(createPost(formData));
+    formData.append("id", postId);
+    console.log("🚀 ~ file: index.js:37 ~ handleSubmit ~ formData:", formData);
+
+    await dispatch(editPost(formData, postId));
 
     setDescription("");
     setImage("");
     setValidationErrors([]);
     setHasSubmitted(false);
-    history.push("/home");
+    history.push(`/posts/${postId}/edit`);
   };
 
   useEffect(() => {
@@ -50,14 +58,10 @@ const PostForm = () => {
     setValidationErrors(errors);
   }, [description, image, title]);
 
-  // useEffect(() => {
-  //   dispatch(getAllPosts());
-  // }, [dispatch]);
-
   return (
     <div className="form-page">
       <div className="form-container">
-        <h1 className="form-header"> Create A New Post</h1>
+        <h1 className="form-header"> Edit Your New Post</h1>
         {hasSubmitted && validationErrors.length > 0 && (
           <div className="errors-info">
             <h2>The following errors were found:</h2>
@@ -74,7 +78,7 @@ const PostForm = () => {
           </h3>
           <div className="form-input-box">
             <label className="form-label" htmlFor="title">
-              Post Title:
+              Update Title:
             </label>
             <input
               id="title"
@@ -85,7 +89,7 @@ const PostForm = () => {
           </div>
           <div className="form-input-box">
             <label className="form-label" htmlFor="description">
-              Post Description:
+              Update Description:
             </label>
             <input
               id="description"
@@ -96,7 +100,7 @@ const PostForm = () => {
           </div>
           <div className="form-input-box">
             <label className="form-label" htmlFor="image">
-              Post Image:
+              Update Image:
             </label>
             <input
               id="image"
@@ -105,11 +109,11 @@ const PostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             ></input>
           </div>
-          <button className="button">Submit</button>
+          <button className="button">Update Post</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default PostForm;
+export default EditPostForm;
