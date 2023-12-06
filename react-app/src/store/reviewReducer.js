@@ -51,16 +51,11 @@ export const allTheReviews = () => async (dispatch) => {
 //   return reviews;
 // };
 export const createAReview = (postId, payload) => async (dispatch) => {
-  console.log("DO I HIT THE CREATE A REVIEW");
   const response = await fetch(`/api/reviews/${postId}/new`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: reviewReducer.js:57 ~ createAReview ~ response:",
-    response
-  );
   if (response.ok) {
     const review = await response.json();
     dispatch(createReview(review));
@@ -83,14 +78,20 @@ export const deleteAReview = (reviewId) => async (dispatch) => {
 };
 export const editAReview =
   (reviewId, payload, productId) => async (dispatch) => {
+    console.log("DO I HIT THE EDIT A REVIEW THUNK");
     const response = await fetch(`/api/reviews/${reviewId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    const review = await response.json();
-    dispatch(allTheReviews(productId));
-    return review;
+    console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response);
+    if (response.ok) {
+      const review = await response.json();
+      dispatch(allTheReviews(productId));
+      return review;
+    } else {
+      console.log("there was and issue updating your review");
+    }
   };
 const reviewReducer = (state = initialState, action) => {
   let newState;
