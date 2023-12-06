@@ -1,4 +1,4 @@
-from app.models import db, PostCategory, environment, SCHEMA
+from app.models import db, postcategories, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
