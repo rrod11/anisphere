@@ -99,7 +99,7 @@ const AnimePage = ({ posts }) => {
         {target.reviews.length < 1 ? (
           <span>
             <h1>
-              {target.reviews.length} Reviews {avg?.toFixed(2)} Stars
+              {target.reviews.length} Reviews {avg?.toFixed(2)}
             </h1>
           </span>
         ) : (
@@ -114,7 +114,7 @@ const AnimePage = ({ posts }) => {
           <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
           <label style={{ display: "flex", alignItems: "center" }}>
             <div
-              class="rating"
+              className="rating"
               style={{ display: "flex", flexDirection: "row" }}
             >
               <i

@@ -126,7 +126,7 @@ const HomePage = ({ posts }) => {
               </div>
             </div>
           </div>
-          <div class="item-selector">
+          <div className="item-selector">
             {postArr?.map((ele) => (
               <a key={ele.id} href={`/posts/${ele.id}`}>
                 <div

@@ -10,6 +10,10 @@ import { useEffect } from "react";
 //PLEASE CHANGE names/variables
 
 function DeleteReview({ reviewId, postId }) {
+  console.log(
+    "🚀 ~ file: deleteModalReview.js:13 ~ DeleteReview ~ reviewId:",
+    reviewId
+  );
   const { closeModal } = useModal();
   const history = useHistory();
   const dispatch = useDispatch();

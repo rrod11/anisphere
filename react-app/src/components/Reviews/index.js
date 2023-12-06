@@ -54,7 +54,10 @@ function Reviews({ list }) {
       <h1>In Reviews</h1>
       {isLoaded && reviewsFinal?.length >= 1 ? (
         reviewsFinal?.map(({ id, userId, review, rating, user }) => (
-          <div style={{ borderBottom: "1px solid grey", padding: "5px" }}>
+          <div
+            style={{ borderBottom: "1px solid grey", padding: "5px" }}
+            key={id}
+          >
             <div
               style={{
                 display: "flex",
@@ -84,7 +87,7 @@ function Reviews({ list }) {
               <div style={{ display: "flex", justifyContent: "space-around" }}>
                 <label>
                   <div
-                    class="rating"
+                    className="rating"
                     style={{ display: "flex", flexDirection: "row" }}
                   >
                     <i
@@ -131,9 +134,7 @@ function Reviews({ list }) {
               <OpenModalButton
                 modalClasses={["delete-button-container"]}
                 buttonText="Delete Review"
-                modalComponent={
-                  <DeleteReview reviewId={{ id }} postId={postId} />
-                }
+                modalComponent={<DeleteReview reviewId={id} postId={postId} />}
               />
             ) : // <h1>READY TO DELETE</h1>
             null}

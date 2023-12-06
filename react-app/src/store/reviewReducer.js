@@ -34,15 +34,9 @@ const editReview = (reviewId, payload) => {
 
 export const allTheReviews = () => async (dispatch) => {
   const response = await fetch(`/api/reviews/all`);
-
-  console.log(
-    "🚀 ~ file: reviewReducer.js:38 ~ allTheReviews ~ response: DO I COMEE IN THE REVIEW REDUCER",
-    response
-  );
   if (response.ok) {
     const { reviews } = await response.json();
     dispatch(getReviews(reviews));
-    // return reviews;
   } else {
     console.log("there was an error getting all reviews");
   }
@@ -71,6 +65,10 @@ export const deleteAReview = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
     method: "DELETE",
   });
+  console.log(
+    "🚀 ~ file: reviewReducer.js:67 ~ deleteAReview ~ response:",
+    response
+  );
   console.log("FRESH BEFORE THE DELETE RESPONSE OK");
   if (response.ok) {
     console.log("INSIDE THE DELETE THNK RESPONSE OK");
