@@ -18,13 +18,19 @@ function Navigation({ isLoaded }) {
         Anisphere
       </div>
       <div className="nav-right">
-        <li>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </li>
+        <a href="/" style={{ padding: "10px" }}>
+          SPLASH!
+        </a>
+        {/* <li
+          style={{ color: "white", padding: " 0 10px", textDecoration: "none" }}
+        > */}
+        <a href="/home" style={{ padding: "10px" }}>
+          Home
+        </a>
+        {/* </li> */}
+
         {isLoaded && (
-          <li>
+          <li style={{ width: "40px", height: "100%" }}>
             <ProfileButton user={sessionUser} />
           </li>
         )}

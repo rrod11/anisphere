@@ -10,12 +10,13 @@ li {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 150px;
+  height: 200px;
   background: url(../../assets/goo.png);
   background-size: contain;
   overflow: auto;
   overflow-y: visible;
   position: relative;
+  padding-top: 10px;
 }
 .profile-dropdown {
   display: flex;
@@ -38,4 +39,17 @@ li {
 }
 .hidden {
   display: none;
+}
+.nav-right {
+  display: flex;
+  font-size: 30px;
+  padding: 0 20px 0 0;
+  flex-direction: row;
+  color: white;
+}
+a {
+  color: white;
+}
+a:visited {
+  color: white;
 }

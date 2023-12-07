@@ -45,8 +45,11 @@ function ProfileButton({ user }) {
 
   return (
     <div className="prof-module">
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button
+        onClick={openMenu}
+        style={{ fontSize: "30px", padding: "10px", borderRadius: " 50%" }}
+      >
+        <i className="fas fa-user-circle" style={{ fontSize: "40px" }} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
