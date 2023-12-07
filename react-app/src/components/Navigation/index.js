@@ -8,7 +8,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <div className="navbar">
+    <div className="navbar-container">
       <div
         className="logo-left"
         style={{

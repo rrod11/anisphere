@@ -5,10 +5,17 @@
 li {
   list-style: none;
 }
-.navbar {
+.navbar-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  background: url(../../assets/goo.png);
+  background-size: contain;
+  overflow: auto;
+  overflow-y: visible;
+  position: relative;
 }
 .profile-dropdown {
   display: flex;
