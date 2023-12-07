@@ -21,6 +21,15 @@ const HomePage = ({ posts }) => {
       .then(() => history.push("/home"));
   }, [dispatch, isLoaded]);
 
+  const text = document.querySelector(".fancy");
+  // const strText = text.textContent;
+  // const splitText = strText.split("");
+  // text.textContent = "";
+
+  // for (let i = 0; i < splitText.length; i++) {
+  //   text.innerHTML += "<span>" + splitText[i] + "</span>";
+  // }
+
   if (isLoaded && postArr.length >= 1) {
     return (
       <div id="post-page">
@@ -112,6 +121,7 @@ const HomePage = ({ posts }) => {
             </div>
           </div>
           <div className="item-selector">
+            <h1 className="fancy">ALL ANIME</h1>
             {postArr?.map((ele) => (
               <a key={ele.id} href={`/posts/${ele.id}`}>
                 <div
@@ -123,7 +133,8 @@ const HomePage = ({ posts }) => {
                     backgroundSize: "cover",
                   }}
                 >
-                  {ele.title}
+                  <div className="item-overlay"></div>
+                  <p className="item-title">{ele.title}</p>
                 </div>
               </a>
             ))}

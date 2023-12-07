@@ -211,14 +211,16 @@ h1.progress {
 }
 .scroll-div {
   width: 100%;
-  /* background: goldenrod; */
-  height: 100px;
+  height: 200px;
   overflow: hidden;
   overflow-y: scroll;
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
 }
 .scroll-object {
   color: wheat;
+  width: 80%;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: 400;
   font-size: 40px;
@@ -227,18 +229,19 @@ h1.progress {
 }
 
 .item-selector {
+  margin: 0 50px;
   overflow-x: auto;
   white-space: nowrap;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 700;
   color: #095417;
 }
 .item {
   display: inline-block;
   position: relative;
-  width: 200px;
-  height: 300px;
+  width: 250px;
+  height: 350px;
   margin-right: 10px;
   background-color: #f2f2f2;
   background-size: cover;
@@ -247,4 +250,21 @@ h1.progress {
   /* overflow: scroll; */
   overflow-x: scroll;
   /* text-overflow: scroll; */
+}
+
+.item-title {
+  position: absolute;
+  /* width: 100%;
+  height: 100%; */
+  width: 100% or fit-content;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  display: flex;
+  justify-content: column;
+  color: white;
+}
+
+.fancy {
+  color: white;
 }
