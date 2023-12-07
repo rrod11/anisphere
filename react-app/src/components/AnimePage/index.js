@@ -35,6 +35,9 @@ const AnimePage = ({ posts }) => {
       })
       // .then(() => history.push("/home"))
       .then(() => history.push(`/posts/${postId}`));
+    // if (!target) {
+    //   history.push("/notfound");
+    // }
   }, [dispatch, isLoaded]);
   if (!target) {
     return null;
