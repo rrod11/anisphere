@@ -5,7 +5,7 @@ import { getAllPosts } from "../../store/postReducer";
 import OpenModalButton from "../OpenModalButton";
 import ReviewFormModal from "../CreateReviewModal";
 import "./animePage.css";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, useParams, Navigate } from "react-router-dom";
 import Reviews from "../Reviews";
 import DeletePost from "../DeleteModal/deleteModalPost";
 
@@ -15,9 +15,7 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  // if (!target) {
-  //   return null;
-  // }
+  console.log("🚀 ~ file: index.js:18 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   let sum = 0;
@@ -38,6 +36,9 @@ const AnimePage = ({ posts }) => {
       // .then(() => history.push("/home"))
       .then(() => history.push(`/posts/${postId}`));
   }, [dispatch, isLoaded]);
+  if (!target) {
+    return null;
+  }
 
   if (target) {
     return (
@@ -187,14 +188,12 @@ const AnimePage = ({ posts }) => {
                 </label>
               </div>
             </div>
-            {/* {user && user.id != product.seller_id ? ( */}
             <OpenModalButton
               buttonText="Add Review"
               modalClasses={["add-edit-button-container"]}
               onButtonClick={closeMenu}
               modalComponent={<ReviewFormModal postId={postId} />}
             />
-            {/* // ) : null} */}
             <Reviews list={target.reviews} />
           </div>
           //{" "}
@@ -202,7 +201,6 @@ const AnimePage = ({ posts }) => {
       </>
     );
   }
-  return null;
 };
 
 export default AnimePage;

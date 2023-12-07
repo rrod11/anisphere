@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -15,6 +15,8 @@ import {
 import { getAllPosts } from "./store/postReducer";
 import AnimePage from "./components/AnimePage";
 import EditPostForm from "./components/EditPostForm";
+import NotFound from "./components/NotFound/notFound";
+import ReDirect from "./components/Redirect/Redirect";
 
 function App() {
   const history = useHistory();
@@ -33,7 +35,11 @@ function App() {
   };
   return (
     <>
-      {location.pathname === "/" ? null : <Navigation isLoaded={isLoaded} />}
+      {location.pathname === "/notfound" ||
+      location.pathname === "/login" ||
+      location.pathname === "/NotFound" ? null : (
+        <Navigation isLoaded={isLoaded} />
+      )}
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -57,9 +63,11 @@ function App() {
           <Route exact path="/posts/:postId">
             <AnimePage posts={posts} />
           </Route>
+          <Route path="/NotFound">
+            <NotFound />
+          </Route>
           <Route>
-            <h1>Page Not Found</h1>
-            <button onClick={goBack}>Go Back</button>
+            <ReDirect />
           </Route>
         </Switch>
       )}

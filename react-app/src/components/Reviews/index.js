@@ -10,9 +10,6 @@ import OpenModalButton from "../OpenModalButton";
 import DeleteReview from "../DeleteModal/deleteModalReview";
 import { allTheReviews } from "../../store/reviewReducer";
 import EditReview from "../EditReviewModal/editModalReview";
-// import ReviewFormModal from "../CreateReviewModal";
-// import DeleteReview from "../DeleteModal/deleteModalReview";
-// import EditReview from "../EditReviewModal/editModalReview";
 
 function Reviews({ list }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,17 +38,18 @@ function Reviews({ list }) {
       });
   }, [dispatch, isLoaded]);
   const history = useHistory();
-  const usersObj = useSelector((state) => state.user.users);
+  const usersObj = useSelector((state) => state.user);
+  console.log("🚀 ~ file: index.js:42 ~ Reviews ~ usersObj:", usersObj);
   const sessionUser = useSelector((state) => state.session.user);
 
-  if (!usersObj) {
+  if (!orderReviews.length || !Object.values(usersObj).length) {
     return (
       <>
         <h1>Reviews Aren't Ready</h1>
       </>
     );
   }
-  const usersArr = Object.values(usersObj);
+  const usersArr = Object.values(usersObj.users);
   function addUsers(list, users) {
     let newbie = [];
     for (let i = 0; i < list.length; i++) {
@@ -61,7 +59,6 @@ function Reviews({ list }) {
     return newbie;
   }
   const reviewsFinal = addUsers(orderedReviews, usersArr);
-
   return (
     <>
       <h1>In Reviews</h1>
@@ -94,7 +91,7 @@ function Reviews({ list }) {
                     color: "darkgray",
                   }}
                 >
-                  {`${user.firstname} ${user.lastname}`}
+                  {`${user?.firstname} ${user?.lastname}`}
                 </p>
               </div>
               <div style={{ display: "flex", justifyContent: "space-around" }}>
