@@ -16,7 +16,6 @@ import { getAllPosts } from "./store/postReducer";
 import AnimePage from "./components/AnimePage";
 import EditPostForm from "./components/EditPostForm";
 import NotFound from "./components/NotFound/notFound";
-import ReDirect from "./components/Redirect/Redirect";
 
 function App() {
   const history = useHistory();
@@ -66,8 +65,8 @@ function App() {
           <Route path="/NotFound">
             <NotFound />
           </Route>
-          <Route>
-            <ReDirect />
+          <Route path="/*">
+            <Redirect to="/notfound" />
           </Route>
         </Switch>
       )}

@@ -33,14 +33,15 @@ const AnimePage = ({ posts }) => {
       .then(() => {
         setIsLoaded(true);
       })
-      // .then(() => history.push("/home"))
       .then(() => history.push(`/posts/${postId}`));
-    // if (!target) {
-    //   history.push("/notfound");
-    // }
   }, [dispatch, isLoaded]);
   if (!target) {
-    return null;
+    return (
+      <>
+        <h1>YUUUUURRRRRRRRRR!!!</h1>
+        <h2>THERES NO ANIME AT THIS SPOT</h2>
+      </>
+    );
   }
 
   if (target) {
