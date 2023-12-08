@@ -15,6 +15,7 @@ const EditPostForm = () => {
   const target = posts.find((ele) => ele.id == postId);
   const dispatch = useDispatch();
   const history = useHistory();
+  let disabled = false;
 
   const stock = {
     id: postId,
@@ -26,7 +27,7 @@ const EditPostForm = () => {
   console.log("🚀 ~ file: index.js:26 ~ EditPostForm ~ stock:", stock);
 
   const [description, setDescription] = useState(stock.description);
-  const [image, setImage] = useState(stock.image);
+  const [image, setImage] = useState("");
   const [title, setTitle] = useState(stock.title);
 
   const handleSubmit = async (e) => {
@@ -36,7 +37,11 @@ const EditPostForm = () => {
     formData.append("id", stock.id);
     formData.append("description", description);
     formData.append("title", title);
-    formData.append("image", image || stock.image);
+    if (!image) {
+      formData.append("image", stock.image);
+    } else {
+      formData.append("image", image);
+    }
     formData.append("user_id", sessionUser.id);
     formData.append("id", postId);
     console.log("🚀 ~ file: index.js:37 ~ handleSubmit ~ formData:", formData);
@@ -59,6 +64,10 @@ const EditPostForm = () => {
     if (!title) errors.push("Please provide a title");
     setValidationErrors(errors);
   }, [description, image, title]);
+
+  const disable = () => {
+    disabled = true;
+  };
 
   return (
     <div className="form-page">
@@ -111,7 +120,9 @@ const EditPostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             ></input>
           </div>
-          <button className="button">Update Post</button>
+          <button className="button" disabled={disabled} onClick={disable}>
+            Update Post
+          </button>
           <button className="button" onClick={cancelButton}>
             Cancel
           </button>

@@ -15,6 +15,10 @@ const PostForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  let disabled = false;
+  const disable = () => {
+    disabled = true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,7 +124,9 @@ const PostForm = () => {
             ></input>
           </div>
           {errors.image && <p className="errors">{errors.image}</p>}
-          <button className="button">Submit</button>
+          <button className="button" disabled={disabled} onClick={disable}>
+            Submit
+          </button>
         </form>
       </div>
     </div>

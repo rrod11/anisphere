@@ -9,7 +9,7 @@ class Post(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False, unique=True)
     description = db.Column(db.String(2500), nullable=False)
     image = db.Column(db.String(250))
     # user_id = db.Column(db.INTEGER)
