@@ -18,7 +18,6 @@ const AnimePage = ({ posts }) => {
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
-  console.log("🚀 ~ file: index.js:21 ~ AnimePage ~ reviews:", reviews);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // let sum = 0;

@@ -47,6 +47,10 @@ function EditReview({ reviewId, postId }) {
         review,
         rating,
       };
+      console.log(
+        "🚀 ~ file: editModalReview.js:50 ~ handleSubmit ~ newStock:",
+        newStock
+      );
       await dispatch(editAReview(reviewId, newStock, postId))
         .then(() => closeModal())
         .then(() => history.push(`/posts/${postId}`));

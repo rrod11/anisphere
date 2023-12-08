@@ -25,7 +25,7 @@ const deleteReview = (payload, reviewId) => {
     payload: reviewId,
   };
 };
-const editReview = (reviewId, payload) => {
+const editReview = (payload) => {
   return {
     type: EDIT_REVIEW,
     payload,
@@ -41,28 +41,16 @@ export const allTheReviews = () => async (dispatch) => {
     console.log("there was an error getting all reviews");
   }
 };
-// export const allYourReviews = (userId) => async (dispatch) => {
-//   // console.log("🚀 ~ file: review.js:36 ~ allYourReviews ~ userId:", userId);
-//   // const response = await fetch(`/api/reviews/${userId}/reviews`);
-//   const response = await fetch(`/api/reviews/all`);
-//   const reviews = await response.json();
-//   console.log(reviews);
-//   dispatch(allReviews(reviews));
-//   return reviews;
-// };
+
 export const createAReview = (postId, payload) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${postId}/new`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  // if (response.ok) {
   const review = await response.json();
   dispatch(createReview(review));
   return review;
-  // } else {
-  //   console.log("THERES AN ERROR WITH CREATING YOUR REvIEW");
-  // }
 };
 export const deleteAReview = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
@@ -83,10 +71,14 @@ export const editAReview = (reviewId, payload, postId) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response);
+  console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response.body);
   if (response.ok) {
     const review = await response.json();
-    dispatch(editReview(postId));
+    console.log(
+      "🚀 ~ file: reviewReducer.js:89 ~ editAReview ~ review:",
+      review
+    );
+    dispatch(editReview(review));
     return review;
   } else {
     console.log("there was and issue updating your review");
@@ -105,10 +97,7 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
-      console.log(
-        "IN EDIT REVIEW REDUCER AND TRYIZn TO SEE ID",
-        action.payload
-      );
+      console.log("IN EDIT REVIEW REDUCER AND TRYING TO SEE ID", action);
       newState[action.payload.id] = action.payload;
       return newState;
     case DELETE_REVIEW:

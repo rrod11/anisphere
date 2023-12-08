@@ -88,7 +88,7 @@ def update_review(id):
             review_to_update.rating=form.data["rating"]
 
     db.session.commit()
-    return review.to_dict()
+    return review_to_update.to_dict()
 
 
 @review_routes.route("/<int:id>/delete", methods=["DELETE"])
