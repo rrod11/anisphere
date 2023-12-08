@@ -24,17 +24,27 @@ function EditReview({ reviewId, postId }) {
   const [rating, setRating] = useState(stock.rating);
   const [errors, setErrors] = useState({});
 
+  function checkCredentials() {
+    const errObj = {};
+    if (!rating) errObj.rating = "Rating is required";
+    if (!review || review.length < 4)
+      errObj.review = "Review must be at least 4 characters";
+    setErrors(errObj);
+  }
   const handleSubmit = async (e) => {
-    const newStock = {
-      user_id: user.id,
-      post_id: postId,
-      review,
-      rating,
-    };
     e.preventDefault();
-    await dispatch(editAReview(reviewId, newStock, postId))
-      .then(() => closeModal())
-      .then(() => history.push(`/posts/${postId}`));
+    checkCredentials();
+    if (!Object.values(errors).length) {
+      const newStock = {
+        user_id: user.id,
+        post_id: postId,
+        review,
+        rating,
+      };
+      await dispatch(editAReview(reviewId, newStock, postId))
+        .then(() => closeModal())
+        .then(() => history.push(`/posts/${postId}`));
+    }
   };
 
   return (
@@ -48,10 +58,9 @@ function EditReview({ reviewId, postId }) {
             cols="45"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-            required
           />
         </label>
-        <label>Rating</label>
+        {errors.review && <p className="errors">{errors.review}</p>}
 
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <label>
@@ -158,7 +167,17 @@ function EditReview({ reviewId, postId }) {
             </div>
           </label>
         </div>
-        <button id="update-review" type="submit">
+        {errors.rating && <p className="errors">{errors.rating}</p>}
+        <button
+          id="update-review"
+          type="submit"
+          onClick={checkCredentials}
+          style={{
+            // backgroundColor: "tan",
+            maxWidth: "100%",
+            width: "300px",
+          }}
+        >
           Update My Review
         </button>
       </form>

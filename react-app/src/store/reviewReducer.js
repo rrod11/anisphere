@@ -56,13 +56,13 @@ export const createAReview = (postId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  if (response.ok) {
-    const review = await response.json();
-    dispatch(createReview(review));
-    return review;
-  } else {
-    console.log("THERES AN ERROR WITH CREATING YOUR REvIEW");
-  }
+  // if (response.ok) {
+  const review = await response.json();
+  dispatch(createReview(review));
+  return review;
+  // } else {
+  //   console.log("THERES AN ERROR WITH CREATING YOUR REvIEW");
+  // }
 };
 export const deleteAReview = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
@@ -98,23 +98,20 @@ const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REVIEWS:
       newState = { ...state };
-      // action.payload.reviews.forEach((review) => {
-      //   newState[review.id] = review;
-      // });
       newState.reviews = normalizeObj(action.reviews);
       return newState;
-    // case ALL_REVIEWS:
-    //   newState = { ...state };
-    //   // action.payload.reviews.forEach((review) => {
-    //   //   newState[review.id] = review;
-    //   // });
-    //   newState.reviews = normalizeObj(action.reviews);
-    //   return newState;
     case CREATE_REVIEW:
-      newState = { ...state };
-      newState[action.payload.id] = action.payload;
-      return newState;
-
+      // newState = { ...state };
+      // newState[action.payload.id] = action.payload;
+      // return newState;
+      let createdState;
+      createdState = { ...state };
+      createdState[action.payload.id] = action.payload;
+      // console.log(
+      //   // "🚀 ~ file: reviewReducer.js:108 ~ reviewReducer ~ createdState:",
+      //   createdState
+      // );
+      return createdState;
     case DELETE_REVIEW:
       let deleteState;
       deleteState = { ...state };

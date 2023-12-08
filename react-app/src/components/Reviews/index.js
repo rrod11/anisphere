@@ -16,10 +16,9 @@ function Reviews({ list }) {
   const { postId } = useParams();
   const dispatch = useDispatch();
   const orderedReviews = orderReviews(list);
-  console.log(
-    "🚀 ~ file: index.js:21 ~ Reviews ~ orderReviews:",
-    orderedReviews
-  );
+  const reviews = useSelector((state) => state.review.reviews);
+  console.log("🚀 ~ file: index.js:20 ~ Reviews ~ reviews:", reviews);
+
   function orderReviews(list) {
     let newbie = [];
     for (let i = list.length - 1; i >= 0; i--) {
@@ -29,17 +28,16 @@ function Reviews({ list }) {
   }
   useEffect(() => {
     dispatch(getAllUsers())
+      .then(() => dispatch(allTheReviews()))
       .then(() => {
         setIsLoaded(true);
       })
-      .then(() => dispatch(allTheReviews()))
       .then(() => {
         history.push(`/posts/${postId}`);
       });
   }, [dispatch, isLoaded]);
   const history = useHistory();
   const usersObj = useSelector((state) => state.user);
-  console.log("🚀 ~ file: index.js:42 ~ Reviews ~ usersObj:", usersObj);
   const sessionUser = useSelector((state) => state.session.user);
 
   if (!orderReviews.length || !Object.values(usersObj).length) {
@@ -61,7 +59,6 @@ function Reviews({ list }) {
   const reviewsFinal = addUsers(orderedReviews, usersArr);
   return (
     <>
-      <h1>In Reviews</h1>
       {isLoaded && reviewsFinal?.length >= 1 ? (
         reviewsFinal?.map(({ id, userId, review, rating, user }) => (
           <div

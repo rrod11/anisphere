@@ -22,6 +22,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
+  // const allPosts = useSelector((state) => state.post.posts);
   const sessionUser = useSelector((state) => state.session.user);
   const posts = useSelector((state) => state.post.posts);
   useEffect(() => {

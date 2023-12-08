@@ -8,6 +8,7 @@ import "./animePage.css";
 import { Redirect, useParams, Navigate } from "react-router-dom";
 import Reviews from "../Reviews";
 import DeletePost from "../DeleteModal/deleteModalPost";
+import { allTheReviews } from "../../store/reviewReducer";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -15,9 +16,9 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  console.log("🚀 ~ file: index.js:18 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+
   let sum = 0;
   if (target && target.reviews.length >= 1) {
     sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
@@ -132,15 +133,15 @@ const AnimePage = ({ posts }) => {
             ) : null}
 
             <div className="overallReviews">
-              {target && target.reviews.length < 1 ? (
+              {target && target.reviews?.length < 1 ? (
                 <span>
                   <h1>
-                    {target.reviews.length} Reviews {avg?.toFixed(2)}
+                    {target.reviews?.length} Reviews {avg?.toFixed(2)}
                   </h1>
                 </span>
               ) : (
                 <span>
-                  <h1>{target.reviews.length} Reviews</h1>
+                  <h1>{target.reviews?.length} Reviews</h1>
                 </span>
               )}
               <div

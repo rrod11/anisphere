@@ -8,7 +8,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { createAReview } from "../../store/reviewReducer";
+import { createAReview, allTheReviews } from "../../store/reviewReducer";
 import "./createReview.css";
 
 function ReviewFormModal({ postId }) {
@@ -21,7 +21,14 @@ function ReviewFormModal({ postId }) {
   const [activeRating, setActiveRating] = useState(0);
   const [errors, setErrors] = useState({});
   const disabled = reviewText.length < 4;
-  const reviews = useSelector((state) => state.review);
+  // const reviewer = useSelector((state) => state.review.reviews);
+  // console.log(
+  //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
+  //   reviewer
+  // );
+  // const reviewsLength = Object.values(
+  //   useSelector((state) => state.review.reviews)
+  // ).length;
   let passed = false;
   console.log("🚀 ~ file: index.js:21 ~ ReviewFormModal ~ rating:", rating);
 
@@ -45,19 +52,22 @@ function ReviewFormModal({ postId }) {
   if (!sessionUser) {
     history.push("/login");
   }
+  // const postIdUp = postId + 1;
 
   const handleSubmit = async (e) => {
-    checkCredentials();
     e.preventDefault();
-    // if (!Object.values(errors).length) {
-    await dispatch(createAReview(postId, newReview))
-      .then(() => closeModal())
-      .then(() => history.push(`/posts/${postId}`));
-    // return Redirect(`/posts/${postId}`);
-    // } else {
-    //   console.log(`You have ${Object.values(errors).length} errors`);
-    // }
+    checkCredentials();
+    if (!Object.values(errors).length) {
+      await dispatch(createAReview(postId, newReview))
+        .then(() => closeModal())
+        // .then(() => history.push(`/posts/${postIdUp}`))
+        .then(() => history.push(`/posts/${postId}`));
+    }
   };
+
+  useEffect(() => {
+    allTheReviews(postId);
+  }, [postId]);
 
   return (
     <div className="add-review-button-container">
@@ -213,7 +223,7 @@ function ReviewFormModal({ postId }) {
               type="submit"
               id="add-review"
               onClick={checkCredentials}
-              //   disabled={disabled}
+              // disabled={disabled}
               style={{
                 // backgroundColor: "tan",
                 maxWidth: "100%",

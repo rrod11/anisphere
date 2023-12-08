@@ -10,8 +10,8 @@ const HomePage = ({ posts }) => {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  const allPosts = useSelector((state) => state.post.posts);
-  const postArr = Object.values(allPosts);
+  // const allPosts = useSelector((state) => state.post.posts);
+  const postArr = Object.values(posts);
 
   useEffect(() => {
     dispatch(getAllPosts())
@@ -21,13 +21,36 @@ const HomePage = ({ posts }) => {
       .then(() => history.push("/home"));
   }, [dispatch, isLoaded]);
 
-  const text = document.querySelector(".fancy");
-  // const strText = text.textContent;
-  // const splitText = strText.split("");
-  // text.textContent = "";
+  // if (isLoaded && postArr.length >= 1) {
+  //   let text = document.querySelector(".fancy");
+  //   const strText = text?.textContent;
+  //   const splitText = strText?.split("");
+  //   console.log("🚀 ~ file: index.js:28 ~ HomePage ~ splitText:", splitText);
+  //   text.textContent = "";
 
-  // for (let i = 0; i < splitText.length; i++) {
-  //   text.innerHTML += "<span>" + splitText[i] + "</span>";
+  //   for (let i = 0; i < splitText?.length; i++) {
+  //     if (splitText[i] != " ") {
+  //       text.innerHTML += "<span>" + splitText[i] + "</span>";
+  //     } else {
+  //       text.innerHTML += "<span>" + " " + "</span>";
+  //     }
+  //   }
+
+  //   let char = 0;
+  //   let timer = setInterval(onTick, 50);
+  //   function onTick() {
+  //     const span = text.querySelectorAll("span")[char];
+  //     span.classList.add("fade");
+  //     char++;
+  //     if (char === splitText.length) {
+  //       complete();
+  //       return;
+  //     }
+  //   }
+  //   function complete() {
+  //     clearInterval(timer);
+  //     timer = null;
+  //   }
   // }
 
   if (isLoaded && postArr.length >= 1) {
@@ -41,64 +64,64 @@ const HomePage = ({ posts }) => {
         </h1>
         <div className="wrapper">
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <h3 className="h3">
-            <span className="dot"></span>
+            <p className="dot"></p>
           </h3>
           <div className="scroll-bg">
             <div className="scroll-div">
@@ -120,8 +143,8 @@ const HomePage = ({ posts }) => {
               </div>
             </div>
           </div>
+          <h1 className="fancy">ALL ANIME</h1>
           <div className="item-selector">
-            <h1 className="fancy">ALL ANIME</h1>
             {postArr?.map((ele) => (
               <a key={ele.id} href={`/posts/${ele.id}`}>
                 <div
@@ -154,64 +177,64 @@ const HomePage = ({ posts }) => {
       </h1>
       <div className="wrapper">
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <h3 className="h3">
-          <span className="dot"></span>
+          <p className="dot"></p>
         </h3>
         <div className="scroll-bg">
           <div className="scroll-div">

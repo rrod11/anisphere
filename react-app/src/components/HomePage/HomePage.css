@@ -13,10 +13,6 @@ body {
     #64ffda
   );
   background-size: 400% 400%;
-  /* background-size: cover; */
-  /* background-image: url(../../assets/goo.png),
-    linear-gradient(-45deg, #00b0ff, #00e5ff, #1de9b6, #01579b, #64ffda);
-  background-repeat: no-repeat; */
   animation: gradientBG 10s ease infinite;
   overflow: hidden;
   overflow-y: scroll;
@@ -38,8 +34,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-
-  /* overflow: hidden; */
 }
 .wrapper .h3 {
   height: 60px;
@@ -247,15 +241,10 @@ h1.progress {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  /* overflow: scroll; */
-  overflow-x: scroll;
-  /* text-overflow: scroll; */
 }
 
 .item-title {
   position: absolute;
-  /* width: 100%;
-  height: 100%; */
   width: 100% or fit-content;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.4);
@@ -265,6 +254,19 @@ h1.progress {
   color: white;
 }
 
-.fancy {
+/* .fancy {
   color: white;
-}
+  transition: all 1s ease;
+  transform: translateY(50px);
+  display: inline-block;
+  animation: colors 5s infinite;
+} */
+
+/* @keyframes colors {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+} */
