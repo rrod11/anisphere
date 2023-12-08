@@ -43,13 +43,13 @@ li {
 }
 .nav-right {
   display: flex;
-  font-size: 30px;
-  padding: 0 20px 0 0;
+  padding: 0 40px 0 0;
   flex-direction: row;
   color: white;
 }
 a {
   color: white;
+  font-size: 30px;
 }
 a:visited {
   color: white;
