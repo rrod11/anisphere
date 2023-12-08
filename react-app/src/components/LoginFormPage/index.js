@@ -3,11 +3,13 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
+  const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -15,14 +17,16 @@ function LoginFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credentials, password));
     if (data) {
       setErrors(data);
+    } else {
+      history.go(-1);
     }
   };
 
   function DemoUser() {
-    setEmail("demo@aa.io");
+    setCredentials("demo@aa.io");
     setPassword("password");
   }
 
@@ -36,11 +40,11 @@ function LoginFormPage() {
           ))}
         </ul>
         <label>
-          Email
+          Credentials
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credentials}
+            onChange={(e) => setCredentials(e.target.value)}
             required
           />
         </label>
