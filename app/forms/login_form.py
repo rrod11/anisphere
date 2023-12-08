@@ -7,7 +7,9 @@ from app.models import User
 def user_exists(form, field):
     # Checking if user exists
     credentials = field.data
-    user = User.query.filter(User.email == credentials or User.username == credentials).first()
+    user = User.query.filter(User.email == credentials).first()
+    if not user:
+        user = User.query.filter(User.username == credentials).first()
     if not user:
         raise ValidationError('Please Check Your Login Information')
 
@@ -16,9 +18,11 @@ def password_matches(form, field):
     # Checking if password matches
     password = field.data
     credentials = form.data['credentials']
-    user = User.query.filter(User.email == credentials or User.username == credentials).first()
+    user = User.query.filter(User.email == credentials).first()
     if not user:
-        raise ValidationError('No such user exists')
+        user = User.query.filter(User.username == credentials).first()
+    if not user:
+        raise ValidationError('Something looks wrong')
     if not user.check_password(password):
         raise ValidationError('Please Check Your Login Information')
 

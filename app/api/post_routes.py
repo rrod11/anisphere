@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from app.forms import PostForm
 from datetime import date
 from random import randint
-from app.models import db, Post, User
+from app.models import db, Post, User, PostImage
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
@@ -110,8 +110,13 @@ def update_post(id):
                 post_to_update.image=upload["url"],
             #     if "url" not in upload:
             # return upload
-                # post_to_update.image = form.data["image"]
+            #     new_image = PostImage(
 
+            #         post_id=int(id),
+            #         url=upload["url"],
+            #     )
+            #     # post_to_update.image = form.data["image"]
+            # db.session.add(new_image)
             db.session.commit()
             # return post_to_update.to_dict()
         else:

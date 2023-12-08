@@ -19,5 +19,5 @@ class PostImage(db.Model):
     return {
       "id": self.id,
       "url": self.url,
-      "product_id": self.product_id
+      "post_id": self.post_id
     }
