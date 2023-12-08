@@ -10,6 +10,7 @@ const PostForm = () => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -19,8 +20,7 @@ const PostForm = () => {
     e.preventDefault();
 
     setHasSubmitted(true);
-    if (validationErrors.length)
-      return alert("Your Post has errors, cannot submit!");
+    if (validationErrors.length) return console.log("YOU HAVE ERRORS!!!");
 
     const formData = new FormData();
     formData.append("description", description);
@@ -44,9 +44,21 @@ const PostForm = () => {
 
   useEffect(() => {
     const errors = [];
-    if (!description.length) errors.push("Please enter a post description!");
-    if (!image) errors.push("Please provide an image!");
-    if (!title) errors.push("Please provide a title");
+    const errObj = {};
+    if (!description.length) {
+      errors.push("Please enter a post description!");
+      errObj.description = "Description is required";
+    }
+    if (!image) {
+      errors.push("Please provide an image!");
+      errObj.image = "Image is required";
+    }
+
+    if (!title) {
+      errors.push("Please provide a title");
+      errObj.title = "Title is required";
+    }
+    setErrors(errObj);
     setValidationErrors(errors);
   }, [description, image, title]);
 
@@ -61,11 +73,11 @@ const PostForm = () => {
         {hasSubmitted && validationErrors.length > 0 && (
           <div className="errors-info">
             <h2>The following errors were found:</h2>
-            <ul>
+            {/* <ul>
               {validationErrors.map((error) => (
                 <li key={error}>{error}</li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         )}
         <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
@@ -83,6 +95,7 @@ const PostForm = () => {
               value={title}
             ></input>
           </div>
+          {errors.title && <p className="errors">{errors.title}</p>}
           <div className="form-input-box">
             <label className="form-label" htmlFor="description">
               Post Description:
@@ -94,6 +107,7 @@ const PostForm = () => {
               value={description}
             ></input>
           </div>
+          {errors.description && <p className="errors">{errors.description}</p>}
           <div className="form-input-box">
             <label className="form-label" htmlFor="image">
               Post Image:
@@ -105,6 +119,7 @@ const PostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             ></input>
           </div>
+          {errors.image && <p className="errors">{errors.image}</p>}
           <button className="button">Submit</button>
         </form>
       </div>
