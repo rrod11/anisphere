@@ -13,7 +13,7 @@ const createReview = (payload) => {
   };
 };
 
-const getReviews = (reviews) => {
+export const getReviews = (reviews) => {
   return {
     type: GET_REVIEWS,
     reviews,
@@ -93,12 +93,12 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     case CREATE_REVIEW:
       newState = { ...state };
-      newState[action.payload.id] = action.payload;
+      newState.reviews[action.payload.id] = action.payload;
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
       console.log("IN EDIT REVIEW REDUCER AND TRYING TO SEE ID", action);
-      newState[action.payload.id] = action.payload;
+      newState.reviews[action.payload.id] = action.payload;
       return newState;
     case DELETE_REVIEW:
       let deleteState;

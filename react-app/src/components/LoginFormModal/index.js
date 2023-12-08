@@ -6,14 +6,14 @@ import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
+  const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credentials, password));
     if (data) {
       setErrors(data);
     } else {
@@ -21,7 +21,7 @@ function LoginFormModal() {
     }
   };
   function DemoUser() {
-    setEmail("demo@aa.io");
+    setCredentials("demo@aa.io");
     setPassword("password");
   }
 
@@ -35,11 +35,11 @@ function LoginFormModal() {
           ))}
         </ul>
         <label>
-          Email
+          Credentials
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credentials}
+            onChange={(e) => setCredentials(e.target.value)}
             required
           />
         </label>

@@ -12,7 +12,10 @@ import { createAReview, allTheReviews } from "../../store/reviewReducer";
 import "./createReview.css";
 
 function ReviewFormModal({ postId }) {
+  // function ReviewFormModal() {
   const dispatch = useDispatch();
+  // const { postId } = useParams();
+  console.log("🚀 ~ file: index.js:18 ~ ReviewFormModal ~ postId:", postId);
   const { closeModal } = useModal();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -21,6 +24,9 @@ function ReviewFormModal({ postId }) {
   const [activeRating, setActiveRating] = useState(0);
   const [errors, setErrors] = useState({});
   const disabled = reviewText.length < 4;
+  const reviewsLength = Object.values(
+    useSelector((state) => state.review.reviews)
+  ).length;
   // const reviewer = useSelector((state) => state.review.reviews);
   // console.log(
   //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
@@ -60,8 +66,8 @@ function ReviewFormModal({ postId }) {
   };
 
   useEffect(() => {
-    allTheReviews(postId);
-  }, [postId]);
+    allTheReviews();
+  }, [reviewsLength]);
 
   return (
     <div className="add-review-button-container">

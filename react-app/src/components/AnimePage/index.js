@@ -19,7 +19,9 @@ const AnimePage = ({ posts }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  // const reviewsLength = Object.values(
+  //   useSelector((state) => state.review.reviews)
+  // ).length;
   // let sum = 0;
   // if (target && target.reviews.length >= 1) {
   //   sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
@@ -32,6 +34,7 @@ const AnimePage = ({ posts }) => {
   const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(() => {
     dispatch(getAllPosts(sessionUser))
+      .then(() => allTheReviews())
       .then(() => allTheReviews())
       .then(() => {
         setIsLoaded(true);

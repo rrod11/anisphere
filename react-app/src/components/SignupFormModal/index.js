@@ -34,7 +34,6 @@ function SignupFormModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkCredentials();
-    console.log("WHERE THE FUCK RE MY ERRORS???", errors);
     if (Object.values(errors).length == 0) {
       await dispatch(
         signUp(username, email, password, first_name, last_name, admin_key)
