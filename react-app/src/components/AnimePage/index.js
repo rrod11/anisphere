@@ -17,20 +17,23 @@ const AnimePage = ({ posts }) => {
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.review.reviews);
+  console.log("🚀 ~ file: index.js:21 ~ AnimePage ~ reviews:", reviews);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  let sum = 0;
-  if (target && target.reviews.length >= 1) {
-    sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
-  }
-  let avg;
-  if (sum > 0) {
-    avg = sum / target.reviews.length;
-  }
+  // let sum = 0;
+  // if (target && target.reviews.length >= 1) {
+  //   sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
+  // }
+  // let avg;
+  // if (sum > 0) {
+  //   avg = sum / target.reviews.length;
+  // }
   const closeMenu = () => setShowMenu(false);
   const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(() => {
     dispatch(getAllPosts(sessionUser))
+      .then(() => allTheReviews())
       .then(() => {
         setIsLoaded(true);
       })
@@ -110,6 +113,7 @@ const AnimePage = ({ posts }) => {
             <h3 className="h3">
               <span className="dot"></span>
             </h3>
+            <h1>{target.title}</h1>
             <div className="individual-post">
               <img
                 src={target.image}
@@ -131,77 +135,8 @@ const AnimePage = ({ posts }) => {
                 modalComponent={<DeletePost postId={postId} />}
               />
             ) : null}
-
-            <div className="overallReviews">
-              {target && target.reviews?.length < 1 ? (
-                <span>
-                  <h1>
-                    {target.reviews?.length} Reviews {avg?.toFixed(2)}
-                  </h1>
-                </span>
-              ) : (
-                <span>
-                  <h1>{target.reviews?.length} Reviews</h1>
-                </span>
-              )}
-              <div
-                className="insideman"
-                style={{ display: "flex", justifyContent: "space-around" }}
-              >
-                <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
-                <label style={{ display: "flex", alignItems: "center" }}>
-                  <div
-                    className="rating"
-                    style={{ display: "flex", flexDirection: "row" }}
-                  >
-                    <i
-                      className={
-                        avg >= 1 || avg > 0.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 2 || avg >= 1.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 3 || avg >= 2.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 4 || avg >= 3.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 5 || avg >= 4.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                  </div>
-                </label>
-              </div>
-            </div>
-            <OpenModalButton
-              buttonText="Add Review"
-              modalClasses={["add-edit-button-container"]}
-              onButtonClick={closeMenu}
-              modalComponent={<ReviewFormModal postId={postId} />}
-            />
-            <Reviews list={target.reviews} />
+            <Reviews list={target.reviews} posts={posts} />
           </div>
-          //{" "}
         </div>
       </>
     );

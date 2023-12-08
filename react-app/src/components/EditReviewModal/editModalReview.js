@@ -9,12 +9,17 @@ function EditReview({ reviewId, postId }) {
   const dispatch = useDispatch();
   const reviews = Object.values(useSelector((state) => state.review.reviews));
   const target = reviews.find((ele) => ele.id == reviewId);
+  console.log(
+    "🚀 ~ file: editModalReview.js:12 ~ EditReview ~ target:",
+    target.id
+  );
   const [activeRating, setActiveRating] = useState(0);
   const { closeModal } = useModal();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
 
   const stock = {
+    id: target.id,
     user_id: user.id,
     post_id: postId,
     review: target?.review,
@@ -36,6 +41,7 @@ function EditReview({ reviewId, postId }) {
     checkCredentials();
     if (!Object.values(errors).length) {
       const newStock = {
+        id: stock.id,
         user_id: user.id,
         post_id: postId,
         review,

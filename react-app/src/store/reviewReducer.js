@@ -76,23 +76,22 @@ export const deleteAReview = (reviewId) => async (dispatch) => {
     console.log("There was an error trying to delete review");
   }
 };
-export const editAReview =
-  (reviewId, payload, productId) => async (dispatch) => {
-    console.log("DO I HIT THE EDIT A REVIEW THUNK");
-    const response = await fetch(`/api/reviews/${reviewId}/edit`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response);
-    if (response.ok) {
-      const review = await response.json();
-      dispatch(allTheReviews(productId));
-      return review;
-    } else {
-      console.log("there was and issue updating your review");
-    }
-  };
+export const editAReview = (reviewId, payload, postId) => async (dispatch) => {
+  console.log("DO I HIT THE EDIT A REVIEW THUNK");
+  const response = await fetch(`/api/reviews/${reviewId}/edit`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response);
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(editReview(postId));
+    return review;
+  } else {
+    console.log("there was and issue updating your review");
+  }
+};
 const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -101,17 +100,12 @@ const reviewReducer = (state = initialState, action) => {
       newState.reviews = normalizeObj(action.reviews);
       return newState;
     case CREATE_REVIEW:
-      // newState = { ...state };
-      // newState[action.payload.id] = action.payload;
-      // return newState;
-      let createdState;
-      createdState = { ...state };
-      createdState[action.payload.id] = action.payload;
-      // console.log(
-      //   // "🚀 ~ file: reviewReducer.js:108 ~ reviewReducer ~ createdState:",
-      //   createdState
-      // );
-      return createdState;
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case EDIT_REVIEW:
+      newState = { ...state, [action.payload.id]: action.payload };
+      return newState;
     case DELETE_REVIEW:
       let deleteState;
       deleteState = { ...state };

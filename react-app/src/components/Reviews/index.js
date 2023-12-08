@@ -9,15 +9,28 @@ import {
 import OpenModalButton from "../OpenModalButton";
 import DeleteReview from "../DeleteModal/deleteModalReview";
 import { allTheReviews } from "../../store/reviewReducer";
+import ReviewFormModal from "../CreateReviewModal";
 import EditReview from "../EditReviewModal/editModalReview";
 
-function Reviews({ list }) {
+function Reviews({ list, posts }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const closeMenu = () => setShowMenu(false);
   const { postId } = useParams();
   const dispatch = useDispatch();
   const orderedReviews = orderReviews(list);
-  const reviews = useSelector((state) => state.review.reviews);
-  console.log("🚀 ~ file: index.js:20 ~ Reviews ~ reviews:", reviews);
+  // const reviews = useSelector((state) => state.review.reviews);
+  // console.log("🚀 ~ file: index.js:23 ~ Reviews ~ reviews HURRR:", reviews);
+  // const rArr = Object.values(reviews);
+  const target = Object.values(posts).find((ele) => ele.id == postId);
+  let sum = 0;
+  if (target && target.reviews.length >= 1) {
+    sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
+  }
+  let avg;
+  if (sum > 0) {
+    avg = sum / target.reviews.length;
+  }
 
   function orderReviews(list) {
     let newbie = [];
@@ -59,6 +72,73 @@ function Reviews({ list }) {
   const reviewsFinal = addUsers(orderedReviews, usersArr);
   return (
     <>
+      <div className="overallReviews">
+        {target && target.reviews?.length < 1 ? (
+          <span>
+            <h1>
+              {target.reviews?.length} Reviews {avg?.toFixed(2)}
+            </h1>
+          </span>
+        ) : (
+          <span>
+            <h1>{target.reviews?.length} Reviews</h1>
+          </span>
+        )}
+        <div
+          className="insideman"
+          style={{ display: "flex", justifyContent: "space-around" }}
+        >
+          <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
+          <label style={{ display: "flex", alignItems: "center" }}>
+            <div
+              className="rating"
+              style={{ display: "flex", flexDirection: "row" }}
+            >
+              <i
+                className={
+                  avg >= 1 || avg > 0.5
+                    ? "fa-solid fa-star"
+                    : "fa-regular fa-star"
+                }
+              ></i>
+              <i
+                className={
+                  avg >= 2 || avg >= 1.5
+                    ? "fa-solid fa-star"
+                    : "fa-regular fa-star"
+                }
+              ></i>
+              <i
+                className={
+                  avg >= 3 || avg >= 2.5
+                    ? "fa-solid fa-star"
+                    : "fa-regular fa-star"
+                }
+              ></i>
+              <i
+                className={
+                  avg >= 4 || avg >= 3.5
+                    ? "fa-solid fa-star"
+                    : "fa-regular fa-star"
+                }
+              ></i>
+              <i
+                className={
+                  avg >= 5 || avg >= 4.5
+                    ? "fa-solid fa-star"
+                    : "fa-regular fa-star"
+                }
+              ></i>
+            </div>
+          </label>
+        </div>
+      </div>
+      <OpenModalButton
+        buttonText="Add Review"
+        modalClasses={["add-edit-button-container"]}
+        onButtonClick={closeMenu}
+        modalComponent={<ReviewFormModal postId={postId} />}
+      />
       {isLoaded && reviewsFinal?.length >= 1 ? (
         reviewsFinal?.map(({ id, userId, review, rating, user }) => (
           <div
