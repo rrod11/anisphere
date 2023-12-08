@@ -1,30 +1,27 @@
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { editAReview } from "../../store/reviewReducer";
+import { allTheReviews, editAReview } from "../../store/reviewReducer";
 import { useEffect, useState } from "react";
 import "./editReview.css";
 
-function EditReview({ reviewId, postId }) {
+function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
   const dispatch = useDispatch();
-  const reviews = Object.values(useSelector((state) => state.review.reviews));
-  const target = reviews.find((ele) => ele.id == reviewId);
-  console.log(
-    "🚀 ~ file: editModalReview.js:12 ~ EditReview ~ target:",
-    target.id
-  );
+  // const reviews = Object.values(useSelector((state) => state.review.reviews));
+  const target = reviewsArr.find((ele) => ele.id == reviewId);
   const [activeRating, setActiveRating] = useState(0);
   const { closeModal } = useModal();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
 
   const stock = {
-    id: target.id,
-    user_id: user.id,
+    id: target?.id,
+    user_id: user?.id,
     post_id: postId,
     review: target?.review,
     rating: target?.rating,
   };
+
   const [review, setReview] = useState(stock.review);
   const [rating, setRating] = useState(stock.rating);
   const [errors, setErrors] = useState({});
@@ -47,15 +44,17 @@ function EditReview({ reviewId, postId }) {
         review,
         rating,
       };
-      console.log(
-        "🚀 ~ file: editModalReview.js:50 ~ handleSubmit ~ newStock:",
-        newStock
+      await dispatch(editAReview(reviewId, newStock, postId)).then(() =>
+        closeModal()
       );
-      await dispatch(editAReview(reviewId, newStock, postId))
-        .then(() => closeModal())
-        .then(() => history.push(`/posts/${postId}`));
+      // .then(() => history.push(`/posts/${postId}`));
     }
+    setRender(!render);
   };
+
+  useEffect(() => {
+    allTheReviews(postId);
+  }, [postId]);
 
   return (
     <div className="edit-review-container">

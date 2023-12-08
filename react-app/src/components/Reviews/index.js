@@ -244,7 +244,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../store/userReducer";
-import { NavLink } from "react-router-dom";
 import {
   useHistory,
   useParams,
@@ -255,40 +254,23 @@ import { allTheReviews, getReviews } from "../../store/reviewReducer";
 import ReviewFormModal from "../CreateReviewModal";
 import EditReview from "../EditReviewModal/editModalReview";
 
-function Reviews({ list, posts }) {
+function Reviews({ list, posts, theId }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const closeMenu = () => setShowMenu(false);
   const { postId } = useParams();
   const dispatch = useDispatch();
-  // const reviewResponse = () => async (dispatch) => {
-  //   const response = await fetch("/api/reviews/all");
-  //   const data = await response.json();
-  //   dispatch(getReviews(data));
-  //   console.log(
-  //     "🚀 ~ file: index.js:271 ~ reviewResponse ~ response:",
-  //     response
-  //   );
-  //   return response;
-  // };
-  // console.log(
-  //   "🚀 ~ file: index.js:272 ~ reviewResponse ~ reviewResponse:",
-  //   reviewResponse
-  // );
-  const reviewObj = useSelector((state) => state.review.reviews);
-  // const reviewArr = Object.values(reviewObj);
-  // console.log("🚀 ~ file: index.js:282 ~ Reviews ~ reviewArr:", reviewArr);
-  const postObj = useSelector((state) => state.post.posts);
-  // console.log("🚀 ~ file: index.js:282 ~ Reviews ~ postObj:", postObj);
-  // console.log("🚀 ~ file: index.js:23 ~ Reviews ~ reviews HURRR:", reviews);
-  const postArr = Object.values(postObj);
-  // console.log("🚀 ~ file: index.js:285 ~ Reviews ~ postArr:", postArr);
-  const target = Object.values(postArr).find((ele) => ele.id == postId);
-  const orderedReviews = orderReviews(target.reviews);
-  console.log(
-    "🚀 ~ file: index.js:287 ~ Reviews ~ target:",
-    target.reviews.length
-  );
+  const orderedReviews = orderReviews(list);
+  const [render, setRender] = useState(false);
+  const [postReviews, setPostReviews] = useState([]);
+
+  // const reviewObj = useSelector((state) => state.review.reviews);
+  // const postObj = useSelector((state) => state.post.posts);
+  // const postArr = Object.values(postObj);
+  // const target = Object.values(postArr).find((ele) => ele.id == postId);
+  // const orderedReviews = orderReviews(target.reviews);
+  const target = Object.values(posts).find((ele) => ele.id == postId);
+
   let sum = 0;
   if (target && target.reviews.length >= 1) {
     sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
@@ -305,19 +287,37 @@ function Reviews({ list, posts }) {
     }
     return newbie;
   }
-  useEffect(() => {
-    dispatch(getAllUsers())
-      .then(() => dispatch(allTheReviews()))
-      .then(() => {
-        setIsLoaded(true);
-      })
-      .then(() => {
-        history.push(`/posts/${postId}`);
-      });
-  }, [dispatch, isLoaded]);
+
   const history = useHistory();
   const usersObj = useSelector((state) => state.user);
+  // const usersArr = Object.values(usersObj.users);
   const sessionUser = useSelector((state) => state.session.user);
+
+  useEffect(async () => {
+    let usersArr;
+    dispatch(getAllUsers());
+    // .then(() => dispatch(allTheReviews()))
+    // .then(() => {
+    //   setIsLoaded(true);
+    // })
+    // .then(() => {
+    //   history.push(`/posts/${postId}`);
+    // });
+
+    const res = await fetch(`/api/reviews/post/${theId}`);
+    const users = await fetch(`/api/users/all`);
+    if (res.ok) {
+      const reviews = await res.json();
+      const orderedReviews = orderReviews(reviews);
+      if (users) {
+        const userRes = await users.json();
+        usersArr = Object.values(userRes.users);
+      }
+      const finalReviews = addUsers(orderedReviews, usersArr);
+      setPostReviews(finalReviews);
+    }
+    setIsLoaded(true);
+  }, [dispatch, isLoaded, render]);
 
   if (!orderReviews.length || !Object.values(usersObj).length) {
     return (
@@ -326,7 +326,7 @@ function Reviews({ list, posts }) {
       </>
     );
   }
-  const usersArr = Object.values(usersObj.users);
+  // console.log("🚀 ~ file: index.js:328 ~ Reviews ~ usersArr:", usersArr);
   function addUsers(list, users) {
     let newbie = [];
     for (let i = 0; i < list.length; i++) {
@@ -335,7 +335,7 @@ function Reviews({ list, posts }) {
     }
     return newbie;
   }
-  const reviewsFinal = addUsers(orderedReviews, usersArr);
+  // const reviewsFinal = addUsers(orderedReviews, usersArr);
   return (
     <>
       <div className="overallReviews">
@@ -403,10 +403,16 @@ function Reviews({ list, posts }) {
         buttonText="Add Review"
         modalClasses={["add-edit-button-container"]}
         onButtonClick={closeMenu}
-        modalComponent={<ReviewFormModal postId={postId} />}
+        modalComponent={
+          <ReviewFormModal
+            postId={postId}
+            render={render}
+            setRender={setRender}
+          />
+        }
       />
-      {isLoaded && reviewsFinal?.length >= 1 ? (
-        reviewsFinal?.map(({ id, userId, review, rating, user }) => (
+      {isLoaded && postReviews?.length >= 1 ? (
+        postReviews?.map(({ id, userId, review, rating, user }) => (
           <div
             style={{ borderBottom: "1px solid grey", padding: "5px" }}
             key={id}
@@ -494,7 +500,15 @@ function Reviews({ list, posts }) {
               <OpenModalButton
                 modalClasses={["edit-button-container"]}
                 buttonText="Edit Review"
-                modalComponent={<EditReview reviewId={id} postId={postId} />}
+                modalComponent={
+                  <EditReview
+                    reviewId={id}
+                    postId={postId}
+                    render={render}
+                    setRender={setRender}
+                    reviewsArr={postReviews}
+                  />
+                }
               />
             ) : null}
           </div>

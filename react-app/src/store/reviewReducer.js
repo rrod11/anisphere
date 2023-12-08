@@ -4,7 +4,8 @@ const CREATE_REVIEW = "review/CREATE_REVIEW";
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 const EDIT_REVIEW = "reviews/EDIT_REVIEW";
-const initialState = {};
+const GET_REVIEWS_POST = "reviews/POST_REVIEWS";
+const initialState = { reviews: {} };
 
 const createReview = (payload) => {
   return {
@@ -29,6 +30,12 @@ const editReview = (payload) => {
   return {
     type: EDIT_REVIEW,
     payload,
+  };
+};
+const postReviews = (postReviews) => {
+  return {
+    type: GET_REVIEWS_POST,
+    postReviews,
   };
 };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import LoginFormModal from "../LoginFormModal";
 import OpenModalButton from "../OpenModalButton";
 import {
   Redirect,
@@ -11,11 +10,8 @@ import {
 import { createAReview, allTheReviews } from "../../store/reviewReducer";
 import "./createReview.css";
 
-function ReviewFormModal({ postId }) {
-  // function ReviewFormModal() {
+function ReviewFormModal({ postId, render, setRender }) {
   const dispatch = useDispatch();
-  // const { postId } = useParams();
-  console.log("🚀 ~ file: index.js:18 ~ ReviewFormModal ~ postId:", postId);
   const { closeModal } = useModal();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -24,9 +20,6 @@ function ReviewFormModal({ postId }) {
   const [activeRating, setActiveRating] = useState(0);
   const [errors, setErrors] = useState({});
   const disabled = reviewText.length < 4;
-  const reviewsLength = Object.values(
-    useSelector((state) => state.review.reviews)
-  ).length;
   // const reviewer = useSelector((state) => state.review.reviews);
   // console.log(
   //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
@@ -52,22 +45,21 @@ function ReviewFormModal({ postId }) {
   if (!sessionUser) {
     history.push("/login");
   }
-  // const postIdUp = postId + 1;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkCredentials();
     if (!Object.values(errors).length) {
-      await dispatch(createAReview(postId, newReview))
-        .then(() => closeModal())
-        // .then(() => history.push(`/posts/${postIdUp}`))
-        .then(() => history.push(`/posts/${postId}`));
+      await dispatch(createAReview(postId, newReview)).then(() => closeModal());
+      // .then(() => history.push(`/posts/${postIdUp}`))
+      // .then(() => history.push(`/posts/${postId}`));
     }
+    setRender(!render);
   };
 
   useEffect(() => {
-    allTheReviews();
-  }, [reviewsLength]);
+    allTheReviews(postId);
+  }, [postId]);
 
   return (
     <div className="add-review-button-container">

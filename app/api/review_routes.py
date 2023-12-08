@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from datetime import date
 from app.forms import ReviewForm
@@ -31,6 +31,13 @@ def get_all_reviews():
     # return render_template("feed.html", reviews=all_reviews)
     return {"reviews": see_reviews}
     # return { "review": see_reviews}
+
+@review_routes.route('/post/<int:id>')
+def get_revs_for_post(id):
+    reviews = Review.query.filter(Review.post_id == id).all()
+
+    if reviews != None:
+        return jsonify([rev.to_dict() for rev in reviews])
 
 
 @review_routes.route("/<int:id>")

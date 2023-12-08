@@ -32,14 +32,16 @@ const AnimePage = ({ posts }) => {
   // }
   const closeMenu = () => setShowMenu(false);
   const editPost = () => history.push(`/posts/${target.id}/edit`);
-  useEffect(() => {
-    dispatch(getAllPosts(sessionUser))
-      .then(() => allTheReviews())
-      .then(() => allTheReviews())
-      .then(() => {
-        setIsLoaded(true);
-      })
-      .then(() => history.push(`/posts/${postId}`));
+  useEffect(async () => {
+    const response = await fetch(`api/reviews/post/${postId}`);
+    // dispatch(getAllPosts(sessionUser))
+    //   .then(() => allTheReviews())
+    //   .then(() => allTheReviews())
+    //   .then(() => {
+    //     setIsLoaded(true);
+    //   })
+    //   .then(() => history.push(`/posts/${postId}`));
+    setIsLoaded(true);
   }, [dispatch, isLoaded]);
   if (!target) {
     return (
@@ -137,7 +139,7 @@ const AnimePage = ({ posts }) => {
                 modalComponent={<DeletePost postId={postId} />}
               />
             ) : null}
-            <Reviews list={target.reviews} posts={posts} />
+            <Reviews list={target.reviews} posts={posts} theId={postId} />
           </div>
         </div>
       </>
