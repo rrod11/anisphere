@@ -105,6 +105,10 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
+      console.log(
+        "IN EDIT REVIEW REDUCER AND TRYIZn TO SEE ID",
+        action.payload
+      );
       newState[action.payload.id] = action.payload;
       return newState;
     case DELETE_REVIEW:

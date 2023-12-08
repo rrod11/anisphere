@@ -71,18 +71,21 @@ def create_new_review(postId):
 
 
 
-@review_routes.route("/<int:id>/edit", methods=['PUT', 'review'])
+@review_routes.route("/<int:id>/edit", methods=['PUT'])
 @login_required
 def update_review(id):
+    """UPDATE REVIEW"""
     review = Review.query.get(id)
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        review.post_id=form.data["post_id"]
-        review.user_id=form.data["user_id"]
-        review.review=form.data["review"]
-        review.rating=form.data["rating"]
+        review_to_update = Review.query.get(id)
+        if(review_to_update):
+            review_to_update.post_id=form.data["post_id"]
+            review_to_update.user_id=form.data["user_id"]
+            review_to_update.review=form.data["review"]
+            review_to_update.rating=form.data["rating"]
 
     db.session.commit()
     return review.to_dict()
