@@ -29,8 +29,6 @@ function ReviewFormModal({ postId }) {
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;
-  let passed = false;
-  console.log("🚀 ~ file: index.js:21 ~ ReviewFormModal ~ rating:", rating);
 
   function checkCredentials() {
     const errObj = {};
@@ -45,10 +43,6 @@ function ReviewFormModal({ postId }) {
     review: reviewText,
     rating,
   };
-  console.log(
-    "🚀 ~ file: index.js:41 ~ ReviewFormModal ~ newReview:",
-    newReview
-  );
   if (!sessionUser) {
     history.push("/login");
   }

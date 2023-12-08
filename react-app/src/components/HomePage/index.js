@@ -55,13 +55,15 @@ const HomePage = ({ posts }) => {
 
   if (isLoaded && postArr.length >= 1) {
     return (
-      <div id="post-page">
-        <h1 className="progress">
-          ProGress
-          <progress id="completion" max="100" volume="5">
-            5%
-          </progress>
-        </h1>
+      <div id="post-page" style={{ zIndex: "1" }}>
+        <div className="progress-div">
+          <h1 className="progress">
+            ProGress
+            <progress id="completion" max="100" volume="5">
+              5%
+            </progress>
+          </h1>
+        </div>
         <div className="wrapper">
           <h3 className="h3">
             <p className="dot"></p>
@@ -156,8 +158,9 @@ const HomePage = ({ posts }) => {
                     backgroundSize: "cover",
                   }}
                 >
-                  <div className="item-overlay"></div>
-                  <p className="item-title">{ele.title}</p>
+                  <div className="item-overlay">
+                    <div className="item-title">{ele.title}</div>
+                  </div>
                 </div>
               </a>
             ))}

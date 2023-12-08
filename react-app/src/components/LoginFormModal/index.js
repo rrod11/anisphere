@@ -26,7 +26,7 @@ function LoginFormModal() {
   }
 
   return (
-    <>
+    <div style={{ zIndex: "10000" }}>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -53,15 +53,11 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
-        <button
-          type="submit"
-          onClick={DemoUser}
-          className="demoButton"
-        >
+        <button type="submit" onClick={DemoUser} className="demoButton">
           Demo User
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

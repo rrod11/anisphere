@@ -184,6 +184,8 @@ h1.progress {
   -webkit-background-size: 500%;
   background-size: 500%;
   text-align: center;
+  /* z-index: 1; */
+  /* width: fit-content; */
 }
 
 @keyframes animate {
@@ -202,6 +204,7 @@ h1.progress {
   /* background: goldenrod; */
   width: 100%;
   margin: 1% auto;
+  z-index: 1;
 }
 .scroll-div {
   width: 100%;
@@ -211,6 +214,7 @@ h1.progress {
   border-radius: 50px;
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 .scroll-object {
   color: wheat;
@@ -220,6 +224,7 @@ h1.progress {
   font-size: 40px;
   padding-left: 2%;
   padding-right: 2%;
+  z-index: 1;
 }
 
 .item-selector {
@@ -229,28 +234,30 @@ h1.progress {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 30px;
   font-weight: 700;
-  color: #095417;
+  /* color: #095417; */
 }
 .item {
   display: inline-block;
   position: relative;
-  width: 250px;
-  height: 350px;
-  margin-right: 10px;
-  background-color: #f2f2f2;
-  background-size: cover;
+  width: 300px;
+  height: 400px;
+  margin-right: 20px;
+  background-size: fit-content;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .item-title {
   position: absolute;
-  width: 100% or fit-content;
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-x: scroll;
   height: fit-content;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
-  display: flex;
-  justify-content: column;
+  /* display: flex; */
+  /* justify-content: column; */
   color: white;
 }
 
