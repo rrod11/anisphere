@@ -9,7 +9,6 @@ import { Redirect, useParams, Navigate } from "react-router-dom";
 import Reviews from "../Reviews";
 import DeletePost from "../DeleteModal/deleteModalPost";
 import { allTheReviews } from "../../store/reviewReducer";
-import ChangePostImageForm from "../CreatePostImage/createPostImage";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -138,15 +137,6 @@ const AnimePage = ({ posts }) => {
                 modalClasses={["add-delete-button-container"]}
                 onButtonClick={closeMenu}
                 modalComponent={<DeletePost postId={postId} />}
-              />
-            ) : null}
-            {(sessionUser && target.userId == sessionUser.id) ||
-            (sessionUser && sessionUser.adminKey == "roderick0318") ? (
-              <OpenModalButton
-                buttonText="Add New Image"
-                modalClasses={["add-new-image-button-container"]}
-                onButtonClick={closeMenu}
-                modalComponent={<ChangePostImageForm postId={postId} />}
               />
             ) : null}
             <Reviews list={target.reviews} posts={posts} theId={postId} />

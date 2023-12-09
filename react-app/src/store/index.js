@@ -4,14 +4,11 @@ import session from "./session";
 import postReducer from "./postReducer";
 import userReducer from "./userReducer";
 import reviewReducer from "./reviewReducer";
-import postImageReducer from "./postImage";
 
 const rootReducer = combineReducers({
   session,
   user: userReducer,
   post: postReducer,
-  review: reviewReducer,
-  postImage: postImageReducer,
 });
 
 let enhancer;

@@ -91,6 +91,7 @@ def update_post(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     # formread = form.__dict__.items()
     # print("🐍 File: api/post_routes.py | Line: 92 | update_post ~ form",formread)
+    print("🐍 File: api/post_routes.py | Line: 92 | update_post ~ form",form.data)
 
     if form.validate_on_submit():
         # gets a ref to the resource we want to update
@@ -104,58 +105,28 @@ def update_post(id):
             post_to_update.title = form.data["title"]
 
             db.session.commit()
-        # if form.data["image"]:
-        #     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!EUREKA")
-                # file_to_delete = remove_file_from_s3(post_to_update.image)
-                # image = form.data['image']
-                # image.filename = get_unique_filename(image.filename)
-                # upload = upload_file_to_s3(image)
+        if form.data["image"]:
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!EUREKA")
+            file_to_delete = remove_file_from_s3(post_to_update.image)
+            image = form.data['image']
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
                 # post_to_update.image=upload["url"],
-            #     if "url" not in upload:
-            # return upload
-                # new_image = PostImage(
-                #     post_id=int(id),
-                #     url=upload["url"],
-                # )
-                # post_to_update.image = form.data["image"]
-            # db.session.add(new_image)
-        else:
-            return {"errors": ["not_found : Product not found."]}, 401
+            if "url" not in upload:
+                return upload, 500
+            else:
+                new_image = PostImage(
+                    post_id=int(id),
+                    url=upload["url"],
+                )
+            post_to_update.image = upload["url"]
+            db.session.add(new_image)
         db.session.commit()
         return post_to_update.to_dict()
+    else:
+        return {"errors": ["not_found : Product not found."]}, 401
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-@post_routes.route("/<int:id>/image/new", methods=["GET", "POST"])
-@login_required
-def create_new_post_image(id):
-    """ route that handles displaying a form on get requests and
-    handles post submission on post requests"""
-    form = PostImage()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if form.validate_on_submit():
-        image = form.data['image']
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-
-        if "url" not in upload:
-            return upload
-
-
-
-        new_image = PostImage(
-            post_id=form.data["postId"],
-            url=[upload["url"]]
-        )
-        print(new_image)
-        db.session.add(new_image)
-        db.session.commit()
-        return new_image.to_dict()
-
-
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
-
 
 
 @post_routes.route("/<int:id>/delete", methods=["GET", "DELETE"])
