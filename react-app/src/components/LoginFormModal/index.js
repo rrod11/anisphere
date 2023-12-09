@@ -8,7 +8,6 @@ function LoginFormModal() {
   const dispatch = useDispatch();
   const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
-  // const [errors, setErrors] = useState([]);
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
@@ -16,9 +15,8 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(credentials, password));
     if (data) {
-      // setErrors(data);
       const errObj = {};
-      errObj.credentials = "Please Check Your Credentials";
+      errObj.credentials = "***Please Check Your Credentials***";
       setErrors(errObj);
     } else {
       closeModal();
@@ -34,9 +32,6 @@ function LoginFormModal() {
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {/* {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))} */}
           {errors.credentials && <p className="errors">{errors.credentials}</p>}
         </ul>
         <div className="credential-box">
