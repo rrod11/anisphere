@@ -94,3 +94,9 @@
   transform: translateY(3px);
   box-shadow: 10px 12.5px 20px rgb(255, 0, 0);
 }
+
+.add-review-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

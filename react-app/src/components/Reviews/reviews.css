@@ -11,3 +11,23 @@
 .numberReviews {
   margin-left: 20px;
 }
+.add-review-button-container {
+  width: 50%;
+}
+
+.add-review-button-outside-container {
+  display: flex;
+  justify-content: center;
+}
+
+.add-review-button-container button {
+  background-color: green;
+  box-shadow: 8px 15px 20px rgba(0, 48, 29, 0.8);
+  color: #fff;
+}
+.add-review-button-container button:hover {
+  background-color: rgb(0, 191, 0);
+  box-shadow: 8px 15px 20px rgba(0, 255, 8, 0.8);
+  color: #fff;
+  cursor: pointer;
+}

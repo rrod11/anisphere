@@ -13,7 +13,7 @@ function DeletePost({ postId }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const reviewer = useSelector((state) => state.review.reviews);
+  // const reviewer = useSelector((state) => state.review.reviews);
 
   const postLength = Object.values(
     useSelector((state) => state.post.posts)

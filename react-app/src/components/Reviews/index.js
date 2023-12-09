@@ -10,6 +10,7 @@ import DeleteReview from "../DeleteModal/deleteModalReview";
 import { allTheReviews, getReviews } from "../../store/reviewReducer";
 import ReviewFormModal from "../CreateReviewModal";
 import EditReview from "../EditReviewModal/editModalReview";
+import "./reviews.css";
 
 function Reviews({ list, posts, theId }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -156,18 +157,22 @@ function Reviews({ list, posts, theId }) {
           </label>
         </div>
       </div>
-      <OpenModalButton
-        buttonText="Add Review"
-        modalClasses={["add-edit-button-container"]}
-        onButtonClick={closeMenu}
-        modalComponent={
-          <ReviewFormModal
-            postId={postId}
-            render={render}
-            setRender={setRender}
+      <div className="add-review-button-outside-container">
+        <div className="add-review-button-container">
+          <OpenModalButton
+            buttonText="Add Review"
+            modalClasses={["add-review-button"]}
+            onButtonClick={closeMenu}
+            modalComponent={
+              <ReviewFormModal
+                postId={postId}
+                render={render}
+                setRender={setRender}
+              />
+            }
           />
-        }
-      />
+        </div>
+      </div>
       {isLoaded && postReviews?.length >= 1 ? (
         postReviews?.map(({ id, userId, review, rating, user }) => (
           <div
