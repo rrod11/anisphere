@@ -11,6 +11,7 @@ def user_exists(form, field):
     if not user:
         user = User.query.filter(User.username == credentials).first()
     if not user:
+        return "PLEASE CHECK YOUR CREDENTIALS"
         raise ValidationError('Please Check Your Login Information')
 
 
@@ -22,7 +23,7 @@ def password_matches(form, field):
     if not user:
         user = User.query.filter(User.username == credentials).first()
     if not user:
-        raise ValidationError('Something looks wrong')
+        raise ValidationError('Please Check Your Login Information')
     if not user.check_password(password):
         raise ValidationError('Please Check Your Login Information')
 
