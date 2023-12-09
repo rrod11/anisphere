@@ -43,76 +43,125 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="signup-modal">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
+        <div className="email-box">
+          <div
+            className="floating-fillers"
+            style={email ? { top: "-10.5px" } : null}
+          >
+            <label>Email</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </label>
+        </div>
         {errors.email && <p className="errors">{errors.email}</p>}
-        <label>
-          Username
+        <div className="username-box">
+          <div
+            className="floating-fillers"
+            style={username ? { top: "-10.5px" } : null}
+          >
+            <label>Username</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </label>
+        </div>
         {errors.username && <p className="errors">{errors.username}</p>}
-        <label>
-          First Name
+        <div className="firstname-box">
+          <div
+            className="floating-fillers"
+            style={first_name ? { top: "-10.5px" } : null}
+          >
+            <label>First Name</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={first_name}
             onChange={(e) => setFirstname(e.target.value)}
           />
-        </label>
+        </div>
         {errors.first_name && <p className="errors">{errors.first_name}</p>}
-        <label>
-          Last Name
+        <div className="lastname-box">
+          <div
+            className="floating-fillers"
+            style={last_name ? { top: "-10.5px" } : null}
+          >
+            <label>Last Name</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={last_name}
             onChange={(e) => setLastname(e.target.value)}
           />
-        </label>
+        </div>
         {errors.last_name && <p className="errors">{errors.last_name}</p>}
-        <label>
-          Admin Key(Optional)
+        <div className="admin-key-box">
+          <div
+            className="floating-fillers"
+            style={admin_key ? { top: "-10.5px" } : null}
+          >
+            <label>Admin Key(Optional)</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={admin_key}
             onChange={(e) => setAdminKey(e.target.value)}
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="signup-password-box">
+          <div
+            className="floating-fillers"
+            style={password ? { top: "-10.5px" } : null}
+          >
+            <label>Password</label>
+          </div>
           <input
             type="password"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
+        </div>
         {errors.password && <p className="errors">{errors.password}</p>}
-        <label>
-          Confirm Password
+        <div className="confirm-box">
+          <div
+            className="floating-fillers"
+            style={confirmPassword ? { top: "-10.5px" } : null}
+          >
+            <label>Confirm Password</label>
+          </div>
           <input
             type="password"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-        </label>
+        </div>
         {errors.same && <p className="errors">{errors.same}</p>}
         <button type="submit" onClick={checkCredentials}>
           Sign Up
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
