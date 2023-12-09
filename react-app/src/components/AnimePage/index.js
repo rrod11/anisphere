@@ -17,7 +17,7 @@ const AnimePage = ({ posts }) => {
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
-  const reviews = useSelector((state) => state.review.reviews);
+  // const reviews = useSelector((state) => state.review.reviews);
   const [isLoaded, setIsLoaded] = useState(false);
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
@@ -55,7 +55,10 @@ const AnimePage = ({ posts }) => {
   if (target) {
     return (
       <>
-        <div id="post-page">
+        <div
+          id="post-page"
+          // style={{ width: "100%" }}
+        >
           <div className="wrapper">
             <h3 className="h3">
               <span className="dot"></span>
@@ -117,28 +120,54 @@ const AnimePage = ({ posts }) => {
             <h3 className="h3">
               <span className="dot"></span>
             </h3>
-            <h1>{target.title}</h1>
-            <div className="individual-post">
-              <img
-                src={target.image}
-                alt="anime art"
-                style={{ width: "50%", height: "auto" }}
-              />
+            <h1 className="post-title">{target.title}</h1>
+            <div className="post-image-container">
+              <div
+                className="individual-post"
+                style={
+                  target
+                    ? {
+                        background: ` url(${target.image})`,
+                        border: "none",
+                        backgroundSize: "cover",
+                        zIndex: "100",
+                      }
+                    : null
+                }
+              >
+                <img
+                  className="image-inside"
+                  src={target.image}
+                  alt="anime art"
+                  style={{
+                    width: "750px",
+                    height: "750px",
+                  }}
+                />
+              </div>
             </div>
-            <h3>{target.description}</h3>
-            {(sessionUser && target.userId == sessionUser.id) ||
-            (sessionUser && sessionUser.adminKey == "roderick0318") ? (
-              <button onClick={editPost}>Edit Post</button>
-            ) : null}
-            {(sessionUser && target.userId == sessionUser.id) ||
-            (sessionUser && sessionUser.adminKey == "roderick0318") ? (
-              <OpenModalButton
-                buttonText="Delete Post"
-                modalClasses={["add-delete-button-container"]}
-                onButtonClick={closeMenu}
-                modalComponent={<DeletePost postId={postId} />}
-              />
-            ) : null}
+            <div className="description-container">
+              <h3 className="post-description">{target.description}</h3>
+            </div>
+            <div className="post-buttons-container">
+              <div className="post-edit-button">
+                {(sessionUser && target.userId == sessionUser.id) ||
+                (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+                  <button onClick={editPost}>Edit Post</button>
+                ) : null}
+              </div>
+              <div className="post-delete-button">
+                {(sessionUser && target.userId == sessionUser.id) ||
+                (sessionUser && sessionUser.adminKey == "roderick0318") ? (
+                  <OpenModalButton
+                    buttonText="Delete Post"
+                    modalClasses={["add-delete-button-container"]}
+                    onButtonClick={closeMenu}
+                    modalComponent={<DeletePost postId={postId} />}
+                  />
+                ) : null}
+              </div>
+            </div>
             <Reviews list={target.reviews} posts={posts} theId={postId} />
           </div>
         </div>

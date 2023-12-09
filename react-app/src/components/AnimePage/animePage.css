@@ -1,11 +1,96 @@
 .individual-post {
   /* background-image: url("target.image"); */
+  position: absolute;
+  left: 0;
+  right: 0;
   width: 100%;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+  /* filter: 50px;
+  -webkit-filter: blur(5px); */
+  z-index: 10;
 }
 .overallReviews {
   display: flex;
   justify-content: center;
+}
+.post-image-container {
+  width: auto;
+  height: 800px;
+}
+.image-inside {
+  position: relative;
+  z-index: 4000;
+  backdrop-filter: blur(80%);
+  /* filter: 0px;
+  -webkit-filter: blur(0px); */
+}
+
+.post-title {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  color: white;
+  box-shadow: 4px 8px 12px rgb(255, 255, 255, 0.8);
+}
+.description-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.post-description {
+  width: 75%;
+  color: white;
+}
+.post-buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.post-edit-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+.post-edit-button button {
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  padding: 7px;
+  background: turquoise;
+  color: white;
+  transition: all 0.3s ease 0s;
+  box-shadow: 10px 12.5px 20px rgba(0, 255, 208, 0.8);
+}
+.post-edit-button button:hover {
+  background: rgb(7, 255, 230);
+  cursor: pointer;
+  transform: translateX(-3px);
+  transform: translateY(-3px);
+  box-shadow: 10px 12.5px 20px rgb(0, 255, 208);
+}
+.post-delete-button {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+.post-delete-button button {
+  width: 100%;
+  padding: 7px;
+  background: rgb(214, 24, 24);
+  box-shadow: 10px 12.5px 20px rgba(223, 16, 16, 0.828);
+  color: white;
+  transition: all 0.3s ease 0s;
+}
+
+.post-delete-button button:hover {
+  background: rgb(255, 0, 0);
+  cursor: pointer;
+  transform: translateX(3px);
+  transform: translateY(3px);
+  box-shadow: 10px 12.5px 20px rgb(255, 0, 0);
 }
