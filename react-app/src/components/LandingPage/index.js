@@ -21,7 +21,9 @@ function LandingPage() {
       <div className="landing-container">
         <img src={logo} alt="logo" style={{ width: "80%", height: "auto" }} />
         <Link to="/home">
-          <button id="landing-btn">COOL KIDS ENTER HERE</button>
+          <button className="btn btn-home" id="landing-btn">
+            COOL KIDS ENTER HERE
+          </button>
         </Link>
       </div>
     </div>

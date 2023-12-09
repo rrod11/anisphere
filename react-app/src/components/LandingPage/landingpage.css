@@ -17,15 +17,44 @@
   justify-content: center;
   align-items: center;
 }
+.btn {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+}
 
 #landing-btn {
   font-size: 20px;
   font-weight: bold;
-  padding: 15px;
+  padding: 20px;
   cursor: pointer;
-  background-color: #00b0ff;
+  position: relative;
+  left: -20px;
+  background-image: linear-gradient(
+    to right,
+    #bb86fc 0%,
+    #6200ee 51%,
+    #3700b3 100%
+  );
+}
+#landing-btn:hover {
+  background-image: linear-gradient(
+    to right,
+    #bbdefb 00,
+    #2196f3 51%,
+    #1a237e 100%
+  );
 }
 
-#landing-btn:hover {
+/* #landing-btn:hover {
   background-color: #00e5ff;
-}
+} */
