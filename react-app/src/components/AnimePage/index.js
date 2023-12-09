@@ -33,7 +33,7 @@ const AnimePage = ({ posts }) => {
   const closeMenu = () => setShowMenu(false);
   const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(async () => {
-    const response = await fetch(`api/reviews/post/${postId}`);
+    const response = await fetch(`/api/reviews/post/${postId}`);
     // dispatch(getAllPosts(sessionUser))
     //   .then(() => allTheReviews())
     //   .then(() => allTheReviews())

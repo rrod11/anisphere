@@ -59,7 +59,7 @@ const EditPostForm = () => {
   useEffect(() => {
     const errors = [];
     if (!description.length) errors.push("Please enter a post description!");
-    if (!image) errors.push("Please provide an image!");
+    // if (!image) errors.push("Please provide an image!");
     if (!title) errors.push("Please provide a title");
     setValidationErrors(errors);
   }, [description, image, title]);
