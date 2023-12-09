@@ -16,19 +16,22 @@ li {
 }
 .profile-dropdown {
   display: flex;
-  right: 25px;
+  top: 75px;
+  right: 75px;
   font-size: 40px;
   position: fixed;
   flex-direction: column;
   text-align: center;
   position: fixed;
-  background-color: red;
+  background-color: #d500f9;
   border: 1px solid black;
+  border: none;
   border-radius: 15px;
-  color: #322e3f;
+  color: white;
   padding: 25px;
   list-style: none;
   z-index: 10;
+  box-shadow: 0px 15px 20px #388e3c(46, 229, 157, 0.4);
 }
 .logo-left {
   width: 100px;
@@ -50,4 +53,31 @@ a {
 }
 a:visited {
   color: white;
+}
+.profile-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.profile-buttons button {
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  background-color: #2196f3;
+  border-radius: 10px;
+  border: none;
+}
+button.logout {
+  width: 98%;
+  height: 100%;
+}
+button.create-post {
+  width: 98%;
+  height: 100%;
 }
