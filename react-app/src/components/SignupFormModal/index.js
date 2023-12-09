@@ -157,7 +157,11 @@ function SignupFormModal() {
           />
         </div>
         {errors.same && <p className="errors">{errors.same}</p>}
-        <button type="submit" onClick={checkCredentials}>
+        <button
+          type="submit"
+          className="sign-up-button"
+          onClick={checkCredentials}
+        >
           Sign Up
         </button>
       </form>

@@ -42,7 +42,15 @@ function LoginFormPage() {
         <div className="credential-box-page">
           <div
             className="floating-fillers-page"
-            style={credentials ? { top: "-35.5px" } : null}
+            style={
+              credentials
+                ? {
+                    top: "-35.5px",
+                    background: "rgb(83, 225, 47)",
+                    borderRadius: "25px",
+                  }
+                : null
+            }
           >
             <label>Credentials</label>
           </div>
@@ -57,7 +65,15 @@ function LoginFormPage() {
         <div className="password-box-page">
           <div
             className="floating-fillers-page"
-            style={password ? { top: "-30.5px" } : null}
+            style={
+              password
+                ? {
+                    top: "-30.5px",
+                    background: "rgb(83, 225, 47)",
+                    borderRadius: "25px",
+                  }
+                : null
+            }
           >
             <label>Password</label>
           </div>

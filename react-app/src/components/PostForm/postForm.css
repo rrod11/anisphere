@@ -1,5 +1,5 @@
 .form-page {
-  height: 95vh;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
 
 .form-container {
   width: 600px;
-  height: auto;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;

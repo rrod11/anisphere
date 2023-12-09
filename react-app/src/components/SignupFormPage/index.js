@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
-import "./SignupForm.css";
+import "./SignupFormPage.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignupFormPage() {
@@ -46,88 +46,155 @@ function SignupFormPage() {
   };
 
   return (
-    <>
+    <div className="signup-page" style={{ zIndex: "10000" }}>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul> */}
-        {/* {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))} */}
-        {/* </ul> */}
-        <label>
-          Email
+        <div className="email-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              email ? { top: "-10.5px", background: "rgb(0, 179, 255)" } : null
+            }
+          >
+            <label>Email</label>
+          </div>
           <input
             type="text"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.email && <p className="errors">{errors.email}</p>}
-        <label>
-          Username
+        <div className="username-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              username
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>Username</label>
+          </div>
           <input
             type="text"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.username && <p className="errors">{errors.username}</p>}
-        <label>
-          First Name
+        <div className="firstname-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              first_name
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>First Name</label>
+          </div>
           <input
             type="text"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={first_name}
             onChange={(e) => setFirstname(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.first_name && <p className="errors">{errors.first_name}</p>}
-        <label>
-          Last Name
+        <div className="lastname-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              last_name
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>Last Name</label>
+          </div>
           <input
             type="text"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={last_name}
             onChange={(e) => setLastname(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.last_name && <p className="errors">{errors.last_name}</p>}
-        <label>
-          Admin Key(Optional)
+        <div className="admin-key-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              admin_key
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>Admin Key(Optional)</label>
+          </div>
           <input
             type="text"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={admin_key}
             onChange={(e) => setAdminKey(e.target.value)}
-            // required
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="signup-password-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              password
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>Password</label>
+          </div>
           <input
             type="password"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.password && <p className="errors">{errors.password}</p>}
-        <label>
-          Confirm Password
+        <div className="confirm-box-page">
+          <div
+            className="floating-fillers-signup-page"
+            style={
+              confirmPassword
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
+          >
+            <label>Confirm Password</label>
+          </div>
           <input
             type="password"
+            className="post-inputs-signup-page"
+            style={{ width: "95%" }}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            // required
           />
-        </label>
+        </div>
         {errors.same && <p className="errors">{errors.same}</p>}
-        <button type="submit" onClick={checkCredentials}>
+        <button
+          type="submit"
+          className="sign-up-button-page"
+          onClick={checkCredentials}
+        >
           Sign Up
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
