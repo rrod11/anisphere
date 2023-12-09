@@ -41,33 +41,17 @@ function SignupFormModal() {
       ).then(() => closeModal());
     }
   };
-  // if (data) {
-  //   setErrors(data);
-  // } else {
-  //   closeModal();
-  // }
-  // else {
-  //   setErrors([
-  //     "Confirm Password field must be the same as the Password field",
-  //   ]);
-  // }
 
   return (
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul> */}
-        {/* {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))} */}
-        {/* </ul> */}
         <label>
           Email
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // required
           />
         </label>
         {errors.email && <p className="errors">{errors.email}</p>}
@@ -77,7 +61,6 @@ function SignupFormModal() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            // required
           />
         </label>
         {errors.username && <p className="errors">{errors.username}</p>}
@@ -87,7 +70,6 @@ function SignupFormModal() {
             type="text"
             value={first_name}
             onChange={(e) => setFirstname(e.target.value)}
-            // required
           />
         </label>
         {errors.first_name && <p className="errors">{errors.first_name}</p>}
@@ -97,7 +79,6 @@ function SignupFormModal() {
             type="text"
             value={last_name}
             onChange={(e) => setLastname(e.target.value)}
-            // required
           />
         </label>
         {errors.last_name && <p className="errors">{errors.last_name}</p>}
@@ -107,7 +88,6 @@ function SignupFormModal() {
             type="text"
             value={admin_key}
             onChange={(e) => setAdminKey(e.target.value)}
-            // required
           />
         </label>
         <label>
@@ -116,7 +96,6 @@ function SignupFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // required
           />
         </label>
         {errors.password && <p className="errors">{errors.password}</p>}
@@ -126,7 +105,6 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            // required
           />
         </label>
         {errors.same && <p className="errors">{errors.same}</p>}
