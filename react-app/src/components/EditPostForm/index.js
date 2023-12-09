@@ -24,7 +24,6 @@ const EditPostForm = () => {
     title: target.title,
     image: target.image,
   };
-  console.log("🚀 ~ file: index.js:26 ~ EditPostForm ~ stock:", stock);
 
   const [description, setDescription] = useState(stock.description);
   const [image, setImage] = useState("");
@@ -37,14 +36,14 @@ const EditPostForm = () => {
     formData.append("id", stock.id);
     formData.append("description", description);
     formData.append("title", title);
-    if (!image) {
-      formData.append("image", stock.image);
-    } else {
+    if (image) {
       formData.append("image", image);
+    } else {
+      formData.append("image", stock.image);
     }
     formData.append("user_id", sessionUser.id);
     formData.append("id", postId);
-    console.log("🚀 ~ file: index.js:37 ~ handleSubmit ~ formData:", formData);
+    console.log("🚀 ~ file: index.js:36 ~ handleSubmit ~ formData:", formData);
 
     await dispatch(editPost(formData, postId));
 

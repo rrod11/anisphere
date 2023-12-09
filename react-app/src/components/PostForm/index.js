@@ -22,6 +22,7 @@ const PostForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("🚀 ~ file: index.js:14 ~ PostForm ~ errors:", errors);
 
     setHasSubmitted(true);
     if (validationErrors.length) return console.log("YOU HAVE ERRORS!!!");

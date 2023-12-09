@@ -58,12 +58,9 @@ export const createPost = (post) => async (dispatch) => {
 export const editPost = (post, postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}/edit`, {
     method: "PUT",
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     "Content-Type": "application/json",
-    //   },
     body: post,
   });
+  console.log("🚀 ~ file: postReducer.js:61 ~ editPost ~ response:", response);
 
   if (response.ok) {
     const resPost = await response.json();
