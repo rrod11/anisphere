@@ -1,0 +1,13 @@
+.overallReviews {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.insideman {
+  margin-right: 20px;
+}
+
+.numberReviews {
+  margin-left: 20px;
+}
