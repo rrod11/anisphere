@@ -2,6 +2,7 @@ import { normalizeObj } from "./helpers";
 
 const GET_POSTS = "posts/GET_POSTS";
 const ADD_POST = "posts/ADD_POST";
+
 const DELETE_POST = "posts/DELETE_POST";
 
 // ACTIONS
@@ -18,6 +19,7 @@ const addPost = (post) => {
     post,
   };
 };
+
 const deletePost = (postId) => {
   return {
     type: DELETE_POST,
@@ -55,6 +57,7 @@ export const createPost = (post) => async (dispatch) => {
     console.log("There was an error CREATING your post!");
   }
 };
+
 export const editPost = (post, postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}/edit`, {
     method: "PUT",

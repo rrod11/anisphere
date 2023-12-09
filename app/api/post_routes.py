@@ -126,6 +126,37 @@ def update_post(id):
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@post_routes.route("/<int:id>/image/new", methods=["GET", "POST"])
+@login_required
+def create_new_post_image():
+    """ route that handles displaying a form on get requests and
+    handles post submission on post requests"""
+    form = PostImage()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        image = form.data['image']
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return upload
+
+
+
+        new_image = PostImage(
+
+            post_id=form.data["postId"],
+            url=upload["url"],
+        )
+        print(new_image)
+        db.session.add(new_image)
+        db.session.commit()
+        return new_image.to_dict()
+
+
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 @post_routes.route("/<int:id>/delete", methods=["GET", "DELETE"])
