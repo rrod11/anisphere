@@ -1,7 +1,3 @@
-.profile-dropdown {
-  position: absolute;
-}
-
 li {
   list-style: none;
 }
@@ -21,10 +17,11 @@ li {
 .profile-dropdown {
   display: flex;
   right: 25px;
-  position: absolute;
+  font-size: 40px;
+  position: fixed;
   flex-direction: column;
   text-align: center;
-  position: absolute;
+  position: fixed;
   background-color: red;
   border: 1px solid black;
   border-radius: 15px;

@@ -55,7 +55,7 @@ const HomePage = ({ posts }) => {
 
   if (isLoaded && postArr.length >= 1) {
     return (
-      <div id="post-page" style={{ zIndex: "1" }}>
+      <div id="post-page" style={{ zIndex: "-1" }}>
         <div className="progress-div">
           <h1 className="progress">
             ProGress
