@@ -128,7 +128,7 @@ def update_post(id):
 
 @post_routes.route("/<int:id>/image/new", methods=["GET", "POST"])
 @login_required
-def create_new_post_image():
+def create_new_post_image(id):
     """ route that handles displaying a form on get requests and
     handles post submission on post requests"""
     form = PostImage()
@@ -145,9 +145,8 @@ def create_new_post_image():
 
 
         new_image = PostImage(
-
             post_id=form.data["postId"],
-            url=upload["url"],
+            url=[upload["url"]]
         )
         print(new_image)
         db.session.add(new_image)
