@@ -105,3 +105,46 @@ button.create-post:hover {
   color: #fff;
   transform: translateY(-7px);
 }
+.profile-enter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 250px;
+}
+.button-login {
+  width: 100%;
+  height: 60px;
+  margin: 0 2px;
+}
+.button-login button {
+  background: rgb(0, 242, 255);
+  color: white;
+  box-shadow: 8px 8px 15px rgba(36, 3, 255, 0.8);
+  transition: all 0.3s ease 0s;
+}
+.button-signup {
+  width: 100%;
+  height: 60px;
+  margin: 0 2px;
+}
+.button-signup button {
+  background: rgb(0, 242, 255);
+  color: white;
+  box-shadow: 8px 8px 15px rgba(36, 3, 255, 0.8);
+  transition: all 0.3s ease 0s;
+}
+.button-login button:hover {
+  background-color: #2ee59d;
+  box-shadow: 8px 15px 20px rgba(46, 229, 157, 0.8);
+  color: #fff;
+  transform: translateY(-7px);
+  cursor: pointer;
+}
+.button-signup button:hover {
+  background-color: #2ee59d;
+  box-shadow: 8px 15px 20px rgba(46, 229, 157, 0.8);
+  color: #fff;
+  transform: translateY(-7px);
+  cursor: pointer;
+}

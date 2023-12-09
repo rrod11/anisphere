@@ -8,14 +8,18 @@ function LoginFormModal() {
   const dispatch = useDispatch();
   const [credentials, setCredentials] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credentials, password));
     if (data) {
-      setErrors(data);
+      // setErrors(data);
+      const errObj = {};
+      errObj.credentials = "Please Check Your Credentials";
+      setErrors(errObj);
     } else {
       closeModal();
     }
@@ -26,36 +30,53 @@ function LoginFormModal() {
   }
 
   return (
-    <div style={{ zIndex: "10000" }}>
+    <div className="login-modal" style={{ zIndex: "10000" }}>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => (
+          {/* {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
-          ))}
+          ))} */}
+          {errors.credentials && <p className="errors">{errors.credentials}</p>}
         </ul>
-        <label>
-          Credentials
+        <div className="credential-box">
+          <div
+            className="floating-fillers"
+            style={credentials ? { top: "-10.5px" } : null}
+          >
+            <label>Credentials</label>
+          </div>
           <input
             type="text"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={credentials}
             onChange={(e) => setCredentials(e.target.value)}
-            required
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="password-box">
+          <div
+            className="floating-fillers"
+            style={password ? { top: "-10.5px" } : null}
+          >
+            <label>Password</label>
+          </div>
           <input
             type="password"
+            className="post-inputs"
+            style={{ width: "95%" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
-        </label>
-        <button type="submit">Log In</button>
-        <button type="submit" onClick={DemoUser} className="demoButton">
-          Demo User
-        </button>
+        </div>
+        <div className="login-form-button">
+          <button type="submit">Log In</button>
+        </div>
+        <div className="demo-user-button">
+          <button type="submit" onClick={DemoUser} className="demoButton">
+            Demo User
+          </button>
+        </div>
       </form>
     </div>
   );

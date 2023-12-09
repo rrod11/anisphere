@@ -1,0 +1,97 @@
+.login-modal {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(83, 225, 47);
+  box-shadow: 20px 25px 40px rgba(21, 255, 0, 0.8);
+}
+.post-inputs {
+  height: 20px;
+  border: none;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.credential-box {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.password-box {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.floating-fillers {
+  position: absolute;
+  pointer-events: none;
+  top: 1px;
+  left: 10px;
+}
+
+.post-inputs:focus + .floating-fillers {
+  top: -10.5px;
+}
+
+.login-form-button {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  margin-top: 10px;
+}
+.login-form-button button {
+  width: 100%;
+  background: rgb(28, 153, 255);
+  box-shadow: 8px 8px 15px rgba(0, 242, 255, 0.8);
+  border: none;
+  height: 100%;
+  transition: all 0.3s ease 0s;
+}
+.login-form-button button:hover {
+  background: rgb(207, 220, 230);
+  box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
+  transform: translateY(-7px);
+}
+.demo-user-button {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  margin-top: 5px;
+}
+.demo-user-button button {
+  width: 100%;
+  background: rgb(255, 255, 28);
+  box-shadow: 8px 8px 15px rgba(255, 248, 54, 0.8);
+  border: none;
+  height: 100%;
+  transition: all 0.3s ease 0s;
+}
+.demo-user-button button:hover {
+  background: rgb(255, 255, 250);
+  box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
+  transform: translateY(7px);
+}
+
+/* .signup-modal {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 179, 255);
+  box-shadow: 8px 16px 30px rgba(1, 144, 266, 0.8);
+} */

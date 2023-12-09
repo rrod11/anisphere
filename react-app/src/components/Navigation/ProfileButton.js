@@ -73,19 +73,23 @@ function ProfileButton({ user }) {
             </div>
           </>
         ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
+          <div className="profile-enter">
+            <div className="button-login">
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                style={{ backgroundColor: "blue" }}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
+            <div className="button-signup">
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </div>
+          </div>
         )}
       </ul>
     </div>
