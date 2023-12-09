@@ -2,8 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { createPost, getAllPosts } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
-import "./postForm.css";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import "./postFormStyles.css";
 const PostForm = () => {
   // form state
   const [description, setDescription] = useState("");
@@ -71,27 +71,33 @@ const PostForm = () => {
 
   if (sessionUser) {
     return (
-      <div className="form-page">
-        <div className="form-container">
-          <h1 className="form-header"> Create A New Post</h1>
+      <div className="post-form-page">
+        <div className="post-form-container">
+          <h1 className="post-form-header"> Create A New Post</h1>
           {hasSubmitted && validationErrors.length > 0 && (
             <div className="errors-info">
               <h2>The following errors were found:</h2>
-              {/* <ul>
-              {validationErrors.map((error) => (
-                <li key={error}>{error}</li>
-                ))}
-              </ul> */}
             </div>
           )}
           <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
             <h3 className="form-label">
               User: {sessionUser?.firstname} {sessionUser?.lastname}
             </h3>
-            <div className="form-input-box">
-              <label className="form-label" htmlFor="title">
-                Post Title:
-              </label>
+            <div className="title-input-box">
+              <div
+                className="floating-fillers"
+                style={
+                  title
+                    ? {
+                        top: "-35.5px",
+                        background: "rgb(83, 225, 47)",
+                        borderRadius: "25px",
+                      }
+                    : null
+                }
+              >
+                <label className="form-label">Post Title:</label>
+              </div>
               <input
                 id="title"
                 type="text"
@@ -100,24 +106,37 @@ const PostForm = () => {
               ></input>
             </div>
             {errors.title && <p className="errors">{errors.title}</p>}
-            <div className="form-input-box">
-              <label className="form-label" htmlFor="description">
-                Post Description:
-              </label>
-              <input
+            <div className="description-input-box">
+              <div
+                className="floating-fillers-post"
+                style={
+                  description
+                    ? {
+                        top: "-10.5px",
+                        background: "rgb(83, 225, 47)",
+                        borderRadius: "25px",
+                      }
+                    : null
+                }
+              >
+                <label className="form-label">Post Description:</label>
+              </div>
+              <textarea
                 id="description"
-                type="text"
+                type="textarea"
+                rows="10"
+                cols="45"
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
-              ></input>
+              ></textarea>
             </div>
             {errors.description && (
               <p className="errors">{errors.description}</p>
             )}
             <div className="form-input-box">
-              <label className="form-label" htmlFor="image">
-                Post Image:
-              </label>
+              <div>
+                <label className="form-label">Post Image:</label>
+              </div>
               <input
                 id="image"
                 type="file"
