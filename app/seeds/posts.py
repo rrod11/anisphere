@@ -56,6 +56,13 @@ def seed_posts():
     seed_post47 = Post(title="Full Metal Alchemist")
     seed_post48 = Post(title="Full Metal Alchemist: Brotherhood")
     seed_post49 = Post(title = "The Future Diary")
+    seed_post50 = Post(title="Gangsta")
+    seed_post51 = Post(title="The Gene of A.I.")
+    seed_post52 = Post(title="Gintama")
+    seed_post53= Post(title="God of High School")
+    seed_post54 = Post(title="Gurren Lagann")
+    seed_post55 = Post(title="The Great Cleric")
+    seed_post56 = Post(title="Grimgar of Ashes and Illusion")
 
 
 
