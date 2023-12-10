@@ -100,6 +100,19 @@ def seed_posts():
     seed_post96 = Post(title="Reign of the Seven Spell Blades")
     seed_post97 = Post(title="Rezero")
     seed_post98= Post(title="Rurouni Kenshin")
+    seed_post99=Post(title="Saint Seiya")
+    seed_post100 = Post(title="Seven Deadly Sins")
+    seed_post101=Post(title="Seven Knights Revolution")
+    seed_post102 = Post(title="Shaman King")
+    seed_post103 = Post(title="Shikimoris not just a Cutie")
+    seed_post104= Post(title="Soul Eater")
+    seed_post105 = Post(title="Scissor Seven")
+    seed_post106 = Post(title="Spare Me, Great Lord")
+    seed_post107 = Post(title="Spy Classroom")
+    seed_post108 = Post(title="Spy Family")
+    seed_post109 = Post(title="Steins Gate")
+    seed_post110 = Post(title="Strike the Blood")
+    seed_post111
 
 
 
@@ -119,7 +132,9 @@ def seed_posts():
                  seed_post70, seed_post71, seed_post72, seed_post73, seed_post74, seed_post75, seed_post76, seed_post77,
                  seed_post78, seed_post79, seed_post80, seed_post81, seed_post82, seed_post83, seed_post84, seed_post85,
                  seed_post86, seed_post88, seed_post89, seed_post90, seed_post91, seed_post92, seed_post93, seed_post94,
-                 seed_post95]
+                 seed_post95, seed_post96, seed_post97, seed_post98, seed_post99, seed_post100, seed_post101, seed_post102,
+                 seed_post103, seed_post104, seed_post105, seed_post106, seed_post107, seed_post108, seed_post109, seed_post110,
+                 seed_post111]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
