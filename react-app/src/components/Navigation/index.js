@@ -16,7 +16,10 @@ function Navigation({ isLoaded }) {
       <a href="/home" style={{ padding: "10px" }}>
         Home
       </a>
-      <a style={{ padding: "10px", position: "relative", right: "-250px" }}>
+      <a
+        href="/about"
+        style={{ padding: "10px", position: "relative", right: "-250px" }}
+      >
         About
       </a>
       <a></a>

@@ -16,6 +16,7 @@ import { getAllPosts } from "./store/postReducer";
 import AnimePage from "./components/AnimePage";
 import EditPostForm from "./components/EditPostForm";
 import NotFound from "./components/NotFound/notFound";
+import AboutMe from "./components/AboutMe";
 
 function App() {
   const history = useHistory();
@@ -44,6 +45,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <LandingPage />
+          </Route>
+          <Route path="/about">
+            <AboutMe />
           </Route>
           <Route path="/login">
             <LoginFormPage />
