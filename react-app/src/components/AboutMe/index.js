@@ -58,7 +58,7 @@ function AboutMe() {
             <li>
               LinkedIn:{" "}
               <a href="https://www.linkedin.com/in/roderick-j-995394bb/">
-                Roderick
+                Roderick Johnson
               </a>
             </li>
             <li>
