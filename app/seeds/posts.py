@@ -69,7 +69,8 @@ def seed_posts():
     seed_post61 = Post(title="Hunter x Hunter")
     seed_post62 = Post(title="Hitori No SHita")
     seed_post63 = Post(title="Horiyama")
-    seed_post64 = Post(title=)
+    seed_post64 = Post(title="I Don't Want To Get Hurt So I Maxed Out My Defense")
+    seed_post65 = Post(title="Initial D")
 
 
 
@@ -84,7 +85,10 @@ def seed_posts():
                  seed_post39, seed_post40, seed_post41, seed_post42, seed_post43, seed_post44, seed_post45, seed_post45,
                  seed_post46, seed_post47, seed_post48, seed_post49, seed_post50, seed_post51, seed_post52, seed_post53,
                  seed_post54, seed_post55, seed_post56, seed_post57, seed_post58, seed_post59, seed_post60, seed_post61,
-                 seed_post62, seed_post63, seed_post64. seed_post65]
+                 seed_post62, seed_post63, seed_post64. seed_post65, seed_post66, seed_post67, seed_post68, seed_post69,
+                 seed_post70, seed_post71, seed_post72, seed_post73, seed_post74, seed_post75, seed_post76, seed_post77,
+                 seed_post78, seed_post79, seed_post80, seed_post81, seed_post82, seed_post83, seed_post84, seed_post85,
+                 seed_post86]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
