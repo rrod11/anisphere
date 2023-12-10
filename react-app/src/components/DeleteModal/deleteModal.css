@@ -1,34 +1,56 @@
-#deleteModel {
+#delPostModalTitle {
+  text-align: center;
+  font-size: 30px;
+  margin: 20px;
+}
+#delPostModalText {
   display: flex;
-  flex-direction: column;
+  font-size: 20px;
+  word-break: break-word;
+  margin: 10px 5px;
+}
+
+#delPostModalButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  gap: 10px;
-  padding: 15px;
 }
-
-#delModalTitle {
-  text-align: center;
+#delete-post-btn {
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  background: darkred;
+  box-shadow: 12px 20px 30px rgb(255, 137, 1);
+  transition: all 0.3s ease 0s;
+  border: none;
+  border-radius: 15px;
+  color: white;
 }
-
-#delModalText {
-  text-align: center;
-  max-width: 300px;
-  font-size: 20px;
-  text-wrap: wrap;
+#delete-post-btn:hover {
+  background: rgb(60, 255, 0);
+  box-shadow: 12px 20px 30px rgb(56, 142, 60);
+  cursor: pointer;
+  transform: translateY(-7px);
 }
-
-#delModalButtons {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  gap: 15px;
+#keep-post-btn {
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  background: black;
+  box-shadow: 12px 20px 30px rgb(104, 110, 104);
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease 0s;
+  color: white;
 }
-
-#delete-btn,
-#keep-btn {
-  padding: 5px;
+#keep-post-btn:hover {
+  background: rgb(60, 255, 0);
+  box-shadow: 12px 20px 30px rgb(56, 142, 60);
+  cursor: pointer;
+  transform: translateY(-7px);
 }
 
 .delete-button-container {
@@ -37,56 +59,62 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#delete-btn {
-  width: 50%;
-  padding: 10px;
-  background-color: green;
-  color: white;
-  margin: 0;
-  margin-bottom: 3px;
-}
-
-#keep-btn {
-  width: 50%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  margin: 0;
-  margin-bottom: 3px;
-}
-
-/* Rod Delete  */
-#deleteReviewModel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  padding: 15px;
+  height: 200px;
+  background: red;
+  border-radius: 15px;
 }
 
 #delReviewModalTitle {
   text-align: center;
+  font-size: 30px;
+  margin: 20px;
 }
-
 #delReviewModalText {
-  text-align: center;
-  max-width: 300px;
+  display: flex;
   font-size: 20px;
-  /* text-wrap: wrap; */
+  word-break: break-word;
+  margin: 10px 5px;
 }
 
 #delReviewModalButtons {
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
-  align-content: center;
-  gap: 15px;
+  align-items: center;
 }
-
-#delete-review-btn,
+#delete-review-btn {
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  background: darkred;
+  box-shadow: 12px 20px 30px rgb(255, 137, 1);
+  transition: all 0.3s ease 0s;
+  border: none;
+  border-radius: 15px;
+  color: white;
+}
+#delete-review-btn:hover {
+  background: rgb(60, 255, 0);
+  box-shadow: 12px 20px 30px rgb(56, 142, 60);
+  cursor: pointer;
+  transform: translateY(-7px);
+}
 #keep-review-btn {
-  padding: 5px;
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  background: black;
+  box-shadow: 12px 20px 30px rgb(104, 110, 104);
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease 0s;
+  color: white;
+}
+#keep-review-btn:hover {
+  background: rgb(60, 255, 0);
+  box-shadow: 12px 20px 30px rgb(56, 142, 60);
+  cursor: pointer;
+  transform: translateY(-7px);
 }

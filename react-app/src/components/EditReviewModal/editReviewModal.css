@@ -1,5 +1,37 @@
 .edit-review-container {
   background: limegreen;
-  width: 400px;
-  height: 400px px;
+  width: 500px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  flex-direction: column;
+}
+.form label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.add-review-stars {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  margin: 10px;
+}
+#update-review {
+  border-radius: 15px;
+  background: rgb(0, 191, 255);
+  box-shadow: 10px 15px 20px rgb(2, 241, 253, 0.8);
+  border: none;
+  color: white;
+  padding: 10px;
+  margin: 0;
+  margin-bottom: 5px;
+  width: 50%;
+}
+#update-review:hover {
+  cursor: pointer;
+  background: rgb(2, 241, 253);
+  box-shadow: 10px 15px 20px rgb(3, 68, 197);
 }

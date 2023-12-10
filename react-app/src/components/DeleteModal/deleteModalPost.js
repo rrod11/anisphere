@@ -31,7 +31,7 @@ function DeletePost({ postId }) {
   }, [postLength]);
 
   return (
-    <div className="delete-button-container" id="deletePostModal">
+    <div className="delete-button-container">
       <h2 id="delPostModalTitle">Confirm Delete</h2>
       <p id="delPostModalText">
         Are you sure you want to permanently DELETE this Post?

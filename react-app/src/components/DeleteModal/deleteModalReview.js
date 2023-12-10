@@ -47,7 +47,7 @@ function DeleteReview({ reviewId, postId }) {
   }, [dispatch]);
 
   return (
-    <div className="delete-button-container" id="deleteReviewModel">
+    <div className="delete-button-container">
       <h2 id="delReviewModalTitle">Confirm Delete</h2>
       <p id="delReviewModalText">
         Are you sure you want to permanently DELETE this Review?

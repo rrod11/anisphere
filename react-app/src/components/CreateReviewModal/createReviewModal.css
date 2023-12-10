@@ -10,6 +10,7 @@
 #add-review {
   border-radius: 15px;
   background: rgb(0, 191, 255);
+  box-shadow: 10px 15px 20px rgb(2, 241, 253, 0.8);
   border: none;
   color: white;
   padding: 10px;
@@ -20,6 +21,7 @@
 #add-review:hover {
   cursor: pointer;
   background: rgb(2, 241, 253);
+  box-shadow: 10px 15px 20px rgb(3, 68, 197);
 }
 .title {
   font-size: 40px;
