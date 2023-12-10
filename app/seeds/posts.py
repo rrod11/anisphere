@@ -90,6 +90,8 @@ def seed_posts():
     seed_post83 = Post(title="Naruto")
     seed_post84 = Post(title="Naruto Shippuden")
     seed_post85 = Post(title="One Piece")
+    seed_post86= Post(title="One Punch Man")
+    seed_post87=Post(title="Overlord")
 
 
 
