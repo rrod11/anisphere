@@ -92,6 +92,14 @@ def seed_posts():
     seed_post85 = Post(title="One Piece")
     seed_post86= Post(title="One Punch Man")
     seed_post87=Post(title="Overlord")
+    seed_post88 = Post(title="Radiant")
+    seed_post89=Post(title="Ragna Crimson")
+    seed_post90= Post(tite="Ranking of Kings")
+    seed_post91 = Post(title="Rise of the Shield Hero")
+    seed_post95 = Post(title="Redo of Hero")
+    seed_post96 = Post(title="Reign of the Seven Spell Blades")
+    seed_post97 = Post(title="Rezero")
+    seed_post98= Post(title="Rurouni Kenshin")
 
 
 
@@ -110,7 +118,8 @@ def seed_posts():
                  seed_post62, seed_post63, seed_post64. seed_post65, seed_post66, seed_post67, seed_post68, seed_post69,
                  seed_post70, seed_post71, seed_post72, seed_post73, seed_post74, seed_post75, seed_post76, seed_post77,
                  seed_post78, seed_post79, seed_post80, seed_post81, seed_post82, seed_post83, seed_post84, seed_post85,
-                 seed_post86, seed_post88, seed_post89, seed_post90]
+                 seed_post86, seed_post88, seed_post89, seed_post90, seed_post91, seed_post92, seed_post93, seed_post94,
+                 seed_post95]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
