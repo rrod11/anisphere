@@ -36,6 +36,16 @@ def seed_posts():
     seed_post27 = Post(title="Cowboy Bebop")
     seed_post28 = Post(title="Cyberpunk EdgeRunners")
     seed_post29 = Post(title="Daily Life of the Immortal King")
+    seed_post30= Post(title="Dark Gathering")
+    seed_post31 = Post(title="Darker Than Black")
+    seed_post32 = Post(title="Darwin's Game")
+    seed_post33 = Post(title="Death Note")
+    seed_post34 = Post(title="Death Parade")
+    seed_post35 = Post(title="Daedman Wonderland")
+    seed_post36 = Post(title = "Delicious in Dungeon")
+    seed_post37 = Post(title="Demon Slayer")
+    seed_post38 = Post(title="Dororo")
+
 
 
 
@@ -44,7 +54,9 @@ def seed_posts():
     all_posts = [seed_post1, seed_post2, seed_post3, seed_post4, seed_post5, seed_post6,
                  seed_post7, seed_post8, seed_post9, seed_post10, seed_post11, seed_post12,seed_post13, seed_post14,
                  seed_post15, seed_post16,seed_post17, seed_post18, seed_post19, seed_post20, seed_post21, seed_post22,
-                 seed_post23, seed_post24, seed_post25,seed_post26, seed_post27, seed_post28, seed_post29, seed_post30]
+                 seed_post23, seed_post24, seed_post25,seed_post26, seed_post27, seed_post28, seed_post29, seed_post30,
+                 seed_post31, seed_post32, seed_post33, seed_post34, seed_post35, seed_post36, seed_post37, seed_post38,
+                 seed_post39, seed_post40]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
