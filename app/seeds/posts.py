@@ -123,7 +123,8 @@ def seed_posts():
     seed_post120 = Post(title="Undead Murder Farce")
     seed_post121 = Post(title="Undead Unlock")
     seed_post122 = Post(title="Under the Dog")
-    seed_post123
+    seed_post123 = Post(title="The World's Greatest Assassin Get Reincarnated As an Aristocrat")
+    seed_post124 = Post(title="Xam'd Lost Memories")
 
 
 
