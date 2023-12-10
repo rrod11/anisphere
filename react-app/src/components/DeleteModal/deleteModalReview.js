@@ -18,18 +18,18 @@ function DeleteReview({ reviewId, postId }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const reviewer = useSelector((state) => state.review.reviews);
-  console.log(
-    "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
-    reviewer
-  );
-  const reviewsLength = Object.values(
-    useSelector((state) => state.review.reviews)
-  ).length;
-  console.log(
-    "🚀 ~ file: deleteModalReview.js:20 ~ DeleteReview ~ reviewsLength:",
-    reviewsLength
-  );
+  // const reviewer = useSelector((state) => state.review.reviews);
+  // console.log(
+  //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
+  //   reviewer
+  // );
+  // const reviewsLength = Object.values(
+  //   useSelector((state) => state.review.reviews)
+  // ).length;
+  // console.log(
+  //   "🚀 ~ file: deleteModalReview.js:20 ~ DeleteReview ~ reviewsLength:",
+  //   reviewsLength
+  // );
 
   const deleteReview = async (e) => {
     e.preventDefault();
@@ -43,8 +43,8 @@ function DeleteReview({ reviewId, postId }) {
     // return Redirect(`/products/${user.id}`);
   };
   useEffect(() => {
-    allTheReviews(postId);
-  }, [reviewsLength]);
+    dispatch(allTheReviews(postId));
+  }, [dispatch]);
 
   return (
     <div className="delete-button-container" id="deleteReviewModel">

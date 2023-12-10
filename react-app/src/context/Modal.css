@@ -24,6 +24,7 @@
 #modal-content {
   position: absolute;
   background-color: white;
+  border-radius: 15px;
 }
 /* .add-review-button {
   width: 50%;
