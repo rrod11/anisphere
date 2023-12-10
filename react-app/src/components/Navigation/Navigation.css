@@ -16,22 +16,19 @@ li {
 }
 .profile-dropdown {
   display: flex;
-  top: 75px;
-  right: 75px;
+  right: 25px;
   font-size: 40px;
   position: fixed;
   flex-direction: column;
   text-align: center;
   position: fixed;
-  background-color: #d500f9;
+  background-color: red;
   border: 1px solid black;
-  border: none;
   border-radius: 15px;
-  color: white;
+  color: #322e3f;
   padding: 25px;
   list-style: none;
   z-index: 10;
-  box-shadow: 0px 15px 20px #388e3c(46, 229, 157, 0.4);
 }
 .prof-module button:hover {
   cursor: pointer;
@@ -57,6 +54,7 @@ a {
 a:visited {
   color: white;
 }
+<<<<<<< HEAD
 .profile-buttons {
   display: flex;
   flex-direction: row;
@@ -153,3 +151,5 @@ button.create-post:hover {
   transform: translateY(-7px);
   cursor: pointer;
 }
+=======
+>>>>>>> parent of 94fb693 (site on the mend)

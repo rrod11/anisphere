@@ -54,23 +54,14 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>
-              Hello {user.firstname} {user.lastname}
-            </li>
             <li>{user.username}</li>
             <li>{user.email}</li>
-            <div className="profile-buttons">
-              <li style={{ width: "50%" }}>
-                <button className="logout" onClick={handleLogout}>
-                  Log Out
-                </button>
-              </li>
-              <li style={{ width: "50%" }}>
-                <button className="create-post" onClick={createAPost}>
-                  Create A Post
-                </button>
-              </li>
-            </div>
+            <li>
+              <button onClick={handleLogout}>Log Out</button>
+            </li>
+            <li>
+              <button onClick={createAPost}>Create A Post</button>
+            </li>
           </>
         ) : (
           <div className="profile-enter">
