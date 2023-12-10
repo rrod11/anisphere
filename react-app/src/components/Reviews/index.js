@@ -193,7 +193,7 @@ function Reviews({ list, posts, theId }) {
                 width: "90%",
               }}
             >
-              <div style={{ width: "85%" }}>
+              <div style={{ width: "85%", marginLeft: "15px" }}>
                 <p
                   style={{
                     fontSize: "20px",
