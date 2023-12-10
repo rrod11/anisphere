@@ -21,3 +21,42 @@
   font-size: 30px;
   margin: 10px 0px 10px 10px;
 }
+.about-me-answers {
+  font-size: 16px;
+  margin: 30px 10px 30px 30px;
+}
+.about-me-links {
+  margin: 10px 0 10px 15px;
+}
+.about-me-links li {
+  font-size: 20px;
+}
+
+.about-me-links li a {
+  font-size: 20px;
+  color: limegreen;
+}
+
+.return-home-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.return-home-button button {
+  width: 20%;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 15px;
+  background: green;
+  box-shadow: 10px 15px 25px rgb(144, 238, 144, 0.8);
+  transition: all 0.3s ease 0s;
+  color: white;
+}
+.return-home-button button:hover {
+  background: rgb(18, 210, 18);
+  box-shadow: 10px 15px 25px #6eff7f;
+  transform: translateY(-5px);
+  cursor: pointer;
+}

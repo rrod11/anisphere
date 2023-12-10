@@ -54,15 +54,21 @@ function AboutMe() {
           I am always open to connecting with like-minded professionals,
           enthusiasts, and anyone passionate about Software Engineering or
           Medicine. Feel free to reach out to me on:
-          <ul>
+          <ul className="about-me-links">
             <li>
               LinkedIn:{" "}
-              <a href="https://www.linkedin.com/in/roderick-j-995394bb/">
+              <a
+                target="#"
+                href="https://www.linkedin.com/in/roderick-j-995394bb/"
+              >
                 Roderick Johnson
               </a>
             </li>
             <li>
-              GitHub: <a href="https://github.com/rrod11">Roderick Johnson</a>
+              GitHub:{" "}
+              <a target="#" href="https://github.com/rrod11">
+                Roderick Johnson
+              </a>
             </li>
           </ul>
         </p>
