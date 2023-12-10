@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { createPost, editPost } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
 import "./editPost.css";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const EditPostForm = () => {
   // form state
@@ -71,26 +71,31 @@ const EditPostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkForm();
-    const formData = new FormData();
-    formData.append("id", stock.id);
-    formData.append("description", description);
-    formData.append("title", title);
-    if (image) {
-      formData.append("image", image);
-    } else {
-      formData.append("image", stock.image);
+    if (Object.values(errors).length == 0) {
+      const formData = new FormData();
+      formData.append("id", stock.id);
+      formData.append("description", description);
+      formData.append("title", title);
+      if (image) {
+        formData.append("image", image);
+      } else {
+        formData.append("image", stock.image);
+      }
+      formData.append("user_id", sessionUser.id);
+      formData.append("id", postId);
+      console.log(
+        "🚀 ~ file: index.js:36 ~ handleSubmit ~ formData:",
+        formData
+      );
+
+      await dispatch(editPost(formData, postId));
+
+      setDescription("");
+      setImage("");
+      setValidationErrors([]);
+      setHasSubmitted(false);
+      history.push(`/posts/${postId}`);
     }
-    formData.append("user_id", sessionUser.id);
-    formData.append("id", postId);
-    console.log("🚀 ~ file: index.js:36 ~ handleSubmit ~ formData:", formData);
-
-    await dispatch(editPost(formData, postId));
-
-    setDescription("");
-    setImage("");
-    setValidationErrors([]);
-    setHasSubmitted(false);
-    history.push(`/posts/${postId}`);
   };
   const cancelButton = () => {
     history.push(`/posts/${postId}`);
@@ -106,68 +111,112 @@ const EditPostForm = () => {
   const disable = () => {
     disabled = true;
   };
-
-  return (
-    <div className="form-page">
-      <div className="form-container">
-        <h1 className="form-header"> Edit Your New Post</h1>
-        {hasSubmitted && validationErrors.length > 0 && (
+  if (sessionUser) {
+    return (
+      <div className="post-form-page">
+        {/* <div className="post-form-container"> */}
+        <h1 className="post-form-header"> Update Your Post</h1>
+        {/* {hasSubmitted && validationErrors.length > 0 && (
           <div className="errors-info">
             <h2>The following errors were found:</h2>
-            <ul>
-              {validationErrors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
           </div>
-        )}
+        )} */}
         <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
           <h3 className="form-label">
-            User: {sessionUser.firstname} {sessionUser.lastname}
+            User: {sessionUser?.firstname} {sessionUser?.lastname}
           </h3>
-          <div className="form-input-box">
-            <label className="form-label" htmlFor="title">
-              Update Title:
-            </label>
+          <div className="title-input-box">
+            <div
+              className="floating-fillers-post"
+              style={
+                title
+                  ? {
+                      top: "-10.5px",
+                      borderRadius: "25px",
+                    }
+                  : null
+              }
+            >
+              <label>Update Post Title</label>
+            </div>
             <input
               id="title"
               type="text"
-              onChange={(e) => setTitle(e.target.value)}
               value={title}
-            ></input>
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
-          <div className="form-input-box">
-            <label className="form-label" htmlFor="description">
-              Update Description:
-            </label>
-            <input
+          {errors.title && <p className="errors">{errors.title}</p>}
+          <div className="description-input-box">
+            <div
+              className="floating-fillers-post"
+              style={
+                description
+                  ? {
+                      top: "-10.5px",
+                      borderRadius: "25px",
+                    }
+                  : null
+              }
+            >
+              <label>Update Post Description</label>
+            </div>
+            <textarea
               id="description"
-              type="text"
+              type="textarea"
+              rows="10"
+              cols="45"
               onChange={(e) => setDescription(e.target.value)}
               value={description}
-            ></input>
+            />
           </div>
-          <div className="form-input-box">
-            <label className="form-label" htmlFor="image">
-              Update Image:
-            </label>
+          {errors.description && <p className="errors">{errors.description}</p>}
+          {/* <div className="image-input-box">
+            <div>
+              <label>ChoosePost Image</label>
+            </div>
             <input
               id="image"
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div> */}
+          <div className="file-inputs-container">
+            <input
+              type="file"
+              accept="image/png, image/jpeg, image/jpg"
+              id="post-image-input"
+              onChange={fileWrap}
             ></input>
+            <div
+              className="file-inputs-filename"
+              style={{ color: filename === maxFileError ? "red" : "#B7BBBF" }}
+            >
+              {filename}
+            </div>
+            <label htmlFor="post-image-input" className="file-input-labels">
+              Choose File
+            </label>
+            <div style={{ position: "absolute", top: "-10px", left: "39px" }}>
+              <img src={imageURL} className="thumbnails"></img>
+            </div>
           </div>
-          <button className="button" disabled={disabled} onClick={disable}>
+          {errors.image && <p className="errors">{errors.image}</p>}
+          <button
+            className="new-post-button"
+            disabled={disabled}
+            onClick={disable}
+          >
             Update Post
           </button>
-          <button className="button" onClick={cancelButton}>
-            Cancel
-          </button>
         </form>
+        {/* </div> */}
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Redirect to="/home" />;
+  }
 };
 
 export default EditPostForm;
