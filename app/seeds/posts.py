@@ -5,7 +5,6 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     seed_post1= Post(title='The Time I Got Reincarnated as A Slime',image="https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797258/slime_hgxhzv.webp" ,description="Lonely thirty-seven-year-old Satoru Mikami is stuck in a dead-end job, unhappy with his mundane life, but after dying at the hands of a robber, they awaken to a fresh start in a fantasy realm... as a slime! As Rimuru acclimates to their new, goopy, existence, their exploits with the other monsters set off a chain of events that will change the world forever!", user_id="2")
-    seed_post3 = Post(title='Mushoku Tensei: Jobless Reincarnation', image="https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797444/mkjr_fqfrcn.jpg",description="Despite being bullied, scorned, and oppressed all of his life, a 34-year-old shut-in still found the resolve to attempt something heroic—only for it to end in a tragic accident. But in a twist of fate, he awakens in another world as Rudeus Greyrat, starting life again as a baby born to two loving parents. Preserving his memories and knowledge from his previous life, Rudeus quickly adapts to his new environment. With the mind of a grown adult, he starts to display magical talent that exceeds all expectations, honing his skill with the help of a mage named Roxy Migurdia. Rudeus learns swordplay from his father, Paul, and meets Sylphiette, a girl his age who quickly becomes his closest friend. As Rudeus' second chance at life begins, he tries to make the most of his new opportunity while conquering his traumatic past. And perhaps, one day, he may find the one thing he could not find in his old world—love.",user_id="3" )
     seed_post1= Post(title="After Lost")
     seed_post2= Post(title="Ajin Demi Human")
     seed_post3 = Post(title="Am I actually the Strongest")
@@ -77,6 +76,16 @@ def seed_posts():
     seed_post69 = Post(title="Kingdoms of Ruin")
     seed_post70=  Post(title="The Lengendary Hero is Dead")
     seed_post71 = Post(title="Link Click")
+    seed_post72 = Post(title="Masamunkun Revenge")
+    seed_post73 = Post(title="Mashle")
+    seed_post74 = Post(title="Mob Psycho")
+    seed_post75 = Post(title="Mobile Suit Gundam")
+    seed_post76 = Post(title="Monster")
+    seed_post77 = Post(title="Monogatari")
+    seed_post78 = Post(title="The Most Heretical Last Boss Queen")
+    seed_post79 = Post(title='Mushoku Tensei: Jobless Reincarnation', image="https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797444/mkjr_fqfrcn.jpg",description="Despite being bullied, scorned, and oppressed all of his life, a 34-year-old shut-in still found the resolve to attempt something heroic—only for it to end in a tragic accident. But in a twist of fate, he awakens in another world as Rudeus Greyrat, starting life again as a baby born to two loving parents. Preserving his memories and knowledge from his previous life, Rudeus quickly adapts to his new environment. With the mind of a grown adult, he starts to display magical talent that exceeds all expectations, honing his skill with the help of a mage named Roxy Migurdia. Rudeus learns swordplay from his father, Paul, and meets Sylphiette, a girl his age who quickly becomes his closest friend. As Rudeus' second chance at life begins, he tries to make the most of his new opportunity while conquering his traumatic past. And perhaps, one day, he may find the one thing he could not find in his old world—love.",user_id="3" )
+    seed_post80 = Post(title="My Hero Academia")
+
 
 
 
@@ -94,7 +103,7 @@ def seed_posts():
                  seed_post62, seed_post63, seed_post64. seed_post65, seed_post66, seed_post67, seed_post68, seed_post69,
                  seed_post70, seed_post71, seed_post72, seed_post73, seed_post74, seed_post75, seed_post76, seed_post77,
                  seed_post78, seed_post79, seed_post80, seed_post81, seed_post82, seed_post83, seed_post84, seed_post85,
-                 seed_post86]
+                 seed_post86, seed_post88, seed_post89, seed_post90]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
