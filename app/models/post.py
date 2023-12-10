@@ -20,6 +20,7 @@ class Post(db.Model):
 
     reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
 
+    images = db.relationship("PostImage", back_populates="post")
 
     # user = db.relationship("User", back_populates="posts")
 
@@ -36,6 +37,7 @@ class Post(db.Model):
             "image": self.image,
             'userId': self.user_id,
             # 'categories': [category.to_dict() for category in self.categories],
+            "images": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews],
             # "user": self.user.to_dict(),
         }

@@ -46,14 +46,16 @@ const EditPostForm = () => {
     if (!description.length) {
       errObj.description = "Description is required";
     }
-    // if (!image) {
-    //   errObj.image = "Image is required";
-    // }
+    if (imageURL.includes(".webp")) {
+      errObj.image =
+        "File does not have an approved extension: gif, jpg, pdf, jpeg, png";
+    }
 
     if (!title) {
       errObj.title = "Title is required";
     }
     setErrors(errObj);
+    console.log("YOUR CURRENT ERRORS", Object.values(errors));
   }
 
   const stock = {
@@ -65,7 +67,7 @@ const EditPostForm = () => {
   };
 
   const [description, setDescription] = useState(stock.description);
-  const [image, setImage] = useState(stock.image);
+  const [image, setImage] = useState("");
   const [title, setTitle] = useState(stock.title);
 
   const handleSubmit = async (e) => {
@@ -182,6 +184,10 @@ const EditPostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div> */}
+          <div style={{ color: "white" }}>
+            ** .webp, .avif file types not supported. Form will submit and clear
+            all inputs **
+          </div>
           <div className="file-inputs-container">
             <input
               type="file"
