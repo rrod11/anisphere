@@ -51,7 +51,11 @@ def seed_posts():
     seed_post42 = Post(title="Fairy Tale")
     seed_post43 = Post(title="Fate Zero")
     seed_post44 = Post(title="Fire Force")
-    seed_post45 = Post(title="")
+    seed_post45 = Post(title="Fruit Basket")
+    seed_post46 = Post(title="Fruit of Evolution")
+    seed_post47 = Post(title="Full Metal Alchemist")
+    seed_post48 = Post(title="Full Metal Alchemist: Brotherhood")
+    seed_post49 = Post(title = "The Future Diary")
 
 
 
