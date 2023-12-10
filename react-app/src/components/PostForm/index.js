@@ -6,13 +6,13 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "./postFormStyles.css";
 const PostForm = () => {
   // form state
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const sessionUser = useSelector((state) => state.session.user);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
-  const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState({});
-  const [hasSubmitted, setHasSubmitted] = useState(false);
-  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
   // My need to delete this code
@@ -62,10 +62,6 @@ const PostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkForm();
-    console.log(
-      "🚀 ~ file: index.js:14 ~ PostForm ~ errors:",
-      Object.values(errors)
-    );
 
     if (Object.values(errors).length == 0) {
       setHasSubmitted(true);

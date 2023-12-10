@@ -48,6 +48,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 4px dotted white;
 }
 .post-edit-button {
   margin-top: 20px;

@@ -96,6 +96,22 @@ function Reviews({ list, posts, theId }) {
   // const reviewsFinal = addUsers(orderedReviews, usersArr);
   return (
     <>
+      <div className="add-review-button-outside-container">
+        <div className="add-review-button-container">
+          <OpenModalButton
+            buttonText="Add Review"
+            modalClasses={["add-review-button"]}
+            onButtonClick={closeMenu}
+            modalComponent={
+              <ReviewFormModal
+                postId={postId}
+                render={render}
+                setRender={setRender}
+              />
+            }
+          />
+        </div>
+      </div>
       <div className="overallReviews">
         {target && target.reviews?.length < 1 ? (
           <span className="numberReviews">
@@ -157,26 +173,16 @@ function Reviews({ list, posts, theId }) {
           </label>
         </div>
       </div>
-      <div className="add-review-button-outside-container">
-        <div className="add-review-button-container">
-          <OpenModalButton
-            buttonText="Add Review"
-            modalClasses={["add-review-button"]}
-            onButtonClick={closeMenu}
-            modalComponent={
-              <ReviewFormModal
-                postId={postId}
-                render={render}
-                setRender={setRender}
-              />
-            }
-          />
-        </div>
-      </div>
+      {/* <div className="reviews-object"> */}
       {isLoaded && postReviews?.length >= 1 ? (
         postReviews?.map(({ id, userId, review, rating, user }) => (
           <div
-            style={{ borderBottom: "1px solid grey", padding: "5px" }}
+            className="reviews-object"
+            style={{
+              borderBottom: "1px solid grey",
+              padding: "5px",
+              color: "white",
+            }}
             key={id}
           >
             <div
@@ -187,7 +193,7 @@ function Reviews({ list, posts, theId }) {
                 width: "90%",
               }}
             >
-              <div>
+              <div style={{ width: "85%" }}>
                 <p
                   style={{
                     fontSize: "20px",
@@ -205,7 +211,13 @@ function Reviews({ list, posts, theId }) {
                   {`${user?.firstname} ${user?.lastname}`}
                 </p>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  width: "13%",
+                }}
+              >
                 <label>
                   <div
                     className="rating"
@@ -250,34 +262,43 @@ function Reviews({ list, posts, theId }) {
                 </label>
               </div>
             </div>
-            {userId == sessionUser?.id ||
-            sessionUser?.adminKey == "roderick0318" ? (
-              <OpenModalButton
-                modalClasses={["delete-button-container"]}
-                buttonText="Delete Review"
-                modalComponent={<DeleteReview reviewId={id} postId={postId} />}
-              />
-            ) : null}
-            {userId == sessionUser?.id ? (
-              <OpenModalButton
-                modalClasses={["edit-button-container"]}
-                buttonText="Edit Review"
-                modalComponent={
-                  <EditReview
-                    reviewId={id}
-                    postId={postId}
-                    render={render}
-                    setRender={setRender}
-                    reviewsArr={postReviews}
+            <div className="reviews-buttons-container">
+              <div className="edit-review">
+                {userId == sessionUser?.id ? (
+                  <OpenModalButton
+                    // modalClasses={["edit-button-container"]}
+                    buttonText="Edit Review"
+                    modalComponent={
+                      <EditReview
+                        reviewId={id}
+                        postId={postId}
+                        render={render}
+                        setRender={setRender}
+                        reviewsArr={postReviews}
+                      />
+                    }
                   />
-                }
-              />
-            ) : null}
+                ) : null}
+              </div>
+              <div className="delete-review">
+                {userId == sessionUser?.id ||
+                sessionUser?.adminKey == "roderick0318" ? (
+                  <OpenModalButton
+                    // modalClasses={["delete-review-button-container"]}
+                    buttonText="Delete Review"
+                    modalComponent={
+                      <DeleteReview reviewId={id} postId={postId} />
+                    }
+                  />
+                ) : null}
+              </div>
+            </div>
           </div>
         ))
       ) : (
         <h1>REVIEWS DON'T EXIST</h1>
       )}
+      {/* </div> */}
     </>
   );
 }

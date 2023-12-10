@@ -13,9 +13,48 @@ const EditPostForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.post.posts));
   const target = posts.find((ele) => ele.id == postId);
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
+  // My need to delete this code
+  const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
+  const [imageURL, setImageURL] = useState("");
+  const [file, setFile] = useState("");
+  const [filename, setFilename] = useState("");
   let disabled = false;
+
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+
+    // Check for max image size of 5Mb
+    if (tempFile.size > 5000000) {
+      setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
+      return;
+    }
+
+    const newImageURL = URL.createObjectURL(tempFile);
+    setImage(e.target.files[0]); // Generate a local URL to render the image file inside of the <img> tag.
+    setImageURL(newImageURL);
+    setFile(tempFile);
+    setFilename(tempFile.name);
+  };
+
+  function checkForm() {
+    const errObj = {};
+    if (!description.length) {
+      errObj.description = "Description is required";
+    }
+    if (!image) {
+      errObj.image = "Image is required";
+    }
+
+    if (!title) {
+      errObj.title = "Title is required";
+    }
+    setErrors(errObj);
+  }
 
   const stock = {
     id: postId,
@@ -31,7 +70,7 @@ const EditPostForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    checkForm();
     const formData = new FormData();
     formData.append("id", stock.id);
     formData.append("description", description);

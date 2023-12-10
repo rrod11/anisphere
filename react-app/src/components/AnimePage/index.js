@@ -168,6 +168,7 @@ const AnimePage = ({ posts }) => {
                 ) : null}
               </div>
             </div>
+
             <Reviews list={target.reviews} posts={posts} theId={postId} />
           </div>
         </div>
