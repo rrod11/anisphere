@@ -25,6 +25,11 @@
   position: absolute;
   background-color: white;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 /* .add-review-button {
   width: 50%;

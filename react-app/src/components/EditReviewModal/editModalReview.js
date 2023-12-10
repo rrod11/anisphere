@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { allTheReviews, editAReview } from "../../store/reviewReducer";
 import { useEffect, useState } from "react";
-import "./editReview.css";
+import "./editReviewModal.css";
 
 function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
   const dispatch = useDispatch();
@@ -71,7 +71,10 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
         </label>
         {errors.review && <p className="errors">{errors.review}</p>}
 
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div
+          className="add-review-stars"
+          style={{ display: "flex", justifyContent: "space-around" }}
+        >
           <label>
             <div
               class="rating"

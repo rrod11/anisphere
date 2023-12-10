@@ -46,9 +46,9 @@ const EditPostForm = () => {
     if (!description.length) {
       errObj.description = "Description is required";
     }
-    if (!image) {
-      errObj.image = "Image is required";
-    }
+    // if (!image) {
+    //   errObj.image = "Image is required";
+    // }
 
     if (!title) {
       errObj.title = "Title is required";
@@ -65,7 +65,7 @@ const EditPostForm = () => {
   };
 
   const [description, setDescription] = useState(stock.description);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(stock.image);
   const [title, setTitle] = useState(stock.title);
 
   const handleSubmit = async (e) => {

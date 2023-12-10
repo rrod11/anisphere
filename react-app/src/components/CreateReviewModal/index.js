@@ -8,7 +8,7 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { createAReview, allTheReviews } from "../../store/reviewReducer";
-import "./createReview.css";
+import "./createReviewModal.css";
 
 function ReviewFormModal({ postId, render, setRender }) {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ function ReviewFormModal({ postId, render, setRender }) {
   }, [postId]);
 
   return (
-    <div className="add-review-button-container">
+    <div className="add-review-container">
       {sessionUser == null ? (
         <h1>PLEASE SIGN IN</h1>
       ) : (
@@ -88,7 +88,7 @@ function ReviewFormModal({ postId, render, setRender }) {
             </label>
             {errors.reviewText && <p className="errors">{errors.reviewText}</p>}
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <label>
+              <label className="add-review-stars">
                 <div
                   class="rating"
                   style={{ display: "flex", flexDirection: "row" }}
