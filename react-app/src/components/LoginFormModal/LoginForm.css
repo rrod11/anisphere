@@ -5,8 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgb(83, 225, 47);
-  box-shadow: 20px 25px 40px rgba(21, 255, 0, 0.8);
+  background: rgb(0, 179, 255);
+  box-shadow: 20px 25px 40px rgba(1, 144, 266, 0.8);
   border-radius: 15px;
 }
 .post-inputs {
@@ -54,16 +54,17 @@ form {
 }
 .login-form-button button {
   width: 100%;
-  background: rgb(28, 153, 255);
-  box-shadow: 8px 8px 15px rgba(0, 242, 255, 0.8);
+  background: rgb(255, 255, 28);
+  box-shadow: 8px 8px 15px rgba(255, 248, 54, 0.8);
   border: none;
   height: 100%;
   transition: all 0.3s ease 0s;
 }
 .login-form-button button:hover {
-  background: rgb(207, 220, 230);
-  box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
+  background: rgb(13, 255, 0);
+  box-shadow: 8px 8px 15px rgba(13, 255, 0, 0.8);
   transform: translateY(-7px);
+  cursor: pointer;
 }
 .demo-user-button {
   width: 90%;
@@ -84,6 +85,7 @@ form {
   background: rgb(255, 255, 250);
   box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
   transform: translateY(7px);
+  cursor: pointer;
 }
 
 /* .signup-modal {

@@ -30,6 +30,9 @@ const AnimePage = ({ posts }) => {
   // if (sum > 0) {
   //   avg = sum / target.reviews.length;
   // }
+  const goBack = () => {
+    history.push("/home");
+  };
   const closeMenu = () => setShowMenu(false);
   const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(async () => {
@@ -45,10 +48,14 @@ const AnimePage = ({ posts }) => {
   }, [dispatch, isLoaded]);
   if (!target) {
     return (
-      <>
-        <h1>YUUUUURRRRRRRRRR!!!</h1>
-        <h2>THERES NO ANIME AT THIS SPOT</h2>
-      </>
+      <div className="no-anime-here">
+        <h1>PSSSSSSSSSSSSSTTTTT!!!</h1>
+        <h2>THERE'S NOT ANY ANIME AT THIS SPOT</h2>
+        <div className="return-back-home-button">
+          <h3>ALL DONE READING?</h3>
+          <button onClick={goBack}>CLICK ME!!</button>
+        </div>
+      </div>
     );
   }
 
