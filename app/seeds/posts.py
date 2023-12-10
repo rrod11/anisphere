@@ -127,6 +127,7 @@ def seed_posts():
     seed_post124 = Post(title="Xam'd Lost Memories")
     seed_post125 = Post(title="Zatch Bell")
     seed_post126 = Post(title="Zom 100: Bucket List of The Dead")
+    seed_post127 = Post(title="91 Days")
 
 
 
