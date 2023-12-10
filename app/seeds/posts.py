@@ -4,7 +4,6 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
-    seed_post1= Post(title='The Time I Got Reincarnated as A Slime',image="https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797258/slime_hgxhzv.webp" ,description="Lonely thirty-seven-year-old Satoru Mikami is stuck in a dead-end job, unhappy with his mundane life, but after dying at the hands of a robber, they awaken to a fresh start in a fantasy realm... as a slime! As Rimuru acclimates to their new, goopy, existence, their exploits with the other monsters set off a chain of events that will change the world forever!", user_id="2")
     seed_post1= Post(title="After Lost")
     seed_post2= Post(title="Ajin Demi Human")
     seed_post3 = Post(title="Am I actually the Strongest")
@@ -112,7 +111,15 @@ def seed_posts():
     seed_post108 = Post(title="Spy Family")
     seed_post109 = Post(title="Steins Gate")
     seed_post110 = Post(title="Strike the Blood")
-    seed_post111
+    seed_post111 = Post(title="Tower of God")
+    seed_post112= Post(title="Tales of Zestria")
+    seed_post113 = Post(title= "The Promised Neverland")
+    seed_post114= Post(title='The Time I Got Reincarnated as A Slime',image="https://res.cloudinary.com/dpdvw1sam/image/upload/v1701797258/slime_hgxhzv.webp" ,description="Lonely thirty-seven-year-old Satoru Mikami is stuck in a dead-end job, unhappy with his mundane life, but after dying at the hands of a robber, they awaken to a fresh start in a fantasy realm... as a slime! As Rimuru acclimates to their new, goopy, existence, their exploits with the other monsters set off a chain of events that will change the world forever!", user_id="2")
+    seed_post115 = Post(title="Tokyo 24th Ward")
+    seed_post116= Post(title="Trigun")
+    seed_post117 =Post(title="Tsugumomo")
+    seed_post118 = Post(title="Tsukimichi Moonlit Fantasy")
+    seed_post119 = Post(title="Tsuyokute New Sage")
 
 
 
@@ -134,7 +141,8 @@ def seed_posts():
                  seed_post86, seed_post88, seed_post89, seed_post90, seed_post91, seed_post92, seed_post93, seed_post94,
                  seed_post95, seed_post96, seed_post97, seed_post98, seed_post99, seed_post100, seed_post101, seed_post102,
                  seed_post103, seed_post104, seed_post105, seed_post106, seed_post107, seed_post108, seed_post109, seed_post110,
-                 seed_post111]
+                 seed_post111, seed_post112, seed_post113, seed_post114, seed_post115, seed_post116, seed_post117, seed_post118,
+                 seed_post119, seed_post120]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
