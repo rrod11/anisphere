@@ -119,7 +119,11 @@ def seed_posts():
     seed_post116= Post(title="Trigun")
     seed_post117 =Post(title="Tsugumomo")
     seed_post118 = Post(title="Tsukimichi Moonlit Fantasy")
-    seed_post119 = Post(title="Tsuyokute New Sage")
+    seed_post119 = Post(title="Tsuyokute New Saga")
+    seed_post120 = Post(title="Undead Murder Farce")
+    seed_post121 = Post(title="Undead Unlock")
+    seed_post122 = Post(title="Under the Dog")
+    seed_post123
 
 
 
