@@ -35,7 +35,7 @@ def seed_posts():
     seed_post26 = Post(title="Classroom of the Elite")
     seed_post27 = Post(title="Cowboy Bebop")
     seed_post28 = Post(title="Cyberpunk EdgeRunners")
-    seed_post29
+    seed_post29 = Post(title="Daily Life of the Immortal King")
 
 
 
