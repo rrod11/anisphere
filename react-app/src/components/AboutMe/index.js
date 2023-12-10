@@ -13,15 +13,15 @@ function AboutMe() {
   return (
     <>
       <div className="main-about-container">
-        <h1>About Me!</h1>
-        <p>
+        <h1 className="about-title">About Me!</h1>
+        <p className="about-me">
           Hello there! 👋 I'm Roderick, a passionate, dedicated, and motivated
           individual with a love for technology and a keen interest in video,
           game, and website development. Let me give you a glimpse into who I am
           and what I bring to the table.
         </p>
-        <h2>Who Am I??</h2>
-        <p>
+        <h2 className="about-me-headers">Who Am I??</h2>
+        <p className="about-me-answers">
           I am a Full Stack Junior Developer based in Charlotte, North Carolina.
           With a background in the pre-Medical sciences with a Bachelor of
           Science in Biology, I've cultivated a strong foundation in Software
@@ -30,8 +30,8 @@ function AboutMe() {
           stems from my love of computers and my uncompromising pursuit of
           "Why?".
         </p>
-        <h2>What I Do</h2>
-        <p>
+        <h2 className="about-me-headers">What I Do</h2>
+        <p className="about-me-answers">
           Currently, I am a recent graduate of App Academy, where I cultivated
           and nurtured my understanding and experience in the field of Software
           Engineering. My work revolves around creating functions to satisfy a
@@ -40,8 +40,8 @@ function AboutMe() {
           and creations and especially the creation that you are currently
           perusing.
         </p>
-        <h2>What Drives Me</h2>
-        <p>
+        <h2 className="about-me-headers">What Drives Me</h2>
+        <p className="about-me-answers">
           I am fueled by a passion for progress and development, especially as
           that passion pushes us closer to the creation of true virtual reality
           gaming. Whether it's Sports, music, technology, medicine, art, or
@@ -49,8 +49,8 @@ function AboutMe() {
           strive to make a positive impact in both my professional and personal
           spheres.
         </p>
-        <h2>Let's Connect!!</h2>
-        <p>
+        <h2 className="about-me-headers">Let's Connect!!</h2>
+        <p className="about-me-answers">
           I am always open to connecting with like-minded professionals,
           enthusiasts, and anyone passionate about Software Engineering or
           Medicine. Feel free to reach out to me on:
