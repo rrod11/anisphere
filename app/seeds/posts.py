@@ -71,6 +71,8 @@ def seed_posts():
     seed_post63 = Post(title="Horiyama")
     seed_post64 = Post(title="I Don't Want To Get Hurt So I Maxed Out My Defense")
     seed_post65 = Post(title="Initial D")
+    seed_post66 = Post(title="Jujutsu Kaisen")
+    seed_post67 = Post(title="")
 
 
 
