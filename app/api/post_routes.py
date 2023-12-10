@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from app.forms import PostForm
 from datetime import date
 from random import randint
-from app.models import db, Post, User, PostImage
+from app.models import db, Post, User
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 

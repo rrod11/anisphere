@@ -46,7 +46,7 @@ def seed_users():
         username='Yami', email='yami@aa.io',first_name="Yami", last_name="Sukehiro", admin_key="roderick0318",password='yamipassword')
     demo = User(
         username='DemoUser', email='demo@aa.io',first_name="Demodio", last_name="Demonination", password='password')
-    noele= User(
+    noelle= User(
         username='Noelle', email='noelle@aa.io', first_name="Noelle", last_name="Silva", admin_key="roderick0318",password='noellepassword')
     mimosa = User(
         username='Mimoda', email='mimosa@aa.io', first_name="Mimosa", last_name="Vermillion", admin_key="roderick0318", password='mimosapassword')
