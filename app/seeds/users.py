@@ -46,9 +46,21 @@ def seed_users():
         username='Yami', email='yami@aa.io',first_name="Yami", last_name="Sukehiro", admin_key="roderick0318",password='yamipassword')
     demo = User(
         username='DemoUser', email='demo@aa.io',first_name="Demodio", last_name="Demonination", password='password')
+    noele= User(
+        username='Noelle', email='noelle@aa.io', first_name="Noelle", last_name="Silva", admin_key="roderick0318",password='noellepassword')
+    mimosa = User(
+        username='Mimoda', email='mimosa@aa.io', first_name="Mimosa", last_name="Vermillion", admin_key="roderick0318", password='mimosapassword')
+    mereoleona = User(
+        username='Mereaoleona', email='mereoleona@aa.io',first_name="Mereoleona", last_name="Vermillion", admin_key="roderick0318",password='mereoleonapassword')
+    jack = User(
+        username='JackTheRipper', email='jack@aa.io',first_name="Jack", last_name="The Ripper", password='jackpassword')
+    charmy= User(
+        username='Charmy', email='charmy@aa.io', first_name="Charmy", last_name="Pappitson", admin_key="roderick0318",password='charmypassword')
+    luck = User(
+        username='Luck', email='luck@aa.io', first_name="Luck", last_name="Voltia", admin_key="roderick0318", password='luckpassword')
 
 
-    all_users = [asta, yuno, yami, demo]
+    all_users = [asta, yuno, yami, demo, noelle, mimosa, mereoleona, jack, charmy, luck]
     add_users = [db.session.add(user) for user in all_users]
     db.session.commit()
 
