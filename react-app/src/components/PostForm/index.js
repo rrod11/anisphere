@@ -181,7 +181,7 @@ const PostForm = () => {
           <div className="file-inputs-container">
             <input
               type="file"
-              accept="image/png, image/jpeg, image/jpg"
+              accept="image/*"
               id="post-image-input"
               onChange={fileWrap}
             ></input>
