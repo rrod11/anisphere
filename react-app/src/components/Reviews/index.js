@@ -34,7 +34,6 @@ function Reviews({ list, posts, theId }) {
     sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
   }
   let avg;
-
   if (sum > 0) {
     avg = sum / target.reviews.length;
   }
@@ -54,7 +53,8 @@ function Reviews({ list, posts, theId }) {
 
   useEffect(async () => {
     let usersArr;
-    dispatch(getAllUsers()).then(() => dispatch(allTheReviews()));
+    dispatch(getAllUsers());
+    // .then(() => dispatch(allTheReviews()))
     // .then(() => {
     //   setIsLoaded(true);
     // })
@@ -72,7 +72,6 @@ function Reviews({ list, posts, theId }) {
         usersArr = Object.values(userRes.users);
       }
       const finalReviews = addUsers(orderedReviews, usersArr);
-
       setPostReviews(finalReviews);
     }
     setIsLoaded(true);
@@ -114,7 +113,7 @@ function Reviews({ list, posts, theId }) {
         </div>
       </div>
       <div className="overallReviews">
-        {target && target.reviews?.length > 1 ? (
+        {target && target.reviews?.length < 1 ? (
           <span className="numberReviews">
             <h1>
               {target.reviews?.length} Reviews {avg?.toFixed(2)}

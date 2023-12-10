@@ -104,27 +104,27 @@ def update_post(id):
             post_to_update.user_id = form.data["user_id"]
             post_to_update.title = form.data["title"]
 
+            # db.session.commit()
+            if form.data["image"]:
+                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!EUREKA")
+                file_to_delete = remove_file_from_s3(post_to_update.image)
+                image = form.data['image']
+                image.filename = get_unique_filename(image.filename)
+                upload = upload_file_to_s3(image)
+                    # post_to_update.image=upload["url"],
+                if "url" not in upload:
+                    return upload, 500
+                else:
+                    new_image = PostImage(
+                        post_id=int(id),
+                        url=upload["url"],
+                    )
+                post_to_update.image = upload["url"]
+                db.session.add(new_image)
             db.session.commit()
-        if form.data["image"]:
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!EUREKA")
-            file_to_delete = remove_file_from_s3(post_to_update.image)
-            image = form.data['image']
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-                # post_to_update.image=upload["url"],
-            if "url" not in upload:
-                return upload, 500
-            else:
-                new_image = PostImage(
-                    post_id=int(id),
-                    url=upload["url"],
-                )
-            post_to_update.image = upload["url"]
-            db.session.add(new_image)
-        db.session.commit()
-        return post_to_update.to_dict()
-    else:
-        return {"errors": ["not_found : Product not found."]}, 401
+            return post_to_update.to_dict()
+        else:
+            return {"errors": ["not_found : Product not found."]}, 401
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

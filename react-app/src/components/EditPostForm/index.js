@@ -35,7 +35,7 @@ const EditPostForm = () => {
     }
 
     const newImageURL = URL.createObjectURL(tempFile);
-    setImage(e.target.files[0]); // Generate a local URL to render the image file inside of the <img> tag.
+    setImage(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
     setImageURL(newImageURL);
     setFile(tempFile);
     setFilename(tempFile.name);
