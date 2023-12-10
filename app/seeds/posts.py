@@ -75,6 +75,8 @@ def seed_posts():
     seed_post67 = Post(title="Kakeguri")
     seed_post68 = Post(title="Kill La Kill")
     seed_post69 = Post(title="Kingdoms of Ruin")
+    seed_post70=  Post(title="The Lengendary Hero is Dead")
+    seed_post71 = Post(title="Link Click")
 
 
 
