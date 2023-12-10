@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   session,
   user: userReducer,
   post: postReducer,
+  review: reviewReducer,
 });
 
 let enhancer;

@@ -34,11 +34,10 @@ function Reviews({ list, posts, theId }) {
     sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
   }
   let avg;
-  console.log("🚀 ~ file: index.js:37 ~ Reviews ~ avg BEFORE:", avg);
+
   if (sum > 0) {
     avg = sum / target.reviews.length;
   }
-  console.log("🚀 ~ file: index.js:37 ~ Reviews ~ avg AFTER:", avg);
 
   function orderReviews(arr) {
     let newbie = [];
