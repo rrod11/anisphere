@@ -45,6 +45,13 @@ def seed_posts():
     seed_post36 = Post(title = "Delicious in Dungeon")
     seed_post37 = Post(title="Demon Slayer")
     seed_post38 = Post(title="Dororo")
+    seed_post39 = Post(title="Eden's Zero")
+    seed_post40=Post(title="Erased")
+    seed_post41 = Post(title="Elfin Lied")
+    seed_post42 = Post(title="Fairy Tale")
+    seed_post43 = Post(title="Fate Zero")
+    seed_post44 = Post(title="Fire Force")
+    seed_post45 = Post(title="")
 
 
 
@@ -56,7 +63,10 @@ def seed_posts():
                  seed_post15, seed_post16,seed_post17, seed_post18, seed_post19, seed_post20, seed_post21, seed_post22,
                  seed_post23, seed_post24, seed_post25,seed_post26, seed_post27, seed_post28, seed_post29, seed_post30,
                  seed_post31, seed_post32, seed_post33, seed_post34, seed_post35, seed_post36, seed_post37, seed_post38,
-                 seed_post39, seed_post40]
+                 seed_post39, seed_post40, seed_post41, seed_post42, seed_post43, seed_post44, seed_post45, seed_post45,
+                 seed_post46, seed_post47, seed_post48, seed_post49, seed_post50, seed_post51, seed_post52, seed_post53,
+                 seed_post54, seed_post55, seed_post56, seed_post57, seed_post58, seed_post59, seed_post60, seed_post61,
+                 seed_post62, seed_post63, seed_post64. seed_post65]
     add_products = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
