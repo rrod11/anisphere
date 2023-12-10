@@ -55,10 +55,7 @@ const AnimePage = ({ posts }) => {
   if (target) {
     return (
       <>
-        <div
-          id="post-page"
-          // style={{ width: "100%" }}
-        >
+        <div id="post-page">
           <div className="wrapper">
             <h3 className="h3">
               <span className="dot"></span>
