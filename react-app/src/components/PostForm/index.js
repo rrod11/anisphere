@@ -201,8 +201,9 @@ const PostForm = () => {
           {errors.image && <p className="errors">{errors.image}</p>}
           <button
             className="new-post-button"
-            disabled={disabled}
-            onClick={disable}
+            // disabled={disabled}
+            // onClick={disable}
+            onClick={checkForm}
           >
             Submit Post
           </button>
