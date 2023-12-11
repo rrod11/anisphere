@@ -35,7 +35,7 @@ function App() {
     history.go(-1);
   };
   return (
-    <>
+    <div className="app">
       {location.pathname === "/notfound" ||
       location.pathname === "/login" ||
       location.pathname === "/NotFound" ? null : (
@@ -75,7 +75,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
 

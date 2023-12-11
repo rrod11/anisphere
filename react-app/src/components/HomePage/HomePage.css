@@ -229,8 +229,12 @@ h1.progress {
 
 .item-selector {
   margin: 0 50px;
-  overflow-x: auto;
-  white-space: nowrap;
+  /* overflow-x: auto;
+  white-space: nowrap; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 30px;
   font-weight: 700;
