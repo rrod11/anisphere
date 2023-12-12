@@ -2,6 +2,10 @@
 
 Welcome to AniSphere, your go-to platform for discovering and discussing your favorite anime series! Whether you're a seasoned otaku or just getting started on your anime journey, AniSphere is designed to make finding and enjoying anime a breeze. Dive into a world of captivating stories, vibrant characters, and engaging discussions with fellow anime enthusiasts.
 
+## Ready to Explore AniSphere???
+
+[Go To Anisphere](https://anisphere.onrender.com)
+
 ### Frameworks and Libraries
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -14,22 +18,18 @@ Welcome to AniSphere, your go-to platform for discovering and discussing your fa
 
 ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
-## Ready to Explore AniSphere???
-
-[Go To Anisphere](https://anisphere.onrender.com)
-
 ## SPLASH PAGE
 
-<img src="Screenshot 2023-12-12 at 1.42.48 PM.png" data-canonical-src="" width="600px"/>
+<img src="./images/Screenshot 2023-12-12 at 1.42.48 PM.png" data-canonical-src="" width="600px"/>
 
 ## HOME PAGE
 
-<img src="Screenshot 2023-12-12 at 1.45.47 PM.png" data-canonical-src="" width="600px"/>
+<img src="./images/Screenshot 2023-12-12 at 1.45.47 PM.png" data-canonical-src="" width="600px"/>
 
 ## POST PAGE
 
-<img src="Screenshot 2023-12-12 at 1.47.01 PM.png" data-canonical-src="" width="600px"/>
-<img src="Screenshot 2023-12-12 at 1.47.18 PM.png" data-canonical-src="" width="600px"/>
+<img src="./images/Screenshot 2023-12-12 at 1.47.01 PM.png" data-canonical-src="" width="600px"/>
+<img src="./images/Screenshot 2023-12-12 at 1.47.18 PM.png" data-canonical-src="" width="600px"/>
 
 ## Table of Contents
 
