@@ -41,7 +41,7 @@ function SignupFormPage() {
     if (Object.values(errors).length == 0) {
       await dispatch(
         signUp(username, email, password, first_name, last_name, admin_key)
-      ).then(() => history.go(-1));
+      ).then(() => history.push("/home"));
     }
   };
 

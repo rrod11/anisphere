@@ -17,7 +17,9 @@ const PostForm = () => {
   const history = useHistory();
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(
+    "https://res.cloudinary.com/dpdvw1sam/image/upload/v1702416959/Screenshot_2023-12-12_at_1.29.46_PM_pdmqtq.jpg"
+  );
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
   // if (!sessionUser) return <Redirect to="/" />;
@@ -54,11 +56,13 @@ const PostForm = () => {
     if (!image) {
       errObj.image = "Image is required";
     }
-    if (image.name.includes(".webp")) {
-      errObj.image = "Image type is not supported";
-    }
-    if (image.name.includes(".avif")) {
-      errObj.image = "Image type is not supported";
+    if (image) {
+      if (image.name.includes(".webp")) {
+        errObj.image = "Image type is not supported";
+      }
+      if (image.name.includes(".avif")) {
+        errObj.image = "Image type is not supported";
+      }
     }
 
     if (!title) {

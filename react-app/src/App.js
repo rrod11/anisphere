@@ -31,9 +31,7 @@ function App() {
       .then(() => dispatch(getAllPosts(sessionUser)))
       .then(() => setIsLoaded(true));
   }, [dispatch]);
-  const goBack = () => {
-    history.go(-1);
-  };
+
   return (
     <div className="app">
       {location.pathname === "/notfound" ||

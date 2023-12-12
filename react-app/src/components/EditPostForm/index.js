@@ -66,7 +66,7 @@ const EditPostForm = () => {
   const stock = {
     id: postId,
     description: target.description,
-    user_id: sessionUser.id,
+    user_id: sessionUser?.id,
     title: target.title,
     image: target.image,
   };
@@ -90,10 +90,6 @@ const EditPostForm = () => {
       }
       formData.append("user_id", sessionUser.id);
       formData.append("id", postId);
-      console.log(
-        "🚀 ~ file: index.js:36 ~ handleSubmit ~ formData:",
-        formData
-      );
 
       await dispatch(editPost(formData, postId));
 
@@ -109,8 +105,8 @@ const EditPostForm = () => {
   };
   useEffect(() => {
     const errors = [];
+    if (!sessionUser) history.push("/login");
     if (!description.length) errors.push("Please enter a post description!");
-    // if (!image) errors.push("Please provide an image!");
     if (!title) errors.push("Please provide a title");
     setValidationErrors(errors);
   }, [description, image, title]);

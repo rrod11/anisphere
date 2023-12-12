@@ -7,6 +7,6 @@ from .post import Post
 from .review import Review
 from .category import Category
 from .post_images import PostImage
-# from .likes import Like
-# from .dislikes import Dislike
+from .likes import Like
+from .dislikes import Dislike
 # from .postCategory import postcategories

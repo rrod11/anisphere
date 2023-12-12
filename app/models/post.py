@@ -12,8 +12,6 @@ class Post(db.Model):
     title = db.Column(db.String(200), nullable=False, unique=True)
     description = db.Column(db.String(2500), nullable=False)
     image = db.Column(db.String(2000))
-    # user_id = db.Column(db.INTEGER)
-    # user_id = db.Column(db.INTEGER, db.ForeignKey("users.id"))
     user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') , nullable=False)
     # categories_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")),nullable=False)
 
@@ -22,9 +20,9 @@ class Post(db.Model):
 
     images = db.relationship("PostImage", back_populates="post")
 
-    # likes = db.relationship("Like", back_populates="post")
+    likes = db.relationship("Like", back_populates="post")
 
-    # dislikes = db.relationship("Dislike", back_populates="post")
+    dislikes = db.relationship("Dislike", back_populates="post")
 
     # categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
     # categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
@@ -38,8 +36,8 @@ class Post(db.Model):
             'description': self.description,
             "image": self.image,
             'userId': self.user_id,
-            # 'likes': [like.to_dict() for like in self.likes],
-            # 'dislikes': [dislike.to_dict() for dislike in self.dislikes],
+            'likes': [like.to_dict() for like in self.likes],
+            'dislikes': [dislike.to_dict() for dislike in self.dislikes],
             "images": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews],
             # "user": self.user.to_dict(),

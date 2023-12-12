@@ -5,3 +5,4 @@ from wtforms.validators import DataRequired, Length, URL
 class DislikeForm(FlaskForm):
   post_id = IntegerField("postId", validators=[DataRequired()])
   dislikes = BooleanField('likes', validators=[DataRequired()])
+  user_id = IntegerField("userId", validators=[DataRequired()])

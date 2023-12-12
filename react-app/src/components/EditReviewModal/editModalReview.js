@@ -7,6 +7,7 @@ import "./editReviewModal.css";
 
 function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   // const reviews = Object.values(useSelector((state) => state.review.reviews));
   const target = reviewsArr.find((ele) => ele.id == reviewId);
   const [activeRating, setActiveRating] = useState(0);
@@ -37,9 +38,10 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
     e.preventDefault();
     checkCredentials();
     if (!Object.values(errors).length) {
+      if (!sessionUser) history.push("/home");
       const newStock = {
-        id: stock.id,
-        user_id: user.id,
+        id: stock?.id,
+        user_id: user?.id,
         post_id: postId,
         review,
         rating,
@@ -70,8 +72,7 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
           />
         </label>
         <span className="span-error-editr">
-
-        {errors.review && <p className="errors">{errors.review}</p>}
+          {errors.review && <p className="errors">{errors.review}</p>}
         </span>
 
         <div
@@ -183,8 +184,7 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
           </label>
         </div>
         <span className="span-error-editr">
-
-        {errors.rating && <p className="errors">{errors.rating}</p>}
+          {errors.rating && <p className="errors">{errors.rating}</p>}
         </span>
         <button
           id="update-review"

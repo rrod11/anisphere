@@ -46,6 +46,8 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
+
+
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
@@ -63,6 +65,10 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post")
 
     reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
+
+    likes = db.relationship("Like", back_populates="user", cascade="all, delete-orphan")
+
+    dislikes = db.relationship("Dislike", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -85,4 +91,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             "posts": [post.to_dict() for post in self.posts],
             "reviews": [review.to_dict() for review in self.reviews],
+            "likes": [like.to_dict() for like in self.likes],
+            "dislikes": [dislike.to_dict() for dislike in self.dislike],
         }
