@@ -1,12 +1,15 @@
 .edit-review-container {
   background: limegreen;
   width: 500px;
-  height: 400px;
+  height: 450px;
   display: flex;
   align-items: center;
   color: white;
   justify-content: center;
   flex-direction: column;
+}
+.textarea {
+  padding: 10px;
 }
 .form label {
   width: 100%;

@@ -129,6 +129,7 @@ const PostForm = () => {
                   ? {
                       top: "-1.5px",
                       borderRadius: "25px",
+                      background: "rgb(0, 255, 42)",
                     }
                   : null
               }
@@ -139,6 +140,7 @@ const PostForm = () => {
               id="title"
               type="text"
               value={title}
+              className="post-inputs"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -153,6 +155,7 @@ const PostForm = () => {
                   ? {
                       top: "-10.5px",
                       borderRadius: "25px",
+                      background: "rgb(0, 255, 42)",
                     }
                   : null
               }
@@ -165,6 +168,7 @@ const PostForm = () => {
               rows="10"
               cols="45"
               onChange={(e) => setDescription(e.target.value)}
+              className="post-inputs-description"
               value={description}
             />
           </div>
