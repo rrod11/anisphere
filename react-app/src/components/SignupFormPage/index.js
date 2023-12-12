@@ -66,7 +66,9 @@ function SignupFormPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        {errors.email && <p className="errors">{errors.email}</p>}
+        <span className="span-error-spage">
+          {errors.email && <p className="errors">{errors.email}</p>}
+        </span>
         <div className="username-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -86,7 +88,9 @@ function SignupFormPage() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        {errors.username && <p className="errors">{errors.username}</p>}
+        <span className="span-error-spage">
+          {errors.username && <p className="errors">{errors.username}</p>}
+        </span>
         <div className="firstname-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -106,7 +110,9 @@ function SignupFormPage() {
             onChange={(e) => setFirstname(e.target.value)}
           />
         </div>
-        {errors.first_name && <p className="errors">{errors.first_name}</p>}
+        <span className="span-error-spage">
+          {errors.first_name && <p className="errors">{errors.first_name}</p>}
+        </span>
         <div className="lastname-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -126,7 +132,9 @@ function SignupFormPage() {
             onChange={(e) => setLastname(e.target.value)}
           />
         </div>
-        {errors.last_name && <p className="errors">{errors.last_name}</p>}
+        <span className="span-error-spage">
+          {errors.last_name && <p className="errors">{errors.last_name}</p>}
+        </span>
         <div className="admin-key-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -146,6 +154,7 @@ function SignupFormPage() {
             onChange={(e) => setAdminKey(e.target.value)}
           />
         </div>
+        <span className="span-error-spage"></span>
         <div className="signup-password-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -165,7 +174,9 @@ function SignupFormPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {errors.password && <p className="errors">{errors.password}</p>}
+        <span className="span-error-spage">
+          {errors.password && <p className="errors">{errors.password}</p>}
+        </span>
         <div className="confirm-box-page">
           <div
             className="floating-fillers-signup-page"
@@ -185,7 +196,9 @@ function SignupFormPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        {errors.same && <p className="errors">{errors.same}</p>}
+        <span className="span-error-spage">
+          {errors.same && <p className="errors">{errors.same}</p>}
+        </span>
         <button
           type="submit"
           className="sign-up-button-page"

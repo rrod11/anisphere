@@ -49,7 +49,9 @@ function SignupFormModal() {
         <div className="email-box">
           <div
             className="floating-fillers"
-            style={email ? { top: "-10.5px" } : null}
+            style={
+              email ? { top: "-10.5px", background: "rgb(0, 179, 255)" } : null
+            }
           >
             <label>Email</label>
           </div>
@@ -61,11 +63,17 @@ function SignupFormModal() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        {errors.email && <p className="errors">{errors.email}</p>}
+        <span className="error-span">
+          {errors.email && <p className="errors">{errors.email}</p>}
+        </span>
         <div className="username-box">
           <div
             className="floating-fillers"
-            style={username ? { top: "-10.5px" } : null}
+            style={
+              username
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Username</label>
           </div>
@@ -77,11 +85,17 @@ function SignupFormModal() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        {errors.username && <p className="errors">{errors.username}</p>}
+        <span className="error-span">
+          {errors.username && <p className="errors">{errors.username}</p>}
+        </span>
         <div className="firstname-box">
           <div
             className="floating-fillers"
-            style={first_name ? { top: "-10.5px" } : null}
+            style={
+              first_name
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>First Name</label>
           </div>
@@ -93,11 +107,17 @@ function SignupFormModal() {
             onChange={(e) => setFirstname(e.target.value)}
           />
         </div>
-        {errors.first_name && <p className="errors">{errors.first_name}</p>}
+        <span className="error-span">
+          {errors.first_name && <p className="errors">{errors.first_name}</p>}
+        </span>
         <div className="lastname-box">
           <div
             className="floating-fillers"
-            style={last_name ? { top: "-10.5px" } : null}
+            style={
+              last_name
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Last Name</label>
           </div>
@@ -109,11 +129,17 @@ function SignupFormModal() {
             onChange={(e) => setLastname(e.target.value)}
           />
         </div>
-        {errors.last_name && <p className="errors">{errors.last_name}</p>}
+        <span className="error-span">
+          {errors.last_name && <p className="errors">{errors.last_name}</p>}
+        </span>
         <div className="admin-key-box">
           <div
             className="floating-fillers"
-            style={admin_key ? { top: "-10.5px" } : null}
+            style={
+              admin_key
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Admin Key(Optional)</label>
           </div>
@@ -125,10 +151,15 @@ function SignupFormModal() {
             onChange={(e) => setAdminKey(e.target.value)}
           />
         </div>
+        <span className="span-error-spage"></span>
         <div className="signup-password-box">
           <div
             className="floating-fillers"
-            style={password ? { top: "-10.5px" } : null}
+            style={
+              password
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Password</label>
           </div>
@@ -140,11 +171,17 @@ function SignupFormModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {errors.password && <p className="errors">{errors.password}</p>}
+        <span className="error-span">
+          {errors.password && <p className="errors">{errors.password}</p>}
+        </span>
         <div className="confirm-box">
           <div
             className="floating-fillers"
-            style={confirmPassword ? { top: "-10.5px" } : null}
+            style={
+              confirmPassword
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Confirm Password</label>
           </div>
@@ -156,7 +193,9 @@ function SignupFormModal() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        {errors.same && <p className="errors">{errors.same}</p>}
+        <span className="error-span">
+          {errors.same && <p className="errors">{errors.same}</p>}
+        </span>
         <button
           type="submit"
           className="sign-up-button"

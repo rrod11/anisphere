@@ -87,3 +87,6 @@ form {
   box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
   transform: translateY(7px);
 }
+.span-error-lpage {
+  height: 15px;
+}

@@ -22,15 +22,17 @@ form {
 .credential-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
+  padding-bottom: 5px;
   justify-content: center;
 }
 .password-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
+  padding-bottom: 5px;
   justify-content: center;
 }
 
@@ -87,7 +89,33 @@ form {
   transform: translateY(7px);
   cursor: pointer;
 }
-
+.span-error-l {
+  height: 15px;
+}
+.other-options {
+  font-size: 35px;
+  padding: 10px;
+  margin: 15px;
+}
+.sign-up-link {
+  width: 90%;
+  background: darkgreen;
+  padding: 10px;
+  color: white;
+  border: none;
+  height: 60px;
+  transition: all 0.3s ease 0s;
+}
+.sign-up-link:hover {
+  background: rgb(255, 255, 250);
+  box-shadow: 8px 8px 15px rgba(255, 255, 255, 0.8);
+  transform: translateY(-7px);
+  color: black;
+  cursor: pointer;
+}
+input.post-inputs {
+  padding: 10px;
+}
 /* .signup-modal {
   width: 300px;
   height: 300px;

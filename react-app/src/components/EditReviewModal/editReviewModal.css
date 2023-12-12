@@ -35,3 +35,8 @@
   background: rgb(2, 241, 253);
   box-shadow: 10px 15px 20px rgb(3, 68, 197);
 }
+
+.span-error-editr {
+  height: 15px;
+  margin: 5px;
+}

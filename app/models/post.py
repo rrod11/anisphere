@@ -22,7 +22,9 @@ class Post(db.Model):
 
     images = db.relationship("PostImage", back_populates="post")
 
-    # user = db.relationship("User", back_populates="posts")
+    # likes = db.relationship("Like", back_populates="post")
+
+    # dislikes = db.relationship("Dislike", back_populates="post")
 
     # categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
     # categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
@@ -36,7 +38,8 @@ class Post(db.Model):
             'description': self.description,
             "image": self.image,
             'userId': self.user_id,
-            # 'categories': [category.to_dict() for category in self.categories],
+            # 'likes': [like.to_dict() for like in self.likes],
+            # 'dislikes': [dislike.to_dict() for dislike in self.dislikes],
             "images": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews],
             # "user": self.user.to_dict(),

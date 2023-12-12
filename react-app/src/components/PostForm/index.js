@@ -127,7 +127,7 @@ const PostForm = () => {
               style={
                 title
                   ? {
-                      top: "-10.5px",
+                      top: "-1.5px",
                       borderRadius: "25px",
                     }
                   : null
@@ -142,7 +142,9 @@ const PostForm = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          {errors.title && <p className="errors">{errors.title}</p>}
+          <span className="span-error-post">
+            {errors.title && <p className="errors">{errors.title}</p>}
+          </span>
           <div className="description-input-box">
             <div
               className="floating-fillers-post"
@@ -166,7 +168,11 @@ const PostForm = () => {
               value={description}
             />
           </div>
-          {errors.description && <p className="errors">{errors.description}</p>}
+          <span className="span-error-post">
+            {errors.description && (
+              <p className="errors">{errors.description}</p>
+            )}
+          </span>
           {/* <div className="image-input-box">
             <div>
               <label>ChoosePost Image</label>
@@ -198,7 +204,9 @@ const PostForm = () => {
               <img src={imageURL} className="thumbnails"></img>
             </div>
           </div>
-          {errors.image && <p className="errors">{errors.image}</p>}
+          <span className="span-error-post">
+            {errors.image && <p className="errors">{errors.image}</p>}
+          </span>
           <button
             className="new-post-button"
             // disabled={disabled}

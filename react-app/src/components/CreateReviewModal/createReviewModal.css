@@ -48,3 +48,7 @@
 .errors {
   color: red;
 }
+.span-error-cr {
+  height: 15px;
+  margin: 5px;
+}

@@ -1,7 +1,8 @@
-.post-form-page {
+div.post-form-page {
   /* height: 500px; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-top: 55px;
   border: 1px solid gray;
@@ -9,7 +10,7 @@
   /* margin: 15px 0 15px 0; */
   background-color: rgb(0, 255, 42);
   /* width: 600px; */
-  height: 500px;
+  height: 600px;
 }
 
 form {
@@ -18,9 +19,9 @@ form {
   flex-direction: column;
   align-items: center;
 }
-.post-form-container {
+/* .post-form-container {
   width: 600px;
-  height: 500px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,22 +30,33 @@ form {
   box-shadow: 15px 25px 40px rgb(157, 255, 0, 0.8);
   margin: 15px 0 15px 0;
   background-color: rgb(0, 255, 42);
-}
+} */
 
 .post-form-header {
   color: black;
   font-family: Billabong;
   font-size: 3em;
+  margin: 5px;
+}
+#title {
+  padding: 0 0 0 40px;
 }
 
 .title-input-box {
   margin-top: 10px;
   height: 40px;
+  padding: 10px;
+  margin-left: 10px;
   position: relative;
-  width: 100%;
+  width: 98%;
   display: flex;
   justify-content: center;
+  text-indent: 15px;
 }
+.title-input-box.text {
+  padding: 5px;
+}
+
 .description-input-box {
   margin-top: 20px;
   position: relative;
@@ -58,7 +70,7 @@ form {
   pointer-events: none;
   /* font-size: 45px; */
   top: 7px;
-  left: 100px;
+  left: 120px;
 }
 input {
   width: 90%;
@@ -189,4 +201,8 @@ label {
   background: rgba(125, 23, 234);
   box-shadow: 15px 25px 40px rgba(0, 255, 217, 0.8);
   cursor: pointer;
+}
+.span-error-post {
+  height: 10px;
+  margin: 5px;
 }

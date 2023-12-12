@@ -1,6 +1,6 @@
 .signup-modal {
-  width: 300px;
-  height: 500px;
+  width: 400px;
+  height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,49 +22,49 @@ form {
 .email-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .username-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .firstname-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .lastname-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .admin-key-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .signup-password-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
 .confirm-box {
   position: relative;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
 }
@@ -79,14 +79,13 @@ form {
 }
 
 .sign-up-button {
-  width: 90%;
+  width: 85%;
   display: flex;
   justify-content: center;
   height: 30px;
   margin-top: 15px;
   display: flex;
   align-items: center;
-  background: white;
   background: rgb(255, 255, 28);
   box-shadow: 8px 8px 15px rgba(255, 248, 54, 0.8);
   border: none;
@@ -99,4 +98,10 @@ form {
   box-shadow: 8px 8px 15px rgba(13, 255, 0, 0.8);
   transform: translateY(-7px);
   cursor: pointer;
+}
+input.post-inputs {
+  padding: 10px;
+}
+.error-span {
+  height: 15px;
 }

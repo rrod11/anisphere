@@ -69,7 +69,10 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
             onChange={(e) => setReview(e.target.value)}
           />
         </label>
+        <span className="span-error-editr">
+
         {errors.review && <p className="errors">{errors.review}</p>}
+        </span>
 
         <div
           className="add-review-stars"
@@ -179,7 +182,10 @@ function EditReview({ reviewId, postId, render, setRender, reviewsArr }) {
             </div>
           </label>
         </div>
+        <span className="span-error-editr">
+
         {errors.rating && <p className="errors">{errors.rating}</p>}
+        </span>
         <button
           id="update-review"
           type="submit"

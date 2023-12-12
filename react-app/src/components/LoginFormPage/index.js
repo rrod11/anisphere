@@ -37,9 +37,9 @@ function LoginFormPage() {
     <div className="login-page" style={{ zIndex: "10000" }}>
       <h1 style={{ fontSize: "50px" }}>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <span className="span-error-lpage">
           {errors.credentials && <p className="errors">{errors.credentials}</p>}
-        </ul>
+        </span>
         <div className="credential-box-page">
           <div
             className="floating-fillers-page"
@@ -95,6 +95,18 @@ function LoginFormPage() {
           </button>
         </div>
       </form>
+      <div className="other-options">Don't Have An Account Yet??</div>
+      <a
+        href="/signup"
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          textDecoration: "none",
+        }}
+      >
+        <button className="sign-up-link">CREATE AN ACCOUNT</button>
+      </a>
     </div>
   );
 }

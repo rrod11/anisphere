@@ -31,17 +31,22 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const closeMenu = () => setShowMenu(false);
+
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logout()).then(() => history.push("/home"));
+    dispatch(logout())
+      .then(() => closeMenu())
+      .then(() => history.push("/home"));
   };
   const createAPost = (e) => {
     e.preventDefault();
+    closeMenu();
     history.push("/newpost");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+  // const closeMenu = () => setShowMenu(false);
 
   return (
     <div className="prof-module">

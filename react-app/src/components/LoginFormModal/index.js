@@ -31,13 +31,17 @@ function LoginFormModal() {
     <div className="login-modal" style={{ zIndex: "10000" }}>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <span className="span-error-l">
           {errors.credentials && <p className="errors">{errors.credentials}</p>}
-        </ul>
+        </span>
         <div className="credential-box">
           <div
             className="floating-fillers"
-            style={credentials ? { top: "-10.5px" } : null}
+            style={
+              credentials
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Credentials</label>
           </div>
@@ -52,7 +56,11 @@ function LoginFormModal() {
         <div className="password-box">
           <div
             className="floating-fillers"
-            style={password ? { top: "-10.5px" } : null}
+            style={
+              password
+                ? { top: "-10.5px", background: "rgb(0, 179, 255)" }
+                : null
+            }
           >
             <label>Password</label>
           </div>

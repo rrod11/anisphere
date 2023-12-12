@@ -86,7 +86,11 @@ function ReviewFormModal({ postId, render, setRender }) {
                 onChange={(e) => setReviewText(e.target.value)}
               />
             </label>
-            {errors.reviewText && <p className="errors">{errors.reviewText}</p>}
+            <span className="span-error-cr">
+              {errors.reviewText && (
+                <p className="errors">{errors.reviewText}</p>
+              )}
+            </span>
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               <label className="add-review-stars">
                 <div
@@ -210,7 +214,9 @@ function ReviewFormModal({ postId, render, setRender }) {
             {/* {disabled && (
               <p className="errors">Please write at least a 4 character review before Rating</p>
             )} */}
-            {errors.rating && <p className="errors">{errors.rating}</p>}
+            <span className="span-error-cr">
+              {errors.rating && <p className="errors">{errors.rating}</p>}
+            </span>
             <button
               type="submit"
               id="add-review"
