@@ -13,12 +13,13 @@ const EditPostForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.post.posts));
   const target = posts.find((ele) => ele.id == postId);
+  console.log("🚀 ~ file: index.js:16 ~ EditPostForm ~ target:", target);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(target.image);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
   let disabled = false;
