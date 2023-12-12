@@ -17,19 +17,68 @@ const AnimePage = ({ posts }) => {
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
-  // const reviews = useSelector((state) => state.review.reviews);
+  const reviews = useSelector((state) => state.review.reviews);
   const [isLoaded, setIsLoaded] = useState(false);
+  const userObj = useSelector((state) => state.user.users);
+  let usersArray;
+  if (userObj) {
+    usersArray = Object.values(userObj);
+  }
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;
+
+  //OVERVIEW OF FIX FOR REvIEWS NOT LOADING
+  let reviewArr;
+  if (reviews) {
+    reviewArr = orderReviews(
+      Object.values(reviews).filter((ele) => {
+        return ele.postId === parseInt(postId);
+      })
+    );
+  }
+  let orderedFinalReviewArr;
+  if (reviewArr) {
+    orderedFinalReviewArr = addUsers(reviewArr, usersArray);
+  }
+  function orderReviews(arr) {
+    let newbie = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+      newbie.push(arr[i]);
+    }
+    return newbie;
+  }
+  function addUsers(list, users) {
+    let newbie = [];
+    for (let i = 0; i < list.length; i++) {
+      list[i].user = users?.find((ele) => ele.id == list[i].userId);
+      newbie.push(list[i]);
+    }
+    return newbie;
+  }
+
   let sum = 0;
-  if (target && target.reviews.length >= 1) {
-    sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
+  if (target && orderedFinalReviewArr?.length >= 1) {
+    sum = orderedFinalReviewArr?.reduce(
+      (acc, review) => review?.rating + acc,
+      0
+    );
   }
   let avg;
+
   if (sum > 0) {
-    avg = sum / target.reviews.length;
+    avg = sum / orderedFinalReviewArr.length;
   }
+  //END OF HARD FIX
+
+  // let sum = 0;
+  // if (target && target.reviews.length >= 1) {
+  //   sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
+  // }
+  // let avg;
+  // if (sum > 0) {
+  //   avg = sum / target.reviews.length;
+  // }
   const goBack = () => {
     history.push("/home");
   };
@@ -173,15 +222,15 @@ const AnimePage = ({ posts }) => {
               </div>
             </div>
             <div className="overallReviews">
-              {target && target.reviews?.length > 1 ? (
+              {target && reviewArr?.length > 1 ? (
                 <span className="numberReviews">
                   <h1>
-                    {target.reviews?.length} Reviews {avg?.toFixed(2)}
+                    {reviewArr?.length} Reviews {avg?.toFixed(2)}
                   </h1>
                 </span>
               ) : (
                 <span className="numberReviews">
-                  <h1>{target.reviews?.length} Reviews</h1>
+                  <h1>{reviewArr?.length} Reviews</h1>
                 </span>
               )}
               <div

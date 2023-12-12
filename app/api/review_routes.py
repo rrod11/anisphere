@@ -47,7 +47,7 @@ def get_review_by_id(id):
     # one_review = [review for review in seed_reviews if review["id"] == id ]
     print(one_review)
     # return render_template("feed.html", reviews=[one_review] )
-    return one_review
+    return one_review.to_dict()
 
 
 @review_routes.route("/<int:postId>/new", methods=["POST"])

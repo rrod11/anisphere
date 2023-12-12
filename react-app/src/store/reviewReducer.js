@@ -5,7 +5,8 @@ const GET_REVIEWS = "reviews/GET_REVIEWS";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 const EDIT_REVIEW = "reviews/EDIT_REVIEW";
 const GET_REVIEWS_POST = "reviews/POST_REVIEWS";
-const initialState = { reviews: {} };
+// const initialState = { reviews: {} };
+const initialState = {};
 
 const createReview = (payload) => {
   return {
