@@ -30,6 +30,7 @@ const PostForm = () => {
     e.stopPropagation();
 
     const tempFile = e.target.files[0];
+    console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ tempFile:", tempFile);
 
     // Check for max image size of 5Mb
     if (tempFile.size > 5000000) {
@@ -40,6 +41,7 @@ const PostForm = () => {
     const newImageURL = URL.createObjectURL(tempFile);
     setImage(e.target.files[0]); // Generate a local URL to render the image file inside of the <img> tag.
     setImageURL(newImageURL);
+    console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ imagefile:", image);
     setFile(tempFile);
     setFilename(tempFile.name);
   };
@@ -51,6 +53,12 @@ const PostForm = () => {
     }
     if (!image) {
       errObj.image = "Image is required";
+    }
+    if (image.name.includes(".webp")) {
+      errObj.image = "Image type is not supported";
+    }
+    if (image.name.includes(".avif")) {
+      errObj.image = "Image type is not supported";
     }
 
     if (!title) {
@@ -188,6 +196,9 @@ const PostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div> */}
+          <div style={{ color: "red", fontSize: "22px" }}>
+            ** .webp, .avif file types not supported. **
+          </div>
           <div className="file-inputs-container">
             <input
               type="file"

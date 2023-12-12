@@ -46,9 +46,13 @@ const EditPostForm = () => {
     if (!description.length) {
       errObj.description = "Description is required";
     }
-    if (imageURL.includes(".webp")) {
-      errObj.image =
-        "File does not have an approved extension: gif, jpg, pdf, jpeg, png";
+    if (image) {
+      if (image.name.includes(".webp")) {
+        errObj.image = "Image type is not supported";
+      }
+      if (image?.name.includes(".avif")) {
+        errObj.image = "Image type is not supported";
+      }
     }
 
     if (!title) {
@@ -188,9 +192,8 @@ const EditPostForm = () => {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div> */}
-          <div style={{ color: "white" }}>
-            ** .webp, .avif file types not supported. Form will submit and clear
-            all inputs **
+          <div style={{ color: "red", fontSize: "22px" }}>
+            ** .webp, .avif file types not supported. **
           </div>
           <div className="file-inputs-container">
             <input
@@ -216,7 +219,7 @@ const EditPostForm = () => {
           <button
             className="new-post-button"
             disabled={disabled}
-            onClick={disable}
+            onClick={checkForm}
           >
             Update Post
           </button>

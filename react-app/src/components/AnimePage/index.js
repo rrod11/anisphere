@@ -22,14 +22,14 @@ const AnimePage = ({ posts }) => {
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;
-  // let sum = 0;
-  // if (target && target.reviews.length >= 1) {
-  //   sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
-  // }
-  // let avg;
-  // if (sum > 0) {
-  //   avg = sum / target.reviews.length;
-  // }
+  let sum = 0;
+  if (target && target.reviews.length >= 1) {
+    sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
+  }
+  let avg;
+  if (sum > 0) {
+    avg = sum / target.reviews.length;
+  }
   const goBack = () => {
     history.push("/home");
   };
@@ -170,6 +170,67 @@ const AnimePage = ({ posts }) => {
                     modalComponent={<DeletePost postId={postId} />}
                   />
                 ) : null}
+              </div>
+            </div>
+            <div className="overallReviews">
+              {target && target.reviews?.length > 1 ? (
+                <span className="numberReviews">
+                  <h1>
+                    {target.reviews?.length} Reviews {avg?.toFixed(2)}
+                  </h1>
+                </span>
+              ) : (
+                <span className="numberReviews">
+                  <h1>{target.reviews?.length} Reviews</h1>
+                </span>
+              )}
+              <div
+                className="insideman"
+                style={{ display: "flex", justifyContent: "space-around" }}
+              >
+                <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
+                <label style={{ display: "flex", alignItems: "center" }}>
+                  <div
+                    className="rating"
+                    style={{ display: "flex", flexDirection: "row" }}
+                  >
+                    <i
+                      className={
+                        avg >= 1 || avg > 0.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 2 || avg >= 1.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 3 || avg >= 2.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 4 || avg >= 3.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                    <i
+                      className={
+                        avg >= 5 || avg >= 4.5
+                          ? "fa-solid fa-star"
+                          : "fa-regular fa-star"
+                      }
+                    ></i>
+                  </div>
+                </label>
               </div>
             </div>
 
