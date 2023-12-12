@@ -46,6 +46,9 @@ form {
   top: -30.5px;
   border: none;
 }
+.post-inputs-page {
+  padding: 10px;
+}
 
 .login-form-button-page {
   width: 90%;
