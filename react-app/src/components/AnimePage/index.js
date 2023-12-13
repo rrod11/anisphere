@@ -9,8 +9,8 @@ import { Redirect, useParams, Navigate } from "react-router-dom";
 import Reviews from "../Reviews";
 import DeletePost from "../DeleteModal/deleteModalPost";
 import { allTheReviews } from "../../store/reviewReducer";
-import { addALike, editALike } from "../../store/likes";
-import { addADislike, editADislike } from "../../store/dislikes";
+import { addALike, allLikes, editALike } from "../../store/likes";
+import { addADislike, allDislikes, editADislike } from "../../store/dislikes";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,11 +18,22 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
-  console.log("🚀 ~ file: index.js:19 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
   const [isLoaded, setIsLoaded] = useState(false);
   const userObj = useSelector((state) => state.user.users);
+  const likes = useSelector((state) => state.like.likes);
+  const likeArr = Object.values(likes).filter(
+    (ele) => ele.post_id == target.id
+  );
+  const likeTotal = likeArr.filter((ele) => ele.likes == true).length;
+  const dislikes = useSelector((state) => state.dislike.dislikes);
+  const dislikeArr = Object.values(dislikes).filter(
+    (ele) => ele.post_id == target.id
+  );
+  const dislikeTotal = dislikeArr.filter((ele) => ele.dislikes == true).length;
+
+  const [render, setRender] = useState(false);
   let liked = false;
   let disliked = false;
   let usersArray;
@@ -31,13 +42,11 @@ const AnimePage = ({ posts }) => {
   }
   if (sessionUser) {
     if (
-      target.likes.find(
-        (ele) => ele.user_id == sessionUser.id && ele.likes == true
-      )
+      likeArr.find((ele) => ele.user_id == sessionUser.id && ele.likes == true)
     )
       liked = true;
     if (
-      target.dislikes.find(
+      dislikeArr.find(
         (ele) => ele.user_id == sessionUser.id && ele.dislikes == true
       )
     )
@@ -46,35 +55,37 @@ const AnimePage = ({ posts }) => {
   const greenClick = async () => {
     if (!sessionUser) {
       history.push("/login");
-    } else if (target.likes.find((ele) => ele.user_id == sessionUser.id)) {
-      const foundLike = target.likes.find((ele) => {
+    } else if (likeArr.find((ele) => ele.user_id == sessionUser.id)) {
+      console.log("AM I IN THE ELSEIF?");
+      const foundLike = likeArr.find((ele) => {
         return ele.user_id == sessionUser.id;
       });
-      console.log("🚀 ~ file: index.js:43 ~ foundLike ~ foundLike:", foundLike);
       const stock = {
         id: foundLike?.id,
         likes: !foundLike?.likes,
         user_id: foundLike?.user_id,
         post_id: foundLike?.post_id,
       };
-      console.log("🚀 ~ file: index.js:50 ~ greenClick ~ stock:", stock);
       await dispatch(editALike(stock.id, stock, postId));
+      setRender(!render);
     } else {
       const stock = {
         likes: true,
         user_id: sessionUser?.id,
         post_id: postId,
       };
-      console.log("🚀 ~ file: index.js:69 ~ greenClick ~ stock:", stock);
 
       await dispatch(addALike(postId, stock));
+      setRender(!render);
     }
+    setRender(!render);
   };
   const redClick = async () => {
+    setRender(!render);
     if (!sessionUser) {
       history.push("/login");
-    } else if (target.dislikes.find((ele) => ele.user_id == sessionUser.id)) {
-      const foundDislike = target.dislikes.find((ele) => {
+    } else if (dislikeArr.find((ele) => ele.user_id == sessionUser.id)) {
+      const foundDislike = dislikeArr.find((ele) => {
         return ele.user_id == sessionUser.id;
       });
       console.log(
@@ -91,6 +102,7 @@ const AnimePage = ({ posts }) => {
       console.log("🚀 ~ file: index.js:79 ~ redClick ~ stock:", stock);
 
       await dispatch(editADislike(stock.id, stock, postId));
+      setRender(!render);
     } else {
       const stock = {
         dislikes: true,
@@ -100,7 +112,9 @@ const AnimePage = ({ posts }) => {
       console.log("🚀 ~ file: index.js:91 ~ redClick ~ stock:", stock);
 
       await dispatch(addADislike(postId, stock));
+      setRender(!render);
     }
+    setRender(!render);
   };
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
@@ -158,15 +172,11 @@ const AnimePage = ({ posts }) => {
     const response = await fetch(`/api/reviews/post/${postId}`);
     const likes = await fetch(`/api/likes/all`);
     const dislikes = await fetch(`/api/dislikes/all`);
-    // dispatch(getAllPosts(sessionUser))
-    //   .then(() => allTheReviews())
-    //   .then(() => allTheReviews())
-    //   .then(() => {
-    //     setIsLoaded(true);
-    //   })
-    //   .then(() => history.push(`/posts/${postId}`));
+    dispatch(allLikes());
+    dispatch(allDislikes());
+
     setIsLoaded(true);
-  }, [dispatch, isLoaded]);
+  }, [dispatch, isLoaded, render]);
   if (!target) {
     return (
       <div className="no-anime-here">
@@ -273,7 +283,7 @@ const AnimePage = ({ posts }) => {
             </div>
             <div className="feeling-container">
               <div className="likes-c">
-                {target.likes.length}
+                {likeTotal}
                 {sessionUser && liked ? (
                   <button
                     onClick={greenClick}
@@ -297,7 +307,7 @@ const AnimePage = ({ posts }) => {
                 )}
               </div>
               <div className="dislikes-c">
-                {target.dislikes.length}
+                {dislikeTotal}
                 {sessionUser && disliked ? (
                   <button
                     onClick={redClick}
