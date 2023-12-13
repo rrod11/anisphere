@@ -150,3 +150,6 @@
   transform: translateY(-5px);
   cursor: pointer;
 }
+.fa-fa-fa {
+  cursor: pointer;
+}

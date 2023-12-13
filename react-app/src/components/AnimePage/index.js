@@ -282,7 +282,7 @@ const AnimePage = ({ posts }) => {
               </div>
             </div>
             <div className="feeling-container">
-              <div className="likes-c">
+              <div className="likes-c" style={{ color: "white" }}>
                 {likeTotal}
                 {sessionUser && liked ? (
                   <button
@@ -290,7 +290,7 @@ const AnimePage = ({ posts }) => {
                     style={{ background: "none", border: "none" }}
                   >
                     <i
-                      class="fa-solid fa-thumbs-up"
+                      class="fa-solid fa-thumbs-up fa-fa-fa"
                       style={{ color: "#195419", fontSize: "30px" }}
                     ></i>
                   </button>
@@ -300,21 +300,21 @@ const AnimePage = ({ posts }) => {
                     style={{ background: "none", border: "none" }}
                   >
                     <i
-                      class="fa-regular fa-thumbs-up"
+                      class="fa-regular fa-thumbs-up fa-fa-fa"
                       style={{ color: "#195419", fontSize: "30px" }}
                     ></i>
                   </button>
                 )}
               </div>
-              <div className="dislikes-c">
+              <div className="dislikes-c" style={{ color: "white" }}>
                 {dislikeTotal}
                 {sessionUser && disliked ? (
                   <button
                     onClick={redClick}
-                    style={{ background: "none", border: "none" }}
+                    style={{ background: "none", border: "none " }}
                   >
                     <i
-                      class="fa-solid fa-thumbs-down"
+                      class="fa-solid fa-thumbs-down fa-fa-fa"
                       style={{ color: "#ff0a0a", fontSize: "30px" }}
                     ></i>
                   </button>
@@ -324,7 +324,8 @@ const AnimePage = ({ posts }) => {
                     style={{ background: "none", border: "none" }}
                   >
                     <i
-                      class="fa-regular fa-thumbs-down"
+                      onClick={redClick}
+                      class="fa-regular fa-thumbs-down fa-fa-fa"
                       style={{ color: "#ff0a0a", fontSize: "30px" }}
                     ></i>
                   </button>
