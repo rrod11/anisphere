@@ -92,5 +92,5 @@ class User(db.Model, UserMixin):
             "posts": [post.to_dict() for post in self.posts],
             "reviews": [review.to_dict() for review in self.reviews],
             "likes": [like.to_dict() for like in self.likes],
-            "dislikes": [dislike.to_dict() for dislike in self.dislike],
+            "dislikes": [dislike.to_dict() for dislike in self.dislikes],
         }

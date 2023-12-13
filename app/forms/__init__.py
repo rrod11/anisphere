@@ -3,5 +3,5 @@ from .signup_form import SignUpForm
 from .post_form import PostForm
 from .review_form import ReviewForm
 from .post_image_form import PostImageForm
-# from .like_form import LikeForm
-# from .dislike_form import DislikeForm
+from .like_form import LikeForm
+from .dislike_form import DislikeForm

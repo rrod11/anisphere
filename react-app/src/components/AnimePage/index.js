@@ -9,6 +9,8 @@ import { Redirect, useParams, Navigate } from "react-router-dom";
 import Reviews from "../Reviews";
 import DeletePost from "../DeleteModal/deleteModalPost";
 import { allTheReviews } from "../../store/reviewReducer";
+import { addALike, editALike } from "../../store/likes";
+import { addADislike, editADislike } from "../../store/dislikes";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -16,14 +18,90 @@ const AnimePage = ({ posts }) => {
   const dispatch = useDispatch();
   const { postId } = useParams();
   const target = Object.values(posts).find((ele) => ele.id == postId);
+  console.log("🚀 ~ file: index.js:19 ~ AnimePage ~ target:", target);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
   const [isLoaded, setIsLoaded] = useState(false);
   const userObj = useSelector((state) => state.user.users);
+  let liked = false;
+  let disliked = false;
   let usersArray;
   if (userObj) {
     usersArray = Object.values(userObj);
   }
+  if (sessionUser) {
+    if (
+      target.likes.find(
+        (ele) => ele.user_id == sessionUser.id && ele.likes == true
+      )
+    )
+      liked = true;
+    if (
+      target.dislikes.find(
+        (ele) => ele.user_id == sessionUser.id && ele.dislikes == true
+      )
+    )
+      disliked = true;
+  }
+  const greenClick = async () => {
+    if (!sessionUser) {
+      history.push("/login");
+    } else if (target.likes.find((ele) => ele.user_id == sessionUser.id)) {
+      const foundLike = target.likes.find((ele) => {
+        return ele.user_id == sessionUser.id;
+      });
+      console.log("🚀 ~ file: index.js:43 ~ foundLike ~ foundLike:", foundLike);
+      const stock = {
+        id: foundLike?.id,
+        likes: !foundLike?.likes,
+        user_id: foundLike?.user_id,
+        post_id: foundLike?.post_id,
+      };
+      console.log("🚀 ~ file: index.js:50 ~ greenClick ~ stock:", stock);
+      await dispatch(editALike(stock.id, stock, postId));
+    } else {
+      const stock = {
+        likes: true,
+        user_id: sessionUser?.id,
+        post_id: postId,
+      };
+      console.log("🚀 ~ file: index.js:69 ~ greenClick ~ stock:", stock);
+
+      await dispatch(addALike(postId, stock));
+    }
+  };
+  const redClick = async () => {
+    if (!sessionUser) {
+      history.push("/login");
+    } else if (target.dislikes.find((ele) => ele.user_id == sessionUser.id)) {
+      const foundDislike = target.dislikes.find((ele) => {
+        return ele.user_id == sessionUser.id;
+      });
+      console.log(
+        "🚀 ~ file: index.js:71 ~ foundDislike ~ foundDislike:",
+        foundDislike
+      );
+
+      const stock = {
+        id: foundDislike?.id,
+        dislikes: !foundDislike?.dislikes,
+        user_id: foundDislike?.user_id,
+        post_id: foundDislike?.post_id,
+      };
+      console.log("🚀 ~ file: index.js:79 ~ redClick ~ stock:", stock);
+
+      await dispatch(editADislike(stock.id, stock, postId));
+    } else {
+      const stock = {
+        dislikes: true,
+        user_id: sessionUser?.id,
+        post_id: postId,
+      };
+      console.log("🚀 ~ file: index.js:91 ~ redClick ~ stock:", stock);
+
+      await dispatch(addADislike(postId, stock));
+    }
+  };
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;
@@ -71,14 +149,6 @@ const AnimePage = ({ posts }) => {
   }
   //END OF HARD FIX
 
-  // let sum = 0;
-  // if (target && target.reviews.length >= 1) {
-  //   sum = target.reviews?.reduce((acc, review) => review?.rating + acc, 0);
-  // }
-  // let avg;
-  // if (sum > 0) {
-  //   avg = sum / target.reviews.length;
-  // }
   const goBack = () => {
     history.push("/home");
   };
@@ -86,6 +156,8 @@ const AnimePage = ({ posts }) => {
   const editPost = () => history.push(`/posts/${target.id}/edit`);
   useEffect(async () => {
     const response = await fetch(`/api/reviews/post/${postId}`);
+    const likes = await fetch(`/api/likes/all`);
+    const dislikes = await fetch(`/api/dislikes/all`);
     // dispatch(getAllPosts(sessionUser))
     //   .then(() => allTheReviews())
     //   .then(() => allTheReviews())
@@ -197,6 +269,56 @@ const AnimePage = ({ posts }) => {
                     height: "750px",
                   }}
                 />
+              </div>
+            </div>
+            <div className="feeling-container">
+              <div className="likes-c">
+                {target.likes.length}
+                {sessionUser && liked ? (
+                  <button
+                    onClick={greenClick}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      class="fa-solid fa-thumbs-up"
+                      style={{ color: "#195419", fontSize: "30px" }}
+                    ></i>
+                  </button>
+                ) : (
+                  <button
+                    onClick={greenClick}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      class="fa-regular fa-thumbs-up"
+                      style={{ color: "#195419", fontSize: "30px" }}
+                    ></i>
+                  </button>
+                )}
+              </div>
+              <div className="dislikes-c">
+                {target.dislikes.length}
+                {sessionUser && disliked ? (
+                  <button
+                    onClick={redClick}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      class="fa-solid fa-thumbs-down"
+                      style={{ color: "#ff0a0a", fontSize: "30px" }}
+                    ></i>
+                  </button>
+                ) : (
+                  <button
+                    onClick={redClick}
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <i
+                      class="fa-regular fa-thumbs-down"
+                      style={{ color: "#ff0a0a", fontSize: "30px" }}
+                    ></i>
+                  </button>
+                )}
               </div>
             </div>
             <div className="description-container">

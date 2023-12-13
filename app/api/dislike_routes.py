@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from datetime import date
 from app.forms import DislikeForm
 from random import randint
-from app.models import db, Like
+from app.models import db, Dislike
 
 
 
@@ -84,12 +84,12 @@ def update_dislike(id):
     form = DislikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        dislike_to_update = Dislike.query.get(id)
-        if(dislike_to_update):
-            dislike_to_update.post_id=form.data["post_id"]
-            dislike_to_update.dislikes=form.data["dislikes"]
-            dislike_to_update.user_id=form.data["user_id"]
+
+    dislike_to_update = Dislike.query.get(id)
+    if(dislike_to_update):
+        dislike_to_update.post_id=form.data["post_id"]
+        dislike_to_update.dislikes=form.data["dislikes"]
+        dislike_to_update.user_id=form.data["user_id"]
 
     db.session.commit()
     return dislike_to_update.to_dict()

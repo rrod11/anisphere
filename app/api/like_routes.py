@@ -84,12 +84,12 @@ def update_like(id):
     form = LikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        like_to_update = like.query.get(id)
-        if(like_to_update):
-            like_to_update.post_id=form.data["post_id"]
-            like_to_update.likes=form.data["likes"]
-            like_to_update.user_id=form.data["user_id"]
+
+    like_to_update = like.query.get(id)
+    if(like_to_update):
+        like_to_update.post_id=form.data["post_id"]
+        like_to_update.likes=form.data["likes"]
+        like_to_update.user_id=form.data["user_id"]
 
     db.session.commit()
     return like_to_update.to_dict()

@@ -10,6 +10,7 @@
   /* filter: 50px;
   -webkit-filter: blur(5px); */
   z-index: 10;
+  color: #195419;
 }
 .overallReviews {
   display: flex;
@@ -17,7 +18,7 @@
 }
 .post-image-container {
   width: auto;
-  height: 800px;
+  height: 750px;
 }
 .image-inside {
   position: relative;
@@ -33,6 +34,13 @@
   font-size: 50px;
   color: white;
   box-shadow: 4px 8px 12px rgb(255, 255, 255, 0.8);
+}
+.feeling-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 0;
+  font-size: 30px;
 }
 .description-container {
   width: 100%;
