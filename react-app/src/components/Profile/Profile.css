@@ -1,0 +1,130 @@
+.profileContainer {
+  margin: 25px;
+}
+
+.profileTab {
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(74, 135, 128, 0.25);
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+.profileTab:hover {
+  background-color: rgba(58, 102, 115, 0.5);
+}
+.profileTab#selected {
+  background-color: rgba(58, 102, 115, 0.75);
+}
+
+.profileTabDisplay {
+  display: flex;
+  padding-top: 15px;
+  overflow-wrap: wrap;
+}
+
+.profileButtonContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.userOrdersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.userReviewsContainer,
+.userProductsContainer,
+.userOrderItemsContainer,
+.userWishlistContainer {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  overflow-y: scroll hidden;
+}
+.indvUserProducts,
+.indvUserReviews,
+.indvUserOrderItems,
+.indvUserWishItems {
+  padding: 25px;
+  gap: 15px;
+  border: 1px solid #322e3f;
+
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 20px auto;
+  transition: all 0.2s ease-in-out;
+}
+.indvUserProducts {
+  width: fit-content;
+  min-width: 350px;
+}
+.indvUserReviews,
+.indvUserOrderItems,
+.indvUserWishItems {
+  /* display: flex; */
+  min-width: 200px;
+  max-height: 250px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+}
+.indvUserReviews {
+  overflow-y: scroll;
+}
+.indvUserProducts:hover,
+.indvUserReviews:hover,
+.indvUserOrderItems:hover,
+.indvUserWishItems:hover {
+  transform: translateY(-10px);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.userProductImages {
+  max-width: 150px;
+  padding: 5px;
+}
+.userIdvProductImage {
+  height: 300px;
+  width: 300px;
+  border-radius: 15px;
+}
+.userProductDescription,
+.userProductReview {
+  display: flex;
+  overflow-wrap: anywhere;
+  flex-wrap: wrap;
+  min-width: 150px;
+  max-width: 150px;
+}
+.orderItemPriceQuantDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.userProductPrice,
+.orderedItemPrice {
+  display: flex;
+  justify-content: flex-end;
+}
+.userProductButtons,
+.userOrderButtons,
+.userWishlistButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#editroductButton {
+  width: 100%;
+}
+
+.pastOrdersBody {
+  margin: 25px;
+}
+.indvOrdersInAll {
+  border-bottom: 1px solid rgb(58, 102, 115);
+}
+.allrdersItemsContainer {
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 15px;
+  color: hwb(173 29% 47%);
+}

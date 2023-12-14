@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 # from .postCategory import postcategories
-# from .postCategory import PostCategory
+
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -24,7 +24,6 @@ class Post(db.Model):
 
     dislikes = db.relationship("Dislike", back_populates="post")
 
-    # categories = db.relationship("Category", secondary=postcategories, back_populates="posts")
     # categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
 
 
@@ -40,5 +39,5 @@ class Post(db.Model):
             'dislikes': [dislike.to_dict() for dislike in self.dislikes],
             "images": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews],
-            # "user": self.user.to_dict(),
+            # "categories": [category.to_dict() for category in self.categories]
         }

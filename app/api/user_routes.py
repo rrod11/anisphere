@@ -22,3 +22,12 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/', methods=["DELETE"])
+@login_required
+def delAccount():
+    user = User.query.filter(User.id == current_user.get_id()).first()
+    logout_user()
+    db.session.delete(user)
+    db.session.commit()
+    return { "message": "delete successful" }

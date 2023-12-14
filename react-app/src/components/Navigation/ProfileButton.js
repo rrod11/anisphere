@@ -44,6 +44,11 @@ function ProfileButton({ user }) {
     closeMenu();
     history.push("/newpost");
   };
+  const viewProfile = (e) => {
+    e.preventDefault();
+    closeMenu();
+    history.push(`/profile/${user.id}`);
+  };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   // const closeMenu = () => setShowMenu(false);
@@ -75,6 +80,11 @@ function ProfileButton({ user }) {
                   Create A Post
                 </button>
               </li>
+            </div>
+            <div className="view-profile">
+              <button className="profileB" onClick={viewProfile}>
+                View Profile
+              </button>
             </div>
           </>
         ) : (

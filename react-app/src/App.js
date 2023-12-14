@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Profile from "./components/Profile";
 import PostForm from "./components/PostForm";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route exact path="/posts/:postId">
             <AnimePage posts={posts} />
+          </Route>
+          <Route exact path="/profile/:userId">
+            <Profile />
           </Route>
           <Route path="/NotFound">
             <NotFound />
