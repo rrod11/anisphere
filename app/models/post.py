@@ -12,7 +12,7 @@ class Post(db.Model):
     title = db.Column(db.String(200), nullable=False, unique=True)
     description = db.Column(db.String(2500), nullable=False)
     image = db.Column(db.String(2000))
-    user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') , nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') )
     # categories_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")),nullable=False)
 
 

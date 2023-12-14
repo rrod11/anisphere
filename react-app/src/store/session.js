@@ -103,8 +103,8 @@ export const signUp =
       return ["An error occurred. Please try again."];
     }
   };
-export const deleteUser = () => async (dispatch) => {
-  const res = await fetch("/api/users/", {
+export const deleteUser = (id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}/delete`, {
     method: "DELETE",
   });
   if (res.ok) {
