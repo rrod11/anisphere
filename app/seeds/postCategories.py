@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 # # Adds a demo user, you can add other users here if you want
 def seed_postcategories():
     seed_postcategory1= postcategories( post_id="1", category_id="2" )
-    seed_postcategory2 = postcategories(post_id="3", category_id="1", )
+    seed_postcategory2 = postcategories(post_id="3", category_id="1" )
     seed_postcategory3 = postcategories(post_id="2", category_id="2")
     seed_postcategory4 = postcategories(post_id="4", category_id="3")
 

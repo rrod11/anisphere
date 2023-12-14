@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from .postCategory import postcategories
+
 
 
 class Post(db.Model):
@@ -13,7 +13,7 @@ class Post(db.Model):
     description = db.Column(db.String(2500), nullable=False)
     image = db.Column(db.String(2000))
     user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='SET NULL') )
-    # categories_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id")),nullable=False)
+    categories_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod("categories.id"), ondelete='SET NULL'))
 
 
     reviews = db.relationship("Review", back_populates="posts", cascade="all, delete-orphan")
@@ -24,7 +24,7 @@ class Post(db.Model):
 
     dislikes = db.relationship("Dislike", back_populates="post")
 
-    # categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
+    categories = db.relationship("Category", secondary=add_prefix_for_prod("postcategories"), back_populates="posts")
 
 
 
@@ -39,5 +39,5 @@ class Post(db.Model):
             'dislikes': [dislike.to_dict() for dislike in self.dislikes],
             "images": [image.to_dict() for image in self.images],
             "reviews": [review.to_dict() for review in self.reviews],
-            # "categories": [category.to_dict() for category in self.categories]
+            "categories": [category.to_dict() for category in self.categories]
         }

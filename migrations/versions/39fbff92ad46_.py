@@ -8,6 +8,7 @@ Create Date: 2023-12-13 21:01:22.977013
 from alembic import op
 import sqlalchemy as sa
 
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
@@ -54,6 +55,8 @@ def upgrade():
     sa.Column('description', sa.String(length=2500), nullable=False),
     sa.Column('image', sa.String(length=2000), nullable=True),
     sa.Column('user_id', sa.INTEGER(), nullable=True),
+    sa.Column('categories_id', sa.INTEGER(), nullable=True),
+    sa.ForeignKeyConstraint(['categories_id'], ['id'], ondelete='SET NULL'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='SET NULL'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
@@ -61,6 +64,19 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+
+
+    op.create_table('postcategories',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('post_id', sa.INTEGER(), nullable=True),
+    sa.Column('category_id', sa.INTEGER(), nullable=True),
+    sa.ForeignKeyConstraint(['category_id'], ['categories.id'] ),
+    sa.ForeignKeyConstraint(['post_id'], ['posts.id'] ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE postcategories SET SCHEMA {SCHEMA};")
 
     op.create_table('dislikes',
     sa.Column('id', sa.INTEGER(), nullable=False),
@@ -127,4 +143,6 @@ def downgrade():
     op.drop_table('posts')
     op.drop_table('users')
     op.drop_table('categories')
+    op.drop_table('postcategories')
+
     # ### end Alembic commands ###

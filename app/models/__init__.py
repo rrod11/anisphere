@@ -9,4 +9,4 @@ from .category import Category
 from .post_images import PostImage
 from .likes import Like
 from .dislikes import Dislike
-# from .postCategory import postcategories
+from .postCategory import postcategories
