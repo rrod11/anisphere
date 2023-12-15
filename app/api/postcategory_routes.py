@@ -61,7 +61,7 @@ def create_new_postcategories(postId):
 
     if form.validate_on_submit():
         new_postCategories= postcategories(
-            post_id=postId,
+            post_id=form.data["post_id"],
             category_id=form.data["category_id"],
         )
         print(new_postCategories)

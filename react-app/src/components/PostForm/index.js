@@ -8,6 +8,7 @@ import { allCategories } from "../../store/categoryReducer";
 import { Multiselect } from "multiselect-react-dropdown";
 import "react-multiple-select-dropdown-lite/dist/index.css";
 import {
+  addAPostcategory,
   allPostCategories,
   getPostCategories,
 } from "../../store/postCategoryReducer";
@@ -16,7 +17,7 @@ const PostForm = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
-  const postcategories = useSelector((state) => state.postcategory);
+  // const postcategories = useSelector((state) => state.postcategory);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -92,9 +93,9 @@ const PostForm = () => {
         errObj.image = "Image type is not supported";
       }
     }
-    if (!options.length) {
-      errObj.options = "At least one category must be selected";
-    }
+    // if (!options.length) {
+    //   errObj.options = "At least one category must be selected";
+    // }
 
     if (!title) {
       errObj.title = "Title is required";
@@ -102,6 +103,9 @@ const PostForm = () => {
     setErrors(errObj);
   }
 
+  async function createPC(id, ele) {
+    await dispatch(addAPostcategory(id, ele));
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkForm();
@@ -113,16 +117,33 @@ const PostForm = () => {
       formData.append("title", title);
       formData.append("image", image);
       formData.append("user_id", sessionUser.id);
-      const catties = options.map((ele) => ele.id);
-      console.log("🚀 ~ file: index.js:112 ~ handleSubmit ~ catties:", catties);
-      formData.append("categories", catties);
+      const responseData = await dispatch(createPost(formData));
+      options.forEach(async ({ id, name }) => {
+        let formDat = new FormData();
+        await formDat.append("post_id", responseData.id);
+        console.log(
+          "🚀 ~ file: index.js:124 ~ options.forEach ~ responseData.id:",
+          responseData.id
+        );
+        await formDat.append("category_id", id);
+        console.log(
+          "🚀 ~ file: index.js:124 ~ options.forEach ~ formDat:",
+          formDat
+        );
+        await dispatch(addAPostcategory(responseData.id, formDat));
+      });
+      // console.log("🚀 ~ file: index.js:112 ~ handleSubmit ~ catties:", catties);
+      // formData.append("categories", catties);
       // const newPost = {
-      //     description,
-      //     categories: currentUser.id,
-      //     image,
+      //   description,
+      //   categories: currentUser.id,
+      //   image,
       // };
       // await dispatch(createPost(formData));
-      await dispatch(createPost(formData));
+      console.log(
+        "🚀 ~ file: index.js:130 ~ handleSubmit ~ responseData:",
+        responseData
+      );
 
       setDescription("");
       setImage("");
@@ -134,7 +155,7 @@ const PostForm = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-    dispatch(allPostCategories());
+    // dispatch(allPostCategories());
     const errors = [];
     const errObj = {};
     if (!description.length) {

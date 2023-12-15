@@ -53,6 +53,7 @@ export const createPost = (post) => async (dispatch) => {
     // const { resPost } = await response.json();
     console.log("NEW POST DATA", resPost);
     dispatch(addPost(resPost));
+    return resPost;
   } else {
     console.log("There was an error CREATING your post!");
   }

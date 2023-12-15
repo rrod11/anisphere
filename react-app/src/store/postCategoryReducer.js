@@ -36,10 +36,6 @@ const editPostCategory = (payload) => {
 
 export const allPostCategories = () => async (dispatch) => {
   const response = await fetch(`/api/postcategories/all`);
-  console.log(
-    "🚀 ~ file: postCategoryReducer.js:40 ~ allPostCategories ~ response:",
-    response
-  );
   if (response.ok) {
     const { postcategories } = await response.json();
     dispatch(getPostCategories(postcategories));
@@ -52,11 +48,20 @@ export const addAPostcategory = (postId, payload) => async (dispatch) => {
   const response = await fetch(`/api/postcategories/${postId}/new`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify(payload),
     body: JSON.stringify(payload),
   });
-  const postcategory = await response.json();
-  dispatch(addPostCategory(postcategory));
-  return postcategory;
+  console.log(
+    "🚀 ~ file: postCategoryReducer.js:50 ~ addAPostcategory ~ response:",
+    response
+  );
+  if (response.ok) {
+    const postcategory = await response.json();
+    dispatch(addPostCategory(postcategory));
+    return postcategory;
+  } else {
+    console.log("THERE WAS AN ERROR CREATING THE POST CATEGORY");
+  }
 };
 export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
   const response = await fetch(`/api/postcategories/${postcategoryId}/delete`, {
