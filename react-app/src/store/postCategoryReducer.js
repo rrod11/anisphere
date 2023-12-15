@@ -52,7 +52,7 @@ export const addAPostcategory = (postId, payload) => async (dispatch) => {
   });
   const postcategory = await response.json();
   dispatch(addPostCategory(postcategory));
-  return like;
+  return postcategory;
 };
 export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
   const response = await fetch(`/api/postcategories/${postcategoryId}/delete`, {
@@ -66,7 +66,7 @@ export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
     console.log("There was an error trying to delete postcategory");
   }
 };
-export const editALike =
+export const editAPostcategory =
   (postcategoryId, payload, postId) => async (dispatch) => {
     console.log("DO I HIT THE EDIT A LIKE THUNK");
     const response = await fetch(`/api/postcategories/${postcategoryId}/edit`, {
@@ -74,15 +74,12 @@ export const editALike =
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    console.log(
-      "🚀 ~ file: postCategoryReducer.js:73 ~ editALike ~ response:",
-      response
-    );
+    console.log("🚀 ~ file: postCategoryReducer.js:74 ~ response:", response);
 
     if (response.ok) {
       const postcategory = await response.json();
       console.log(
-        "🚀 ~ file: postCategoryReducer.js:81 ~ editALike ~ postcategory:",
+        "🚀 ~ file: postCategoryReducer.js:82 ~ postcategory:",
         postcategory
       );
 

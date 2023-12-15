@@ -7,11 +7,16 @@ import "./postFormStyles.css";
 import { allCategories } from "../../store/categoryReducer";
 import { Multiselect } from "multiselect-react-dropdown";
 import "react-multiple-select-dropdown-lite/dist/index.css";
+import {
+  allPostCategories,
+  getPostCategories,
+} from "../../store/postCategoryReducer";
 const PostForm = () => {
   // form state
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
+  const postcategories = useSelector((state) => state.postcategory);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -129,6 +134,7 @@ const PostForm = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
+    dispatch(allPostCategories());
     const errors = [];
     const errObj = {};
     if (!description.length) {
