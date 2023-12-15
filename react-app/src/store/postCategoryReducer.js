@@ -5,7 +5,7 @@ const GET_POSTCATEGORIES = "postcategories/GET_POSTCATEGORIES";
 const DELETE_POSTCATEGORY = "postcategories/DELETE_POSTCATEGORY";
 const EDIT_POSTCATEGORY = "postcategories/EDIT_POSTCATEGORY";
 
-const initialState = { likes: {} };
+const initialState = { postcategories: {} };
 // const initialState = {};
 
 const addPostCategory = (payload) => {
@@ -15,16 +15,16 @@ const addPostCategory = (payload) => {
   };
 };
 
-export const getPostCategories = (likes) => {
+export const getPostCategories = (postcategories) => {
   return {
     type: GET_POSTCATEGORIES,
-    likes,
+    postcategories,
   };
 };
-const deletePostCategory = (payload, likeId) => {
+const deletePostCategory = (payload, postcategoryId) => {
   return {
     type: DELETE_POSTCATEGORY,
-    payload: likeId,
+    payload: postcategoryId,
   };
 };
 const editPostCategory = (payload) => {
@@ -37,21 +37,21 @@ const editPostCategory = (payload) => {
 export const allPostCategories = () => async (dispatch) => {
   const response = await fetch(`/api/postcategories/all`);
   if (response.ok) {
-    const { likes } = await response.json();
-    dispatch(getLikes(likes));
+    const { postcategories } = await response.json();
+    dispatch(getPostCategories(postcategories));
   } else {
-    console.log("there was an error getting all reviews");
+    console.log("there was an error getting all postcategories");
   }
 };
 
-export const addALike = (postId, payload) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${postId}/new`, {
+export const addAPostcategory = (postId, payload) => async (dispatch) => {
+  const response = await fetch(`/api/postcategories/${postId}/new`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  const like = await response.json();
-  dispatch(addLike(like));
+  const postcategory = await response.json();
+  dispatch(addPostCategory(postcategory));
   return like;
 };
 export const deleteALike = (likeId) => async (dispatch) => {
@@ -85,16 +85,16 @@ export const editALike = (likeId, payload, postId) => async (dispatch) => {
     console.log("there was and issue updating your LIKE");
   }
 };
-const likeReducer = (state = initialState, action) => {
+const postcategoriesReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case GET_LIKES:
+    case GET_POSTCATEGORIES:
       newState = { ...state };
-      newState.likes = normalizeObj(action.likes);
+      newState.postcategories = normalizeObj(action.postcategories);
       return newState;
-    case ADD_LIKE:
+    case ADD_POSTCATEGORY:
       newState = { ...state };
-      newState.likes[action.payload.id] = action.payload;
+      newState.postcategories[action.payload.id] = action.payload;
       return newState;
     case EDIT_LIKE:
       newState = { ...state };
@@ -111,4 +111,4 @@ const likeReducer = (state = initialState, action) => {
   }
 };
 
-export default likeReducer;
+export default postcategoriesReducer;
