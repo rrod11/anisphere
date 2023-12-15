@@ -36,6 +36,10 @@ const editPostCategory = (payload) => {
 
 export const allPostCategories = () => async (dispatch) => {
   const response = await fetch(`/api/postcategories/all`);
+  console.log(
+    "🚀 ~ file: postCategoryReducer.js:40 ~ allPostCategories ~ response:",
+    response
+  );
   if (response.ok) {
     const { postcategories } = await response.json();
     dispatch(getPostCategories(postcategories));

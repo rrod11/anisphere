@@ -24,11 +24,11 @@ def validation_errors_to_error_messages(validation_errors):
 def get_all_postCategories():
     """get all the postcategories and return them """
     all_postCategories = postcategories.query.all()
-    see_postCategories = [postcategories.to_dict() for postCategories in all_postCategories]
+    see_postCategories = [postcategory.to_dict() for postcategory in all_postCategories]
     print(see_postCategories)
     print(all_postCategories)
 
-    return {"postcategories": see_postcategories}
+    return {"postcategories": see_postCategories}
     # return { "postcategories": see_postcategories}
 
 @postcategories_routes.route('/post/<int:id>')
