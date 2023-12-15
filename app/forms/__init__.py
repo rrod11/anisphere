@@ -6,3 +6,4 @@ from .post_image_form import PostImageForm
 from .like_form import LikeForm
 from .dislike_form import DislikeForm
 from .category_form import CategoryForm
+from .categorypost_form import CategoryPostForm

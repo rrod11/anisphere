@@ -19,15 +19,22 @@ const PostForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const categories = useSelector((state) => state.category.categories);
-  console.log("🚀 ~ file: index.js:20 ~ PostForm ~ categories:", categories);
   const catArr = Object.values(categories);
-  console.log("🚀 ~ file: index.js:20 ~ PostForm ~ catArr:", catArr);
-  const [options, setOptions] = useState([]);
-  console.log("🚀 ~ file: index.js:26 ~ PostForm ~ options:", options);
-  const tellMeSum = (e) => {
+  const [options, setOptions] = useState("");
+  const tellOptionsSum = (e) => {
     console.log(e);
+    setOptions(e);
+    // console.log("🚀 ~ file: index.js:29 ~ rub ~ rub:", nums);
+    // setOptions([...nums]);
+    console.log("🚀 ~ file: index.js:24 ~ PostForm ~ options:", options);
   };
-  // const catsData = { [key: string]: Object}[]=catArr
+  function getIds(arr) {
+    let res = [];
+    for (let i = 0; i < arr.length; i++) {
+      res.push(arr[i].id);
+    }
+    return res;
+  }
 
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
@@ -59,7 +66,7 @@ const PostForm = () => {
     const newImageURL = URL.createObjectURL(tempFile);
     setImage(e.target.files[0]); // Generate a local URL to render the image file inside of the <img> tag.
     setImageURL(newImageURL);
-    console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ imagefile:", image);
+    // console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ imagefile:", image);
     setFile(tempFile);
     setFilename(tempFile.name);
   };
@@ -80,6 +87,9 @@ const PostForm = () => {
         errObj.image = "Image type is not supported";
       }
     }
+    if (!options.length) {
+      errObj.options = "At least one category must be selected";
+    }
 
     if (!title) {
       errObj.title = "Title is required";
@@ -98,6 +108,9 @@ const PostForm = () => {
       formData.append("title", title);
       formData.append("image", image);
       formData.append("user_id", sessionUser.id);
+      const catties = options.map((ele) => ele.id);
+      console.log("🚀 ~ file: index.js:112 ~ handleSubmit ~ catties:", catties);
+      formData.append("categories", catties);
       // const newPost = {
       //     description,
       //     categories: currentUser.id,
@@ -201,25 +214,39 @@ const PostForm = () => {
               value={description}
             />
           </div>
-          <div className="select-m" style={{ width: "50%" }}>
-            <h3>Select Some Categories</h3>
-            <Multiselect
-              options={catArr}
-              displayValue="name"
-              value="id"
-              onClick={tellMeSum}
-              onChange={(e) => options.push(e.target.value)}
-            />
-          </div>
-          {/* {catArr.map((ele, index) => (
-              <option value={index}>{ele.name}</option>
-            ))} */}
-
           <span className="span-error-post">
             {errors.description && (
               <p className="errors">{errors.description}</p>
             )}
           </span>
+          <div className="select-m" style={{ width: "50%" }}>
+            <h3>Select Some Categories</h3>
+            <Multiselect
+              options={catArr}
+              displayValue="name"
+              value={options}
+              onSelect={tellOptionsSum}
+              onRemove={tellOptionsSum}
+              onChange={setOptions}
+            />
+          </div>
+          <span className="span-error-post">
+            {errors.options && <p className="errors">{errors.options}</p>}
+          </span>
+          {/* <div className="select-m" style={{ width: "50%" }}>
+            <h3>Select Some Categories</h3>
+            <select
+              multiple={true}
+              value="id"
+              onClick={tellMeSum}
+              onChange={tellMeSum}
+            >
+              {catArr.map((ele, index) => (
+                <option value={index}>{ele.name}</option>
+              ))}
+            </select>
+          </div> */}
+
           {/* <div className="image-input-box">
             <div>
               <label>ChoosePost Image</label>

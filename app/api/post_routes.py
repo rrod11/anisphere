@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
 # from ..posts import posts as seed_posts
-from app.forms import PostForm
+from app.forms import PostForm, CategoryForm
 from datetime import date
 from random import randint
 from app.models import db, Post, User, PostImage
@@ -75,6 +75,18 @@ def create_new_post():
         print(new_post)
         db.session.add(new_post)
         db.session.commit()
+
+        # categoryArray = form.data["categories"]
+        # print("🐍 File: api/post_routes.py | Line: 80 | create_new_post ~ categoryArray",categoryArray)
+
+        # for ele in form.data["categories"]:
+        #     new_catty = postcategories(
+        #         post_id = new_post.id,
+        #         category_id = ele,
+        #     )
+        #     db.session.add(new_catty)
+        #     db.session.commit()
+
         return new_post.to_dict()
 
 
