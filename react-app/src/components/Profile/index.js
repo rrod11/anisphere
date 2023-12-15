@@ -35,12 +35,26 @@ export default function Profile() {
           Hello, {user.firstname} {user.lastname}
         </h1>
         <div className="profileButtonContainer">
-          <NavLink to="/newpost">
-            <button>Create New Post</button>
+          <NavLink to="/newpost" style={{ textDecoration: "none" }}>
+            <button
+              className="profile-new-post-button"
+              style={{
+                background: "darkgreen",
+                height: "100%",
+                margin: " 10px 0",
+                color: "white",
+              }}
+            >
+              Create New Post
+            </button>
           </NavLink>
-          <div className="delete-profile">
+          <div
+            className="delete-profile"
+            style={{ background: "transparent", borderRadius: "15px" }}
+          >
             <OpenModalButton
               modalClasses={["delete-button-container"]}
+              style={{ background: "red" }}
               buttonText="Delete your Account"
               modalComponent={<DeleteAccount />}
             />

@@ -35,8 +35,7 @@ export default function UserPosts({ user }) {
     <>
       {isLoaded && (
         <>
-          POSTS
-          {UserPosts.length > 0 ? (
+          {userPosts.length > 0 ? (
             <div className="userPostsContainer">
               {userPosts.map((ele) => (
                 <div className="indvUserPosts">
