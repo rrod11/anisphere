@@ -54,37 +54,44 @@ export const addAPostcategory = (postId, payload) => async (dispatch) => {
   dispatch(addPostCategory(postcategory));
   return like;
 };
-export const deleteALike = (likeId) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${likeId}/delete`, {
+export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
+  const response = await fetch(`/api/postcategories/${postcategoryId}/delete`, {
     method: "DELETE",
   });
 
   if (response.ok) {
-    dispatch(deleteLike(likeId));
+    dispatch(deletePostCategory(postcategoryId));
     return response;
   } else {
-    console.log("There was an error trying to delete review");
+    console.log("There was an error trying to delete postcategory");
   }
 };
-export const editALike = (likeId, payload, postId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A LIKE THUNK");
-  const response = await fetch(`/api/likes/${likeId}/edit`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  console.log("🚀 ~ file: likes.js:73 ~ editALike ~ response:", response);
+export const editALike =
+  (postcategoryId, payload, postId) => async (dispatch) => {
+    console.log("DO I HIT THE EDIT A LIKE THUNK");
+    const response = await fetch(`/api/postcategories/${postcategoryId}/edit`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    console.log(
+      "🚀 ~ file: postCategoryReducer.js:73 ~ editALike ~ response:",
+      response
+    );
 
-  if (response.ok) {
-    const like = await response.json();
-    console.log("🚀 ~ file: likes.js:80 ~ editALike ~ like:", like);
+    if (response.ok) {
+      const postcategory = await response.json();
+      console.log(
+        "🚀 ~ file: postCategoryReducer.js:81 ~ editALike ~ postcategory:",
+        postcategory
+      );
 
-    dispatch(editLike(like));
-    return like;
-  } else {
-    console.log("there was and issue updating your LIKE");
-  }
-};
+      dispatch(editPostCategory(postcategory));
+      return postcategory;
+    } else {
+      console.log("there was and issue updating your POSTCATEGORY");
+    }
+  };
 const postcategoriesReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
@@ -96,15 +103,15 @@ const postcategoriesReducer = (state = initialState, action) => {
       newState = { ...state };
       newState.postcategories[action.payload.id] = action.payload;
       return newState;
-    case EDIT_LIKE:
+    case EDIT_POSTCATEGORY:
       newState = { ...state };
-      console.log("IN EDIT LIKE REDUCER AND TRYING TO SEE ID", action);
-      newState.likes[action.payload.id] = action.payload;
+      console.log("IN EDIT POSTCATEGORY REDUCER AND TRYING TO SEE ID", action);
+      newState.postcategories[action.payload.id] = action.payload;
       return newState;
-    case DELETE_LIKE:
+    case DELETE_POSTCATEGORY:
       let deleteState;
       deleteState = { ...state };
-      delete deleteState[action.likeId];
+      delete deleteState[action.postcategoryId];
       return deleteState;
     default:
       return state;
