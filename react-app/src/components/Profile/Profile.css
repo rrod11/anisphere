@@ -1,5 +1,8 @@
 .profileContainer {
   margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profileTab {
@@ -21,30 +24,56 @@
   padding-top: 15px;
   overflow-wrap: wrap;
 }
+.profileButtonContainer {
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+}
+.profileButtonContainer > a {
+  width: 50%;
+}
+.profileButtonContainer > a > button {
+  width: 100%;
+  margin: 10px 0px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  transition: all 0.3s ease 0s;
+  border: none;
+  border-radius: 15px;
+}
+
+.delete-profile {
+  width: 50%;
+}
+/* .delete-button-container {
+  font-size: 18px;
+  width: 70%;
+  color: #ab434a;
+  border: 5px solid #ab434a;
+  border-radius: 12px;
+  background-color: #ab434a;
+  cursor: pointer;
+  position: relative;
+} */
 
 .profileButtonContainer {
   display: flex;
   gap: 15px;
 }
 
-.userOrdersContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 .userReviewsContainer,
-.userProductsContainer,
-.userOrderItemsContainer,
-.userWishlistContainer {
+.userPostsContainer {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
   overflow-y: scroll hidden;
 }
-.indvUserProducts,
-.indvUserReviews,
-.indvUserOrderItems,
-.indvUserWishItems {
+.indvUserPosts,
+.indvUserReviews {
   padding: 25px;
   gap: 15px;
   border: 1px solid #322e3f;
@@ -55,13 +84,16 @@
   margin: 20px auto;
   transition: all 0.2s ease-in-out;
 }
-.indvUserProducts {
+.indvUserPosts {
   width: fit-content;
   min-width: 350px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.indvUserReviews,
-.indvUserOrderItems,
-.indvUserWishItems {
+.indvUserReviews {
   /* display: flex; */
   min-width: 200px;
   max-height: 250px;
@@ -72,59 +104,40 @@
 .indvUserReviews {
   overflow-y: scroll;
 }
-.indvUserProducts:hover,
-.indvUserReviews:hover,
-.indvUserOrderItems:hover,
-.indvUserWishItems:hover {
+.indvUserPosts:hover,
+.indvUserReviews:hover {
   transform: translateY(-10px);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-.userProductImages {
+.userPostImages {
   max-width: 150px;
   padding: 5px;
 }
-.userIdvProductImage {
-  height: 300px;
-  width: 300px;
+.userIdvPostImage {
+  height: 350px;
+  width: 350px;
   border-radius: 15px;
 }
-.userProductDescription,
-.userProductReview {
+.userPostDescription,
+.userPostReview {
   display: flex;
   overflow-wrap: anywhere;
   flex-wrap: wrap;
   min-width: 150px;
-  max-width: 150px;
-}
-.orderItemPriceQuantDiv {
-  display: flex;
-  justify-content: space-between;
-}
-.userProductPrice,
-.orderedItemPrice {
-  display: flex;
-  justify-content: flex-end;
-}
-.userProductButtons,
-.userOrderButtons,
-.userWishlistButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-#editroductButton {
-  width: 100%;
+  max-width: 300px;
+  min-height: 415px;
+  max-height: 415px;
+  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
-.pastOrdersBody {
-  margin: 25px;
-}
-.indvOrdersInAll {
-  border-bottom: 1px solid rgb(58, 102, 115);
-}
-.allrdersItemsContainer {
-  display: inline-flex;
-  justify-content: flex-start;
+.userPostButtons {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
   gap: 15px;
-  color: hwb(173 29% 47%);
+  align-items: center;
+}
+#editPostButton {
+  width: 100%;
 }
