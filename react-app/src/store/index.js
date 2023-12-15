@@ -6,6 +6,7 @@ import userReducer from "./userReducer";
 import reviewReducer from "./reviewReducer";
 import likeReducer from "./likes";
 import dislikeReducer from "./dislikes";
+import categoryReducer from "./categoryReducer";
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   review: reviewReducer,
   like: likeReducer,
   dislike: dislikeReducer,
+  category: categoryReducer,
 });
 
 let enhancer;

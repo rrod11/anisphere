@@ -153,3 +153,12 @@
 .fa-fa-fa {
   cursor: pointer;
 }
+.cat-div {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: yellow;
+  font-size: 20px;
+}

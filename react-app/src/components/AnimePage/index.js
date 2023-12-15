@@ -11,6 +11,7 @@ import DeletePost from "../DeleteModal/deleteModalPost";
 import { allTheReviews } from "../../store/reviewReducer";
 import { addALike, allLikes, editALike } from "../../store/likes";
 import { addADislike, allDislikes, editADislike } from "../../store/dislikes";
+import { allCategories } from "../../store/categoryReducer";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -174,7 +175,7 @@ const AnimePage = ({ posts }) => {
     const dislikes = await fetch(`/api/dislikes/all`);
     dispatch(allLikes());
     dispatch(allDislikes());
-
+    dispatch(allCategories());
     setIsLoaded(true);
   }, [dispatch, isLoaded, render]);
   if (!target) {
@@ -334,6 +335,16 @@ const AnimePage = ({ posts }) => {
             </div>
             <div className="description-container">
               <h3 className="post-description">{target.description}</h3>
+            </div>
+            <div className="cat-div">
+              <h6>
+                Categories:
+                <ul>
+                  {target.categories.map((ele, index) => (
+                    <li>{`${index + 1}. ${ele.name}`}</li>
+                  ))}
+                </ul>
+              </h6>
             </div>
             <div className="post-buttons-container">
               <div className="post-edit-button">

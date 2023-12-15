@@ -4,6 +4,9 @@ import { createPost, getAllPosts } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "./postFormStyles.css";
+import { allCategories } from "../../store/categoryReducer";
+import { Multiselect } from "multiselect-react-dropdown";
+import "react-multiple-select-dropdown-lite/dist/index.css";
 const PostForm = () => {
   // form state
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -15,6 +18,17 @@ const PostForm = () => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
+  const categories = useSelector((state) => state.category.categories);
+  console.log("🚀 ~ file: index.js:20 ~ PostForm ~ categories:", categories);
+  const catArr = Object.values(categories);
+  console.log("🚀 ~ file: index.js:20 ~ PostForm ~ catArr:", catArr);
+  const [options, setOptions] = useState([]);
+  console.log("🚀 ~ file: index.js:26 ~ PostForm ~ options:", options);
+  const tellMeSum = (e) => {
+    console.log(e);
+  };
+  // const catsData = { [key: string]: Object}[]=catArr
+
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
   const [imageURL, setImageURL] = useState(
@@ -22,7 +36,9 @@ const PostForm = () => {
   );
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
+
   // if (!sessionUser) return <Redirect to="/" />;
+
   let disabled = false;
   const disable = () => {
     disabled = true;
@@ -117,6 +133,7 @@ const PostForm = () => {
     }
     // setErrors(errObj);
     setValidationErrors(errors);
+    dispatch(allCategories());
   }, [dispatch, description, image, title]);
 
   if (sessionUser) {
@@ -184,6 +201,20 @@ const PostForm = () => {
               value={description}
             />
           </div>
+          <div className="select-m" style={{ width: "50%" }}>
+            <h3>Select Some Categories</h3>
+            <Multiselect
+              options={catArr}
+              displayValue="name"
+              value="id"
+              onClick={tellMeSum}
+              onChange={(e) => options.push(e.target.value)}
+            />
+          </div>
+          {/* {catArr.map((ele, index) => (
+              <option value={index}>{ele.name}</option>
+            ))} */}
+
           <span className="span-error-post">
             {errors.description && (
               <p className="errors">{errors.description}</p>

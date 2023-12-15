@@ -1,3 +1,5 @@
+@import url("https://cdn.syncfusion.com/ej2/bootstrap5.css");
+
 div.post-form-page {
   /* height: 500px; */
   display: flex;
@@ -10,7 +12,8 @@ div.post-form-page {
   /* margin: 15px 0 15px 0; */
   background-color: rgb(0, 255, 42);
   /* width: 600px; */
-  height: 650px;
+  height: 750px;
+  overflow-y: scroll;
 }
 
 form {

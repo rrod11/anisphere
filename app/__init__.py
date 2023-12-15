@@ -11,6 +11,7 @@ from .api.post_routes import post_routes
 from .api.review_routes import review_routes
 from .api.like_routes import like_routes
 from .api.dislike_routes import dislike_routes
+from .api.category_routes import category_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -37,6 +38,7 @@ app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(dislike_routes, url_prefix='/api/dislikes')
+app.register_blueprint(category_routes, url_prefix='/api/categories')
 db.init_app(app)
 Migrate(app, db)
 
