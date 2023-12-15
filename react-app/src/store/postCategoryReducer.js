@@ -8,34 +8,34 @@ const EDIT_POSTCATEGORY = "postcategories/EDIT_POSTCATEGORY";
 const initialState = { likes: {} };
 // const initialState = {};
 
-const addLike = (payload) => {
+const addPostCategory = (payload) => {
   return {
-    type: ADD_LIKE,
+    type: ADD_POSTCATEGORY,
     payload,
   };
 };
 
-export const getLikes = (likes) => {
+export const getPostCategories = (likes) => {
   return {
-    type: GET_LIKES,
+    type: GET_POSTCATEGORIES,
     likes,
   };
 };
-const deleteLike = (payload, likeId) => {
+const deletePostCategory = (payload, likeId) => {
   return {
-    type: DELETE_LIKE,
+    type: DELETE_POSTCATEGORY,
     payload: likeId,
   };
 };
-const editLike = (payload) => {
+const editPostCategory = (payload) => {
   return {
-    type: EDIT_LIKE,
+    type: EDIT_POSTCATEGORY,
     payload,
   };
 };
 
-export const allLikes = () => async (dispatch) => {
-  const response = await fetch(`/api/likes/all`);
+export const allPostCategories = () => async (dispatch) => {
+  const response = await fetch(`/api/postcategories/all`);
   if (response.ok) {
     const { likes } = await response.json();
     dispatch(getLikes(likes));
