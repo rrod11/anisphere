@@ -9,6 +9,7 @@ import dislikeReducer from "./dislikes";
 import categoryReducer from "./categoryReducer";
 import postcategoriesReducer from "./postCategoryReducer";
 import threadReducer from "./threadReducer";
+import threadlikeReducer from "./threadlikesReducer";
 
 const rootReducer = combineReducers({
   session,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   category: categoryReducer,
   postcategory: postcategoriesReducer,
   thread: threadReducer,
+  threadlike: threadlikeReducer,
 });
 
 let enhancer;

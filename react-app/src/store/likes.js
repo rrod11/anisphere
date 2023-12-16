@@ -1,9 +1,9 @@
 import { normalizeObj } from "./helpers";
 
-const ADD_LIKE = "review/ADD_LIKE";
-const GET_LIKES = "reviews/GET_LIKES";
-const DELETE_LIKE = "reviews/DELETE_LIKE";
-const EDIT_LIKE = "reviews/EDIT_LIKE";
+const ADD_LIKE = "likes/ADD_LIKE";
+const GET_LIKES = "likes/GET_LIKES";
+const DELETE_LIKE = "likes/DELETE_LIKE";
+const EDIT_LIKE = "likes/EDIT_LIKE";
 
 const initialState = { likes: {} };
 // const initialState = {};
@@ -40,7 +40,7 @@ export const allLikes = () => async (dispatch) => {
     const { likes } = await response.json();
     dispatch(getLikes(likes));
   } else {
-    console.log("there was an error getting all reviews");
+    console.log("there was an error getting all likes");
   }
 };
 
@@ -63,7 +63,7 @@ export const deleteALike = (likeId) => async (dispatch) => {
     dispatch(deleteLike(likeId));
     return response;
   } else {
-    console.log("There was an error trying to delete review");
+    console.log("There was an error trying to delete likes");
   }
 };
 export const editALike = (likeId, payload, postId) => async (dispatch) => {

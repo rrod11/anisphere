@@ -8,3 +8,4 @@ from .dislike_form import DislikeForm
 from .category_form import CategoryForm
 from .categorypost_form import CategoryPostForm
 from .thread import ThreadForm
+from .threadlikes_form import ThreadlikesForm

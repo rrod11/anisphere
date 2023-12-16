@@ -9,6 +9,7 @@ class ThreadLike(db.Model):
   id = db.Column(db.INTEGER, primary_key=True)
   thread_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod('threads.id'), ondelete='CASCADE'))
   user_id = db.Column(db.INTEGER, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'))
+  likes = db.Column(db.Boolean(), nullable=False)
 
   thread = db.relationship("Thread", back_populates="threadlikes")
 
