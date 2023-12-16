@@ -13,6 +13,9 @@ import { addALike, allLikes, editALike } from "../../store/likes";
 import { addADislike, allDislikes, editADislike } from "../../store/dislikes";
 import { allCategories } from "../../store/categoryReducer";
 import { allPostCategories } from "../../store/postCategoryReducer";
+import DebateDen from "./DebateDen";
+import HaterHub from "./HaterHub";
+import FanFaction from "./FanFaction";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -563,7 +566,9 @@ const AnimePage = ({ posts }) => {
               </h1>
             ) : null}
             <div className="animeTabDisplay">
-              {/* {loadForum && <UserPosts user={user} />} */}
+              {loadDebateDen && <DebateDen />}
+              {loadFanFaction && <FanFaction />}
+              {loadHaterHub && <HaterHub />}
               {loadReviews && (
                 <Reviews list={target.reviews} posts={posts} theId={postId} />
               )}
