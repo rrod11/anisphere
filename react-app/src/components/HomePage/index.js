@@ -56,9 +56,25 @@ const HomePage = ({ posts }) => {
             </progress>
           </h1>
         </div> */}
-        <div>
-          <i className="fa fa-search"></i>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            height: "30px",
+          }}
+        >
+          <i
+            className="fa fa-search"
+            style={{
+              position: "absolute",
+              top: " 215px",
+              left: "70px",
+              fontSize: "20px",
+            }}
+          ></i>
           <input
+            style={{ padding: "0 30px", borderRadius: "15px" }}
             type="text"
             placeholder={"Search Our Products..."}
             className="form-input"
