@@ -13,6 +13,30 @@ const HomePage = ({ posts }) => {
   // const allPosts = useSelector((state) => state.post.posts);
   const postArr = Object.values(posts);
 
+  const [filteredData, setFilteredData] = useState(postArr);
+  const [search, setSearch] = useState("");
+
+  const filterFunc = (e) => {
+    const searchWord = e.target.value;
+    setSearch(searchWord);
+    const newFilter = postArr.filter((value) => {
+      console.log("🚀 ~ file: index.js:23 ~ newFilter ~ value:", value);
+      if (
+        value.title.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.categories.find(
+          (ele) => ele.name.toLowerCase() == searchWord.toLowerCase()
+        )
+      ) {
+        return value;
+      }
+    });
+    if (searchWord === "") {
+      setFilteredData(postArr);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
   useEffect(() => {
     dispatch(getAllPosts())
       .then(() => {
@@ -21,48 +45,26 @@ const HomePage = ({ posts }) => {
       .then(() => history.push("/home"));
   }, [dispatch, isLoaded]);
 
-  // if (isLoaded && postArr.length >= 1) {
-  //   let text = document.querySelector(".fancy");
-  //   const strText = text?.textContent;
-  //   const splitText = strText?.split("");
-  //   console.log("🚀 ~ file: index.js:28 ~ HomePage ~ splitText:", splitText);
-  //   text.textContent = "";
-
-  //   for (let i = 0; i < splitText?.length; i++) {
-  //     if (splitText[i] != " ") {
-  //       text.innerHTML += "<span>" + splitText[i] + "</span>";
-  //     } else {
-  //       text.innerHTML += "<span>" + " " + "</span>";
-  //     }
-  //   }
-
-  //   let char = 0;
-  //   let timer = setInterval(onTick, 50);
-  //   function onTick() {
-  //     const span = text.querySelectorAll("span")[char];
-  //     span.classList.add("fade");
-  //     char++;
-  //     if (char === splitText.length) {
-  //       complete();
-  //       return;
-  //     }
-  //   }
-  //   function complete() {
-  //     clearInterval(timer);
-  //     timer = null;
-  //   }
-  // }
-
   if (isLoaded && postArr.length >= 1) {
     return (
       <div id="post-page" style={{ zIndex: "-1" }}>
-        <div className="progress-div">
+        {/* <div className="progress-div">
           <h1 className="progress">
             ProGress
             <progress id="completion" max="100" volume="5">
               5%
             </progress>
           </h1>
+        </div> */}
+        <div>
+          <i className="fa fa-search"></i>
+          <input
+            type="text"
+            placeholder={"Search Our Products..."}
+            className="form-input"
+            value={search}
+            onChange={filterFunc}
+          />
         </div>
         <div className="wrapper">
           <h3 className="h3">
@@ -125,7 +127,7 @@ const HomePage = ({ posts }) => {
           <h3 className="h3">
             <p className="dot"></p>
           </h3>
-          <div className="scroll-bg">
+          {/* <div className="scroll-bg">
             <div className="scroll-div">
               <div className="scroll-object">
                 This is the beginning of the best anime site to ever exist. I
@@ -144,10 +146,10 @@ const HomePage = ({ posts }) => {
                 thought that youd see on a website meant for just us dweebs!!..
               </div>
             </div>
-          </div>
+          </div> */}
           <h1 className="fancy">ALL ANIME</h1>
           <div className="item-selector">
-            {postArr?.map((ele) => (
+            {filteredData?.map((ele) => (
               <a key={ele.id} href={`/posts/${ele.id}`}>
                 <div
                   className={`item ${ele.id}`}
