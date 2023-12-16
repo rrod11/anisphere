@@ -12,15 +12,26 @@ import { allTheReviews } from "../../store/reviewReducer";
 import { addALike, allLikes, editALike } from "../../store/likes";
 import { addADislike, allDislikes, editADislike } from "../../store/dislikes";
 import { allCategories } from "../../store/categoryReducer";
+import { allPostCategories } from "../../store/postCategoryReducer";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
+  console.log("🚀 ~ file: index.js:22 ~ AnimePage ~ postId:", postId);
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
+  const categories = useSelector((state) => state.category.categories);
+  console.log("🚀 ~ file: index.js:27 ~ AnimePage ~ categories:", categories);
+  const postcategories = useSelector(
+    (state) => state.postcategory.postcategories
+  );
+  console.log(
+    "🚀 ~ file: index.js:28 ~ AnimePage ~ postcategories:",
+    postcategories
+  );
   const [isLoaded, setIsLoaded] = useState(false);
   const userObj = useSelector((state) => state.user.users);
   const likes = useSelector((state) => state.like.likes);
@@ -33,7 +44,23 @@ const AnimePage = ({ posts }) => {
     (ele) => ele.post_id == target.id
   );
   const dislikeTotal = dislikeArr.filter((ele) => ele.dislikes == true).length;
-
+  const targetCategories = Object.values(postcategories).filter((ele) => {
+    if (parseInt(ele.postId) === parseInt(postId)) {
+      return ele;
+    }
+  });
+  console.log(
+    "🚀 ~ file: index.js:39 ~ AnimePage ~ targetCategories:",
+    targetCategories
+  );
+  const targetCats = Object.values(categories).filter((ele) => {
+    for (let item of targetCategories) {
+      if (parseInt(ele.id) == parseInt(item.categoryId)) {
+        return ele;
+      }
+    }
+  });
+  console.log("🚀 ~ file: index.js:61 ~ targetCats ~ targetCats:", targetCats);
   const [render, setRender] = useState(false);
   let liked = false;
   let disliked = false;
@@ -176,6 +203,7 @@ const AnimePage = ({ posts }) => {
     dispatch(allLikes());
     dispatch(allDislikes());
     dispatch(allCategories());
+    dispatch(allPostCategories());
     setIsLoaded(true);
   }, [dispatch, isLoaded, render]);
   if (!target) {
@@ -355,7 +383,7 @@ const AnimePage = ({ posts }) => {
                     flexWrap: "wrap",
                   }}
                 >
-                  {target.categories.map((ele, index) => (
+                  {targetCats.map((ele, index) => (
                     <li style={{ margin: "5px" }}>{`${index + 1}. ${
                       ele.name
                     }`}</li>
