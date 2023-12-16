@@ -75,29 +75,28 @@ export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
     console.log("There was an error trying to delete postcategory");
   }
 };
-export const editAPostcategory =
-  (postcategoryId, payload, postId) => async (dispatch) => {
-    console.log("DO I HIT THE EDIT A LIKE THUNK");
-    const response = await fetch(`/api/postcategories/${postcategoryId}/edit`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    console.log("🚀 ~ file: postCategoryReducer.js:74 ~ response:", response);
+export const editAPostcategory = (payload, postId) => async (dispatch) => {
+  console.log("DO I HIT THE EDIT A LIKE THUNK");
+  const response = await fetch(`/api/postcategories/${postId}/edit`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  console.log("🚀 ~ file: postCategoryReducer.js:74 ~ response:", response);
 
-    if (response.ok) {
-      const postcategory = await response.json();
-      console.log(
-        "🚀 ~ file: postCategoryReducer.js:82 ~ postcategory:",
-        postcategory
-      );
+  if (response.ok) {
+    const postcategory = await response.json();
+    console.log(
+      "🚀 ~ file: postCategoryReducer.js:82 ~ postcategory:",
+      postcategory
+    );
 
-      dispatch(editPostCategory(postcategory));
-      return postcategory;
-    } else {
-      console.log("there was and issue updating your POSTCATEGORY");
-    }
-  };
+    dispatch(editPostCategory(postcategory));
+    return postcategory;
+  } else {
+    console.log("there was and issue updating your POSTCATEGORY");
+  }
+};
 const postcategoriesReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {

@@ -4,7 +4,10 @@ import { createPost, editPost } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
 import "./editPost.css";
 import { Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { addAPostcategory } from "../../store/postCategoryReducer";
+import {
+  addAPostcategory,
+  editAPostcategory,
+} from "../../store/postCategoryReducer";
 import Multiselect from "multiselect-react-dropdown";
 import { allCategories } from "../../store/categoryReducer";
 
@@ -122,13 +125,21 @@ const EditPostForm = () => {
 
       const responseData = await dispatch(editPost(formData, postId));
       options.forEach(async ({ id, name }) => {
+        console.log(
+          "🚀 ~ file: index.js:132 ~ options.forEach ~ payloadObj.stock:",
+          stock
+        );
         const payloadObj = {
           category_id: id,
-          post_id: responseData?.id,
+          post_id: stock?.id,
         };
 
         const response2 = await dispatch(
-          addAPostcategory(responseData?.id, payloadObj)
+          editAPostcategory(payloadObj, stock?.id)
+        );
+        console.log(
+          "🚀 ~ file: index.js:134 ~ options.forEach ~ response2:",
+          response2
         );
       });
 
@@ -260,7 +271,7 @@ const EditPostForm = () => {
           <button
             className="new-post-button"
             disabled={disabled}
-            onClick={[(disabled = true), checkForm]}
+            onClick={checkForm}
           >
             Update Post
           </button>
