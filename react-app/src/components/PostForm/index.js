@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "./postFormStyles.css";
 import { allCategories } from "../../store/categoryReducer";
 import { Multiselect } from "multiselect-react-dropdown";
-import "react-multiple-select-dropdown-lite/dist/index.css";
+
 import {
   addAPostcategory,
   allPostCategories,
