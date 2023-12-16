@@ -9,16 +9,16 @@ likeChoice= [False, True]
 
 # Adds a seed_likes
 def seed_likes():
-    seed_likes1= Like(likes=True, user_id=randint(1, 10), post_id=randint(1, 123))
-    seed_likes2 = Like(likes=True, user_id=randint(1, 10), post_id=randint(1, 123))
-    seed_likes3 = Like(likes=True, user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes4 = Like(likes=True, user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes5 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes6 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes7 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes8 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes9 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
-    seed_likes10 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 123))
+    seed_likes1= Like(likes=True, user_id=randint(1, 10), post_id=randint(1, 122))
+    seed_likes2 = Like(likes=True, user_id=randint(1, 10), post_id=randint(1, 122))
+    seed_likes3 = Like(likes=True, user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes4 = Like(likes=True, user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes5 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes6 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes7 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes8 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes9 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
+    seed_likes10 = Like(likes=choice(likeChoice), user_id=randint(1, 10),post_id=randint(1, 122))
 
 
     all_likes = [seed_likes1, seed_likes2, seed_likes3, seed_likes4,
