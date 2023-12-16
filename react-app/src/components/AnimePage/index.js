@@ -336,12 +336,29 @@ const AnimePage = ({ posts }) => {
             <div className="description-container">
               <h3 className="post-description">{target.description}</h3>
             </div>
-            <div className="cat-div">
-              <h6>
+            <div
+              className="cat-div"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <h6
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 Categories:
-                <ul>
+                <ul
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                  }}
+                >
                   {target.categories.map((ele, index) => (
-                    <li>{`${index + 1}. ${ele.name}`}</li>
+                    <li style={{ margin: "5px" }}>{`${index + 1}. ${
+                      ele.name
+                    }`}</li>
                   ))}
                 </ul>
               </h6>

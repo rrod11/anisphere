@@ -148,6 +148,7 @@
   grid-gap: 15px;
   gap: 15px;
   align-items: center;
+  width: 300px;
 }
 #editPostButton {
   width: 100%;

@@ -28,19 +28,8 @@ const PostForm = () => {
   const catArr = Object.values(categories);
   const [options, setOptions] = useState("");
   const tellOptionsSum = (e) => {
-    console.log(e);
     setOptions(e);
-    // console.log("🚀 ~ file: index.js:29 ~ rub ~ rub:", nums);
-    // setOptions([...nums]);
-    console.log("🚀 ~ file: index.js:24 ~ PostForm ~ options:", options);
   };
-  function getIds(arr) {
-    let res = [];
-    for (let i = 0; i < arr.length; i++) {
-      res.push(arr[i].id);
-    }
-    return res;
-  }
 
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
@@ -93,9 +82,9 @@ const PostForm = () => {
         errObj.image = "Image type is not supported";
       }
     }
-    // if (!options.length) {
-    //   errObj.options = "At least one category must be selected";
-    // }
+    if (!options.length) {
+      errObj.options = "At least one category must be selected";
+    }
 
     if (!title) {
       errObj.title = "Title is required";
@@ -103,9 +92,6 @@ const PostForm = () => {
     setErrors(errObj);
   }
 
-  async function createPC(id, ele) {
-    await dispatch(addAPostcategory(id, ele));
-  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkForm();
@@ -130,7 +116,7 @@ const PostForm = () => {
         };
 
         const response2 = await dispatch(
-          addAPostcategory(responseData.id, payloadObj)
+          addAPostcategory(responseData?.id, payloadObj)
         );
       });
 
@@ -249,31 +235,7 @@ const PostForm = () => {
           <span className="span-error-post">
             {errors.options && <p className="errors">{errors.options}</p>}
           </span>
-          {/* <div className="select-m" style={{ width: "50%" }}>
-            <h3>Select Some Categories</h3>
-            <select
-              multiple={true}
-              value="id"
-              onClick={tellMeSum}
-              onChange={tellMeSum}
-            >
-              {catArr.map((ele, index) => (
-                <option value={index}>{ele.name}</option>
-              ))}
-            </select>
-          </div> */}
 
-          {/* <div className="image-input-box">
-            <div>
-              <label>ChoosePost Image</label>
-            </div>
-            <input
-              id="image"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </div> */}
           <div style={{ color: "red", fontSize: "22px" }}>
             ** .webp, .avif file types not supported. **
           </div>

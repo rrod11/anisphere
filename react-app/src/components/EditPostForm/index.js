@@ -4,6 +4,8 @@ import { createPost, editPost } from "../../store/postReducer";
 import { useHistory } from "react-router-dom";
 import "./editPost.css";
 import { Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { addAPostcategory } from "../../store/postCategoryReducer";
+import Multiselect from "multiselect-react-dropdown";
 
 const EditPostForm = () => {
   // form state
@@ -19,10 +21,19 @@ const EditPostForm = () => {
   const history = useHistory();
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
+  const categories = useSelector((state) => state.category.categories);
+  const catArr = Object.values(categories);
+  const targetCatArr = target.categories.map((ele) => {
+    return ele.id;
+  });
+  const [options, setOptions] = useState([targetCatArr]);
   const [imageURL, setImageURL] = useState(target.image);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
   let disabled = false;
+  const tellOptionsSum = (e) => {
+    setOptions(e);
+  };
 
   const fileWrap = (e) => {
     e.stopPropagation();
@@ -55,6 +66,9 @@ const EditPostForm = () => {
         errObj.image = "Image type is not supported";
       }
     }
+    // if (!options.length) {
+    //   errObj.options = "At least one category must be selected";
+    // }
 
     if (!title) {
       errObj.title = "Title is required";
@@ -91,7 +105,17 @@ const EditPostForm = () => {
       formData.append("user_id", sessionUser.id);
       formData.append("id", postId);
 
-      await dispatch(editPost(formData, postId));
+      const responseData = await dispatch(editPost(formData, postId));
+      options.forEach(async ({ id, name }) => {
+        const payloadObj = {
+          category_id: id,
+          post_id: responseData?.id,
+        };
+
+        const response2 = await dispatch(
+          addAPostcategory(responseData?.id, payloadObj)
+        );
+      });
 
       setDescription("");
       setImage("");
@@ -178,17 +202,21 @@ const EditPostForm = () => {
             />
           </div>
           {errors.description && <p className="errors">{errors.description}</p>}
-          {/* <div className="image-input-box">
-            <div>
-              <label>ChoosePost Image</label>
-            </div>
-            <input
-              id="image"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
+          <div className="select-m" style={{ width: "50%" }}>
+            <h3>Select Some Categories</h3>
+            <Multiselect
+              options={catArr}
+              displayValue="name"
+              value={options}
+              onSelect={tellOptionsSum}
+              onRemove={tellOptionsSum}
+              onChange={setOptions}
             />
-          </div> */}
+          </div>
+          <span className="span-error-post">
+            {errors.options && <p className="errors">{errors.options}</p>}
+          </span>
+
           <div style={{ color: "red", fontSize: "22px" }}>
             ** .webp, .avif file types not supported. **
           </div>

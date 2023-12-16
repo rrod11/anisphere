@@ -6,6 +6,7 @@ import DeletePost from "../DeleteModal/deleteModalPost";
 import { editAReview } from "../../store/reviewReducer";
 import "./Profile.css";
 import { getAllPosts } from "../../store/postReducer";
+import DeleteUserPost from "../DeleteModal/deleteModalUserPosts";
 
 export default function UserPosts({ user }) {
   const dispatch = useDispatch();
@@ -18,7 +19,11 @@ export default function UserPosts({ user }) {
   const userPosts = postArr.filter((ele) => ele.userId == currUser.id);
   console.log("🚀 ~ file: userPosts.js:19 ~ UserPosts ~ userPosts:", userPosts);
   const [isLoaded, setIsLoaded] = useState(false);
-  const closeMenu = () => setShowMenu(false);
+  const [render, setRender] = useState(false);
+  const closeMenu = () => {
+    setRender(!render);
+    setShowMenu(false);
+  };
 
   const edit = (e, postId) => {
     e.preventDefault();
@@ -29,7 +34,7 @@ export default function UserPosts({ user }) {
   useEffect(() => {
     const userId = user.id;
     dispatch(getAllPosts()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+  }, [dispatch, render]);
 
   return (
     <>
@@ -74,7 +79,13 @@ export default function UserPosts({ user }) {
                             buttonText="Delete Post"
                             modalClasses={["add-delete-button-container"]}
                             onButtonClick={closeMenu}
-                            modalComponent={<DeletePost postId={ele.id} />}
+                            modalComponent={
+                              <DeletePost
+                                postId={ele.id}
+                                render={render}
+                                setRender={setRender}
+                              />
+                            }
                           />
                         ) : null}
                       </div>

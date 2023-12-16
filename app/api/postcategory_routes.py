@@ -89,7 +89,7 @@ def update_postCategories(id):
     postCategories_to_update = postcategories.query.get(id)
     if(postCategories_to_update):
         postCategories_to_update.post_id=form.data["post_id"]
-        postCategories_to_update.user_id=form.data["user_id"]
+        postCategories_to_update.category_id=form.data["category_id"]
 
     db.session.commit()
     return postCategories_to_update.to_dict()
