@@ -10,3 +10,6 @@ from .post_images import PostImage
 from .likes import Like
 from .dislikes import Dislike
 from .postCategory import postcategories
+from .thread import Thread
+from .thread_likes import ThreadLike
+from .replies import Reply

@@ -152,7 +152,7 @@ def seed_posts():
                  seed_post111, seed_post112, seed_post113, seed_post114, seed_post115, seed_post116, seed_post117, seed_post118,
                  seed_post119, seed_post120, seed_post121, seed_post122, seed_post123
                 ]
-    add_products = [db.session.add(post) for post in all_posts]
+    add_posts = [db.session.add(post) for post in all_posts]
     db.session.commit()
 
 

@@ -6,6 +6,7 @@ from .reviews import seed_reviews, undo_reviews
 from .likes import seed_likes, undo_likes
 from .dislikes import seed_dislikes, undo_dislikes
 from .postCategories import seed_postcategories, undo_postcategories
+from .threads import seed_threads, undo_threads
 
 from app.models.db import db, environment, SCHEMA
 
@@ -22,6 +23,7 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_threads()
         undo_reviews()
         undo_postcategories()
         undo_likes()
@@ -36,12 +38,14 @@ def seed():
     seed_likes()
     seed_postcategories()
     seed_reviews()
+    seed_threads()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_threads()
     undo_reviews()
     undo_postcategories()
     undo_likes()

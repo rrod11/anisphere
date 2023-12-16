@@ -16,25 +16,25 @@ import { allPostCategories } from "../../store/postCategoryReducer";
 import DebateDen from "./DebateDen";
 import HaterHub from "./HaterHub";
 import FanFaction from "./FanFaction";
+import { allTheThreads } from "../../store/threadReducer";
 
 const AnimePage = ({ posts }) => {
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
-  console.log("🚀 ~ file: index.js:22 ~ AnimePage ~ postId:", postId);
+
   const target = Object.values(posts).find((ele) => ele.id == postId);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
   const categories = useSelector((state) => state.category.categories);
-  console.log("🚀 ~ file: index.js:27 ~ AnimePage ~ categories:", categories);
+
   const postcategories = useSelector(
     (state) => state.postcategory.postcategories
   );
-  console.log(
-    "🚀 ~ file: index.js:28 ~ AnimePage ~ postcategories:",
-    postcategories
-  );
+  const threads = useSelector((state) => state.thread.threads);
+  console.log("🚀 ~ file: index.js:36 ~ AnimePage ~ threads:", threads);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadReviews, setLoadReviews] = useState(true);
   const [loadFanFaction, setLoadFanFaction] = useState(false);
@@ -56,10 +56,7 @@ const AnimePage = ({ posts }) => {
       return ele;
     }
   });
-  console.log(
-    "🚀 ~ file: index.js:39 ~ AnimePage ~ targetCategories:",
-    targetCategories
-  );
+
   const targetCats = Object.values(categories).filter((ele) => {
     for (let item of targetCategories) {
       if (parseInt(ele.id) == parseInt(item.categoryId)) {
@@ -67,7 +64,7 @@ const AnimePage = ({ posts }) => {
       }
     }
   });
-  console.log("🚀 ~ file: index.js:61 ~ targetCats ~ targetCats:", targetCats);
+
   const [render, setRender] = useState(false);
   let liked = false;
   let disliked = false;
@@ -211,6 +208,7 @@ const AnimePage = ({ posts }) => {
     dispatch(allDislikes());
     dispatch(allCategories());
     dispatch(allPostCategories());
+    dispatch(allTheThreads());
     setIsLoaded(true);
   }, [dispatch, isLoaded, render]);
   if (!target) {
