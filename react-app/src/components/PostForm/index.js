@@ -31,15 +31,12 @@ const PostForm = () => {
     setOptions(e);
   };
 
-  // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
   const [imageURL, setImageURL] = useState(
     "https://res.cloudinary.com/dpdvw1sam/image/upload/v1702416959/Screenshot_2023-12-12_at_1.29.46_PM_pdmqtq.jpg"
   );
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
-
-  // if (!sessionUser) return <Redirect to="/" />;
 
   let disabled = false;
   const disable = () => {
@@ -97,6 +94,7 @@ const PostForm = () => {
     checkForm();
 
     if (Object.values(errors).length == 0) {
+      disabled = true;
       setHasSubmitted(true);
       const formData = new FormData();
       formData.append("description", description);
@@ -264,7 +262,7 @@ const PostForm = () => {
           </span>
           <button
             className="new-post-button"
-            // disabled={disabled}
+            disabled={disabled}
             // onClick={disable}
             onClick={checkForm}
           >

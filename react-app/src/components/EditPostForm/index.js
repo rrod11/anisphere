@@ -6,6 +6,7 @@ import "./editPost.css";
 import { Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { addAPostcategory } from "../../store/postCategoryReducer";
 import Multiselect from "multiselect-react-dropdown";
+import { allCategories } from "../../store/categoryReducer";
 
 const EditPostForm = () => {
   // form state
@@ -22,11 +23,25 @@ const EditPostForm = () => {
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
   const categories = useSelector((state) => state.category.categories);
+  console.log(
+    "🚀 ~ file: index.js:25 ~ EditPostForm ~ categories:",
+    categories
+  );
   const catArr = Object.values(categories);
+  console.log("🚀 ~ file: index.js:26 ~ EditPostForm ~ catArr:", catArr);
   const targetCatArr = target.categories.map((ele) => {
-    return ele.id;
+    return ele;
   });
-  const [options, setOptions] = useState([targetCatArr]);
+  console.log(
+    "🚀 ~ file: index.js:30 ~ targetCatArr ~ targetCatArr:",
+    targetCatArr
+  );
+  const [options, setOptions] = useState(targetCatArr);
+  console.log("🚀 ~ file: index.js:30 ~ EditPostForm ~ options:", options);
+  // const realArr = options.map((ele) => {
+  //   return catArr[ele];
+  // });
+  // console.log("🚀 ~ file: index.js:34 ~ realArr ~ realArr:", realArr);
   const [imageURL, setImageURL] = useState(target.image);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
@@ -133,6 +148,7 @@ const EditPostForm = () => {
     if (!description.length) errors.push("Please enter a post description!");
     if (!title) errors.push("Please provide a title");
     setValidationErrors(errors);
+    dispatch(allCategories());
   }, [description, image, title]);
 
   const disable = () => {
@@ -207,7 +223,7 @@ const EditPostForm = () => {
             <Multiselect
               options={catArr}
               displayValue="name"
-              value={options}
+              selectedValues={options}
               onSelect={tellOptionsSum}
               onRemove={tellOptionsSum}
               onChange={setOptions}
@@ -244,7 +260,7 @@ const EditPostForm = () => {
           <button
             className="new-post-button"
             disabled={disabled}
-            onClick={checkForm}
+            onClick={[(disabled = true), checkForm]}
           >
             Update Post
           </button>
