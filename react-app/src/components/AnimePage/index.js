@@ -33,6 +33,10 @@ const AnimePage = ({ posts }) => {
     postcategories
   );
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loadReviews, setLoadReviews] = useState(true);
+  const [loadFanFaction, setLoadFanFaction] = useState(false);
+  const [loadHaterHub, setLoadHaterHub] = useState(false);
+  const [loadDebateDen, setLoadDebateDen] = useState(false);
   const userObj = useSelector((state) => state.user.users);
   const likes = useSelector((state) => state.like.likes);
   const likeArr = Object.values(likes).filter(
@@ -410,69 +414,147 @@ const AnimePage = ({ posts }) => {
                 ) : null}
               </div>
             </div>
-            <div className="overallReviews">
-              {target && reviewArr?.length > 1 ? (
-                <span className="numberReviews">
-                  <h1>
-                    {reviewArr?.length} Reviews {avg?.toFixed(2)}
-                  </h1>
-                </span>
-              ) : (
-                <span className="numberReviews">
-                  <h1>{reviewArr?.length} Reviews</h1>
-                </span>
-              )}
-              <div
-                className="insideman"
-                style={{ display: "flex", justifyContent: "space-around" }}
-              >
-                <h1 style={{ padding: "0 5px 0 5px" }}>{avg?.toFixed(2)}</h1>
-                <label style={{ display: "flex", alignItems: "center" }}>
-                  <div
-                    className="rating"
-                    style={{ display: "flex", flexDirection: "row" }}
-                  >
-                    <i
-                      className={
-                        avg >= 1 || avg > 0.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 2 || avg >= 1.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 3 || avg >= 2.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 4 || avg >= 3.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                    <i
-                      className={
-                        avg >= 5 || avg >= 4.5
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }
-                    ></i>
-                  </div>
-                </label>
+            <div
+              style={{
+                display: "flex",
+                gap: "15px",
+                margin: "30px",
+                justifyContent: "flex-start",
+                width: "100%",
+              }}
+            >
+              <div>
+                <h3
+                  className="profileTab"
+                  id={loadReviews ? "selected" : null}
+                  onClick={() => {
+                    setLoadReviews(true);
+                    setLoadFanFaction(false);
+                    setLoadHaterHub(false);
+                    setLoadDebateDen(false);
+                  }}
+                >
+                  Reviews
+                </h3>
+              </div>
+              <div>
+                <h3
+                  className="profileTab"
+                  id={loadFanFaction ? "selected" : null}
+                  onClick={() => {
+                    setLoadFanFaction(true);
+                    setLoadReviews(false);
+                    setLoadHaterHub(false);
+                    setLoadDebateDen(false);
+                  }}
+                >
+                  Fan Faction
+                </h3>
+              </div>
+              <div>
+                <h3
+                  className="profileTab"
+                  id={loadHaterHub ? "selected" : null}
+                  onClick={() => {
+                    setLoadHaterHub(true);
+                    setLoadFanFaction(false);
+                    setLoadReviews(false);
+                    setLoadDebateDen(false);
+                  }}
+                >
+                  Hater Hub
+                </h3>
+              </div>
+              <div>
+                <h3
+                  className="profileTab"
+                  id={loadDebateDen ? "selected" : null}
+                  onClick={() => {
+                    setLoadDebateDen(true);
+                    setLoadFanFaction(false);
+                    setLoadReviews(false);
+                    setLoadHaterHub(false);
+                  }}
+                >
+                  Debate Den
+                </h3>
               </div>
             </div>
+            {loadReviews ? (
+              <>
+                <div className="overallReviews">
+                  {target && reviewArr?.length > 1 ? (
+                    <span className="numberReviews">
+                      <h1>
+                        {reviewArr?.length} Reviews {avg?.toFixed(2)}
+                      </h1>
+                    </span>
+                  ) : (
+                    <span className="numberReviews">
+                      <h1>{reviewArr?.length} Reviews</h1>
+                    </span>
+                  )}
+                  <div
+                    className="insideman"
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <h1 style={{ padding: "0 5px 0 5px" }}>
+                      {avg?.toFixed(2)}
+                    </h1>
+                    <label style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        className="rating"
+                        style={{ display: "flex", flexDirection: "row" }}
+                      >
+                        <i
+                          className={
+                            avg >= 1 || avg > 0.5
+                              ? "fa-solid fa-star"
+                              : "fa-regular fa-star"
+                          }
+                        ></i>
+                        <i
+                          className={
+                            avg >= 2 || avg >= 1.5
+                              ? "fa-solid fa-star"
+                              : "fa-regular fa-star"
+                          }
+                        ></i>
+                        <i
+                          className={
+                            avg >= 3 || avg >= 2.5
+                              ? "fa-solid fa-star"
+                              : "fa-regular fa-star"
+                          }
+                        ></i>
+                        <i
+                          className={
+                            avg >= 4 || avg >= 3.5
+                              ? "fa-solid fa-star"
+                              : "fa-regular fa-star"
+                          }
+                        ></i>
+                        <i
+                          className={
+                            avg >= 5 || avg >= 4.5
+                              ? "fa-solid fa-star"
+                              : "fa-regular fa-star"
+                          }
+                        ></i>
+                      </div>
+                    </label>
+                  </div>
+                </div>
 
-            <Reviews list={target.reviews} posts={posts} theId={postId} />
+                {/* <Reviews list={target.reviews} posts={posts} theId={postId} /> */}
+              </>
+            ) : null}
+            <div>
+              {/* {loadForum && <UserPosts user={user} />} */}
+              {loadReviews && (
+                <Reviews list={target.reviews} posts={posts} theId={postId} />
+              )}
+            </div>
           </div>
         </div>
       </>
