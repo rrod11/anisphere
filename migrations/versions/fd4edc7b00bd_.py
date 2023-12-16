@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e1af4a7119c6
+Revision ID: fd4edc7b00bd
 Revises:
-Create Date: 2023-12-14 16:25:13.678443
+Create Date: 2023-12-15 19:27:52.396852
 
 """
 from alembic import op
@@ -13,8 +13,9 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
 # revision identifiers, used by Alembic.
-revision = 'e1af4a7119c6'
+revision = 'fd4edc7b00bd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,6 +33,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=50), nullable=False),
@@ -48,6 +50,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
+
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=200), nullable=False),
@@ -61,6 +64,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+
 
     op.create_table('dislikes',
     sa.Column('id', sa.INTEGER(), nullable=False),
@@ -76,6 +80,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE dislikes SET SCHEMA {SCHEMA};")
 
+
     op.create_table('likes',
     sa.Column('id', sa.INTEGER(), nullable=False),
     sa.Column('post_id', sa.INTEGER(), nullable=True),
@@ -90,6 +95,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
 
+
     op.create_table('post_images',
     sa.Column('id', sa.INTEGER(), nullable=False),
     sa.Column('post_id', sa.INTEGER(), nullable=True),
@@ -101,6 +107,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE post_images SET SCHEMA {SCHEMA};")
 
+
     op.create_table('postcategories',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.INTEGER(), nullable=True),
@@ -109,9 +116,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE postcategories SET SCHEMA {SCHEMA};")
+
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -126,6 +133,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+
 
     # ### end Alembic commands ###
 

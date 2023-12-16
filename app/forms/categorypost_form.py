@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField, SelectField, IntegerField, BooleanField
-from wtforms.validators import DataRequired, Length, URL
+from wtforms.validators import DataRequired, Length, URL, InputRequired
 
 class CategoryPostForm(FlaskForm):
-  post_id = IntegerField("postId", validators=[DataRequired()])
-  category_id = IntegerField("categoryId", validators=[DataRequired()])
-  submit  = SubmitField("submit")
+  post_id = IntegerField("post_id", validators=[InputRequired()])
+  category_id = IntegerField("category_id", validators=[InputRequired()])

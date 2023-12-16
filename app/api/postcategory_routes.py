@@ -56,6 +56,8 @@ def create_new_postcategories(postId):
     handles post submission on post requests"""
     form = CategoryPostForm()
     form['csrf_token'].data = request.cookies["csrf_token"]
+    formread = form.__dict__.items()
+    print("🐍 File: api/postcategory_routes.py | Line: 60 | create_new_postcategories ~ formread",formread)
 
 
 

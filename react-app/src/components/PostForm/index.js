@@ -117,33 +117,22 @@ const PostForm = () => {
       formData.append("title", title);
       formData.append("image", image);
       formData.append("user_id", sessionUser.id);
-      const responseData = await dispatch(createPost(formData));
-      options.forEach(async ({ id, name }) => {
-        let formDat = new FormData();
-        await formDat.append("post_id", responseData.id);
-        console.log(
-          "🚀 ~ file: index.js:124 ~ options.forEach ~ responseData.id:",
-          responseData.id
-        );
-        await formDat.append("category_id", id);
-        console.log(
-          "🚀 ~ file: index.js:124 ~ options.forEach ~ formDat:",
-          formDat
-        );
-        await dispatch(addAPostcategory(responseData.id, formDat));
-      });
-      // console.log("🚀 ~ file: index.js:112 ~ handleSubmit ~ catties:", catties);
-      // formData.append("categories", catties);
-      // const newPost = {
-      //   description,
-      //   categories: currentUser.id,
-      //   image,
-      // };
-      // await dispatch(createPost(formData));
       console.log(
-        "🚀 ~ file: index.js:130 ~ handleSubmit ~ responseData:",
-        responseData
+        "🚀 ~ file: index.js:116 ~ handleSubmit ~ formData:",
+        formData
       );
+      const responseData = await dispatch(createPost(formData));
+
+      options.forEach(async ({ id, name }) => {
+        const payloadObj = {
+          category_id: id,
+          post_id: responseData?.id,
+        };
+
+        const response2 = await dispatch(
+          addAPostcategory(responseData.id, payloadObj)
+        );
+      });
 
       setDescription("");
       setImage("");
