@@ -425,7 +425,7 @@ const AnimePage = ({ posts }) => {
             >
               <div>
                 <h3
-                  className="profileTab"
+                  className="animeTab"
                   id={loadReviews ? "selected" : null}
                   onClick={() => {
                     setLoadReviews(true);
@@ -439,7 +439,7 @@ const AnimePage = ({ posts }) => {
               </div>
               <div>
                 <h3
-                  className="profileTab"
+                  className="animeTab"
                   id={loadFanFaction ? "selected" : null}
                   onClick={() => {
                     setLoadFanFaction(true);
@@ -453,7 +453,7 @@ const AnimePage = ({ posts }) => {
               </div>
               <div>
                 <h3
-                  className="profileTab"
+                  className="animeTab"
                   id={loadHaterHub ? "selected" : null}
                   onClick={() => {
                     setLoadHaterHub(true);
@@ -467,7 +467,7 @@ const AnimePage = ({ posts }) => {
               </div>
               <div>
                 <h3
-                  className="profileTab"
+                  className="animeTab"
                   id={loadDebateDen ? "selected" : null}
                   onClick={() => {
                     setLoadDebateDen(true);
@@ -549,7 +549,20 @@ const AnimePage = ({ posts }) => {
                 {/* <Reviews list={target.reviews} posts={posts} theId={postId} /> */}
               </>
             ) : null}
-            <div>
+            {loadFanFaction ? (
+              <h1 style={{ color: "white" }}>
+                WELCOME TO THE FAN FACTION FORUM
+              </h1>
+            ) : null}
+            {loadHaterHub ? (
+              <h1 style={{ color: "white" }}>WELCOME TO THE HATER HUB FORUM</h1>
+            ) : null}
+            {loadDebateDen ? (
+              <h1 style={{ color: "white" }}>
+                WELCOME TO THE DEBATE DEN FORUM
+              </h1>
+            ) : null}
+            <div className="animeTabDisplay">
               {/* {loadForum && <UserPosts user={user} />} */}
               {loadReviews && (
                 <Reviews list={target.reviews} posts={posts} theId={postId} />

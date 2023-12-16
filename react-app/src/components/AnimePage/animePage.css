@@ -162,3 +162,21 @@
   color: yellow;
   font-size: 20px;
 }
+
+.animeTab {
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(0, 162, 202, 0.839);
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+.animeTab:hover {
+  background-color: rgba(0, 255, 251, 0.838);
+}
+.animeTab#selected {
+  background-color: rgb(149, 0, 255);
+}
+
+/* .animeTabDisplay {
+
+} */
