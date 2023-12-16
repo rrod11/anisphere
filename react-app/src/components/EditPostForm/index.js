@@ -6,6 +6,8 @@ import "./editPost.css";
 import { Redirect, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import {
   addAPostcategory,
+  allPostCategories,
+  deleteAPostcategory,
   editAPostcategory,
 } from "../../store/postCategoryReducer";
 import Multiselect from "multiselect-react-dropdown";
@@ -26,6 +28,9 @@ const EditPostForm = () => {
   // My need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
   const categories = useSelector((state) => state.category.categories);
+  const postcategories = useSelector(
+    (state) => state.postcategory.postcategories
+  );
   console.log(
     "🚀 ~ file: index.js:25 ~ EditPostForm ~ categories:",
     categories
@@ -39,6 +44,15 @@ const EditPostForm = () => {
     "🚀 ~ file: index.js:30 ~ targetCatArr ~ targetCatArr:",
     targetCatArr
   );
+  const oldPC = Object.values(postcategories).filter((ele) => {
+    if (
+      targetCatArr.filter((element) => element.id == ele.categoryId) &&
+      ele.postId == postId
+    ) {
+      return ele;
+    }
+  });
+  console.log("🚀 ~ file: index.js:55 ~ oldPC ~ oldPC:", oldPC);
   const [options, setOptions] = useState(targetCatArr);
   console.log("🚀 ~ file: index.js:30 ~ EditPostForm ~ options:", options);
   // const realArr = options.map((ele) => {
@@ -124,6 +138,24 @@ const EditPostForm = () => {
       formData.append("id", postId);
 
       const responseData = await dispatch(editPost(formData, postId));
+      oldPC.forEach(async ({ id, categoryId, postId }) => {
+        console.log(
+          "🚀 ~ file: index.js:142 ~ oldPC.forEach ~ postId:",
+          postId
+        );
+        console.log(
+          "🚀 ~ file: index.js:142 ~ oldPC.forEach ~ categoryId:",
+          categoryId
+        );
+        console.log("🚀 ~ file: index.js:149 ~ oldPC.forEach ~ id:", id);
+        const numCat = options.map((ele) => {
+          return ele.id;
+        });
+        console.log("🚀 ~ file: index.js:148 ~ numCat ~ numCat:", numCat);
+        if (!numCat.includes(categoryId)) {
+          await dispatch(deleteAPostcategory(id));
+        }
+      });
       options.forEach(async ({ id, name }) => {
         console.log(
           "🚀 ~ file: index.js:132 ~ options.forEach ~ payloadObj.stock:",
@@ -160,6 +192,7 @@ const EditPostForm = () => {
     if (!title) errors.push("Please provide a title");
     setValidationErrors(errors);
     dispatch(allCategories());
+    dispatch(allPostCategories());
   }, [description, image, title]);
 
   const disable = () => {
