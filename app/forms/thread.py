@@ -8,7 +8,7 @@ from wtforms.validators import DataRequired, Length, URL
 
 class ThreadForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
-    description = IntegerField("Description")
+    description = StringField("Description")
     post_id = IntegerField("PostId", validators=[DataRequired()])
     user_id= IntegerField("userId", validators=[DataRequired()])
     fan = BooleanField("fan")

@@ -28,6 +28,7 @@ class Thread(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
+            "postId": self.post_id,
             'userId': self.user_id,
             'threadlikes': [threadlike.to_dict() for threadlike in self.threadlikes],
             "replies": [reply.to_dict() for reply in self.replies],

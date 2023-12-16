@@ -33,7 +33,7 @@ const AnimePage = ({ posts }) => {
     (state) => state.postcategory.postcategories
   );
   const threads = useSelector((state) => state.thread.threads);
-  console.log("🚀 ~ file: index.js:36 ~ AnimePage ~ threads:", threads);
+  const threadArr = Object.values(threads);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadReviews, setLoadReviews] = useState(true);
@@ -564,9 +564,9 @@ const AnimePage = ({ posts }) => {
               </h1>
             ) : null}
             <div className="animeTabDisplay">
-              {loadDebateDen && <DebateDen />}
-              {loadFanFaction && <FanFaction />}
-              {loadHaterHub && <HaterHub />}
+              {loadDebateDen && <DebateDen threads={threadArr} />}
+              {loadFanFaction && <FanFaction threads={threadArr} />}
+              {loadHaterHub && <HaterHub threads={threadArr} />}
               {loadReviews && (
                 <Reviews list={target.reviews} posts={posts} theId={postId} />
               )}
