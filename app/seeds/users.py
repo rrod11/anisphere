@@ -36,9 +36,19 @@ def seed_users():
         username='Zoro', email='zoro@aa.io', first_name="Roronoa", last_name="Zoro", admin_key="roderick0318", password='zoropassword')
     luffy = User(
         username='Luffy', email='luffy@aa.io', first_name="Monkey D", last_name="Luffy", admin_key="roderick0318", password='luffypassword')
+    naruto = User(
+        username='Naruto', email='naruto@aa.io', first_name="Naruto", last_name="Uzumaki", admin_key="roderick0318", password='narutopassword')
+    sasuke = User(
+        username='Sasuke', email='sasuke@aa.io', first_name="Sasuke", last_name="Uchiha", admin_key="roderick0318", password='sasukepassword')
+    sakura = User(
+        username='Sakura', email='sakura@aa.io', first_name="Sakura", last_name="Haruno", admin_key="roderick0318", password='sakurapassword')
+    kakashi = User(
+        username='Kakashi', email='kakashi@aa.io', first_name="Kakashi", last_name="Hatake", admin_key="roderick0318", password='kakashipassword')
+    jiraiya = User(
+        username='Jiraiya', email='jaraiya@aa.io', first_name="Jaraiya", last_name="Sensei", admin_key="roderick0318", password='jiraiyapassword')
 
 
-    all_users = [asta, yuno, yami, demo, noelle, mimosa, mereoleona, jack, charmy, luck, nico, nami, brook, sanji, zoro, luffy]
+    all_users = [asta, yuno, yami, demo, noelle, mimosa, mereoleona, jack, charmy, luck, nico, nami, brook, sanji, zoro, luffy, naruto, sasuke, sakura, kakashi, jiraiya]
     add_users = [db.session.add(user) for user in all_users]
     db.session.commit()
 
