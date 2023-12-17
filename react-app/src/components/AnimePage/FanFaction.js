@@ -16,7 +16,7 @@ const FanFaction = () => {
   const threads = Object.values(useSelector((state) => state.thread.threads));
   console.log("🚀 ~ file: FanFaction.js:17 ~ FanFaction ~ threads:", threads);
   const collected = threads?.filter((ele) => {
-    if (ele.postId == postId) {
+    if (ele.postId == postId && ele.fan == true) {
       return ele;
     }
   });
@@ -174,12 +174,13 @@ const FanFaction = () => {
               >
                 <div>
                   <h2 style={{ color: "white" }}>{title}</h2>
-                  <p>{description}</p>
+                  <p style={{ margin: "5px" }}>{description}</p>
                   <p
                     style={{
                       fontWeight: "bold",
                       fontSize: "16px",
                       color: "darkgray",
+                      margin: "5px",
                     }}
                   >
                     {`${user?.firstname} ${user?.lastname}`}
@@ -195,11 +196,7 @@ const FanFaction = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <div style={{ margin: "10px" }}>{replies.length}</div>
                       <div style={{ margin: "10px" }}>
-                        <Replies
-                          // numberOfReplies={replies?.length}
-                          threadId={id}
-                          title={title}
-                        />
+                        <Replies threadId={id} />
                       </div>
                     </div>
                   </div>
@@ -207,7 +204,7 @@ const FanFaction = () => {
               </div>
               {replies.length > 0 ? (
                 <div>
-                  <h4>Replies: </h4>
+                  <h4 style={{ margin: "0 20px" }}>Replies: </h4>
                   {replies.map((ele) => (
                     <div style={{ margin: "20px 30px" }}>{ele.reply}</div>
                   ))}
