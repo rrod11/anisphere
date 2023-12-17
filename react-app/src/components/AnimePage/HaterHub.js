@@ -174,12 +174,13 @@ const HaterHub = () => {
               >
                 <div>
                   <h2 style={{ color: "white" }}>{title}</h2>
-                  <p>{description}</p>
+                  <p style={{ margin: "5px" }}>{description}</p>
                   <p
                     style={{
                       fontWeight: "bold",
                       fontSize: "16px",
                       color: "darkgray",
+                      margin: "5px",
                     }}
                   >
                     {`${user?.firstname} ${user?.lastname}`}
