@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5ec43d15ea32
+Revision ID: 0556e241f286
 Revises:
-Create Date: 2023-12-16 16:52:23.735999
+Create Date: 2023-12-17 14:42:19.100177
 
 """
 from alembic import op
@@ -13,8 +13,9 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
 # revision identifiers, used by Alembic.
-revision = '5ec43d15ea32'
+revision = '0556e241f286'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -86,6 +87,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('post_id', 'user_id')
     )
+
 
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
@@ -161,6 +163,7 @@ def upgrade():
     sa.Column('id', sa.INTEGER(), nullable=False),
     sa.Column('thread_id', sa.INTEGER(), nullable=True),
     sa.Column('user_id', sa.INTEGER(), nullable=True),
+    sa.Column('likes', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['thread_id'], ['threads.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')

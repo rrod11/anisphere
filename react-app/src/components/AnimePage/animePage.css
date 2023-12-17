@@ -176,7 +176,18 @@
 .animeTab#selected {
   background-color: rgb(149, 0, 255);
 }
-
+.add-reply-button {
+  padding: 0 10px;
+  margin: 0 10px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  transition: all 0.3s ease 0s;
+  border: none;
+  border-radius: 15px;
+}
 /* .animeTabDisplay {
 
 } */

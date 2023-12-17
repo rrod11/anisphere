@@ -49,6 +49,10 @@ export const createAReply = (threadId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  console.log(
+    "🚀 ~ file: replyReducer.js:49 ~ createAReply ~ response:",
+    response
+  );
   const reply = await response.json();
   dispatch(createReply(reply));
   return reply;

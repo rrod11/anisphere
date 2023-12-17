@@ -6,7 +6,7 @@ from random import randint
 from app.models import db, Thread
 
 
-thread_route = Blueprint("threads", __name__)
+thread_routes = Blueprint("threads", __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -19,7 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@thread_route.route("/all")
+@thread_routes.route("/all")
 def get_all_threads():
     """get all the threads and return them """
     all_threads = Thread.query.all()
@@ -31,7 +31,7 @@ def get_all_threads():
     return {"threads": see_threads}
     # return { "Thread": see_threads}
 
-@thread_route.route('/post/<int:id>')
+@thread_routes.route('/post/<int:id>')
 def get_threads_for_post(id):
     threads = Thread.query.filter(Thread.post_id == id).all()
 
@@ -39,7 +39,7 @@ def get_threads_for_post(id):
         return jsonify([thread.to_dict() for thread in threads])
 
 
-@thread_route.route("/<int:id>")
+@thread_routes.route("/<int:id>")
 def get_Thread_by_id(id):
     """return a single Thread by the id passed to the route"""
     one_Thread = Thread.query.get(id)
@@ -49,7 +49,7 @@ def get_Thread_by_id(id):
     return one_Thread.to_dict()
 
 
-@thread_route.route("/<int:postId>/new", methods=["POST"])
+@thread_routes.route("/<int:postId>/new", methods=["POST"])
 @login_required
 def create_new_Thread(postId):
     """ route that handles displaying a form that
@@ -80,7 +80,7 @@ def create_new_Thread(postId):
 
 
 
-@thread_route.route("/<int:id>/edit", methods=['PUT'])
+@thread_routes.route("/<int:id>/edit", methods=['PUT'])
 @login_required
 def update_Thread(id):
     """UPDATE Thread"""
@@ -103,7 +103,7 @@ def update_Thread(id):
     return Thread_to_update.to_dict()
 
 
-@thread_route.route("/<int:id>/delete", methods=["DELETE"])
+@thread_routes.route("/<int:id>/delete", methods=["DELETE"])
 @login_required
 def delete_Thread(id):
 

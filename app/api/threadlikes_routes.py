@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from datetime import date
-from app.forms import LikeForm
+from app.forms import ThreadlikesForm
 from random import randint
 from app.models import db, ThreadLike
 
 
 
-threadlikes_routes = Blueprint("likes", __name__)
+threadlikes_routes = Blueprint("threadlikes", __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -23,17 +23,17 @@ def validation_errors_to_error_messages(validation_errors):
 @threadlikes_routes.route("/all")
 def get_all_threadlikes():
     """get all the threadlikes and return them """
-    all_threadlikes = Threadlike.query.all()
+    all_threadlikes = ThreadLike.query.all()
     see_threadlikes = [threadlike.to_dict() for threadlike in all_threadlikes]
     print(see_threadlikes)
     print(all_threadlikes)
 
-    return {"likes": see_likes}
+    return {"threadlikes": see_likes}
     # return { "like": see_likes}
 
 @threadlikes_routes.route('/post/<int:id>')
 def get_threadlikes_for_post(id):
-    threadlikes = Threadlike.query.filter(threadlike.thread_id == id).all()
+    threadlikes = ThreadLike.query.filter(threadlike.thread_id == id).all()
 
     if threadlikes != None:
         return jsonify([threadlike.to_dict() for threadlike in threadlikes])
@@ -42,7 +42,7 @@ def get_threadlikes_for_post(id):
 @threadlikes_routes.route("/<int:id>")
 def get_threadlike_by_id(id):
     """return a single threadlike by the id passed to the route"""
-    one_threadlike = Threadlike.query.get(id)
+    one_threadlike = ThreadLike.query.get(id)
     # one_like = [like for like in seed_likes if like["id"] == id ]
     print(one_like)
     # return render_template("feed.html", likes=[one_like] )
@@ -54,7 +54,7 @@ def get_threadlike_by_id(id):
 def create_new_like(threadId):
     """ route that handles displaying a form that
     handles post submission on post requests"""
-    form = ThreadlikeForm()
+    form = ThreadlikesForm()
     form['csrf_token'].data = request.cookies["csrf_token"]
 
 
@@ -80,12 +80,12 @@ def create_new_like(threadId):
 @login_required
 def update_like(id):
     """UPDATE threadlike"""
-    threadlike = Threadlike.query.get(id)
-    form = LikeForm()
+    threadlike = ThreadLike.query.get(id)
+    form = ThreadlikesForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
 
-    threadlike_to_update = Threadlike.query.get(id)
+    threadlike_to_update = ThreadLike.query.get(id)
     if(threadlike_to_update):
         threadlike_to_update.thread_id=form.data["thread_id"]
         threadlike_to_update.likes=form.data["likes"]
@@ -99,7 +99,7 @@ def update_like(id):
 @login_required
 def delete_threadlike(id):
 
-    threadlike = Threadlike.query.get(id)
+    threadlike = ThreadLike.query.get(id)
 
     if like:
         db.session.delete(threadlike)

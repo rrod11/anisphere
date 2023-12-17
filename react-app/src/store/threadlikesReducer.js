@@ -50,6 +50,10 @@ export const addAThreadlike = (threadId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  console.log(
+    "🚀 ~ file: threadlikesReducer.js:50 ~ addAThreadlike ~ response:",
+    response
+  );
   const threadlike = await response.json();
   dispatch(addThreadlike(threadlike));
   return threadlike;

@@ -35,6 +35,10 @@ const editThread = (payload) => {
 
 export const allTheThreads = () => async (dispatch) => {
   const response = await fetch(`/api/threads/all`);
+  console.log(
+    "🚀 ~ file: threadReducer.js:39 ~ allTheThreads ~ response:",
+    response
+  );
   if (response.ok) {
     const { threads } = await response.json();
     dispatch(getThreads(threads));

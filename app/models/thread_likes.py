@@ -21,4 +21,5 @@ class ThreadLike(db.Model):
       "id": self.id,
       "thread_id": self.thread_id,
       "user_id": self.user_id,
+      "likes": self.likes
     }

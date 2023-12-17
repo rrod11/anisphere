@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from datetime import date
-from app.forms import replyForm
+from app.forms import ReplyForm
 from random import randint
 from app.models import db, Reply
 from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
@@ -61,7 +61,7 @@ def create_new_reply(threadId):
 
 
     if form.validate_on_submit():
-        new_reply= reply(
+        new_reply= Reply(
             reply=form.data["reply"],
             thread_id=form.data["thread_id"],
             user_id=form.data["user_id"],

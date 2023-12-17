@@ -10,9 +10,11 @@ const FanFaction = () => {
   const { postId } = useParams();
   console.log("🚀 ~ file: FanFaction.js:8 ~ FanFaction ~ postId:", postId);
   const dispatch = useDispatch();
+  const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const userArr = Object.values(useSelector((state) => state.user.users));
   const threads = Object.values(useSelector((state) => state.thread.threads));
+  console.log("🚀 ~ file: FanFaction.js:17 ~ FanFaction ~ threads:", threads);
   const collected = threads?.filter((ele) => {
     if (ele.postId == postId) {
       return ele;
@@ -82,7 +84,15 @@ const FanFaction = () => {
   return (
     <>
       <main className="fanFaction">
-        <h2 className="fanFactionTitle">Create a Thread</h2>
+        <h2
+          className="fanFactionTitle"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Create a Thread
+        </h2>
         <form className="fanFactionForm" onSubmit={handleSubmit}>
           <div className="title-input-box">
             <div
@@ -135,34 +145,74 @@ const FanFaction = () => {
               value={description}
             />
           </div>
-          <button onClick={checkForm} className="fanFactionBtn">
+          <button
+            onClick={checkForm}
+            className="fanFactionBtn"
+            style={{
+              padding: "10px",
+              margin: "10px",
+              borderRadius: "15px",
+              border: "none",
+              background: "gold",
+            }}
+          >
             CREATE THREAD
           </button>
         </form>
       </main>
       {fanThreads.length ? (
         fanThreads?.map(
-          ({ id, description, title, threadLikes, user, replies }) => (
+          ({ id, description, title, threadlikes, user, replies }) => (
             <div key={id}>
-              <h2>{title}</h2>
-              <p>{description}</p>
-              <p
+              <div
                 style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "darkgray",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  margin: " 5px 10px",
                 }}
               >
-                {`${user?.firstname} ${user?.lastname}`}
-              </p>
-              <div className="react__container">
-                <Likes numberOfLikes={threadLikes?.length} threadId={id} />
-                <Replies
-                  numberOfReplies={replies?.length}
-                  threadId={id}
-                  title={title}
-                />
+                <div>
+                  <h2 style={{ color: "white" }}>{title}</h2>
+                  <p>{description}</p>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "darkgray",
+                    }}
+                  >
+                    {`${user?.firstname} ${user?.lastname}`}
+                  </p>
+                </div>
+                <div>
+                  <div className="react__container" style={{ color: "white" }}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div>
+                        <Likes threadlikes={threadlikes} threadId={id} />
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div style={{ margin: "10px" }}>{replies.length}</div>
+                      <div style={{ margin: "10px" }}>
+                        <Replies
+                          // numberOfReplies={replies?.length}
+                          threadId={id}
+                          title={title}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              {replies.length > 0 ? (
+                <div>
+                  <h4>Replies: </h4>
+                  {replies.map((ele) => (
+                    <div style={{ margin: "20px 30px" }}>{ele.reply}</div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           )
         )
