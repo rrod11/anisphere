@@ -46,9 +46,28 @@ def seed_users():
         username='Kakashi', email='kakashi@aa.io', first_name="Kakashi", last_name="Hatake", admin_key="roderick0318", password='kakashipassword')
     jiraiya = User(
         username='Jiraiya', email='jaraiya@aa.io', first_name="Jaraiya", last_name="Sensei", admin_key="roderick0318", password='jiraiyapassword')
+    hinata = User(
+        username='Hinata', email='hinata@aa.io', first_name="Hinata", last_name="Hyuga", admin_key="roderick0318", password='hinatapassword')
+    rock = User(
+        username='Rock', email='rock@aa.io', first_name="Rock", last_name="Lee", admin_key="roderick0318", password='rockpassword')
+    gaara = User(
+        username='Gaara', email='gaara@aa.io', first_name="Gara", last_name="of the Desert", admin_key="roderick0318", password='gaarapassword')
+    obito = User(
+        username='Obito', email='obito@aa.io', first_name="Obito", last_name="Uchiha", admin_key="roderick0318", password='obitopassword')
+    madara = User(
+        username='Madara', email='madara@aa.io', first_name="Madara", last_name="Uchiha", admin_key="roderick0318", password='madarapassword')
+    minato = User(
+        username='Minato', email='minato@aa.io', first_name="Minato", last_name="Namikaze", admin_key="roderick0318", password='minatopassword')
+    shikamaru = User(
+        username='Shikamaru', email='shikamaru@aa.io', first_name="Shikamaru", last_name="Nara", admin_key="roderick0318", password='shikamarupassword')
+    neji = User(
+        username='Neji', email='neji@aa.io', first_name="Neji", last_name="Hyuga", admin_key="roderick0318", password='nejipassword')
+    rimuru = User(
+        username='rimuru', email='rimuru@aa.io', first_name="Rimuru", last_name="Tempest", admin_key="roderick0318", password='rimurupassword')
 
 
-    all_users = [asta, yuno, yami, demo, noelle, mimosa, mereoleona, jack, charmy, luck, nico, nami, brook, sanji, zoro, luffy, naruto, sasuke, sakura, kakashi, jiraiya]
+    all_users = [asta, yuno, yami, demo, noelle, mimosa, mereoleona, jack, charmy, luck, nico, nami, brook, sanji, zoro, luffy, naruto, sasuke,
+                 sakura, kakashi, jiraiya, hinata, rock, gaara, obito, madara, minato, shikamaru, neji, rimuru]
     add_users = [db.session.add(user) for user in all_users]
     db.session.commit()
 
