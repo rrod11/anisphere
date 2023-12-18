@@ -19,7 +19,7 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
   // const threadlikes = Object.values(likes).filter(
   //   (ele) => ele.post_id == target.id
   // );
-  const tLikes = threadlikes.filter((ele) => {
+  const tLikes = threadlikes?.filter((ele) => {
     if (ele.likes == true) {
       return ele;
     }
@@ -28,7 +28,7 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
   let liked = false;
   if (sessionUser) {
     if (
-      threadlikes.find(
+      threadlikes?.find(
         (ele) => ele.user_id == sessionUser.id && ele.likes == true
       )
     )
@@ -67,7 +67,7 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
       className="threadlikes__container"
       style={{ display: "flex", flexDirection: "row" }}
     >
-      <p style={{ margin: "0 10px" }}>{tLikes.length}</p>
+      <p style={{ margin: "0 10px" }}>{tLikes?.length}</p>
       <div className="likes-c" style={{ color: "white", margin: "0 10px" }}>
         {sessionUser && liked ? (
           <button

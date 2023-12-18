@@ -13,6 +13,7 @@ const FanFaction = () => {
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const userArr = Object.values(useSelector((state) => state.user.users));
+  console.log("🚀 ~ file: FanFaction.js:16 ~ FanFaction ~ userArr:", userArr);
   const threads = Object.values(useSelector((state) => state.thread.threads));
   console.log("🚀 ~ file: FanFaction.js:17 ~ FanFaction ~ threads:", threads);
   const collected = threads?.filter((ele) => {
@@ -22,9 +23,26 @@ const FanFaction = () => {
   });
   const fanThreads = addUsers(orderReviews(collected), userArr);
   console.log(
-    "🚀 ~ file: FanFaction.js:20 ~ FanFaction ~ fanThread:",
+    "🚀 ~ file: FanFaction.js:20 ~ FanFaction ~ unrefined:",
     fanThreads
   );
+
+  // const fanThreads = unrefinedThread.map((ele) => {
+  //   for (let i = 0; i < ele.replies.length; i++) {
+  //     console.log(
+  //       "🚀 ~ file: FanFaction.js:30 ~ tester ~ ele.replies.:",
+  //       ele.replies
+  //     );
+  //     for (let user of userArr) {
+  //       console.log("🚀 ~ file: FanFaction.js:35 ~ tester ~ user:", user);
+  //       if (user.id == ele.replies[i].userId) {
+  //         ele.replies[i].user = user;
+  //       }
+  //     }
+  //   }
+  //   return unrefinedThread;
+  // });
+  // console.log("🚀 ~ file: FanFaction.js:35 ~ tester ~ tester:", fanThreads);
   function orderReviews(arr) {
     let newbie = [];
     for (let i = arr.length - 1; i >= 0; i--) {
@@ -75,7 +93,7 @@ const FanFaction = () => {
     setTitle("");
     setDescription("");
     setIsLoaded(!isLoaded);
-    setRender(!render)
+    setRender(!render);
   };
   useEffect(async () => {
     dispatch(getAllUsers());
@@ -191,23 +209,33 @@ const FanFaction = () => {
                   <div className="react__container" style={{ color: "white" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <div>
-                        <Likes threadlikes={threadlikes} threadId={id} render={render} setRender={setRender} />
+                        <Likes
+                          threadlikes={threadlikes}
+                          threadId={id}
+                          render={render}
+                          setRender={setRender}
+                        />
                       </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                      <div style={{ margin: "10px" }}>{replies.length}</div>
+                      <div style={{ margin: "10px" }}>{replies?.length}</div>
                       <div style={{ margin: "10px" }}>
-                        <Replies threadId={id} render={render} setRender={setRender}/>
+                        <Replies
+                          threadId={id}
+                          render={render}
+                          setRender={setRender}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {replies.length > 0 ? (
+              {replies?.length > 0 ? (
                 <div>
                   <h4 style={{ margin: "0 20px" }}>Replies: </h4>
                   {replies.map((ele) => (
                     <div style={{ margin: "20px 30px" }}>{ele.reply}</div>
+                    // <p>{` ${reply?.user?.firstname} ${reply?.user?.lastname}`}</p>
                   ))}
                 </div>
               ) : null}
