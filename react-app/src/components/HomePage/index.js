@@ -48,14 +48,6 @@ const HomePage = ({ posts }) => {
   if (isLoaded && postArr.length >= 1) {
     return (
       <div id="post-page" style={{ zIndex: "-1" }}>
-        {/* <div className="progress-div">
-          <h1 className="progress">
-            ProGress
-            <progress id="completion" max="100" volume="5">
-              5%
-            </progress>
-          </h1>
-        </div> */}
         <div
           style={{
             width: "100%",
@@ -69,7 +61,7 @@ const HomePage = ({ posts }) => {
             style={{
               position: "absolute",
               top: " 215px",
-              left: "70px",
+              left: "50px",
               fontSize: "20px",
             }}
           ></i>
@@ -143,26 +135,7 @@ const HomePage = ({ posts }) => {
           <h3 className="h3">
             <p className="dot"></p>
           </h3>
-          {/* <div className="scroll-bg">
-            <div className="scroll-div">
-              <div className="scroll-object">
-                This is the beginning of the best anime site to ever exist. I
-                want you all to be patient with me as i work to figure out the
-                ins and outs of coding. I plan to have a multifacted website
-                that brings the best parts of all anime out there. I want to
-                have a grading scale for anime as well as suggested communities
-                to find other like minded individuals such as yourself with
-                similar interests and tastes in the anime cuisine. My algorithm
-                should be able to match you to anime that you will most likely
-                enjoy or at the very least be able to watch for mild
-                entertainment without wanting to rip your hair, eyeballs, or ear
-                lobes out/off. I hope that this site is able to give you
-                everything that you are looking for out of the site as well as
-                introduce you to some newer things that you may never have
-                thought that youd see on a website meant for just us dweebs!!..
-              </div>
-            </div>
-          </div> */}
+
           <h1 className="fancy">ALL ANIME</h1>
           <div className="item-selector">
             {filteredData?.map((ele) => (
