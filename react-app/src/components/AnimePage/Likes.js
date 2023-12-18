@@ -8,12 +8,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Likes = ({ threadlikes, threadId }) => {
+const Likes = ({ threadlikes, threadId, render, setRender }) => {
   console.log("🚀 ~ file: Likes.js:11 ~ Likes ~ threadlikes:", threadlikes);
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const [render, setRender] = useState(false);
+  // const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const closeMenu = () => setShowMenu(false);
   // const threadlikes = Object.values(likes).filter(

@@ -71,16 +71,17 @@ const FanFaction = () => {
       "🚀 ~ file: FanFaction.js:53 ~ handleSubmit ~ response:",
       response
     );
-    // setThread("");
+
     setTitle("");
     setDescription("");
     setIsLoaded(!isLoaded);
+    setRender(!render)
   };
   useEffect(async () => {
     dispatch(getAllUsers());
     dispatch(allTheThreads());
     setIsLoaded(true);
-  }, [dispatch, isLoaded]);
+  }, [dispatch, isLoaded, render]);
   return (
     <>
       <main className="fanFaction">
@@ -190,13 +191,13 @@ const FanFaction = () => {
                   <div className="react__container" style={{ color: "white" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <div>
-                        <Likes threadlikes={threadlikes} threadId={id} />
+                        <Likes threadlikes={threadlikes} threadId={id} render={render} setRender={setRender} />
                       </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <div style={{ margin: "10px" }}>{replies.length}</div>
                       <div style={{ margin: "10px" }}>
-                        <Replies threadId={id} />
+                        <Replies threadId={id} render={render} setRender={setRender}/>
                       </div>
                     </div>
                   </div>
