@@ -80,7 +80,7 @@ const DebateDen = () => {
     dispatch(getAllUsers());
     dispatch(allTheThreads());
     setIsLoaded(true);
-  }, [dispatch, isLoaded]);
+  }, [dispatch, isLoaded, render]);
   return (
     <>
       <main className="DebateDen">

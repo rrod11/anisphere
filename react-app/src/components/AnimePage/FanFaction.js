@@ -27,22 +27,6 @@ const FanFaction = () => {
     fanThreads
   );
 
-  // const fanThreads = unrefinedThread.map((ele) => {
-  //   for (let i = 0; i < ele.replies.length; i++) {
-  //     console.log(
-  //       "🚀 ~ file: FanFaction.js:30 ~ tester ~ ele.replies.:",
-  //       ele.replies
-  //     );
-  //     for (let user of userArr) {
-  //       console.log("🚀 ~ file: FanFaction.js:35 ~ tester ~ user:", user);
-  //       if (user.id == ele.replies[i].userId) {
-  //         ele.replies[i].user = user;
-  //       }
-  //     }
-  //   }
-  //   return unrefinedThread;
-  // });
-  // console.log("🚀 ~ file: FanFaction.js:35 ~ tester ~ tester:", fanThreads);
   function orderReviews(arr) {
     let newbie = [];
     for (let i = arr.length - 1; i >= 0; i--) {
