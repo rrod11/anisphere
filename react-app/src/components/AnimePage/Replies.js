@@ -3,19 +3,14 @@ import OpenModalButton from "../OpenModalButton";
 import ReplyFormModal from "../ReplyModal";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./animePage.css";
-const Replies = ({ threadId }) => {
+const Replies = ({ threadId, render, setRender }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [render, setRender] = useState(false);
+  // const [render, setRender] = useState(false);
   const closeMenu = () => setShowMenu(false);
   // const { threadId } = useParams();
 
   const handleAddReply = () => {
     console.log("HITTIng IT");
-    // <div className="add-review-button-outside-container">
-    //   <div className="add-review-button-container">
-
-    //   </div>
-    // </div>;
   };
 
   return (
