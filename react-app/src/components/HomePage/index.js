@@ -54,14 +54,16 @@ const HomePage = ({ posts }) => {
             display: "flex",
             justifyContent: "center",
             height: "30px",
+            top: "175px",
+            position: "absolute",
           }}
         >
           <i
             className="fa fa-search"
             style={{
-              position: "absolute",
-              top: " 215px",
-              left: "50px",
+              position: "relative",
+              top: " 5px",
+              left: "25px",
               fontSize: "20px",
             }}
           ></i>
