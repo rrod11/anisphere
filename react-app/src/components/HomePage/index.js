@@ -249,11 +249,19 @@ const HomePage = ({ posts }) => {
               site is able to give you everything that you are looking for out
               of the site....
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <h1>LOADING SOME ANIME FOR YOUR PERUSAL</h1>
-              <h2>**!!Be Patient Please And Thank You!!**</h2>
-            </div>
           </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            color: "white",
+          }}
+        >
+          <h1>LOADING SOME ANIME FOR YOUR PERUSAL</h1>
+          <h2>**!!Be Patient Please And Thank You!!**</h2>
         </div>
       </div>
     </div>
