@@ -16,7 +16,7 @@ const Replies = ({ threadId, render, setRender }) => {
   return (
     <div
       className="likes__container"
-      style={{ display: "flex", flexDirection: "row" }}
+      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
     >
       <i class="fa-solid fa-comment" onClick={handleAddReply}></i>
       <div className="add-reply-button">

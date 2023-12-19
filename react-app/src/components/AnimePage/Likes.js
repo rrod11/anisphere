@@ -65,10 +65,13 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
   return (
     <div
       className="threadlikes__container"
-      style={{ display: "flex", flexDirection: "row" }}
+      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
     >
       <p style={{ margin: "0 10px" }}>{tLikes?.length}</p>
-      <div className="likes-c" style={{ color: "white", margin: "0 10px" }}>
+      <div
+        className="likes-c"
+        style={{ color: "white", margin: "0 10px", fontSize: "20px" }}
+      >
         {sessionUser && liked ? (
           <button
             onClick={greenClick}
@@ -77,8 +80,8 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
             <i
               class="fa-solid fa-thumbs-up fa-fa-fa"
               style={{
-                color: "#195419",
-                // fontSize: "30px"
+                color: "white",
+                fontSize: "20px",
               }}
             ></i>
           </button>
@@ -90,8 +93,8 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
             <i
               class="fa-regular fa-thumbs-up fa-fa-fa"
               style={{
-                color: "#195419",
-                // fontSize: "30px"
+                color: "white",
+                fontSize: "20px",
               }}
             ></i>
           </button>

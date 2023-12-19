@@ -188,7 +188,13 @@ const DebateDen = () => {
                 </div>
                 <div>
                   <div className="react__container" style={{ color: "white" }}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
                       <div>
                         <Likes
                           threadlikes={threadlikes}
@@ -198,7 +204,13 @@ const DebateDen = () => {
                         />
                       </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
                       <div style={{ margin: "10px" }}>{replies.length}</div>
                       <div style={{ margin: "10px" }}>
                         <Replies
