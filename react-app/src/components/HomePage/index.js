@@ -55,7 +55,6 @@ const HomePage = ({ posts }) => {
             justifyContent: "center",
             height: "30px",
             top: "175px",
-            position: "absolute",
           }}
         >
           <i
@@ -68,7 +67,10 @@ const HomePage = ({ posts }) => {
             }}
           ></i>
           <input
-            style={{ padding: "0 30px", borderRadius: "15px" }}
+            style={{
+              padding: "0 30px",
+              borderRadius: "15px",
+            }}
             type="text"
             placeholder={"Search Our Products..."}
             className="form-input"

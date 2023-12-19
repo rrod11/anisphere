@@ -28,10 +28,10 @@ function DeleteAccount() {
       <h2 id="delModalTitle">Confirm Delete</h2>
       <p id="delModalText">Are you sure you want to delete your account?</p>
       <div id="delModalButtons">
-        <button id="delete-btn" onClick={deleteAccount}>
+        <button id="delete-btn-user" onClick={deleteAccount}>
           Yes (Delete account)
         </button>
-        <button id="keep-btn" onClick={closeModal}>
+        <button id="keep-btn-user" onClick={closeModal}>
           No (Keep account)
         </button>
       </div>

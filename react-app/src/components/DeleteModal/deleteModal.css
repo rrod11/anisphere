@@ -118,3 +118,32 @@
   cursor: pointer;
   transform: translateY(-7px);
 }
+#delete-btn-user {
+  padding: 10px;
+  border-radius: 15px;
+  margin: 10px 5px;
+  border: none;
+  color: white;
+  background: black;
+  transition: all 0.3s ease 0s;
+}
+#delete-btn-user:hover {
+  cursor: pointer;
+  transform: translateY(5px);
+  box-shadow: 10px 10px 12px rgb(56, 142, 60);
+}
+#keep-btn-user {
+  padding: 10px;
+  border-radius: 15px;
+  margin: 10px 5px;
+  border: none;
+  color: white;
+  background: black;
+  transition: all 0.3s ease 0s;
+}
+#keep-btn-user:hover {
+  cursor: pointer;
+
+  transform: translateY(5px);
+  box-shadow: 10px 10px 12px rgb(56, 142, 60);
+}

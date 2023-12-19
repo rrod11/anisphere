@@ -9,16 +9,21 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="navbar-container" style={{ zIndex: "1000000" }}>
-      <a href="/" style={{ padding: "10px" }}>
+      <a href="/" style={{ padding: "10px", height: "fit-content" }}>
         SPLASH!
       </a>
 
-      <a href="/home" style={{ padding: "10px" }}>
+      <a href="/home" style={{ padding: "10px", height: "fit-content" }}>
         Home
       </a>
       <a
         href="/about"
-        style={{ padding: "10px", position: "relative", right: "-250px" }}
+        style={{
+          padding: "10px",
+          position: "relative",
+          right: "-250px",
+          height: "fit-content",
+        }}
       >
         About
       </a>
@@ -28,7 +33,7 @@ function Navigation({ isLoaded }) {
         <li
           style={{
             width: "40px",
-            height: "100%",
+            height: "fit-content",
             padding: "0 40px 0 0",
             top: "0",
           }}

@@ -16,7 +16,6 @@ export default function Profile() {
 
   const { userId } = useParams();
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const [loadPosts, setLoadPosts] = useState(true);
   const [loadReviews, setLoadReviews] = useState(false);
 

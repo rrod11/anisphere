@@ -178,7 +178,9 @@ export default function UserReviews({ user }) {
           ) : (
             <>
               {" "}
-              <h1>NULL</h1>
+              <h1 style={{ color: "white", fontSize: "50px" }}>
+                You Have NOO Reviews!!
+              </h1>
               {/* {user.id == user.id ? (
                 <h3>You don't have any listed products yet.</h3>
               ) : (
