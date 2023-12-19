@@ -12,7 +12,11 @@ const FanFaction = () => {
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  const userArr = Object.values(useSelector((state) => state.user.users));
+  const userObj = useSelector((state) => state.user.users);
+  let userArr
+  if(userObj){
+    userArr = Object.values(userObj)
+  }
   console.log("🚀 ~ file: FanFaction.js:16 ~ FanFaction ~ userArr:", userArr);
   const threads = Object.values(useSelector((state) => state.thread.threads));
   console.log("🚀 ~ file: FanFaction.js:17 ~ FanFaction ~ threads:", threads);

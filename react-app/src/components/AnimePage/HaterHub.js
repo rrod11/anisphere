@@ -12,7 +12,11 @@ const HaterHub = () => {
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  const userArr = Object.values(useSelector((state) => state.user.users));
+  const userObj = useSelector((state) => state.user.users);
+  let userArr;
+  if (userObj) {
+    userArr = Object.values(userObj);
+  }
   const threads = Object.values(useSelector((state) => state.thread.threads));
   console.log("🚀 ~ file: HaterHub.js:17 ~ HaterHub ~ threads:", threads);
   const collected = threads?.filter((ele) => {

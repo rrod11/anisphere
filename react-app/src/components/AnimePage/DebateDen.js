@@ -12,7 +12,11 @@ const DebateDen = () => {
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  const userArr = Object.values(useSelector((state) => state.user.users));
+  const userObj = useSelector((state) => state.user.users);
+  let userArr;
+  if (userObj) {
+    userArr = Object.values(userObj);
+  }
   const threads = Object.values(useSelector((state) => state.thread.threads));
   console.log("🚀 ~ file: DebateDen.js:17 ~ DebateDen ~ threads:", threads);
   const collected = threads?.filter((ele) => {
