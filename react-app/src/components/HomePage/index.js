@@ -237,18 +237,21 @@ const HomePage = ({ posts }) => {
             <div className="scroll-object">
               This is the beginning of the best anime site to ever exist. I want
               you all to be patient with me as i work to figure out the ins and
-              outs of coding. I plan to have a multifacted website that brings
-              the best parts of all anime out there. I want to have a grading
-              scale for anime as well as suggested communities to find other
-              like minded individuals such as yourself with similar interests
-              and tastes in the anime cuisine. My algorithm should be able to
+              outs and nuances associated with creating a large scale
+              application. This multifacted website will highlight the best
+              parts AND the worst parts of all anime out there. While a grading
+              scale for anime exists, a suggested anime function to pair you
+              with anime that are similar to your tastes and interests in
+              regards to the anime cuisine. My algorithm will soon be able to
               match you to anime that you will most likely enjoy or at the very
               least be able to watch for mild entertainment without wanting to
               rip your hair, eyeballs, or ear lobes out/off. I hope that this
               site is able to give you everything that you are looking for out
-              of the site as well as introduce you to some newer things that you
-              may never have thought that youd see on a website meant for just
-              us dweebs!!..
+              of the site....
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <h1>LOADING SOME ANIME FOR YOUR PERUSAL</h1>
+              <h2>**!!Be Patient Please And Thank You!!**</h2>
             </div>
           </div>
         </div>
