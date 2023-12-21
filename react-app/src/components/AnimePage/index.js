@@ -42,15 +42,25 @@ const AnimePage = ({ posts }) => {
   const [loadDebateDen, setLoadDebateDen] = useState(false);
   const userObj = useSelector((state) => state.user.users);
   const likes = useSelector((state) => state.like.likes);
-  const likeArr = Object.values(likes).filter(
-    (ele) => ele.post_id == target.id
-  );
-  const likeTotal = likeArr.filter((ele) => ele.likes == true).length;
+  let likeArr;
+  if (target && likes !== undefined) {
+    likeArr = Object.values(likes).filter((ele) => ele.post_id == target.id);
+  }
+  let likeTotal;
+  if (target && likes && likeArr) {
+    likeTotal = likeArr.filter((ele) => ele.likes == true).length;
+  }
   const dislikes = useSelector((state) => state.dislike.dislikes);
-  const dislikeArr = Object.values(dislikes).filter(
-    (ele) => ele.post_id == target.id
-  );
-  const dislikeTotal = dislikeArr.filter((ele) => ele.dislikes == true).length;
+  let dislikeArr;
+  if (target && dislikes !== undefined) {
+    dislikeArr = Object.values(dislikes).filter(
+      (ele) => ele.post_id == target.id
+    );
+  }
+  let dislikeTotal;
+  if (target && dislikes && dislikeArr) {
+    dislikeTotal = dislikeArr.filter((ele) => ele.dislikes == true).length;
+  }
   const targetCategories = Object.values(postcategories).filter((ele) => {
     if (parseInt(ele.postId) === parseInt(postId)) {
       return ele;
@@ -72,7 +82,7 @@ const AnimePage = ({ posts }) => {
   if (userObj) {
     usersArray = Object.values(userObj);
   }
-  if (sessionUser) {
+  if (sessionUser && likeArr && dislikeArr) {
     if (
       likeArr.find((ele) => ele.user_id == sessionUser.id && ele.likes == true)
     )
@@ -211,6 +221,7 @@ const AnimePage = ({ posts }) => {
     dispatch(allTheThreads());
     setIsLoaded(true);
   }, [dispatch, isLoaded, render]);
+
   if (!target) {
     return (
       <div className="no-anime-here">
