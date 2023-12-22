@@ -101,6 +101,17 @@ export default function Profile() {
       </div>
     );
   } else {
-    return <div>AINT NOTHING OVER HERE FOR YOU</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "40px",
+          color: "white",
+        }}
+      >
+        AINT NOTHING OVER HERE FOR YOU
+      </div>
+    );
   }
 }
