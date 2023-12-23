@@ -18,6 +18,9 @@ export default function Profile() {
 
   const [loadPosts, setLoadPosts] = useState(true);
   const [loadReviews, setLoadReviews] = useState(false);
+  function goBack() {
+    return history.go(-1);
+  }
 
   useEffect(() => {
     if (!user) {
@@ -111,6 +114,9 @@ export default function Profile() {
         }}
       >
         <p>AINT NOTHING OVER HERE FOR YOU</p>
+        <button className="shame-button" onClick={{ goBack }}>
+          Return
+        </button>
       </div>
     );
   }
