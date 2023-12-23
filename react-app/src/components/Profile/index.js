@@ -110,7 +110,7 @@ export default function Profile() {
           color: "white",
         }}
       >
-        AINT NOTHING OVER HERE FOR YOU
+        <p>AINT NOTHING OVER HERE FOR YOU</p>
       </div>
     );
   }
