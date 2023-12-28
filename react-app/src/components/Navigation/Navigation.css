@@ -121,6 +121,7 @@ button.create-post:hover {
   width: 100%;
   height: 60px;
   margin: 0 2px;
+  font-weight: 700;
 }
 .button-login button {
   background: rgb(0, 242, 255);
@@ -132,6 +133,7 @@ button.create-post:hover {
   width: 100%;
   height: 60px;
   margin: 0 2px;
+  font-weight: 700;
 }
 .button-signup button {
   background: rgb(0, 242, 255);
