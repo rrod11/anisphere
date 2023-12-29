@@ -10,7 +10,6 @@ import EditReview from "../EditReviewModal/editModalReview";
 import DeleteReview from "../DeleteModal/deleteModalReview";
 
 export default function UserReviews({ user }) {
-  console.log("🚀 ~ file: userReviews.js:11 ~ UserReviews ~ user:", user);
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
@@ -19,24 +18,17 @@ export default function UserReviews({ user }) {
   // const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.review.reviews);
   const posts = useSelector((state) => state.post.posts);
-  console.log("🚀 ~ file: userReviews.js:18 ~ UserReviews ~ posts:", posts);
+
   let reviewArr;
   if (reviews) {
     reviewArr = Object.values(reviews);
   }
-  console.log(
-    "🚀 ~ file: userReviews.js:12 ~ UserReviews ~ reviewArr:",
-    reviewArr
-  );
+
   let userReviews;
   if (reviewArr) {
     userReviews = reviewArr.filter((ele) => ele.userId == user.id);
   }
-  console.log(
-    "🚀 ~ file: userReviews.js:18 ~ UserReviews ~ userReviews:",
-    userReviews
-  );
-  console.log("🚀 ~ file: userReviews.js:11 ~ UserReviews ~ reviews:", reviews);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const closeMenu = () => setShowMenu(false);
 
@@ -45,7 +37,6 @@ export default function UserReviews({ user }) {
     dispatch(getAllPosts());
 
     dispatch(allTheReviews()).then(() => setIsLoaded(true));
-    // console.log(post);
   }, [dispatch]);
 
   return (

@@ -47,7 +47,6 @@ const PostForm = () => {
     e.stopPropagation();
 
     const tempFile = e.target.files[0];
-    console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ tempFile:", tempFile);
 
     // Check for max image size of 5Mb
     if (tempFile.size > 5000000) {
@@ -58,7 +57,7 @@ const PostForm = () => {
     const newImageURL = URL.createObjectURL(tempFile);
     setImage(e.target.files[0]); // Generate a local URL to render the image file inside of the <img> tag.
     setImageURL(newImageURL);
-    // console.log("🚀 ~ file: index.js:33 ~ fileWrap ~ imagefile:", image);
+
     setFile(tempFile);
     setFilename(tempFile.name);
   };
@@ -101,10 +100,7 @@ const PostForm = () => {
       formData.append("title", title);
       formData.append("image", image);
       formData.append("user_id", sessionUser.id);
-      console.log(
-        "🚀 ~ file: index.js:116 ~ handleSubmit ~ formData:",
-        formData
-      );
+
       const responseData = await dispatch(createPost(formData));
 
       options.forEach(async ({ id, name }) => {

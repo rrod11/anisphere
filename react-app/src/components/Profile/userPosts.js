@@ -14,10 +14,10 @@ export default function UserPosts({ user }) {
   const currUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const posts = useSelector((state) => state.post.posts);
-  console.log("🚀 ~ file: userPosts.js:16 ~ UserPosts ~ posts:", posts);
+
   const postArr = Object.values(posts);
   const userPosts = postArr.filter((ele) => ele.userId == currUser.id);
-  console.log("🚀 ~ file: userPosts.js:19 ~ UserPosts ~ userPosts:", userPosts);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [render, setRender] = useState(false);
   const closeMenu = () => {
