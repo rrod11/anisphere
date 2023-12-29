@@ -10,7 +10,7 @@ const Replies = ({ threadId, render, setRender }) => {
   // const { threadId } = useParams();
 
   const handleAddReply = () => {
-    console.log("HITTIng IT");
+    return;
   };
 
   return (

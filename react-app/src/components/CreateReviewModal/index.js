@@ -21,10 +21,7 @@ function ReviewFormModal({ postId, render, setRender }) {
   const [errors, setErrors] = useState({});
   const disabled = reviewText.length < 4;
   // const reviewer = useSelector((state) => state.review.reviews);
-  // console.log(
-  //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
-  //   reviewer
-  // );
+
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;

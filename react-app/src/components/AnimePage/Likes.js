@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Likes = ({ threadlikes, threadId, render, setRender }) => {
-  console.log("🚀 ~ file: Likes.js:11 ~ Likes ~ threadlikes:", threadlikes);
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -24,7 +23,6 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
       return ele;
     }
   });
-  console.log("🚀 ~ file: Likes.js:27 ~ tLikes ~ tLikes:", tLikes);
   let liked = false;
   if (sessionUser) {
     if (
@@ -38,7 +36,6 @@ const Likes = ({ threadlikes, threadId, render, setRender }) => {
     if (!sessionUser) {
       history.push("/login");
     } else if (threadlikes.find((ele) => ele.user_id == sessionUser.id)) {
-      console.log("AM I IN THE ELSEIF?");
       const foundLike = threadlikes.find((ele) => {
         return ele.user_id == sessionUser.id;
       });

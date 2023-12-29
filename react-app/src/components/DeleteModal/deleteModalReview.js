@@ -10,26 +10,15 @@ import { useEffect } from "react";
 //PLEASE CHANGE names/variables
 
 function DeleteReview({ reviewId, postId }) {
-  console.log(
-    "🚀 ~ file: deleteModalReview.js:13 ~ DeleteReview ~ reviewId:",
-    reviewId
-  );
   const { closeModal } = useModal();
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   // const reviewer = useSelector((state) => state.review.reviews);
-  // console.log(
-  //   "🚀 ~ file: deleteModalReview.js:18 ~ DeleteReview ~ reviewer:",
-  //   reviewer
-  // );
+
   // const reviewsLength = Object.values(
   //   useSelector((state) => state.review.reviews)
   // ).length;
-  // console.log(
-  //   "🚀 ~ file: deleteModalReview.js:20 ~ DeleteReview ~ reviewsLength:",
-  //   reviewsLength
-  // );
 
   const deleteReview = async (e) => {
     e.preventDefault();
