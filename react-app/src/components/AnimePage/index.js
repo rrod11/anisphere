@@ -98,7 +98,6 @@ const AnimePage = ({ posts }) => {
     if (!sessionUser) {
       history.push("/login");
     } else if (likeArr.find((ele) => ele.user_id == sessionUser.id)) {
-      console.log("AM I IN THE ELSEIF?");
       const foundLike = likeArr.find((ele) => {
         return ele.user_id == sessionUser.id;
       });
@@ -130,10 +129,6 @@ const AnimePage = ({ posts }) => {
       const foundDislike = dislikeArr.find((ele) => {
         return ele.user_id == sessionUser.id;
       });
-      console.log(
-        "🚀 ~ file: index.js:71 ~ foundDislike ~ foundDislike:",
-        foundDislike
-      );
 
       const stock = {
         id: foundDislike?.id,
@@ -141,7 +136,6 @@ const AnimePage = ({ posts }) => {
         user_id: foundDislike?.user_id,
         post_id: foundDislike?.post_id,
       };
-      console.log("🚀 ~ file: index.js:79 ~ redClick ~ stock:", stock);
 
       await dispatch(editADislike(stock.id, stock, postId));
       setRender(!render);
@@ -151,7 +145,6 @@ const AnimePage = ({ posts }) => {
         user_id: sessionUser?.id,
         post_id: postId,
       };
-      console.log("🚀 ~ file: index.js:91 ~ redClick ~ stock:", stock);
 
       await dispatch(addADislike(postId, stock));
       setRender(!render);
