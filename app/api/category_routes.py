@@ -25,8 +25,7 @@ def get_all_categories():
     """get all the categories and return them """
     all_categories = Category.query.all()
     see_categories = [category.to_dict() for category in all_categories]
-    print(see_categories)
-    print(all_categories)
+
 
     return {"categories": see_categories}
     # return {"categories": all_categories}
@@ -45,7 +44,7 @@ def get_category_by_id(id):
     """return a single category by the id passed to the route"""
     one_category = category.query.get(id)
     # one_category = [category for category in seed categories if category["id"] == id ]
-    print(one_category)
+
     # return render_template("feed.html", categories=[one_category] )
     return one_category.to_dict()
 
@@ -64,7 +63,7 @@ def create_new_category(postId):
         new_category= category(
             name=form.data["name"],
         )
-        print(new_category)
+
         db.session.add(new_category)
         db.session.commit()
         return new_category.to_dict()

@@ -25,8 +25,7 @@ def get_all_dislikes():
     """get all the dislikes and return them """
     all_dislikes = Dislike.query.all()
     see_dislikes = [dislike.to_dict() for dislike in all_dislikes]
-    print(see_dislikes)
-    print(all_dislikes)
+
 
     return {"dislikes": see_dislikes}
 
@@ -43,9 +42,7 @@ def get_dislikes_for_post(id):
 def get_dislike_by_id(id):
     """return a single dislike by the id passed to the route"""
     one_dislike = Dislike.query.get(id)
-    # one_like = [like for like in seed_dislikes if like["id"] == id ]
-    print(one_dislike)
-    # return render_template("feed.html", dislikes=[one_like] )
+
     return one_dislike.to_dict()
 
 
@@ -65,7 +62,7 @@ def create_new_dislike(postId):
             post_id=form.data["post_id"],
             user_id=form.data["user_id"],
         )
-        print(new_dislike)
+
         db.session.add(new_dislike)
         db.session.commit()
         return new_dislike.to_dict()

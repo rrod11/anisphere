@@ -26,8 +26,7 @@ def get_all_posts():
     """get all the posts and return them """
     all_posts = Post.query.all()
     see_posts = [post.to_dict() for post in all_posts]
-    print(see_posts)
-    print(all_posts)
+
     # sorted_posts = sorted(seed_posts, key=lambda post: post["date"], reverse=True)
     # return render_template("feed.html", posts=all_posts)
     return {"posts": see_posts}
@@ -38,9 +37,7 @@ def get_all_posts():
 def get_post_by_id(id):
     """return a single post by the id passed to the route"""
     one_post = Post.query.get(id)
-    # one_post = [post for post in seed_posts if post["id"] == id ]
-    print(one_post)
-    # return render_template("feed.html", posts=[one_post] )
+
     return one_post
 
 
@@ -52,13 +49,13 @@ def create_new_post():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     formread = form.__dict__.items()
-    print("🐍 File: api/post_routes.py | Line: 55 | create_new_post ~ formread",formread)
+
 
     if form.validate_on_submit():
         image = form.data['image']
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print(upload)
+
 
         if "url" not in upload:
             return upload
@@ -72,20 +69,11 @@ def create_new_post():
             description=form.data["description"],
             user_id=form.data["user_id"],
         )
-        print(new_post)
+
         db.session.add(new_post)
         db.session.commit()
 
-        # categoryArray = form.data["categories"]
-        # print("🐍 File: api/post_routes.py | Line: 80 | create_new_post ~ categoryArray",categoryArray)
 
-        # for ele in form.data["categories"]:
-        #     new_catty = postcategories(
-        #         post_id = new_post.id,
-        #         category_id = ele,
-        #     )
-        #     db.session.add(new_catty)
-        #     db.session.commit()
 
         return new_post.to_dict()
 
@@ -102,15 +90,13 @@ def update_post(id):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # formread = form.__dict__.items()
-    # print("🐍 File: api/post_routes.py | Line: 92 | update_post ~ form",formread)
-    print("🐍 File: api/post_routes.py | Line: 92 | update_post ~ form",form.data)
-    print("🐍 !!!!!!!!!!!!!!!!!!!!!!!! DO I EVEN GET IN???!!!",form.data)
+
 
     if form.validate_on_submit():
         # gets a ref to the resource we want to update
         post_to_update = Post.query.get(id)
         postread = post_to_update.__dict__.items()
-        print("🐍 File: api/post_routes.py | Line: 97 | update_post ~ postread",postread)
+
 
         if post_to_update:
             post_to_update.description = form.data["description"]
@@ -119,7 +105,7 @@ def update_post(id):
 
             db.session.commit()
             if form.data["image"]:
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!EUREKA")
+
                 file_to_delete = remove_file_from_s3(post_to_update.image)
                 image = form.data['image']
                 image.filename = get_unique_filename(image.filename)
@@ -155,5 +141,5 @@ def delete_post(id):
         return {"message": f"Successfully deleted Product {post_to_delete.id} - {post_to_delete.title}"}
 
     else:
-        print(file_to_delete)
+
         return "<h1>File delete error!</h1>"

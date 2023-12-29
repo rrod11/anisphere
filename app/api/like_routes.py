@@ -25,11 +25,10 @@ def get_all_likes():
     """get all the likes and return them """
     all_likes = Like.query.all()
     see_likes = [like.to_dict() for like in all_likes]
-    print(see_likes)
-    print(all_likes)
+
 
     return {"likes": see_likes}
-    # return { "like": see_likes}
+
 
 @like_routes.route('/post/<int:id>')
 def get_likes_for_post(id):
@@ -43,9 +42,7 @@ def get_likes_for_post(id):
 def get_like_by_id(id):
     """return a single like by the id passed to the route"""
     one_like = Like.query.get(id)
-    # one_like = [like for like in seed_likes if like["id"] == id ]
-    print(one_like)
-    # return render_template("feed.html", likes=[one_like] )
+
     return one_like.to_dict()
 
 
@@ -65,7 +62,7 @@ def create_new_like(postId):
             post_id=form.data["post_id"],
             user_id=form.data["user_id"],
         )
-        print(new_like)
+
         db.session.add(new_like)
         db.session.commit()
         return new_like.to_dict()
