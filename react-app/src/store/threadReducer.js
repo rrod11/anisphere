@@ -35,10 +35,7 @@ const editThread = (payload) => {
 
 export const allTheThreads = () => async (dispatch) => {
   const response = await fetch(`/api/threads/all`);
-  console.log(
-    "🚀 ~ file: threadReducer.js:39 ~ allTheThreads ~ response:",
-    response
-  );
+
   if (response.ok) {
     const { threads } = await response.json();
     dispatch(getThreads(threads));
@@ -70,22 +67,15 @@ export const deleteAThread = (threadId) => async (dispatch) => {
   }
 };
 export const editAtTread = (threadId, payload, postId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A thread THUNK");
   const response = await fetch(`/api/threads/${threadId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: threadReducer.js:72 ~ editAtTread ~ response:",
-    response
-  );
+
   if (response.ok) {
     const thread = await response.json();
-    console.log(
-      "🚀 ~ file: threadReducer.js:89 ~ editAThread ~ thread:",
-      thread
-    );
+
     dispatch(editThread(thread));
     return thread;
   } else {
@@ -105,7 +95,6 @@ const threadReducer = (state = initialState, action) => {
       return newState;
     case EDIT_THREAD:
       newState = { ...state };
-      console.log("IN EDIT thread REDUCER AND TRYING TO SEE ID", action);
       newState.threads[action.payload.id] = action.payload;
       return newState;
     case DELETE_THREAD:
