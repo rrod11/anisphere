@@ -8,7 +8,6 @@ import Replies from "./Replies";
 
 const DebateDen = () => {
   const { postId } = useParams();
-  console.log("🚀 ~ file: DebateDen.js:8 ~ DebateDen ~ postId:", postId);
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
@@ -18,17 +17,13 @@ const DebateDen = () => {
     userArr = Object.values(userObj);
   }
   const threads = Object.values(useSelector((state) => state.thread.threads));
-  console.log("🚀 ~ file: DebateDen.js:17 ~ DebateDen ~ threads:", threads);
   const collected = threads?.filter((ele) => {
     if (ele.postId == postId && ele.debate == true) {
       return ele;
     }
   });
   const debateThreads = addUsers(orderReviews(collected), userArr);
-  console.log(
-    "🚀 ~ file: DebateDen.js:20 ~ DebateDen ~ debateThreads:",
-    debateThreads
-  );
+
   function orderReviews(arr) {
     let newbie = [];
     for (let i = arr.length - 1; i >= 0; i--) {
@@ -60,7 +55,7 @@ const DebateDen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
+
     const newThread = {
       title,
       description,
@@ -71,10 +66,7 @@ const DebateDen = () => {
       debate: true,
     };
     const response = await dispatch(createAThread(postId, newThread));
-    console.log(
-      "🚀 ~ file: DebateDen.js:53 ~ handleSubmit ~ response:",
-      response
-    );
+
     // setThread("");
     setTitle("");
     setDescription("");
