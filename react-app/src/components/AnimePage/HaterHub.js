@@ -8,7 +8,6 @@ import Replies from "./Replies";
 
 const HaterHub = () => {
   const { postId } = useParams();
-  console.log("🚀 ~ file: HaterHub.js:8 ~ HaterHub ~ postId:", postId);
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
@@ -18,17 +17,13 @@ const HaterHub = () => {
     userArr = Object.values(userObj);
   }
   const threads = Object.values(useSelector((state) => state.thread.threads));
-  console.log("🚀 ~ file: HaterHub.js:17 ~ HaterHub ~ threads:", threads);
   const collected = threads?.filter((ele) => {
     if (ele.postId == postId && ele.hater == true) {
       return ele;
     }
   });
   const haterThreads = addUsers(orderReviews(collected), userArr);
-  console.log(
-    "🚀 ~ file: HaterHub.js:20 ~ HaterHub ~ fanThread:",
-    haterThreads
-  );
+
   function orderReviews(arr) {
     let newbie = [];
     for (let i = arr.length - 1; i >= 0; i--) {
@@ -60,7 +55,6 @@ const HaterHub = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
     const newThread = {
       title,
       description,
@@ -71,10 +65,7 @@ const HaterHub = () => {
       debate: false,
     };
     const response = await dispatch(createAThread(postId, newThread));
-    console.log(
-      "🚀 ~ file: HaterHub.js:53 ~ handleSubmit ~ response:",
-      response
-    );
+
     // setThread("");
     setTitle("");
     setDescription("");
