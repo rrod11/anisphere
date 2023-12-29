@@ -25,8 +25,7 @@ def get_all_threadlikes():
     """get all the threadlikes and return them """
     all_threadlikes = ThreadLike.query.all()
     see_threadlikes = [threadlike.to_dict() for threadlike in all_threadlikes]
-    print(see_threadlikes)
-    print(all_threadlikes)
+
 
     return {"threadlikes": see_likes}
     # return { "like": see_likes}
@@ -44,7 +43,7 @@ def get_threadlike_by_id(id):
     """return a single threadlike by the id passed to the route"""
     one_threadlike = ThreadLike.query.get(id)
     # one_like = [like for like in seed_likes if like["id"] == id ]
-    print(one_like)
+
     # return render_template("feed.html", likes=[one_like] )
     return one_threadlike.to_dict()
 
@@ -65,7 +64,7 @@ def create_new_like(threadId):
             thread_id=form.data["thread_id"],
             user_id=form.data["user_id"],
         )
-        print(new_threadlike)
+
         db.session.add(new_threadlike)
         db.session.commit()
         return new_threadlike.to_dict()
