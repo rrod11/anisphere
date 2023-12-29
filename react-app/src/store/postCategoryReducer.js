@@ -51,10 +51,7 @@ export const addAPostcategory = (postId, payload) => async (dispatch) => {
     // body: JSON.stringify(payload),
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: postCategoryReducer.js:50 ~ addAPostcategory ~ response:",
-    response
-  );
+
   if (response.ok) {
     const postcategory = await response.json();
     dispatch(addPostCategory(postcategory));
@@ -76,20 +73,14 @@ export const deleteAPostcategory = (postcategoryId) => async (dispatch) => {
   }
 };
 export const editAPostcategory = (payload, postId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A LIKE THUNK");
   const response = await fetch(`/api/postcategories/${postId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log("🚀 ~ file: postCategoryReducer.js:74 ~ response:", response);
 
   if (response.ok) {
     const postcategory = await response.json();
-    console.log(
-      "🚀 ~ file: postCategoryReducer.js:82 ~ postcategory:",
-      postcategory
-    );
 
     dispatch(editPostCategory(postcategory));
     return postcategory;
@@ -110,7 +101,6 @@ const postcategoriesReducer = (state = initialState, action) => {
       return newState;
     case EDIT_POSTCATEGORY:
       newState = { ...state };
-      console.log("IN EDIT POSTCATEGORY REDUCER AND TRYING TO SEE ID", action);
       newState.postcategories[action.payload.id] = action.payload;
       return newState;
     case DELETE_POSTCATEGORY:

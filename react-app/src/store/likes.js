@@ -67,17 +67,14 @@ export const deleteALike = (likeId) => async (dispatch) => {
   }
 };
 export const editALike = (likeId, payload, postId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A LIKE THUNK");
   const response = await fetch(`/api/likes/${likeId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log("🚀 ~ file: likes.js:73 ~ editALike ~ response:", response);
 
   if (response.ok) {
     const like = await response.json();
-    console.log("🚀 ~ file: likes.js:80 ~ editALike ~ like:", like);
 
     dispatch(editLike(like));
     return like;
@@ -98,7 +95,7 @@ const likeReducer = (state = initialState, action) => {
       return newState;
     case EDIT_LIKE:
       newState = { ...state };
-      console.log("IN EDIT LIKE REDUCER AND TRYING TO SEE ID", action);
+
       newState.likes[action.payload.id] = action.payload;
       return newState;
     case DELETE_LIKE:

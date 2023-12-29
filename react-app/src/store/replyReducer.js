@@ -49,10 +49,7 @@ export const createAReply = (threadId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: replyReducer.js:49 ~ createAReply ~ response:",
-    response
-  );
+
   const reply = await response.json();
   dispatch(createReply(reply));
   return reply;
@@ -70,16 +67,15 @@ export const deleteAReply = (replyId) => async (dispatch) => {
   }
 };
 export const editAReply = (replyId, payload, threadId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A reply THUNK");
   const response = await fetch(`/api/replies/${replyId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log("🚀 ~ file: replyReducer.js:84 ~ response:", response.body);
+
   if (response.ok) {
     const reply = await response.json();
-    console.log("🚀 ~ file: replyReducer.js:89 ~ editAReply ~ reply:", reply);
+
     dispatch(editReply(reply));
     return reply;
   } else {
@@ -99,7 +95,7 @@ const replyReducer = (state = initialState, action) => {
       return newState;
     case EDIT_REPLY:
       newState = { ...state };
-      console.log("IN EDIT reply REDUCER AND TRYING TO SEE ID", action);
+
       newState.replies[action.payload.id] = action.payload;
       return newState;
     case DELETE_REPLY:

@@ -14,14 +14,10 @@ export const createPostImage = (post, postId) => async (dispatch) => {
     method: "POST",
     body: post,
   });
-  console.log(
-    "🚀 ~ file: postImage.js:15 ~ createPostImage ~ response:",
-    response
-  );
 
   if (response.ok) {
     const resPost = await response.json();
-    console.log("NEW POST DATA", resPost);
+
     dispatch(addPostImage(resPost));
   } else {
     console.log("There was an error UPDATING your post Image!");

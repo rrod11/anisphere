@@ -41,17 +41,14 @@ export const getAllPosts = () => async (dispatch) => {
 export const createPost = (post) => async (dispatch) => {
   const response = await fetch(`/api/posts/new`, {
     method: "POST",
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     "Content-Type": "application/json",
-    //   },
+
     body: post,
   });
 
   if (response.ok) {
     const resPost = await response.json();
     // const { resPost } = await response.json();
-    console.log("NEW POST DATA", resPost);
+
     dispatch(addPost(resPost));
     return resPost;
   } else {
@@ -64,12 +61,10 @@ export const editPost = (post, postId) => async (dispatch) => {
     method: "PUT",
     body: post,
   });
-  console.log("🚀 ~ file: postReducer.js:61 ~ editPost ~ response:", response);
 
   if (response.ok) {
     const resPost = await response.json();
-    // const { resPost } = await response.json();
-    console.log("NEW POST DATA", resPost);
+
     dispatch(addPost(resPost));
   } else {
     console.log("There was an error EDITING your post!");
