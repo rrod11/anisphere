@@ -117,7 +117,7 @@ function Reviews({ list, posts, theId }) {
       </>
     );
   }
-  // console.log("🚀 ~ file: index.js:328 ~ Reviews ~ usersArr:", usersArr);
+
   function addUsers(list, users) {
     let newbie = [];
     for (let i = 0; i < list.length; i++) {

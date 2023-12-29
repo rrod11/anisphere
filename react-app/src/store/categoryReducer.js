@@ -67,23 +67,17 @@ export const deleteACategory = (categoryId) => async (dispatch) => {
   }
 };
 export const editACategory = (categoryId, payload) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A category THUNK");
+
   const response = await fetch(`/api/categories/${categoryId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: categories.js:73 ~ editACategory ~ response:",
-    response
-  );
+
 
   if (response.ok) {
     const category = await response.json();
-    console.log(
-      "🚀 ~ file: categories.js:80 ~ editACategory ~ category:",
-      category
-    );
+
 
     dispatch(editCategory(category));
     return category;
@@ -104,7 +98,6 @@ const categoryReducer = (state = initialState, action) => {
       return newState;
     case EDIT_CATEGORY:
       newState = { ...state };
-      console.log("IN EDIT category REDUCER AND TRYING TO SEE ID", action);
       newState.categories[action.payload.id] = action.payload;
       return newState;
     case DELETE_CATEGORY:

@@ -68,20 +68,14 @@ export const deleteADislike = (dislikeId) => async (dispatch) => {
 };
 export const editADislike =
   (dislikeId, payload, postId) => async (dispatch) => {
-    console.log("DO I HIT THE EDIT A DISLIKE THUNK");
     const response = await fetch(`/api/dislikes/${dislikeId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    console.log("🚀 ~ file: likes.js:73 ~ editALike ~ response:", response);
 
     if (response.ok) {
       const dislike = await response.json();
-      console.log(
-        "🚀 ~ file: dislikes.js:80 ~ editADislike ~ dislike:",
-        dislike
-      );
 
       dispatch(editDislike(dislike));
       return dislike;
@@ -102,7 +96,7 @@ const dislikeReducer = (state = initialState, action) => {
       return newState;
     case EDIT_DISLIKE:
       newState = { ...state };
-      console.log("IN EDIT DISLIKE REDUCER AND TRYING TO SEE ID", action);
+
       newState.dislikes[action.payload.id] = action.payload;
       return newState;
     case DELETE_DISLIKE:
