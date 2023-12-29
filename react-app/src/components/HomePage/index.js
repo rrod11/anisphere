@@ -20,7 +20,6 @@ const HomePage = ({ posts }) => {
     const searchWord = e.target.value;
     setSearch(searchWord);
     const newFilter = postArr.filter((value) => {
-      console.log("🚀 ~ file: index.js:23 ~ newFilter ~ value:", value);
       if (
         value.title.toLowerCase().includes(searchWord.toLowerCase()) ||
         value.categories.find(

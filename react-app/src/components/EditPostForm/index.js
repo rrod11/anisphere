@@ -21,29 +21,22 @@ const EditPostForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const posts = Object.values(useSelector((state) => state.post.posts));
   const target = posts.find((ele) => ele.id == postId);
-  console.log("🚀 ~ file: index.js:16 ~ EditPostForm ~ target:", target);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
-  // My need to delete this code
+  // May need to delete this code
   const maxFileError = "Selected image exceeds the maximum file size of 5Mb";
   const categories = useSelector((state) => state.category.categories);
   const postcategories = useSelector(
     (state) => state.postcategory.postcategories
   );
-  console.log(
-    "🚀 ~ file: index.js:25 ~ EditPostForm ~ categories:",
-    categories
-  );
+
   const catArr = Object.values(categories);
-  console.log("🚀 ~ file: index.js:26 ~ EditPostForm ~ catArr:", catArr);
+
   const targetCatArr = target.categories.map((ele) => {
     return ele;
   });
-  console.log(
-    "🚀 ~ file: index.js:30 ~ targetCatArr ~ targetCatArr:",
-    targetCatArr
-  );
+
   const oldPC = Object.values(postcategories).filter((ele) => {
     if (
       targetCatArr.filter((element) => element.id == ele.categoryId) &&
@@ -52,13 +45,13 @@ const EditPostForm = () => {
       return ele;
     }
   });
-  console.log("🚀 ~ file: index.js:55 ~ oldPC ~ oldPC:", oldPC);
+
   const [options, setOptions] = useState(targetCatArr);
-  console.log("🚀 ~ file: index.js:30 ~ EditPostForm ~ options:", options);
+
   // const realArr = options.map((ele) => {
   //   return catArr[ele];
   // });
-  // console.log("🚀 ~ file: index.js:34 ~ realArr ~ realArr:", realArr);
+
   const [imageURL, setImageURL] = useState(target.image);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
@@ -106,7 +99,7 @@ const EditPostForm = () => {
       errObj.title = "Title is required";
     }
     setErrors(errObj);
-    console.log("YOUR CURRENT ERRORS", Object.values(errors));
+
   }
 
   const stock = {
@@ -139,28 +132,18 @@ const EditPostForm = () => {
 
       const responseData = await dispatch(editPost(formData, postId));
       oldPC.forEach(async ({ id, categoryId, postId }) => {
-        console.log(
-          "🚀 ~ file: index.js:142 ~ oldPC.forEach ~ postId:",
-          postId
-        );
-        console.log(
-          "🚀 ~ file: index.js:142 ~ oldPC.forEach ~ categoryId:",
-          categoryId
-        );
-        console.log("🚀 ~ file: index.js:149 ~ oldPC.forEach ~ id:", id);
+
+
         const numCat = options.map((ele) => {
           return ele.id;
         });
-        console.log("🚀 ~ file: index.js:148 ~ numCat ~ numCat:", numCat);
+
         if (!numCat.includes(categoryId)) {
           await dispatch(deleteAPostcategory(id));
         }
       });
       options.forEach(async ({ id, name }) => {
-        console.log(
-          "🚀 ~ file: index.js:132 ~ options.forEach ~ payloadObj.stock:",
-          stock
-        );
+
         const payloadObj = {
           category_id: id,
           post_id: stock?.id,
@@ -169,10 +152,7 @@ const EditPostForm = () => {
         const response2 = await dispatch(
           editAPostcategory(payloadObj, stock?.id)
         );
-        console.log(
-          "🚀 ~ file: index.js:134 ~ options.forEach ~ response2:",
-          response2
-        );
+
       });
 
       setDescription("");
