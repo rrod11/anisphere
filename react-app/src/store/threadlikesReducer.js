@@ -50,10 +50,7 @@ export const addAThreadlike = (threadId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log(
-    "🚀 ~ file: threadlikesReducer.js:50 ~ addAThreadlike ~ response:",
-    response
-  );
+
   const threadlike = await response.json();
   dispatch(addThreadlike(threadlike));
   return threadlike;
@@ -72,28 +69,19 @@ export const deleteAThreadlike = (threadlikeId) => async (dispatch) => {
 };
 export const editAThreadlike =
   (threadlikeId, payload, postId) => async (dispatch) => {
-    console.log("DO I HIT THE EDIT A LIKE THUNK");
     const response = await fetch(`/api/threadlikes/${threadlikeId}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    console.log(
-      "🚀 ~ file: threadlikesReducer.js:73 ~ editAThreadlike ~ response:",
-      response
-    );
 
     if (response.ok) {
       const threadlike = await response.json();
-      console.log(
-        "🚀 ~ file: threadlikesReducer.js:81 ~ editAThreadlike ~ threadlike:",
-        threadlike
-      );
 
       dispatch(editThreadlike(threadlike));
       return threadlike;
     } else {
-      console.log("there was and issue updating your LIKE");
+      console.log("there was and issue updating your THREADLIKE");
     }
   };
 const threadlikeReducer = (state = initialState, action) => {
@@ -109,7 +97,6 @@ const threadlikeReducer = (state = initialState, action) => {
       return newState;
     case EDIT_THREADLIKE:
       newState = { ...state };
-      console.log("IN EDIT THREADLIKES REDUCER AND TRYING TO SEE ID", action);
       newState.threadlikes[action.payload.id] = action.payload;
       return newState;
     case DELETE_THREADLIKE:

@@ -73,19 +73,15 @@ export const deleteAReview = (reviewId) => async (dispatch) => {
   }
 };
 export const editAReview = (reviewId, payload, postId) => async (dispatch) => {
-  console.log("DO I HIT THE EDIT A REVIEW THUNK");
   const response = await fetch(`/api/reviews/${reviewId}/edit`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log("🚀 ~ file: reviewReducer.js:84 ~ response:", response.body);
+
   if (response.ok) {
     const review = await response.json();
-    console.log(
-      "🚀 ~ file: reviewReducer.js:89 ~ editAReview ~ review:",
-      review
-    );
+
     dispatch(editReview(review));
     return review;
   } else {
@@ -105,7 +101,7 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     case EDIT_REVIEW:
       newState = { ...state };
-      console.log("IN EDIT REVIEW REDUCER AND TRYING TO SEE ID", action);
+
       newState.reviews[action.payload.id] = action.payload;
       return newState;
     case DELETE_REVIEW:
