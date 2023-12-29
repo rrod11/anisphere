@@ -25,8 +25,7 @@ def get_all_replies():
     """get all the replies and return them """
     all_replies = Reply.query.all()
     see_replies = [reply.to_dict() for reply in all_replies]
-    print(see_replies)
-    print(all_replies)
+
     # sorted_replies = sorted(seed_replies, key=lambda reply: reply["date"], reverse=True)
     # return render_template("feed.html", replies=all_replies)
     return {"replies": see_replies}
@@ -45,7 +44,7 @@ def get_reply_by_id(id):
     """return a single reply by the id passed to the route"""
     one_reply = Reply.query.get(id)
     # one_reply = [reply for reply in seed_replies if reply["id"] == id ]
-    print(one_reply)
+
     # return render_template("feed.html", replies=[one_reply] )
     return one_reply.to_dict()
 
@@ -66,7 +65,7 @@ def create_new_reply(threadId):
             thread_id=form.data["thread_id"],
             user_id=form.data["user_id"],
         )
-        print(new_reply)
+
         db.session.add(new_reply)
         db.session.commit()
         return new_reply.to_dict()

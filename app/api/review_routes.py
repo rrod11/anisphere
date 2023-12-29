@@ -25,8 +25,7 @@ def get_all_reviews():
     """get all the reviews and return them """
     all_reviews = Review.query.all()
     see_reviews = [review.to_dict() for review in all_reviews]
-    print(see_reviews)
-    print(all_reviews)
+
     # sorted_reviews = sorted(seed_reviews, key=lambda review: review["date"], reverse=True)
     # return render_template("feed.html", reviews=all_reviews)
     return {"reviews": see_reviews}
@@ -45,7 +44,7 @@ def get_review_by_id(id):
     """return a single review by the id passed to the route"""
     one_review = Review.query.get(id)
     # one_review = [review for review in seed_reviews if review["id"] == id ]
-    print(one_review)
+
     # return render_template("feed.html", reviews=[one_review] )
     return one_review.to_dict()
 
@@ -67,7 +66,7 @@ def create_new_review(postId):
             rating=form.data["rating"],
             user_id=form.data["user_id"]
         )
-        print(new_review)
+
         db.session.add(new_review)
         db.session.commit()
         return new_review.to_dict()

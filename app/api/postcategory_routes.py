@@ -25,8 +25,7 @@ def get_all_postCategories():
     """get all the postcategories and return them """
     all_postCategories = postcategories.query.all()
     see_postCategories = [postcategory.to_dict() for postcategory in all_postCategories]
-    print(see_postCategories)
-    print(all_postCategories)
+
 
     return {"postcategories": see_postCategories}
     # return { "postcategories": see_postcategories}
@@ -43,9 +42,7 @@ def get_postCategories_for_post(id):
 def get_postCategories_by_id(id):
     """return a single postcategories by the id passed to the route"""
     one_postCategories = postcategories.query.get(id)
-    # one_postcategories = [postcategories for postcategories in seed_postcategories if postcategories["id"] == id ]
-    print(one_postCategories)
-    # return render_template("feed.html", postcategories=[one_postcategories] )
+
     return one_postCategories.to_dict()
 
 
@@ -57,7 +54,7 @@ def create_new_postcategories(postId):
     form = CategoryPostForm()
     form['csrf_token'].data = request.cookies["csrf_token"]
     formread = form.__dict__.items()
-    print("🐍 File: api/postcategory_routes.py | Line: 60 | create_new_postcategories ~ formread",formread)
+
 
 
 
@@ -66,7 +63,7 @@ def create_new_postcategories(postId):
             post_id=form.data["post_id"],
             category_id=form.data["category_id"],
         )
-        print(new_postCategories)
+
         db.session.add(new_postCategories)
         db.session.commit()
         return new_postCategories.to_dict()
@@ -96,7 +93,7 @@ def update_postCategories(id):
                 post_id=form.data["post_id"],
                 category_id=form.data["category_id"],
             )
-            print(new_postCategories)
+
             db.session.add(new_postCategories)
             db.session.commit()
             return new_postCategories.to_dict()

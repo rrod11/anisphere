@@ -24,8 +24,7 @@ def get_all_threads():
     """get all the threads and return them """
     all_threads = Thread.query.all()
     see_threads = [thread.to_dict() for thread in all_threads]
-    print(see_threads)
-    print(all_threads)
+
     # sorted_threads = sorted(seed_threads, key=lambda Thread: Thread["date"], reverse=True)
     # return render_template("feed.html", threads=all_threads)
     return {"threads": see_threads}
@@ -44,7 +43,7 @@ def get_Thread_by_id(id):
     """return a single Thread by the id passed to the route"""
     one_Thread = Thread.query.get(id)
     # one_Thread = [Thread for Thread in seed_threads if Thread["id"] == id ]
-    print(one_Thread)
+
     # return render_template("feed.html", threads=[one_Thread] )
     return one_Thread.to_dict()
 
@@ -69,7 +68,7 @@ def create_new_Thread(postId):
             hater=form.data["hater"],
             debate=form.data["debate"],
         )
-        print(new_Thread)
+
         db.session.add(new_Thread)
         db.session.commit()
         return new_Thread.to_dict()
