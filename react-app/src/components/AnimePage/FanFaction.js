@@ -8,28 +8,21 @@ import Replies from "./Replies";
 
 const FanFaction = () => {
   const { postId } = useParams();
-  console.log("🚀 ~ file: FanFaction.js:8 ~ FanFaction ~ postId:", postId);
   const dispatch = useDispatch();
   const [render, setRender] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const userObj = useSelector((state) => state.user.users);
-  let userArr
-  if(userObj){
-    userArr = Object.values(userObj)
+  let userArr;
+  if (userObj) {
+    userArr = Object.values(userObj);
   }
-  console.log("🚀 ~ file: FanFaction.js:16 ~ FanFaction ~ userArr:", userArr);
   const threads = Object.values(useSelector((state) => state.thread.threads));
-  console.log("🚀 ~ file: FanFaction.js:17 ~ FanFaction ~ threads:", threads);
   const collected = threads?.filter((ele) => {
     if (ele.postId == postId && ele.fan == true) {
       return ele;
     }
   });
   const fanThreads = addUsers(orderReviews(collected), userArr);
-  console.log(
-    "🚀 ~ file: FanFaction.js:20 ~ FanFaction ~ unrefined:",
-    fanThreads
-  );
 
   function orderReviews(arr) {
     let newbie = [];
@@ -62,7 +55,6 @@ const FanFaction = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
     const newThread = {
       title,
       description,
@@ -73,10 +65,6 @@ const FanFaction = () => {
       debate: false,
     };
     const response = await dispatch(createAThread(postId, newThread));
-    console.log(
-      "🚀 ~ file: FanFaction.js:53 ~ handleSubmit ~ response:",
-      response
-    );
 
     setTitle("");
     setDescription("");
