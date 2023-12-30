@@ -18,7 +18,7 @@ function AboutMe() {
           Hello there! 👋 I'm Roderick, a passionate, dedicated, and motivated
           individual with a love for technology and a keen interest in video,
           game, and website development. Let me give you a glimpse into who I am
-          and what I bring to the table.
+          and what I can bring to the table.
         </p>
         <h2 className="about-me-headers">Who Am I??</h2>
         <p className="about-me-answers">
