@@ -18,6 +18,34 @@ import AnimePage from "./components/AnimePage";
 import EditPostForm from "./components/EditPostForm";
 import NotFound from "./components/NotFound/notFound";
 import AboutMe from "./components/AboutMe";
+import ReactGA from "react-ga";
+import React from "react";
+import { withRouter } from "react-router-dom";
+import ReactGA from "react-ga";
+import RouteChangeTracker from "./RouteChangeTracker";
+
+const RouteChangeTracker = ({ history }) => {
+  history.listen((location, action) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  });
+
+  return <div></div>;
+};
+
+export const wRouter = withRouter(RouteChangeTracker);
+
+const TRACKING_ID = "UA-297350669-1";
+ReactGA.initialize(TRACKING_ID);
+
+ReactGA.event({
+  category: "User",
+  action: "Created an Account",
+});
+ReactGA.exception({
+  description: "An error ocurred",
+  fatal: true,
+});
 
 function App() {
   const history = useHistory();
