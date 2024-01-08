@@ -29,11 +29,11 @@ const HomePage = ({ posts }) => {
         return value;
       }
     });
-    if (searchWord === "") {
-      setFilteredData(postArr);
-    } else {
-      setFilteredData(newFilter);
-    }
+    // if (searchWord === "") {
+    //   setFilteredData(postArr);
+    // } else {
+    //   setFilteredData(newFilter);
+    // }
   };
 
   useEffect(() => {
