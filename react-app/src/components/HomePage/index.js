@@ -36,13 +36,13 @@ const HomePage = ({ posts }) => {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(getAllPosts())
-  //     .then(() => {
-  //       setIsLoaded(true);
-  //     })
-  //     .then(() => history.push("/home"));
-  // }, [dispatch, isLoaded]);
+  useEffect(() => {
+    dispatch(getAllPosts())
+      .then(() => {
+        setIsLoaded(true);
+      })
+      .then(() => history.push("/home"));
+  }, [dispatch, isLoaded]);
 
   if (isLoaded && postArr.length >= 1) {
     return (
