@@ -231,7 +231,7 @@ const FanFaction = () => {
           )
         )
       ) : (
-        <h1>THE FANS ARE WEAK HERE</h1>
+        // <h1>THE FANS ARE WEAK HERE</h1>
       )}
     </>
   );
