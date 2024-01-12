@@ -223,7 +223,7 @@ const FanFaction = () => {
                   <h4 style={{ margin: "0 20px" }}>Replies: </h4>
                   {replies.map((ele) => (
                     <div style={{ margin: "20px 30px" }}>{ele.reply}</div>
-                    // <p>{` ${reply?.user?.firstname} ${reply?.user?.lastname}`}</p>
+                    <p>{` ${reply?.user?.firstname} ${reply?.user?.lastname}`}</p>
                   ))}
                 </div>
               ) : null}
