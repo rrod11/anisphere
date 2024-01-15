@@ -218,7 +218,7 @@ const AnimePage = ({ posts }) => {
   if (!target) {
     return (
       <div className="no-anime-here">
-        {/* <h1>PSSSSSSSSSSSSSTTTTT!!!</h1> */}
+        <h1>PSSSSSSSSSSSSSTTTTT!!!</h1>
         <h2>THERE'S NOT ANY ANIME AT THIS SPOT</h2>
         <div className="return-back-home-button">
           <h3>ALL DONE READING?</h3>
