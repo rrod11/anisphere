@@ -221,8 +221,8 @@ const AnimePage = ({ posts }) => {
         <h1>PSSSSSSSSSSSSSTTTTT!!!</h1>
         <h2>THERE'S NOT ANY ANIME AT THIS SPOT</h2>
         <div className="return-back-home-button">
-          {/* <h3>ALL DONE READING?</h3>
-          <button onClick={goBack}>CLICK ME!!</button> */}
+          <h3>ALL DONE READING?</h3>
+          <button onClick={goBack}>CLICK ME!!</button>
         </div>
       </div>
     );
