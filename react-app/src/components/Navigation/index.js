@@ -29,18 +29,18 @@ function Navigation({ isLoaded }) {
       </a>
       <a></a>
 
-      {isLoaded && (
-        <li
-          style={{
-            width: "40px",
-            height: "fit-content",
-            padding: "0 40px 0 0",
-            top: "0",
-          }}
-        >
-          <ProfileButton user={sessionUser} />
-        </li>
-      )}
+      {/* {isLoaded && ( */}
+      <li
+        style={{
+          width: "40px",
+          height: "fit-content",
+          padding: "0 40px 0 0",
+          top: "0",
+        }}
+      >
+        <ProfileButton user={sessionUser} />
+      </li>
+      {/* )} */}
     </div>
   );
 }

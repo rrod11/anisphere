@@ -88,6 +88,7 @@ form {
   display: flex;
   align-items: center;
   background: rgb(255, 255, 28);
+  border-radius: 15px;
   box-shadow: 8px 8px 15px rgba(255, 248, 54, 0.8);
   border: none;
   height: 40px;

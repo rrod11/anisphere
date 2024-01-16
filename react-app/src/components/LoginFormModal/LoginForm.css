@@ -53,6 +53,7 @@ form {
   justify-content: center;
   height: 30px;
   margin-top: 10px;
+  border-radius: 15px;
 }
 .login-form-button button {
   width: 100%;
@@ -74,6 +75,7 @@ form {
   justify-content: center;
   height: 30px;
   margin-top: 5px;
+  border-radius: 15px;
 }
 .demo-user-button button {
   width: 100%;
