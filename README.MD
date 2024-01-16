@@ -127,7 +127,7 @@ For those who enjoy a healthy exchange of ideas, the Debate Den is the place to 
 - **User Profiles**: Customize your profile, track your watchlist, and connect with other users who share your interests.
   <!-- - **Advanced Search**: Easily discover anime based on genres, themes, and user ratings. -->
   <!-- - **Dynamic Forum System**: Engage with like-minded individuals in dedicated forums for lovers and haters alike. -->
-- **Personalized Recommendations**: Receive tailored suggestions based on your viewing history and preferences.
+- **Personalized Recommendations**: Receive tailored suggestions based on your viewing history and preferences. The ability to like and dislike the same anime is intentional as a way to say you didn't exactly love it but you didn't hate it either. The algorithm will eventually be able to recommend you anime based on your likes, dislikes, and your "ok" anime
 <!-- - **Debate Section**: Join lively debates where lovers and haters come together to discuss, argue, and appreciate the nuances of different anime series. -->
 
 ## Getting Started
