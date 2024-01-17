@@ -59,7 +59,7 @@ function SignupFormPage() {
             <label>Email</label>
           </div>
           <input
-            type="text"
+            type="email"
             className="post-inputs-signup-page"
             style={{ width: "95%" }}
             value={email}
