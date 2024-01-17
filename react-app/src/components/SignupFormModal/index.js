@@ -56,7 +56,7 @@ function SignupFormModal() {
             <label>Email</label>
           </div>
           <input
-            type="text"
+            type="email"
             className="post-inputs"
             style={{ width: "95%" }}
             value={email}
