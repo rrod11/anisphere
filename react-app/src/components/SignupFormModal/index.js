@@ -20,6 +20,19 @@ function SignupFormModal() {
     const errObj = {};
     if (!email) errObj.email = "Email is required";
     if (!email.includes("@")) errObj.email = "Email must include '@'";
+    if (
+      email.includes("@") &&
+      !email.includes(".com") &&
+      !email.includes(".io") &&
+      !email.includes(".net") &&
+      !email.includes(".it") &&
+      !email.includes(".co") &&
+      !email.includes(".es") &&
+      !email.includes(".in") &&
+      !email.includes(".be") &&
+      !email.includes(".fr ")
+    )
+      errObj.email = "Email must have a valid domain";
     if (!username) errObj.username = "Username is required";
     if (!first_name || first_name.length < 1)
       errObj.first_name = "First Name must be at least 1 character";
@@ -56,7 +69,7 @@ function SignupFormModal() {
             <label>Email</label>
           </div>
           <input
-            type="email"
+            type="text"
             className="post-inputs"
             style={{ width: "95%" }}
             value={email}
