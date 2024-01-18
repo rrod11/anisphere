@@ -143,7 +143,7 @@ const PostForm = () => {
     // setErrors(errObj);
     setValidationErrors(errors);
     dispatch(allCategories());
-  }, [dispatch, description, image, title]);
+  }, [dispatch]);
 
   if (sessionUser) {
     return (
