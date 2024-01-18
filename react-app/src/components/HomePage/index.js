@@ -236,19 +236,17 @@ const HomePage = ({ posts }) => {
         <div className="scroll-bg">
           <div className="scroll-div">
             <div className="scroll-object">
-              This is the beginning of the best anime site to ever exist. I want
+              This is the beginning of the best anime site to ever exist. I ask
               you all to be patient with me as i work to figure out the ins and
-              outs and nuances associated with creating a large scale
-              application. This multifacted website will highlight the best
-              parts AND the worst parts of all anime out there. While a grading
-              scale for anime exists, a suggested anime function to pair you
-              with anime that are similar to your tastes and interests in
-              regards to the anime cuisine. My algorithm will soon be able to
-              match you to anime that you will most likely enjoy or at the very
-              least be able to watch for mild entertainment without wanting to
-              rip your hair, eyeballs, or ear lobes out/off. I hope that this
-              site is able to give you everything that you are looking for out
-              of the site....
+              outs and nuances associated with this undertaking. This
+              multifacted website will highlight the best parts AND the worst
+              parts of all anime out there. I plan to implement an algorithm
+              that will soon be able to match you to anime that you will most
+              likely enjoy or at the very least be able to watch for mild
+              entertainment without wanting to rip your hair, eyeballs, or ear
+              lobes out/off. I hope that this site is able to save you valuable
+              time and countless hours screaming at the television due to a poor
+              suggestion from a trust confidant...
             </div>
           </div>
         </div>
