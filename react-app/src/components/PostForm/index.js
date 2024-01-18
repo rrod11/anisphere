@@ -103,6 +103,7 @@ const PostForm = () => {
 
       const responseData = await dispatch(createPost(formData));
 
+      history.push("/home");
       options.forEach(async ({ id, name }) => {
         const payloadObj = {
           category_id: id,
@@ -118,7 +119,6 @@ const PostForm = () => {
       setImage("");
       setValidationErrors([]);
       setHasSubmitted(false);
-      history.push("/home");
     }
   };
 
