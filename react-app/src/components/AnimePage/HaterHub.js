@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { allTheThreads, createAThread } from "../../store/threadReducer";
 import Likes from "./Likes";
 import Replies from "./Replies";
+import "./animePage.css";
 
 const HaterHub = () => {
   const { postId } = useParams();
@@ -55,21 +56,23 @@ const HaterHub = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newThread = {
-      title,
-      description,
-      post_id: postId,
-      user_id: sessionUser.id,
-      fan: false,
-      hater: true,
-      debate: false,
-    };
-    const response = await dispatch(createAThread(postId, newThread));
+    if (title) {
+      const newThread = {
+        title,
+        description,
+        post_id: postId,
+        user_id: sessionUser.id,
+        fan: false,
+        hater: true,
+        debate: false,
+      };
+      const response = await dispatch(createAThread(postId, newThread));
 
-    // setThread("");
-    setTitle("");
-    setDescription("");
-    setIsLoaded(!isLoaded);
+      // setThread("");
+      setTitle("");
+      setDescription("");
+      setIsLoaded(!isLoaded);
+    }
   };
   useEffect(async () => {
     dispatch(getAllUsers());
@@ -142,13 +145,14 @@ const HaterHub = () => {
           </div>
           <button
             onClick={checkForm}
-            className="HaterHubBtn"
+            className="threadBtn"
             style={{
               padding: "10px",
               margin: "10px",
               borderRadius: "15px",
               border: "none",
               background: "gold",
+              cursor: "pointer",
             }}
           >
             CREATE THREAD

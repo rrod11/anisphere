@@ -203,6 +203,17 @@
   cursor: pointer;
   border-radius: 15px;
 }
+/* .DebateDenForm > button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+  background: blue;
+}
+.DebateDenForm > button:hover {
+  background: green;
+  cursor: pointer;
+} */
 /* .animeTabDisplay {
 
 } */

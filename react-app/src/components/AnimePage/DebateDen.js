@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { allTheThreads, createAThread } from "../../store/threadReducer";
 import Likes from "./Likes";
 import Replies from "./Replies";
+import "./animePage.css";
 
 const DebateDen = () => {
   const { postId } = useParams();
@@ -55,22 +56,23 @@ const DebateDen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title) {
+      const newThread = {
+        title,
+        description,
+        post_id: postId,
+        user_id: sessionUser.id,
+        fan: false,
+        hater: false,
+        debate: true,
+      };
+      const response = await dispatch(createAThread(postId, newThread));
 
-    const newThread = {
-      title,
-      description,
-      post_id: postId,
-      user_id: sessionUser.id,
-      fan: false,
-      hater: false,
-      debate: true,
-    };
-    const response = await dispatch(createAThread(postId, newThread));
-
-    // setThread("");
-    setTitle("");
-    setDescription("");
-    setIsLoaded(!isLoaded);
+      // setThread("");
+      setTitle("");
+      setDescription("");
+      setIsLoaded(!isLoaded);
+    }
   };
   useEffect(async () => {
     dispatch(getAllUsers());
@@ -143,13 +145,14 @@ const DebateDen = () => {
           </div>
           <button
             onClick={checkForm}
-            className="DebateDenBtn"
+            className="threadBtn"
             style={{
               padding: "10px",
               margin: "10px",
               borderRadius: "15px",
               border: "none",
               background: "gold",
+              cursor: "pointer",
             }}
           >
             CREATE THREAD

@@ -213,7 +213,7 @@ const AnimePage = ({ posts }) => {
     dispatch(allPostCategories());
     dispatch(allTheThreads());
     setIsLoaded(true);
-  }, [dispatch, isLoaded, render, reviewArr]);
+  }, [dispatch, isLoaded, render]);
 
   if (!target) {
     return (
