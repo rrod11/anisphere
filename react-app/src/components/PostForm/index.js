@@ -126,7 +126,7 @@ const PostForm = () => {
     dispatch(getAllPosts());
     // dispatch(allPostCategories());
     const errors = [];
-    // const errObj = {};
+    const errObj = {};
     if (!description.length) {
       errors.push("Please enter a post description!");
       // errObj.description = "Description is required";
