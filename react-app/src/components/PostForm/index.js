@@ -124,7 +124,7 @@ const PostForm = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-    // dispatch(allPostCategories());
+    dispatch(allPostCategories());
     const errors = [];
     const errObj = {};
     if (!description.length) {
