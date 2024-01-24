@@ -129,7 +129,7 @@ const PostForm = () => {
     const errObj = {};
     if (!description.length) {
       errors.push("Please enter a post description!");
-      // errObj.description = "Description is required";
+      errObj.description = "Description is required";
     }
     if (!image) {
       errors.push("Please provide an image!");
