@@ -133,7 +133,7 @@ const PostForm = () => {
     }
     if (!image) {
       errors.push("Please provide an image!");
-      // errObj.image = "Image is required";
+      errObj.image = "Image is required";
     }
 
     if (!title) {
