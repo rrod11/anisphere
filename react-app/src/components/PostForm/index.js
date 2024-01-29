@@ -138,7 +138,7 @@ const PostForm = () => {
 
     if (!title) {
       errors.push("Please provide a title");
-      // errObj.title = "Title is required";
+      errObj.title = "Title is required";
     }
     // setErrors(errObj);
     setValidationErrors(errors);
