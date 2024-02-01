@@ -10,7 +10,7 @@ const HomePage = ({ posts }) => {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  // const allPosts = useSelector((state) => state.post.posts);
+  const allPosts = useSelector((state) => state.post.posts);
   const postArr = Object.values(posts);
 
   const [filteredData, setFilteredData] = useState(postArr);
